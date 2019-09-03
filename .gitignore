@@ -8,5 +8,4 @@ __pycache__
 
 # Project files
 node_modules
-dist/*.js
-dist/*.css
+dist
