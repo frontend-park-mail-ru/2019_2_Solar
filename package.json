@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "eslint": "eslint --fix src/"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,9 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "eslint-loader": "^3.0.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
   }
