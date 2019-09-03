@@ -9,6 +9,6 @@ const component = () => {
     element.innerHTML = '<h1 class="red">Hello World!</h1>';
   
     return element;
-  }
+}
   
-  document.body.appendChild(component());
+document.body.appendChild(component());
