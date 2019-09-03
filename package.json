@@ -4,7 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
     "eslint": "eslint --fix src/",
     "start:dev": "webpack-dev-server --hot",
     "test": "jest"
