@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "start": "node server.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "eslint": "eslint --fix src/ server.js",
