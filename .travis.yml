@@ -8,10 +8,10 @@ node_js:
   - 6
 
 services:
-  - docker build -t solar:latest .
+  - docker build -t solar/sunrise .
 
 script:
-  - docker run solar:latest npm test -- --coverage
+  - docker run solar/sunrise npm test -- --coverage
 
 branches:
   only:
