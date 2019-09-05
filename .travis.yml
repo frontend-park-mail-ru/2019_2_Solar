@@ -5,15 +5,13 @@ dist: trusty
 language: node_js
 
 node_js:
-  - 8
   - 6
-  - 4
 
 services:
-  - docker build -t solar .
+  - docker build -t solar:latest .
 
 script:
-  - docker run solar npm test -- --coverage
+  - docker run solar:latest npm test -- --coverage
 
 branches:
   only:
