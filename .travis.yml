@@ -32,5 +32,3 @@ deploy:
 branches:
   only:
     - dev
-
-Solar-env.v2zxh2s3me.us-east-2.elasticbeanstalk.com 
