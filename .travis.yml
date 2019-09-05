@@ -2,6 +2,9 @@ sudo: required
 
 language: node_js
 
+node_js:
+  - 0.12
+
 services:
   - docker build -t solar .
 
