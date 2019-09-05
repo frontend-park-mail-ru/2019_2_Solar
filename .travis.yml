@@ -20,7 +20,7 @@ deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
   app: "solar"
-  env: "Docker-env"
+  env: "Solar-env"
   bucket_name: "elasticbeanstalk-us-east-2-135780901986"
   bucket_path: "solar"
   on:
