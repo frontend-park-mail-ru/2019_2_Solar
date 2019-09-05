@@ -1,4 +1,4 @@
-# Solar ☀️ [![Build Status](https://travis-ci.org/frontend-park-mail-ru/2019_2_Solar.svg?branch=master)](https://travis-ci.org/frontend-park-mail-ru/2019_2_Solar)
+# Solar ☀️ [![Build Status](https://travis-ci.org/frontend-park-mail-ru/2019_2_Solar.svg?branch=dev)](https://travis-ci.org/frontend-park-mail-ru/2019_2_Solar)
 
 ## Название проекта
 
