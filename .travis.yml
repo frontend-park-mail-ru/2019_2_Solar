@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker build -t solar .
+
+script:
+  - docker run solar npm test -- --coverage
+
+branches:
+  only:
+    - dev
