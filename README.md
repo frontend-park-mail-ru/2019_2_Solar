@@ -1,4 +1,4 @@
-# Solar
+# Solar ☀️
 
 **Команда Solar:**
 
