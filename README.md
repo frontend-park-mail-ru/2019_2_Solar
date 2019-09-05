@@ -6,11 +6,11 @@
 
 ### Установка
 
-`git clone https://github.com/frontend-park-mail-ru/2019_2_Solar`
-
-`cd 2019_2_Solar`
-
-`docker build -t solar . && docker run -p 3000:3000 solar`
+```
+git clone https://github.com/frontend-park-mail-ru/2019_2_Solar
+cd 2019_2_Solar
+docker-compose up
+```
 
 ### Тестирование
 
