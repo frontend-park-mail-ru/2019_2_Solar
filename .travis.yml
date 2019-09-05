@@ -11,7 +11,6 @@ services:
   - docker
 
 before_install:
-  - echo "hello world"
   - docker build -t solar/sunrise .
 
 script:
@@ -27,6 +26,7 @@ deploy:
   on:
     branch: dev
   access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
     secure: "$AWS_SECRET_KEY"
 
 branches:
