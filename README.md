@@ -1,16 +1,8 @@
 # Solar ☀️
 
-**Команда Solar:**
-
-* [Богдан Салып](https://github.com/bogdansalyp)
-* [Веинский Владимир](https://github.com/BarniBl)
-* [Виталий Шульман](https://github.com/ValeryBMSTU)
-* [Шишова Анастасия](https://github.com/NellinLin)
-
-**Ментор:** [Волынов Михаил](https://github.com/StealthTech)
-
 ## Название проекта
-Описание проекта.
+
+Социальная сеть для художников, дизайнеров и любителей AR.
 
 ### Установка
 
@@ -21,4 +13,14 @@
 `docker build -t solar . && docker run -p 3000:3000 solar`
 
 ### Тестирование
-Примеры тестов, зачем они нужны.
+
+`npm test`
+
+**Команда Solar:**
+
+* [Богдан Салып](https://github.com/bogdansalyp)
+* [Веинский Владимир](https://github.com/BarniBl)
+* [Виталий Шульман](https://github.com/ValeryBMSTU)
+* [Шишова Анастасия](https://github.com/NellinLin)
+
+**Ментор:** [Волынов Михаил](https://github.com/StealthTech)
