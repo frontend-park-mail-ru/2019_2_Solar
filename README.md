@@ -1,22 +1,29 @@
-# Solar ☀️ [![Build Status](https://travis-ci.org/frontend-park-mail-ru/2019_2_Solar.svg?branch=dev)](https://travis-ci.org/frontend-park-mail-ru/2019_2_Solar)
+# Solar ☀️
 
-## Название проекта
+Социальная сеть для художников, дизайнеров и любителей AR
 
-Социальная сеть для художников, дизайнеров и любителей AR.
-
-### Установка
+## Установка и запуск
 
 ```
 git clone https://github.com/frontend-park-mail-ru/2019_2_Solar
+
 cd 2019_2_Solar
-docker-compose up
+
+docker build -t solar . && docker run -p 3000:3000 solar
 ```
 
-### Тестирование
+## Тестирование
 
-`npm test`
+```
+npm test
+```
 
-**Команда Solar:**
+## Сделано с помощью
+
+* VanillaJS - лучший JS-фреймворк
+* Express
+
+## Авторы
 
 * [Богдан Салып](https://github.com/bogdansalyp)
 * [Веинский Владимир](https://github.com/BarniBl)
