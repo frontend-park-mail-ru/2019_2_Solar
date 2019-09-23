@@ -17,6 +17,10 @@ module.exports = {
                     fallback: 'style-loader',
                     use: ['css-loader', 'sass-loader']
                 })
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: ['file-loader']
             }
         ]
     },
@@ -36,7 +40,8 @@ module.exports = {
         new ExtractTextPlugin('style.css'),
         new HtmlWebpackPlugin({
             hash: true,
-            filename: 'index.html'
+            filename: 'index.html',
+            template: './src/html/index.html'
         })
     ]
 }
