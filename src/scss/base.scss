@@ -1,3 +1,209 @@
-.red {
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+h1 {
     color: red;
+}
+
+input {
+    display: block;
+    padding-left: 10px;
+}
+
+.aUnblock {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 5px;
+}
+
+.underlineTag {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.size {
+    font-size: 200%;
+}
+
+.background {
+    background: url(/images/signupbg.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.backgroundLogin {
+    background: url(/images/loginbg1.jpg);
+    background-repeat: no-repeat;
+    background-size :cover;
+    background-attachment: fixed;
+}
+
+.paddingMenuCl {
+    padding-left: 200px;
+}
+
+.paddingMenuTitle {
+    padding-left: 150px;
+    width: 480px;
+}
+
+.signupTitleSolar {
+    position: absolute;
+    height: 211px;
+    top: 200px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 66px;
+
+    color: #000000;
+}
+
+.signupUnderTitle {
+
+    position: absolute;
+    height: 71px;
+    top: 357px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: #000000;
+}
+
+.blockinput {
+    position: absolute;
+    width: 323px;
+    height: 45px;
+}
+
+.buttonSignup {
+    position: absolute;
+    width: 333px; /*323*/
+    height: 45px;
+    top: 630px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+
+    text-align: center;
+    color: white;
+}
+
+.underbutton {
+    position: absolute;
+    width: 323px;
+    height: 45px;
+    top: 680px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+}
+
+.blocklogin {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    width: 388px;
+    height: 426px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+    padding: 22px 0px;
+
+}
+
+.underBlockLoginCl {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    position: absolute;
+    overflow: auto;
+    display: flex;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.titleSingIn {
+    position: absolute;
+    left: 6.19%;
+    right: 6.44%;
+    top: 26.29%;
+    bottom: 57.04%;
+}
+
+.inputSingIn {
+    position: absolute;
+    height: 45px;
+    left: 69px;
+    width: 250px;
+
+    background: #FFFFFF;
+    border: 1px solid #A19F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.buttonLogin {
+    position: absolute;
+    width: 250px;
+    height: 45px;
+    left: 69px;
+    top: 74.76%;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+
+    text-align: center;
+    color: white;
+}
+
+.underbuttonLogin {
+    position: absolute;
+    width: 250px;
+    height: 45px;
+    left: 69px;
+    top: 86.14%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+}
+
+.titleLogin {
+    position: absolute;
+    left: 6.19%;
+    right: 6.44%;
+    top: 26.29%;
+    bottom: 57.04%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.logoStyle {
+    width: 70px;
+    padding-top: 25px;
+    align-self: center;
+}
+
+.backgroundIndex {
+    background-color: rgb(255, 255, 255);
 }

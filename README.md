@@ -1,6 +1,10 @@
-# Solar ☀️
+# Solar ☀️ [![Build Status](https://travis-ci.org/frontend-park-mail-ru/2019_2_Solar.svg?branch=dev)](https://travis-ci.org/frontend-park-mail-ru/2019_2_Solar)
 
 Социальная сеть для художников, дизайнеров и любителей AR
+
+## Попробовать онлайн
+
+http://solar-env.v2zxh2s3me.us-east-2.elasticbeanstalk.com/
 
 ## Установка и запуск
 
