@@ -26,14 +26,14 @@ input {
 }
 
 .background {
-    background: url(/images/signupbg.png);
+    background: url('../images/signupbg.png');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .backgroundLogin {
-    background: url(/images/loginbg1.jpg);
+    background: url('../images/loginbg1.jpg');
     background-repeat: no-repeat;
     background-size :cover;
     background-attachment: fixed;
