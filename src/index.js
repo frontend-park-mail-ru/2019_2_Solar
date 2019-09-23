@@ -1,6 +1,7 @@
 'use strict';
 
 import './scss/base.scss';
+import Logo from './images/logo.jpg'
 
 // 1838 x 981
 
@@ -82,7 +83,7 @@ function createLogin() {
     document.body.className = 'backgroundLogin';
 
     const logoImg = document.createElement('img');
-    logoImg.src = '/images/logo.jpg';
+    logoImg.src = Logo;
     logoImg.className = 'logoStyle';
 
     const underBlockLogin = document.createElement('div');
