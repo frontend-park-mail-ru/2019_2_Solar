@@ -1,168 +1,141 @@
 'use strict';
 
-import './scss/base.scss';
-import Logo from './images/logo.jpg'
-
 // 1838 x 981
+import {ProfileComponent} from './components/Profile/Profile.js';
+import {LoginComponent} from './components/Login/Login.js';
+import {SignUpComponent} from './components/SignUp/SignUp.js';
+import {IndexComponent} from './components/Index/Index.js';
+import './scss/base.scss';
+
+
+const ajax = globalThis.ajax;
+
+console.log('hello, my friend :)');
 
 const application = document.getElementById('application');
 
 function createSignup() {
-    application.innerHTML = '';
 
+    application.innerHTML = '';
     document.body.className = 'background';
 
-    const paddingMenu = document.createElement('div');
-    paddingMenu.className = 'paddingMenuCl ';
+    const signUp = new SignUpComponent(application);
+    signUp.render();
 
-    const titleSolar = document.createElement('div');
-    titleSolar.className = 'signupTitleSolar paddingMenuTitle';
-    titleSolar.textContent = 'Добро пожаловать на пинтерест (нет)';
+    const signUpForm = signUp.form;
 
-    const underTitleSolar = document.createElement('div');
-    underTitleSolar.className = 'signupUnderTitle paddingMenuTitle';
-    underTitleSolar.textContent = 'На самом деле мы не пинтерест, а кое-что покруче!';
+    signUpForm.addEventListener('submit', function(e) {
+		e.preventDefault();
 
-    const form = document.createElement('form');
+		const email = signUpForm.elements['email'].value;
+        const username = signUpForm.elements['username'].value;
+		const password = signUpForm.elements['password'].value;
 
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.name = 'email';
-    emailInput.placeholder = 'Email';
-    emailInput.style = 'top: 452px;';
-    emailInput.className = 'blockinput';
+		ajax({method: 'POST', url: '/signup', body: {email, username, password}, callback(status, responseText) {
+			if (status === 201) {
+				createProfile();
+				return;
+			}
 
-    const passwordInput = document.createElement('input');
-    passwordInput.type = 'password';
-    passwordInput.name = 'password';
-    passwordInput.placeholder = 'Пароль';
-    passwordInput.style = 'top: 510px;';
-    passwordInput.className = 'blockinput';
-
-    const ageInput = document.createElement('input');
-    ageInput.type = 'number';
-    ageInput.name = 'age';
-    ageInput.placeholder = 'Возраст';
-    ageInput.style = 'top: 566px;';
-    ageInput.className = 'blockinput';
-
-    const submitBtn = document.createElement('input');
-    submitBtn.type = 'submit';
-    submitBtn.value = 'Зарегистрироваться';
-    submitBtn.className = 'buttonSignup';
-    // добавить обработку события
-
-    form.appendChild(emailInput);
-    form.appendChild(passwordInput);
-    form.appendChild(ageInput);
-    form.appendChild(submitBtn);
-    
-    const contentText = document.createElement('div');
-    contentText.textContent = 'Уже зарегистрировались?';
-    contentText.className = 'underbutton';
-
-    const loginBtn = document.createElement('a');
-    loginBtn.href = '/login';
-    loginBtn.textContent = 'Войти';
-    loginBtn.dataset.section = 'login';
-    loginBtn.className = 'aUnblock';
-
-    contentText.appendChild(loginBtn);
-
-    paddingMenu.appendChild(form);
-    paddingMenu.appendChild(contentText);
-
-    application.appendChild(paddingMenu);
-    application.appendChild(titleSolar);
-    application.appendChild(underTitleSolar);
+			const {error} = JSON.parse(responseText);
+			alert(error);
+        }
+        });
+	});
 };
 
 function createLogin() {
     application.innerHTML = '';
-
     document.body.className = 'backgroundLogin';
 
-    const logoImg = document.createElement('img');
-    logoImg.src = Logo;
-    logoImg.className = 'logoStyle';
+    const login = new LoginComponent(application);
+    login.render();
 
-    const underBlockLogin = document.createElement('div');
-    underBlockLogin.className ='underBlockLoginCl';
+    const loginForm = login.form;
 
-    const blockLogin = document.createElement('div');
-    blockLogin.className = 'blocklogin';
+    loginForm.addEventListener('submit', function(e) {
+		e.preventDefault();
 
-    const titleLogin = document.createElement('div');
-    titleLogin.textContent = 'Добро пожаловать в Sunrise!';
-    titleLogin.className = 'titleLogin';
+		const email = loginForm.emailinput.value.trim();
+		const password = loginForm.passwordinput.value.trim();
 
-    const form = document.createElement('form');
+		ajax({
+			method: 'POST',
+			url: '/login',
+			body: {email, password},
+			callback: (status, response) => {
+				if (status === 200) {
+					createIndex();
+				} else {
+					const {error} = JSON.parse(response);
+					alert(error);
+				}
+			}
+        });
 
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.placeholder = 'Email';
-    emailInput.className = 'inputSingIn';
-    emailInput.style = 'top: 48.83%;';
-
-    const passwordInput = document.createElement('input');
-    passwordInput.type = 'password';
-    passwordInput.placeholder = 'Пароль';
-    passwordInput.className = 'inputSingIn';
-    passwordInput.style = 'top: 60.74%;';
-
-    const submitBtn = document.createElement('input');
-    submitBtn.type = 'submit';
-    submitBtn.value = 'Войти';
-    submitBtn.className = 'buttonLogin';
-
-    form.appendChild(emailInput);
-    form.appendChild(passwordInput);
-    form.appendChild(submitBtn);
-    
-    const contentText = document.createElement('div');
-    contentText.textContent = 'Ещё не зарегистрировались?';
-    contentText.className = 'underbuttonLogin';
-
-    const signupBtn = document.createElement('a');
-    signupBtn.href = '/signup';
-    signupBtn.textContent = 'Регистрация';
-    signupBtn.dataset.section = 'signup';
-    signupBtn.className = 'aUnblock';
-
-    contentText.appendChild(signupBtn);
-    
-    blockLogin.appendChild(logoImg);
-    blockLogin.appendChild(titleLogin);
-    blockLogin.appendChild(form);
-    blockLogin.appendChild(contentText);
-    underBlockLogin.appendChild(blockLogin);
-
-    application.appendChild(underBlockLogin);
+	});
 };
 
 function createIndex() {
     application.innerHTML = '';
-
     document.body.className ='backgroundIndex';
 
-    const comma = document.createElement('div');
-    comma.textContent = 'HI';
-    comma.style = 'padding-left:919px;';
+    const index = new IndexComponent();
+    index.render();
+};
 
-    const comma1 = document.createElement('div');
-    comma1.textContent = 'HI';
-    comma1.style = 'padding-left:50%;';
+function createSettings() {
+    application.innerHTML = '';
+    document.body.className ='backgroundIndex';
+
+    const paddingMenu = document.createElement('div');
+    paddingMenu.textContent="hello, settings";
+
+    application.appendChild(paddingMenu);
+    
+};
 
 
-    application.appendChild(comma);
-    application.appendChild(comma1);
+function createProfile() {
+	application.innerHTML = '';
+	ajax({method: 'GET', url: '/me', body: null, callback(status, responseText) {
+        let isMe = false;
+        
+		if (status === 200) {
+			isMe = true;
+		}
 
+		if (status === 401) {
+			isMe = false;
+		}
+
+		if (isMe) {
+            try {
+                const responseBody = JSON.parse(responseText);
+                application.innerHTML = '';
+                document.body.className ='backgroundIndex';
+
+                const profile = new ProfileComponent(application);
+                profile.data = responseBody;
+                profile.render();
+                
+            } catch (e) {
+                return;
+            }
+		} else {
+			alert('нет авторизации');
+			createLogin();
+		}
+    }
+    });
 };
 
 const functions = {
     signup: createSignup,
     login: createLogin,
     index: createIndex,
+    profile: createProfile,
+    settings: createSettings,
 };
 
 application.addEventListener('click', function (evt) {
@@ -175,4 +148,3 @@ application.addEventListener('click', function (evt) {
 });
 
 createSignup();
-
