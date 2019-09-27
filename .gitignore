@@ -1,11 +1,12 @@
+# IDE files
+.idea
+.vscode
+
 # OS X files
 .DS_Store
 
-# Python files
-*.pyc
-__pycache__
-.ipynb_checkpoints
-
 # Project files
 node_modules
+dist/*
+dist/
 dist
