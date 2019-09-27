@@ -1,3 +1,6 @@
+import './Login.scss';
+import Logo from '../../images/logo.jpg';
+
 export class LoginComponent {
     constructor(parent = document.body) {
         this._parent = parent;
@@ -10,7 +13,7 @@ export class LoginComponent {
 
     render() {
         const logoImg = document.createElement('img');
-        logoImg.src = '/images/logo.jpg';
+        logoImg.src = Logo;
         logoImg.className = 'logoStyle';
     
         const underBlockLogin = document.createElement('div');

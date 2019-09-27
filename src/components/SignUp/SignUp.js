@@ -1,3 +1,5 @@
+import './SignUp.scss';
+
 export class SignUpComponent {
     constructor(parent = document.body) {
         this._parent = parent;
@@ -9,6 +11,13 @@ export class SignUpComponent {
     }
 
     render() {
+        // const set = document.createElement('a');
+        // set.href = '/settings';
+        // set.textContent = 'Войти в настройки';
+        // set.dataset.section = 'settings';
+        // this._parent.appendChild(set);
+
+
         const paddingMenu = document.createElement('div');
         paddingMenu.className = 'paddingMenuCl ';
     

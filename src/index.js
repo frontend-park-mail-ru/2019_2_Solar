@@ -5,6 +5,7 @@ import {ProfileComponent} from './components/Profile/Profile.js';
 import {LoginComponent} from './components/Login/Login.js';
 import {SignUpComponent} from './components/SignUp/SignUp.js';
 import {IndexComponent} from './components/Index/Index.js';
+import {SettingsComponent} from './components/Settings/Settings.js'
 import './scss/base.scss';
 
 
@@ -88,10 +89,8 @@ function createSettings() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
-    const paddingMenu = document.createElement('div');
-    paddingMenu.textContent="hello, settings";
-
-    application.appendChild(paddingMenu);
+    const settings = new SettingsComponent();
+    settings.render();
     
 };
 
