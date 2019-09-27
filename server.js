@@ -41,6 +41,13 @@ const users = {
 		age: 21,
 		score: 72,
 	},
+	'hi@mail.ru': {
+		email: 'hi@mail.ru',
+		password: '111',
+		status: 'hello!!!',
+		name: 'Den',
+		surname: 'Black',
+	},
 };
 const ids = {};
 
@@ -91,8 +98,6 @@ app.get('/me', function (req, res) {
 	if (!email || !users[email]) {
 		return res.status(401).end();
 	}
-
-	users[email].score += 1;
 
 	res.json(users[email]);
 });

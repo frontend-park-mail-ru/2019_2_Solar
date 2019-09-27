@@ -44,10 +44,12 @@
     color: #000000;
 }
 
-.logoStyle {
+.logoStyleL {
+    position: absolute;
     width: 70px;
     padding-top: 25px;
     align-self: center;
+    margin-left: -35px;
 }
 
 .blocklogin {

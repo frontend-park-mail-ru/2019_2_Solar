@@ -6,24 +6,21 @@ import {LoginComponent} from './components/Login/Login.js';
 import {SignUpComponent} from './components/SignUp/SignUp.js';
 import {IndexComponent} from './components/Index/Index.js';
 import {SettingsComponent} from './components/Settings/Settings.js'
+import {HeaderComponent} from './components/Header/Header.js';
 import './scss/base.scss';
 
-
 const ajax = globalThis.ajax;
-
-console.log('hello, my friend :)');
 
 const application = document.getElementById('application');
 
 function createSignup() {
-
     application.innerHTML = '';
     document.body.className = 'background';
 
     const signUp = new SignUpComponent(application);
     signUp.render();
 
-    const signUpForm = signUp.form;
+    const signUpForm = document.getElementById('inputdata');
 
     signUpForm.addEventListener('submit', function(e) {
 		e.preventDefault();
@@ -52,7 +49,7 @@ function createLogin() {
     const login = new LoginComponent(application);
     login.render();
 
-    const loginForm = login.form;
+    const loginForm = document.getElementById('inputdata');
 
     loginForm.addEventListener('submit', function(e) {
 		e.preventDefault();
@@ -81,6 +78,9 @@ function createIndex() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
+    const header = new HeaderComponent(application);
+    header.render();
+
     const index = new IndexComponent();
     index.render();
 };
@@ -89,14 +89,34 @@ function createSettings() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
+    // for test
+    var responseBody = {username: "gog", email: "go@mail.ru", status: "hi higgee", name: "Genri", surname: "Black"};
+    //
+
+    const header = new HeaderComponent(application);
+    header.data = responseBody;
+    header.render();
+
     const settings = new SettingsComponent();
+    settings.data = responseBody;
     settings.render();
     
 };
 
 
 function createProfile() {
-	application.innerHTML = '';
+    application.innerHTML = '';
+    
+    // document.body.className ='backgroundIndex';
+    // var responseBody = {username: "gog", email: "go@mail.ru", status: "hi hi"};
+    // const header = new HeaderComponent(application);
+    // header.data = responseBody;
+    // header.render();
+
+    // const profile = new ProfileComponent(application);
+    // profile.data = responseBody;
+    // profile.render();
+
 	ajax({method: 'GET', url: '/me', body: null, callback(status, responseText) {
         let isMe = false;
         
@@ -113,6 +133,10 @@ function createProfile() {
                 const responseBody = JSON.parse(responseText);
                 application.innerHTML = '';
                 document.body.className ='backgroundIndex';
+
+                const header = new HeaderComponent(application);
+                header.data = responseBody;
+                header.render();
 
                 const profile = new ProfileComponent(application);
                 profile.data = responseBody;
