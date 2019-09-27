@@ -57,19 +57,31 @@ function createLogin() {
 		const email = loginForm.emailinput.value.trim();
 		const password = loginForm.passwordinput.value.trim();
 
-		ajax({
-			method: 'POST',
-			url: '/login',
-			body: {email, password},
-			callback: (status, response) => {
-				if (status === 200) {
-					createIndex();
-				} else {
-					const {error} = JSON.parse(response);
-					alert(error);
-				}
-			}
-        });
+        fetch('http://localhost:8080/', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((resp) => resp.json())
+            .then(data => {
+                console.log(data);
+                createIndex();
+            })
+		// ajax({
+		// 	method: 'POST',
+		// 	url: '/login',
+		// 	body: {email, password},
+		// 	callback: (status, response) => {
+		// 		if (status === 200) {
+		// 			createIndex();
+		// 		} else {
+		// 			const {error} = JSON.parse(response);
+		// 			alert(error);
+		// 		}
+		// 	}
+        // });
 
 	});
 };
