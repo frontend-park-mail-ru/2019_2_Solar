@@ -29,22 +29,22 @@ function createSignup() {
         const username = signUpForm.elements['username'].value;
 		const password = signUpForm.elements['password'].value;
 
-        let response = fetch('/signup', {
+        fetch('/signup', {
             method: 'POST',
             body: {email, password, username},
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
-
-        console.log(response);
-
-        if (response.ok) {
-            createProfile();
-        } else {
-            const {error} = JSON.parse(response);
-            alert(error);
-        }
+        })
+            .then(function(response) {
+                return response.json;
+            })
+            .then(function(data) {
+                createProfile();
+            })
+            .catch(function(error){
+                alert (error.message);
+            });
 	});
 };
 
@@ -63,21 +63,22 @@ function createLogin() {
 		const email = loginForm.emailinput.value.trim();
 		const password = loginForm.passwordinput.value.trim();
 
-        let response = fetch('/login', {
+        fetch('/login', {
             method: 'POST',
             body: {email, password},
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
-
-        if (response.ok) {
-            createIndex();
-        } else {
-            const {error} = JSON.parse(response);
-            alert(error);
-        }
-
+        })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                createIndex();
+            })
+            .then(function(error) {
+                alert(error.message);
+            });
 	});
 };
 
@@ -119,20 +120,22 @@ function createSettings() {
         settingsForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            let res = fetch('/settings', {
+            fetch('/settings', {
                 method: 'POST',
                 body: new FormData(settingsForm),
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            });
-
-            if (res.ok) {
-                createProfile();
-            } else {
-                const {err} = JSON.parse(res);
-                alert(err);
-            }
+            })
+                .then (function(response) {
+                    return response.json();
+                })
+                .then (function(data) {
+                    createProfile();
+                })
+                .catch(function(error) {
+                    alert(error.message);
+                });
 
         });
 
@@ -145,30 +148,16 @@ function createSettings() {
     // for test
     //var responseBody = {username: "gog", email: "go@mail.ru", status: "hi higgee", name: "Genri", surname: "Black"};
     //
-
-    // const header = new HeaderComponent(application);
-    // header.data = responseBody;
-    // header.render();
-
-    // const settings = new SettingsComponent();
-    // settings.data = responseBody;
-    // settings.render();
     
 };
 
 
 function createProfile() {
     application.innerHTML = '';
+    document.body.className ='backgroundIndex';
     
-    // document.body.className ='backgroundIndex';
     // var responseBody = {username: "gog", email: "go@mail.ru", status: "hi hi"};
-    // const header = new HeaderComponent(application);
-    // header.data = responseBody;
-    // header.render();
 
-    // const profile = new ProfileComponent(application);
-    // profile.data = responseBody;
-    // profile.render();
 
 	// ajax({method: 'GET', url: '/me', body: null, callback(status, responseText) {
     //     let isMe = false;
@@ -205,28 +194,29 @@ function createProfile() {
     // }
     // });
 
-    let response = fetch('/me', {
+    fetch('/me', {
         method: 'GET',
         body: null,
-    });
+    })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(responseBody) {
+            application.innerHTML = '';
+            document.body.className ='backgroundIndex';
 
-    if (response.ok) {
-        const responseBody = response.json();
+            const header = new HeaderComponent(application);
+            header.data = responseBody;
+            header.render();
 
-        application.innerHTML = '';
-        document.body.className ='backgroundIndex';
-
-        const header = new HeaderComponent(application);
-        header.data = responseBody;
-        header.render();
-
-        const profile = new ProfileComponent(application);
-        profile.data = responseBody;
-        profile.render();
-    } else {
-        alert('Ошибка авторизации');
-        createLogin();
-    }
+            const profile = new ProfileComponent(application);
+            profile.data = responseBody;
+            profile.render();
+        })
+        .catch(function() {
+            alert('Ошибка авторизации');
+            createLogin();
+        });
 };
 
 const functions = {
