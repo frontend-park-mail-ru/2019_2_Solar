@@ -29,16 +29,22 @@ function createSignup() {
         const username = signUpForm.elements['username'].value;
 		const password = signUpForm.elements['password'].value;
 
-		ajax({method: 'POST', url: '/signup', body: {email, username, password}, callback(status, responseText) {
-			if (status === 201) {
-				createProfile();
-				return;
-			}
-
-			const {error} = JSON.parse(responseText);
-			alert(error);
-        }
+        let response = fetch('/signup', {
+            method: 'POST',
+            body: {email, password, username},
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
+
+        console.log(response);
+
+        if (response.ok) {
+            createProfile();
+        } else {
+            const {error} = JSON.parse(response);
+            alert(error);
+        }
 	});
 };
 
@@ -57,31 +63,20 @@ function createLogin() {
 		const email = loginForm.emailinput.value.trim();
 		const password = loginForm.passwordinput.value.trim();
 
-        fetch('http://localhost:8080/', {
-            method: 'GET',
-            credentials: 'include',
+        let response = fetch('/login', {
+            method: 'POST',
+            body: {email, password},
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-            .then((resp) => resp.json())
-            .then(data => {
-                console.log(data);
-                createIndex();
-            })
-		// ajax({
-		// 	method: 'POST',
-		// 	url: '/login',
-		// 	body: {email, password},
-		// 	callback: (status, response) => {
-		// 		if (status === 200) {
-		// 			createIndex();
-		// 		} else {
-		// 			const {error} = JSON.parse(response);
-		// 			alert(error);
-		// 		}
-		// 	}
-        // });
+        });
+
+        if (response.ok) {
+            createIndex();
+        } else {
+            const {error} = JSON.parse(response);
+            alert(error);
+        }
 
 	});
 };
