@@ -96,17 +96,63 @@ function createSettings() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
+    let response = fetch('/settings', {
+        method: 'GET',
+        body: null,
+    });
+
+    console.log(response);
+
+    if (response.ok) {
+        const responseBody = response.json();
+
+        const header = new HeaderComponent(application);
+        header.data = responseBody;
+        header.render();
+
+        const settings = new SettingsComponent();
+        settings.data = responseBody;
+        settings.render();
+
+        const settingsForm = document.getElementById('UserSettings');
+
+        settingsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let res = fetch('/settings', {
+                method: 'POST',
+                body: new FormData(settingsForm),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (res.ok) {
+                createProfile();
+            } else {
+                const {err} = JSON.parse(res);
+                alert(err);
+            }
+
+        });
+
+    } else {
+        const {error} = JSON.parse(response);
+        alert(error);
+    }
+
+
     // for test
-    var responseBody = {username: "gog", email: "go@mail.ru", status: "hi higgee", name: "Genri", surname: "Black"};
+    //var responseBody = {username: "gog", email: "go@mail.ru", status: "hi higgee", name: "Genri", surname: "Black"};
     //
 
-    const header = new HeaderComponent(application);
-    header.data = responseBody;
-    header.render();
+    // const header = new HeaderComponent(application);
+    // header.data = responseBody;
+    // header.render();
 
-    const settings = new SettingsComponent();
-    settings.data = responseBody;
-    settings.render();
+    // const settings = new SettingsComponent();
+    // settings.data = responseBody;
+    // settings.render();
     
 };
 
@@ -124,40 +170,63 @@ function createProfile() {
     // profile.data = responseBody;
     // profile.render();
 
-	ajax({method: 'GET', url: '/me', body: null, callback(status, responseText) {
-        let isMe = false;
+	// ajax({method: 'GET', url: '/me', body: null, callback(status, responseText) {
+    //     let isMe = false;
         
-		if (status === 200) {
-			isMe = true;
-		}
+	// 	if (status === 200) {
+	// 		isMe = true;
+	// 	}
 
-		if (status === 401) {
-			isMe = false;
-		}
+	// 	if (status === 401) {
+	// 		isMe = false;
+	// 	}
 
-		if (isMe) {
-            try {
-                const responseBody = JSON.parse(responseText);
-                application.innerHTML = '';
-                document.body.className ='backgroundIndex';
+	// 	if (isMe) {
+    //         try {
+    //             const responseBody = JSON.parse(responseText);
+    //             application.innerHTML = '';
+    //             document.body.className ='backgroundIndex';
 
-                const header = new HeaderComponent(application);
-                header.data = responseBody;
-                header.render();
+    //             const header = new HeaderComponent(application);
+    //             header.data = responseBody;
+    //             header.render();
 
-                const profile = new ProfileComponent(application);
-                profile.data = responseBody;
-                profile.render();
+    //             const profile = new ProfileComponent(application);
+    //             profile.data = responseBody;
+    //             profile.render();
                 
-            } catch (e) {
-                return;
-            }
-		} else {
-			alert('нет авторизации');
-			createLogin();
-		}
-    }
+    //         } catch (e) {
+    //             return;
+    //         }
+	// 	} else {
+	// 		alert('нет авторизации');
+	// 		createLogin();
+	// 	}
+    // }
+    // });
+
+    let response = fetch('/me', {
+        method: 'GET',
+        body: null,
     });
+
+    if (response.ok) {
+        const responseBody = response.json();
+
+        application.innerHTML = '';
+        document.body.className ='backgroundIndex';
+
+        const header = new HeaderComponent(application);
+        header.data = responseBody;
+        header.render();
+
+        const profile = new ProfileComponent(application);
+        profile.data = responseBody;
+        profile.render();
+    } else {
+        alert('Ошибка авторизации');
+        createLogin();
+    }
 };
 
 const functions = {
