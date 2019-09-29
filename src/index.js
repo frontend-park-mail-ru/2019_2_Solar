@@ -78,7 +78,6 @@ function createLogin() {
                 createProfile();
             } else {
                 let data = response.json();
-                console.log(data);
                 alert('Ошибка авторизации');
             }
         });
@@ -123,7 +122,6 @@ function createSettings() {
         settings.render();
 
         const settingsForm = document.getElementById('UserSettings');
-        console.log(settingsForm);
 
         settingsForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -151,8 +149,6 @@ function createSettings() {
             });
         });
     });
-
-    console.log(response);
 };
 
 
@@ -199,13 +195,10 @@ application.addEventListener('click', (evt) => {
     const {target} = evt;
 
     if (target.dataset.section) {
-        console.log(evt);
         evt.preventDefault();
         evt.stopPropagation();
-        console.log("Rendering " + target.dataset.section);
         functions[target.dataset.section]();
     }
 });
 
-console.log("I WAS CREATED");
 createSignup();
