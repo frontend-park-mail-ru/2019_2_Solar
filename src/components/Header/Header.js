@@ -27,7 +27,7 @@ export class HeaderComponent {
     render() {
         //${this._data.username} ${this._data.avatarphoto}
 
-        var context = { 
+        const context = { 
             username: this._data.username, 
             avatarphoto: AvatarPhoto,
 
@@ -39,7 +39,7 @@ export class HeaderComponent {
             PHdialog: Dialog,
             PHsetting: Setting,
         };
-        var html = headertemplate(context);
+        const html = headertemplate(context);
 
         this._parent.innerHTML += html;
     }

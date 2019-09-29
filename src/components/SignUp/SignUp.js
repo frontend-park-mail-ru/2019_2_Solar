@@ -24,8 +24,8 @@ export class SignUpComponent {
         // set1.dataset.section = 'profile';
         // this._parent.appendChild(set1);
 
-        var context = {};
-        var html = signuptemplate(context);
+        const context = {};
+        const html = signuptemplate(context);
 
         this._parent.innerHTML += html;
     }

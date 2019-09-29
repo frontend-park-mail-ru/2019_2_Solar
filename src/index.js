@@ -27,11 +27,13 @@ function createSignup() {
 
 		const email = signUpForm.elements['email'].value;
         const username = signUpForm.elements['username'].value;
-		const password = signUpForm.elements['password'].value;
+        const password = signUpForm.elements['password'].value;
+        
+        let data = {'email': email, 'password': password, 'username': username};
 
-        fetch('/signup', {
+        fetch('http://localhost:3000/registration/', {
             method: 'POST',
-            body: {email, password, username},
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -63,9 +65,11 @@ function createLogin() {
 		const email = loginForm.emailinput.value.trim();
 		const password = loginForm.passwordinput.value.trim();
 
+        let data = {'email': email, 'password': password};
+
         fetch('/login', {
             method: 'POST',
-            body: {email, password},
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             }

@@ -22,7 +22,7 @@ export class SettingsComponent {
     }
 
     render() {
-        var context = { 
+        const context = { 
             username: this._data.username, 
             avatarphoto: FoImg,
             status: this._data.status,
@@ -33,7 +33,7 @@ export class SettingsComponent {
             PHsimg: SImg,
             PHtimg: TImg,
         };
-        var html = settingstemplate(context);
+        const html = settingstemplate(context);
 
         this._parent.innerHTML += html;
     }

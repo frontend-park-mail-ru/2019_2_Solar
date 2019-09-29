@@ -22,7 +22,7 @@ export class ProfileComponent {
     render() {
         //${this._data.username} ${this._data.avatarphoto}
 
-        var context = { 
+        const context = { 
             username: this._data.username, 
             avatarphoto: AvatarPhotoImg,
             status: this._data.status,
@@ -30,7 +30,7 @@ export class ProfileComponent {
             PHsetimg: SetImg,
             PHplus: PlusImgFAdd,
         };
-        var html = profiletemplate(context);
+        const html = profiletemplate(context);
 
         this._parent.innerHTML += html;
     }
