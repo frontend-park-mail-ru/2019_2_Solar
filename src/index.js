@@ -31,11 +31,12 @@ function createSignup() {
         
         let data = {'email': email, 'password': password, 'username': username};
 
-        fetch('http://localhost:3000/registration/', {
+        fetch('http://localhost:8080/registration/', {
             method: 'POST',
             body: JSON.stringify(data),
+            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             }
         })
             .then(function(response) {
@@ -45,7 +46,7 @@ function createSignup() {
                 createProfile();
             })
             .catch(function(error){
-                alert (error.message);
+                alert (error.body.info);
             });
 	});
 };
@@ -67,7 +68,7 @@ function createLogin() {
 
         let data = {'email': email, 'password': password};
 
-        fetch('/login', {
+        fetch('http://localhost:8080/login/', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -75,13 +76,12 @@ function createLogin() {
             }
         })
             .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                createIndex();
-            })
-            .then(function(error) {
-                alert(error.message);
+                if (response.ok) {
+                    createIndex();
+                } else {
+                    let data = response.json();
+                    alert(data.body.info);
+                }
             });
 	});
 };
@@ -198,7 +198,7 @@ function createProfile() {
     // }
     // });
 
-    fetch('/me', {
+    fetch('http://localhost:8080/profile/data', {
         method: 'GET',
         body: null,
     })
