@@ -43,7 +43,8 @@ function createSignup() {
                 createProfile();
             } else {
                 const error = response.json();
-                alert (error.body.info);
+                console.log(error.body);
+                alert ('Ошибка регистрации');
             }
         });
 	});
@@ -114,6 +115,8 @@ function createSettings() {
         }
     })
     .then((responseBody) => {
+        const oldusername = responseBody.body.user.username;
+
         const header = new HeaderComponent(application);
         header.data = responseBody;
         header.render();
@@ -131,9 +134,16 @@ function createSettings() {
                 'name': settingsForm.elements['name'].value, 
                 'surname': settingsForm.elements['surname'].value, 
                 'status': settingsForm.elements['status'].value
-                // 'username': settingsForm.elements['username'].value
             };
-            fetch(backendAddress + '/profile/data', {
+
+            if (oldusername != settingsForm.elements['username'].value) {
+                data["username"] = settingsForm.elements['username'].value;
+            }
+
+            let dataresponse = true;
+            let pictureresponse = true;
+
+            fetch('http://localhost:8080/profile/data', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include',
@@ -141,12 +151,13 @@ function createSettings() {
             })
             .then ((response) => {
                 if (response.ok) {
-                    createProfile();
+                    dataresponse = true;
                 } else {
+                    dataresponse = false;
                     const error = response.json();
-                    alert(error.body.info);
+                    alert('Ошибка введённых данных');
                 }
-            })
+            });
 
             let formData = new FormData();
             formData.append('profilePicture', settingsForm.elements['avatarphoto'].files[0]);
@@ -157,12 +168,18 @@ function createSettings() {
             })
             .then ((response) => {
                 if (response.ok) {
+                    alert('1');
+                    pictureresponse = true;
                     createProfile();
                 } else {
-                    const error = response.json();
-                    alert(error.body.info);
+                    alert('2');
+                    pictureresponse = false;
+
+                    if (dataresponse == true) {
+                        createProfile();
+                    }
                 }
-            })
+            });
         });
     });
 };
@@ -217,4 +234,16 @@ application.addEventListener('click', (evt) => {
     }
 });
 
-createSignup();
+
+fetch('http://localhost:8080/profile/data', {
+        method: 'GET',
+        body: null,
+        credentials: 'include',
+    })
+    .then((response) => {
+        if (response.ok) {
+            createProfile()
+        } else {
+            createSignup();
+        }
+    });
