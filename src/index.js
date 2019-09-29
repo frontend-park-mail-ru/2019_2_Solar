@@ -10,6 +10,7 @@ import {HeaderComponent} from './components/Header/Header.js';
 import './scss/base.scss';
 
 const application = document.getElementById('application');
+const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com';
 
 function createSignup() {
     application.innerHTML = '';
@@ -29,7 +30,7 @@ function createSignup() {
         
         let data = {'email': email, 'password': password, 'username': username};
 
-        fetch('http://localhost:8080/registration/', {
+        fetch(backendAddress + '/registration/', {
             method: 'POST',
             body: JSON.stringify(data),
             credentials: 'include',
@@ -65,7 +66,7 @@ function createLogin() {
 
         let data = {'email': email, 'password': password};
 
-        fetch('http://localhost:8080/login/', {
+        fetch(backendAddress + '/login/', {
             method: 'POST',
             body: JSON.stringify(data),
             credentials: 'include',
@@ -99,7 +100,7 @@ function createSettings() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
-    fetch('http://localhost:8080/profile/data', {
+    fetch(backendAddress + '/profile/data', {
         method: 'GET',
         body: null,
         credentials: 'include',
@@ -132,7 +133,7 @@ function createSettings() {
                 'status': settingsForm.elements['status'].value
                 // 'username': settingsForm.elements['username'].value
             };
-            fetch('http://localhost:8080/profile/data', {
+            fetch(backendAddress + '/profile/data', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include',
@@ -149,7 +150,7 @@ function createSettings() {
 
             let formData = new FormData();
             formData.append('profilePicture', settingsForm.elements['avatarphoto'].files[0]);
-            fetch('http://localhost:8080/profile/picture', {
+            fetch(backendAddress + '/profile/picture', {
                 method: 'POST',
                 body: formData,
                 credentials: 'include'
@@ -172,7 +173,7 @@ function createProfile() {
     document.body.className ='backgroundIndex';
     
 
-    fetch('http://localhost:8080/profile/data', {
+    fetch(backendAddress + '/profile/data', {
         method: 'GET',
         body: null,
         credentials: 'include',
