@@ -21,11 +21,13 @@ export class ProfileComponent {
 
     render() {
         //${this._data.username} ${this._data.avatarphoto}
+        console.log(this._data);
+        console.log(this._data.body.user.email);
 
         const context = { 
-            username: this._data.username, 
+            username: this._data.body.user.username, 
             avatarphoto: AvatarPhotoImg,
-            status: this._data.status,
+            status: this._data.body.user.status,
 
             PHsetimg: SetImg,
             PHplus: PlusImgFAdd,

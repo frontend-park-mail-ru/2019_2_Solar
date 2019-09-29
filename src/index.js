@@ -40,13 +40,12 @@ function createSignup() {
             }
         })
             .then(function(response) {
-                return response.json;
-            })
-            .then(function(data) {
-                createProfile();
-            })
-            .catch(function(error){
-                alert (error.body.info);
+                if (response.ok) {
+                    createProfile();
+                } else {
+                    const error = response.json();
+                    alert (error.body.info);
+                }
             });
 	});
 };
@@ -71,6 +70,7 @@ function createLogin() {
         fetch('http://localhost:8080/login/', {
             method: 'POST',
             body: JSON.stringify(data),
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -80,7 +80,8 @@ function createLogin() {
                     createIndex();
                 } else {
                     let data = response.json();
-                    alert(data.body.info);
+                    console.log(data);
+                    alert('Ошибка авторизации');
                 }
             });
 	});
@@ -104,6 +105,7 @@ function createSettings() {
     let response = fetch('/settings', {
         method: 'GET',
         body: null,
+        credentials: 'include',
     });
 
     console.log(response);
@@ -127,6 +129,7 @@ function createSettings() {
             fetch('/settings', {
                 method: 'POST',
                 body: new FormData(settingsForm),
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -147,11 +150,6 @@ function createSettings() {
         const {error} = JSON.parse(response);
         alert(error);
     }
-
-
-    // for test
-    //var responseBody = {username: "gog", email: "go@mail.ru", status: "hi higgee", name: "Genri", surname: "Black"};
-    //
     
 };
 
@@ -160,47 +158,11 @@ function createProfile() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
     
-    // var responseBody = {username: "gog", email: "go@mail.ru", status: "hi hi"};
-
-
-	// ajax({method: 'GET', url: '/me', body: null, callback(status, responseText) {
-    //     let isMe = false;
-        
-	// 	if (status === 200) {
-	// 		isMe = true;
-	// 	}
-
-	// 	if (status === 401) {
-	// 		isMe = false;
-	// 	}
-
-	// 	if (isMe) {
-    //         try {
-    //             const responseBody = JSON.parse(responseText);
-    //             application.innerHTML = '';
-    //             document.body.className ='backgroundIndex';
-
-    //             const header = new HeaderComponent(application);
-    //             header.data = responseBody;
-    //             header.render();
-
-    //             const profile = new ProfileComponent(application);
-    //             profile.data = responseBody;
-    //             profile.render();
-                
-    //         } catch (e) {
-    //             return;
-    //         }
-	// 	} else {
-	// 		alert('нет авторизации');
-	// 		createLogin();
-	// 	}
-    // }
-    // });
 
     fetch('http://localhost:8080/profile/data', {
         method: 'GET',
         body: null,
+        credentials: 'include',
     })
         .then(function(response) {
             return response.json();
