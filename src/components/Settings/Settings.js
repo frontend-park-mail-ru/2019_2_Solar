@@ -22,12 +22,12 @@ export class SettingsComponent {
     }
 
     render() {
-        const context = { 
-            username: this._data.username, 
+        let context = { 
+            username: this._data.body.user.username, 
             avatarphoto: FoImg,
-            status: this._data.status,
-            name: this._data.name,
-            surname: this._data.surname,
+            status: this._data.body.user.status,
+            name: this._data.body.user.name,
+            surname: this._data.body.user.surname,
 
             PHfimg: FImg,
             PHsimg: SImg,

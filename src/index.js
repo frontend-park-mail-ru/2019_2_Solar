@@ -20,7 +20,7 @@ function createSignup() {
 
     const signUpForm = document.getElementById('inputdata');
 
-    signUpForm.addEventListener('submit', function(e) {
+    signUpForm.addEventListener('submit', (e) => {
 		e.preventDefault();
 
 		const email = signUpForm.elements['email'].value;
@@ -37,7 +37,7 @@ function createSignup() {
                 'Content-Type': 'application/json',
             }
         })
-            .then(function(response) {
+            .then((response) => {
                 if (response.ok) {
                     createProfile();
                 } else {
@@ -57,7 +57,7 @@ function createLogin() {
 
     const loginForm = document.getElementById('inputdata');
 
-    loginForm.addEventListener('submit', function(e) {
+    loginForm.addEventListener('submit', (e) => {
 		e.preventDefault();
 
 		const email = loginForm.emailinput.value.trim();
@@ -73,15 +73,15 @@ function createLogin() {
                 'Content-Type': 'application/json'
             }
         })
-            .then(function(response) {
-                if (response.ok) {
-                    createIndex();
-                } else {
-                    let data = response.json();
-                    console.log(data);
-                    alert('Ошибка авторизации');
-                }
-            });
+        .then((response) => {
+            if (response.ok) {
+                createProfile();
+            } else {
+                let data = response.json();
+                console.log(data);
+                alert('Ошибка авторизации');
+            }
+        });
 	});
 };
 
@@ -100,17 +100,20 @@ function createSettings() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
-    let response = fetch('/settings', {
+    fetch('http://localhost:8080/profile/data', {
         method: 'GET',
         body: null,
         credentials: 'include',
-    });
-
-    console.log(response);
-
-    if (response.ok) {
-        const responseBody = response.json();
-
+    })
+    .then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            const {error} = JSON.parse(response);
+            alert(error);
+        }
+    })
+    .then((responseBody) => {
         const header = new HeaderComponent(application);
         header.data = responseBody;
         header.render();
@@ -124,31 +127,26 @@ function createSettings() {
         settingsForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            fetch('/settings', {
+            fetch('http://localhost:8080/profile/data', {
                 method: 'POST',
                 body: new FormData(settingsForm),
                 credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: {'Content-Type': 'application/json'}
             })
-                .then (function(response) {
-                    return response.json();
-                })
-                .then (function(data) {
-                    createProfile();
-                })
-                .catch(function(error) {
-                    alert(error.message);
-                });
+            .then ((response) => {
+                return response.json();
+            })
+            .then ((data) => {
+                createProfile();
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
 
         });
+    });
 
-    } else {
-        const {error} = JSON.parse(response);
-        alert(error);
-    }
-    
+    console.log(response);
 };
 
 
@@ -162,39 +160,43 @@ function createProfile() {
         body: null,
         credentials: 'include',
     })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(responseBody) {
-            application.innerHTML = '';
-            document.body.className ='backgroundIndex';
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(responseBody) {
+        application.innerHTML = '';
+        document.body.className ='backgroundIndex';
 
-            const header = new HeaderComponent(application);
-            header.data = responseBody;
-            header.render();
+        const header = new HeaderComponent(application);
+        header.data = responseBody;
+        header.render();
 
-            const profile = new ProfileComponent(application);
-            profile.data = responseBody;
-            profile.render();
-        })
-        .catch(function() {
-            alert('Ошибка авторизации');
-            createLogin();
-        });
+        const profile = new ProfileComponent(application);
+        profile.data = responseBody;
+        profile.render();
+    })
+    .catch(function() {
+        alert('Ошибка авторизации');
+        createLogin();
+    });
 };
 
 const functions = {
-    signup: createSignup,
-    login: createLogin,
-    index: createIndex,
-    profile: createProfile,
-    settings: createSettings,
+    "signup": createSignup,
+    "login": createLogin,
+    "index": createIndex,
+    "profile": createProfile,
+    "settings": createSettings,
 };
 
-application.addEventListener('click', function (evt) {
+application.addEventListener('click', (evt) => {
     const {target} = evt;
 
-    if (target instanceof HTMLAnchorElement) {
+    console.log("HHHHHHHHHHHH");
+    console.log(target);
+    console.log(target.dataset.section);
+
+    if (target.dataset.section) {
         evt.preventDefault();
         functions[target.dataset.section]();
     }
