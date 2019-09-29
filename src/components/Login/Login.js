@@ -14,10 +14,10 @@ export class LoginComponent {
     }
 
     render() {
-        var context = {
+        const context = {
             PHlogo: Logo,
         };
-        var html = logintemplate(context);
+        const html = logintemplate(context);
 
         this._parent.innerHTML += html;
     }

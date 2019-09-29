@@ -15,22 +15,22 @@
 <div class="rightColumn">
     <div class="setTitle">Изменить профиль</div>
     <form id="UserSettings">
-        <input type="submit" class="botOut" value="Готово">
-        <a href="/profile" data-section="profile" value="Отмена" class="botNoOut"><span style="top: 8px; position: absolute; margin-left: -30px;">Отмена<span></a>
+        <a href="#" data-section="profile" class="botNoOut"><span style="top: 8px; position: absolute; margin-left: -30px;">Отмена<span></span></a>
         <div class="withPhotoBlock">
             <img src={{avatarphoto}} class="avatarPhoto">
             <div class="underAvatar">{{username}}</div>
-            <input type="button" id="changeAvatar" value="Изменить" class="avatarBot">
-            <input type="file" name="avatarphoto" id="avatarphoto" accept="image/*" style="display: none;">
+            {{!-- <input type="button" id="changeAvatar" value="Изменить" class="avatarBot"> --}}
+            <input type="file" name="avatarphoto" id="avatarphoto" accept="image/*">
         </div>
         <div class="normText" style="margin-left: 35px; margin-top: 448px;">Имя</div>
-        <input type="text" id="name" placeholder="Иван" value={{name}} class="inputForm" style="margin-left: 35px; margin-top: 10px;">
+        <input type="text" id="name" placeholder="Введите своё имя" {{#if name}}value={{name}}{{/if}} class="inputForm" style="margin-left: 35px; margin-top: 10px;">
         <div class="normText" style="margin-left: 379px; margin-top: -20px;">Фамилия</div>
-        <input type="text" id="surname" placeholder="Иванов" value={{surname}} class="inputForm" style="margin-left: 379px; margin-top: 10px;">
+        <input type="text" id="surname" placeholder="Введите свою фамилию" {{#if surname}}value={{surname}}{{/if}} class="inputForm" style="margin-left: 379px; margin-top: 10px;">
         <div class="normText" style="margin-left: 35px; margin-top: 100px;">Имя пользователя</div>
         <div class="normText" style="margin-left: 35px; padding-top: 20px;">wwww.sunrise.com/</div>
         <input type="text" id="username" placeholder="username" value={{username}} class="inputForm" style="margin-left: 35px; margin-top: 10px;">
         <div class="normText" style="margin-left: 35px; margin-top: 100px;">Статус</div>
-        <input type="text" id="status" placeholder="Расскажите о себе" value={{status}} class="inputForm" style="margin-left: 35px; margin-top: 10px; width: 679px;">
+        <input type="text" id="status" placeholder="Расскажите о себе" {{#if status}}value={{status}}{{/if}} class="inputForm" style="margin-left: 35px; margin-top: 10px; width: 679px;">
+        <input type="submit" class="botOut" value="Готово">
     </form>
 </div>

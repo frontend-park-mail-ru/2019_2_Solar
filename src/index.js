@@ -9,9 +9,8 @@ import {SettingsComponent} from './components/Settings/Settings.js'
 import {HeaderComponent} from './components/Header/Header.js';
 import './scss/base.scss';
 
-const ajax = globalThis.ajax;
-
 const application = document.getElementById('application');
+const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com';
 
 function createSignup() {
     application.innerHTML = '';
@@ -22,29 +21,31 @@ function createSignup() {
 
     const signUpForm = document.getElementById('inputdata');
 
-    signUpForm.addEventListener('submit', function(e) {
+    signUpForm.addEventListener('submit', (e) => {
 		e.preventDefault();
 
 		const email = signUpForm.elements['email'].value;
         const username = signUpForm.elements['username'].value;
-		const password = signUpForm.elements['password'].value;
+        const password = signUpForm.elements['password'].value;
+        
+        let data = {'email': email, 'password': password, 'username': username};
 
-        let response = fetch('/signup', {
+        fetch(backendAddress + '/registration/', {
             method: 'POST',
-            body: {email, password, username},
+            body: JSON.stringify(data),
+            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+            }
+        })
+        .then((response) => {
+            if (response.ok) {
+                createProfile();
+            } else {
+                const error = response.json();
+                alert (error.body.info);
             }
         });
-
-        console.log(response);
-
-        if (response.ok) {
-            createProfile();
-        } else {
-            const {error} = JSON.parse(response);
-            alert(error);
-        }
 	});
 };
 
@@ -57,27 +58,30 @@ function createLogin() {
 
     const loginForm = document.getElementById('inputdata');
 
-    loginForm.addEventListener('submit', function(e) {
+    loginForm.addEventListener('submit', (e) => {
 		e.preventDefault();
 
 		const email = loginForm.emailinput.value.trim();
 		const password = loginForm.passwordinput.value.trim();
 
-        let response = fetch('/login', {
+        let data = {'email': email, 'password': password};
+
+        fetch(backendAddress + '/login/', {
             method: 'POST',
-            body: {email, password},
+            body: JSON.stringify(data),
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             }
+        })
+        .then((response) => {
+            if (response.ok) {
+                createProfile();
+            } else {
+                let data = response.json();
+                alert('Ошибка авторизации');
+            }
         });
-
-        if (response.ok) {
-            createIndex();
-        } else {
-            const {error} = JSON.parse(response);
-            alert(error);
-        }
-
 	});
 };
 
@@ -96,16 +100,20 @@ function createSettings() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
-    let response = fetch('/settings', {
+    fetch(backendAddress + '/profile/data', {
         method: 'GET',
         body: null,
-    });
-
-    console.log(response);
-
-    if (response.ok) {
-        const responseBody = response.json();
-
+        credentials: 'include',
+    })
+    .then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            const {error} = JSON.parse(response);
+            alert(error);
+        }
+    })
+    .then((responseBody) => {
         const header = new HeaderComponent(application);
         header.data = responseBody;
         header.render();
@@ -116,103 +124,64 @@ function createSettings() {
 
         const settingsForm = document.getElementById('UserSettings');
 
-        settingsForm.addEventListener('submit', function(e) {
+        settingsForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            let res = fetch('/settings', {
+            let data = {
+                'name': settingsForm.elements['name'].value, 
+                'surname': settingsForm.elements['surname'].value, 
+                'status': settingsForm.elements['status'].value
+                // 'username': settingsForm.elements['username'].value
+            };
+            fetch(backendAddress + '/profile/data', {
                 method: 'POST',
-                body: new FormData(settingsForm),
-                headers: {
-                    'Content-Type': 'application/json'
+                body: JSON.stringify(data),
+                credentials: 'include',
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then ((response) => {
+                if (response.ok) {
+                    createProfile();
+                } else {
+                    const error = response.json();
+                    alert(error.body.info);
                 }
-            });
+            })
 
-            if (res.ok) {
-                createProfile();
-            } else {
-                const {err} = JSON.parse(res);
-                alert(err);
-            }
-
+            let formData = new FormData();
+            formData.append('profilePicture', settingsForm.elements['avatarphoto'].files[0]);
+            fetch(backendAddress + '/profile/picture', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            })
+            .then ((response) => {
+                if (response.ok) {
+                    createProfile();
+                } else {
+                    const error = response.json();
+                    alert(error.body.info);
+                }
+            })
         });
-
-    } else {
-        const {error} = JSON.parse(response);
-        alert(error);
-    }
-
-
-    // for test
-    //var responseBody = {username: "gog", email: "go@mail.ru", status: "hi higgee", name: "Genri", surname: "Black"};
-    //
-
-    // const header = new HeaderComponent(application);
-    // header.data = responseBody;
-    // header.render();
-
-    // const settings = new SettingsComponent();
-    // settings.data = responseBody;
-    // settings.render();
-    
+    });
 };
 
 
 function createProfile() {
     application.innerHTML = '';
+    document.body.className ='backgroundIndex';
     
-    // document.body.className ='backgroundIndex';
-    // var responseBody = {username: "gog", email: "go@mail.ru", status: "hi hi"};
-    // const header = new HeaderComponent(application);
-    // header.data = responseBody;
-    // header.render();
 
-    // const profile = new ProfileComponent(application);
-    // profile.data = responseBody;
-    // profile.render();
-
-	// ajax({method: 'GET', url: '/me', body: null, callback(status, responseText) {
-    //     let isMe = false;
-        
-	// 	if (status === 200) {
-	// 		isMe = true;
-	// 	}
-
-	// 	if (status === 401) {
-	// 		isMe = false;
-	// 	}
-
-	// 	if (isMe) {
-    //         try {
-    //             const responseBody = JSON.parse(responseText);
-    //             application.innerHTML = '';
-    //             document.body.className ='backgroundIndex';
-
-    //             const header = new HeaderComponent(application);
-    //             header.data = responseBody;
-    //             header.render();
-
-    //             const profile = new ProfileComponent(application);
-    //             profile.data = responseBody;
-    //             profile.render();
-                
-    //         } catch (e) {
-    //             return;
-    //         }
-	// 	} else {
-	// 		alert('нет авторизации');
-	// 		createLogin();
-	// 	}
-    // }
-    // });
-
-    let response = fetch('/me', {
+    fetch(backendAddress + '/profile/data', {
         method: 'GET',
         body: null,
-    });
-
-    if (response.ok) {
-        const responseBody = response.json();
-
+        credentials: 'include',
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .then((responseBody) => {
         application.innerHTML = '';
         document.body.className ='backgroundIndex';
 
@@ -223,25 +192,27 @@ function createProfile() {
         const profile = new ProfileComponent(application);
         profile.data = responseBody;
         profile.render();
-    } else {
+    })
+    .catch(() => {
         alert('Ошибка авторизации');
         createLogin();
-    }
+    });
 };
 
 const functions = {
-    signup: createSignup,
-    login: createLogin,
-    index: createIndex,
-    profile: createProfile,
-    settings: createSettings,
+    "signup": createSignup,
+    "login": createLogin,
+    "index": createIndex,
+    "profile": createProfile,
+    "settings": createSettings,
 };
 
-application.addEventListener('click', function (evt) {
+application.addEventListener('click', (evt) => {
     const {target} = evt;
 
-    if (target instanceof HTMLAnchorElement) {
+    if (target.dataset.section) {
         evt.preventDefault();
+        evt.stopPropagation();
         functions[target.dataset.section]();
     }
 });
