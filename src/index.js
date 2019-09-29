@@ -162,10 +162,10 @@ function createProfile() {
         body: null,
         credentials: 'include',
     })
-    .then(function(response) {
+    .then((response) => {
         return response.json();
     })
-    .then(function(responseBody) {
+    .then((responseBody) => {
         application.innerHTML = '';
         document.body.className ='backgroundIndex';
 
@@ -177,7 +177,7 @@ function createProfile() {
         profile.data = responseBody;
         profile.render();
     })
-    .catch(function() {
+    .catch(() => {
         alert('Ошибка авторизации');
         createLogin();
     });
