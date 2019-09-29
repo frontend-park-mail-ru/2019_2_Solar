@@ -129,8 +129,8 @@ function createSettings() {
             let data = {
                 'name': settingsForm.elements['name'].value, 
                 'surname': settingsForm.elements['surname'].value, 
-                'status': settingsForm.elements['status'].value,
-                'username': settingsForm.elements['username'].value
+                'status': settingsForm.elements['status'].value
+                // 'username': settingsForm.elements['username'].value
             };
             fetch('http://localhost:8080/profile/data', {
                 method: 'POST',
@@ -139,14 +139,29 @@ function createSettings() {
                 headers: {'Content-Type': 'application/json'}
             })
             .then ((response) => {
-                return response.json();
+                if (response.ok) {
+                    createProfile();
+                } else {
+                    const error = response.json();
+                    alert(error.body.info);
+                }
             })
-            .then ((data) => {
-                createProfile();
+
+            let formData = new FormData();
+            formData.append('profilePicture', settingsForm.elements['avatarphoto'].files[0]);
+            fetch('http://localhost:8080/profile/picture', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
             })
-            .catch((error) => {
-                alert(error.message);
-            });
+            .then ((response) => {
+                if (response.ok) {
+                    createProfile();
+                } else {
+                    const error = response.json();
+                    alert(error.body.info);
+                }
+            })
         });
     });
 };
