@@ -9,8 +9,6 @@ import {SettingsComponent} from './components/Settings/Settings.js'
 import {HeaderComponent} from './components/Header/Header.js';
 import './scss/base.scss';
 
-const ajax = globalThis.ajax;
-
 const application = document.getElementById('application');
 
 function createSignup() {
