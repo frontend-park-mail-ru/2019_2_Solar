@@ -37,14 +37,14 @@ function createSignup() {
                 'Content-Type': 'application/json',
             }
         })
-            .then((response) => {
-                if (response.ok) {
-                    createProfile();
-                } else {
-                    const error = response.json();
-                    alert (error.body.info);
-                }
-            });
+        .then((response) => {
+            if (response.ok) {
+                createProfile();
+            } else {
+                const error = response.json();
+                alert (error.body.info);
+            }
+        });
 	});
 };
 
@@ -123,13 +123,20 @@ function createSettings() {
         settings.render();
 
         const settingsForm = document.getElementById('UserSettings');
+        console.log(settingsForm);
 
-        settingsForm.addEventListener('submit', function(e) {
+        settingsForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            let data = {
+                'name': settingsForm.elements['name'].value, 
+                'surname': settingsForm.elements['surname'].value, 
+                'status': settingsForm.elements['status'].value,
+                'username': settingsForm.elements['username'].value
+            };
             fetch('http://localhost:8080/profile/data', {
                 method: 'POST',
-                body: new FormData(settingsForm),
+                body: JSON.stringify(data),
                 credentials: 'include',
                 headers: {'Content-Type': 'application/json'}
             })
@@ -142,7 +149,6 @@ function createSettings() {
             .catch((error) => {
                 alert(error.message);
             });
-
         });
     });
 
@@ -192,14 +198,14 @@ const functions = {
 application.addEventListener('click', (evt) => {
     const {target} = evt;
 
-    console.log("HHHHHHHHHHHH");
-    console.log(target);
-    console.log(target.dataset.section);
-
     if (target.dataset.section) {
+        console.log(evt);
         evt.preventDefault();
+        evt.stopPropagation();
+        console.log("Rendering " + target.dataset.section);
         functions[target.dataset.section]();
     }
 });
 
+console.log("I WAS CREATED");
 createSignup();
