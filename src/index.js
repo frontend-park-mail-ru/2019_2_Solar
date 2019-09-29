@@ -143,7 +143,7 @@ function createSettings() {
             let dataresponse = true;
             let pictureresponse = true;
 
-            fetch('http://localhost:8080/profile/data', {
+            fetch(backendAddress + '/profile/data', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include',
@@ -235,7 +235,7 @@ application.addEventListener('click', (evt) => {
 });
 
 
-fetch('http://localhost:8080/profile/data', {
+fetch(backendAddress + '/profile/data', {
         method: 'GET',
         body: null,
         credentials: 'include',
