@@ -121,7 +121,7 @@ function createSettings() {
         header.data = responseBody;
         header.render();
 
-        const settings = new SettingsComponent();
+        const settings = new SettingsComponent(application);
         settings.data = responseBody;
         settings.render();
 
