@@ -22,8 +22,8 @@ export class SettingsComponent {
     }
 
     render() {
-        let context = { 
-            username: this._data.body.user.username, 
+        const context = {
+            username: this._data.body.user.username,
             avatarphoto: FoImg,
             status: this._data.body.user.status,
             name: this._data.body.user.name,

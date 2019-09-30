@@ -2,6 +2,10 @@
     "parser": "babel-eslint",
     "rules": {
         "max-len": [1, 120, 2, {ignoreComments: true}],
-        "quotes": [1, "single", { "allowTemplateLiterals": true }]
-    }
+        "quotes": [1, "single", { "allowTemplateLiterals": true }],
+        "indent": ["error", 4],
+        "require-jsdoc" : 0,
+        "new-cap": ["error", { "capIsNew": false }]
+    },
+    "extends": "google"
 }

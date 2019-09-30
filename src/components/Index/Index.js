@@ -6,7 +6,7 @@ export class IndexComponent {
     render() {
         const comma = document.createElement('div');
         comma.textContent = 'Здесь будет главная страница';
-    
+
         this._parent.appendChild(comma);
     }
 }

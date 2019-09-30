@@ -8,7 +8,7 @@ export class SignUpComponent {
     }
 
     get form() {
-        return document.querySelector('#inputdata')
+        return document.querySelector('#inputdata');
     }
 
     render() {
