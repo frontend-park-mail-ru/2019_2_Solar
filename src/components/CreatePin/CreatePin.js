@@ -1,5 +1,5 @@
 import './CreatePin.scss';
-import CreatePinTemplate from '../CreatePin/createPin.hbs';
+import CreatePinTemplate from '../CreatePin/CreatePin.hbs';
 
 export class CreatePinComponent {
     constructor(parent = document.body) {

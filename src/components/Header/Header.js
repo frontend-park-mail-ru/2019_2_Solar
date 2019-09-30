@@ -1,5 +1,5 @@
 import './Header.scss';
-import HeaderTemplate from '../Header/header.hbs';
+import HeaderTemplate from '../Header/Header.hbs';
 
 import AvatarPhoto from '../../images/nophoto.png';
 import Logo from '../../images/logo.png';

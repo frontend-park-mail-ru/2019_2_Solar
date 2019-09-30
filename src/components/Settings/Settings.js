@@ -1,5 +1,5 @@
 import './Settings.scss';
-import SettingsTemplate from '../Settings/settings.hbs';
+import SettingsTemplate from '../Settings/Settings.hbs';
 
 import FImg from '../../images/edit.svg';
 import SImg from '../../images/account.svg';

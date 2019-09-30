@@ -1,5 +1,5 @@
 import './SignUp.scss';
-import SignupTemplate from '../SignUp/signUp.hbs';
+import SignupTemplate from '../SignUp/SignUp.hbs';
 
 export class SignUpComponent {
     constructor(parent = document.body) {
