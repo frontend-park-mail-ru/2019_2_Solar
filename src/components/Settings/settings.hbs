@@ -19,8 +19,8 @@
         <div class="withPhotoBlock">
             <img src={{avatarphoto}} class="avatarPhoto">
             <div class="underAvatar">{{username}}</div>
-            {{!-- <input type="button" id="changeAvatar" value="Изменить" class="avatarBot"> --}}
-            <input type="file" name="avatarphoto" id="avatarphoto" accept="image/*">
+            <!--<input type="button" id="avatarphoto" value="Изменить" class="avatarBot">-->
+            <input type="file" name="avatarphoto" id="avatarphoto" accept="image/*" class="norm-button">
         </div>
         <div class="normText" style="margin-left: 35px; margin-top: 448px;">Имя</div>
         <input type="text" id="name" placeholder="Введите своё имя" {{#if name}}value={{name}}{{/if}} class="inputForm" style="margin-left: 35px; margin-top: 10px;">

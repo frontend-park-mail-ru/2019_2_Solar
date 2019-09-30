@@ -1,5 +1,5 @@
 import './Profile.scss';
-import profiletemplate from '../../templates/profile.hbs';
+import ProfileTemplate from '../Profile/profile.hbs';
 
 import AvatarPhotoImg from '../../images/bg.png';
 import SetImg from '../../images/grey-pen.png';
@@ -32,7 +32,7 @@ export class ProfileComponent {
             PHsetimg: SetImg,
             PHplus: PlusImgFAdd,
         };
-        const html = profiletemplate(context);
+        const html = ProfileTemplate(context);
 
         this._parent.innerHTML += html;
     }

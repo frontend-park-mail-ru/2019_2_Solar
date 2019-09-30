@@ -1,5 +1,5 @@
 import './Header.scss';
-import headertemplate from '../../templates/header.hbs';
+import HeaderTemplate from '../Header/header.hbs';
 
 import AvatarPhoto from '../../images/nophoto.png';
 import Logo from '../../images/logo.png';
@@ -39,7 +39,7 @@ export class HeaderComponent {
             PHdialog: Dialog,
             PHsetting: Setting,
         };
-        const html = headertemplate(context);
+        const html = HeaderTemplate(context);
 
         this._parent.innerHTML += html;
     }
