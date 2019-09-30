@@ -1,7 +1,7 @@
 import './Login.scss';
 import logintemplate from '../../templates/login.hbs';
 
-import Logo from '../../images/logo.jpg';
+import Logo from '../../images/logo.png';
 
 export class LoginComponent {
     constructor(parent = document.body) {

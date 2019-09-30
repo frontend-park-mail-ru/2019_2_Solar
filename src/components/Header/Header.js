@@ -2,7 +2,7 @@ import './Header.scss';
 import headertemplate from '../../templates/header.hbs';
 
 import AvatarPhoto from '../../images/nophoto.png';
-import Logo from '../../images/logo.jpg';
+import Logo from '../../images/logo.png';
 import Lupa from '../../images/zoom.png';
 import PadIm from '../../images/arrow.png';
 import Plus from '../../images/plus.png';

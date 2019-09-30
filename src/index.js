@@ -168,11 +168,9 @@ function createSettings() {
             })
             .then ((response) => {
                 if (response.ok) {
-                    alert('1');
                     pictureresponse = true;
                     createProfile();
                 } else {
-                    alert('2');
                     pictureresponse = false;
 
                     if (dataresponse == true) {
