@@ -1,0 +1,103 @@
+.allBlock {
+    position: absolute;
+    width: 976px;
+    height: 895px;
+    left: 50%;
+    margin-left:-488px;
+    top: 79px;
+
+    //background: #FFE4E4;
+}
+
+.imgClassD {
+    position: absolute;
+    width: 227px;
+    height: 327px;
+    left: 52px;
+    top: 42px;
+
+    background: #C4C4C4;
+}
+
+.titleTextP {
+    position: absolute;
+    width: 333px;
+    height: 70px;
+    left: 329px;
+    top: 40px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.textTitleName {
+    position: absolute;
+    width: 586px;
+    height: 44px;
+    left: 329px;
+    top: 178px;
+
+    border:0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid #C4C4C4;
+
+    color: #8C8C8C;
+}
+
+.textUnderTitleName {
+    position: absolute;
+    width: 586px;
+    height: 44px;
+    left: 329px;
+    top: 284px;
+    
+    border:0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    
+    border-bottom: 1px solid #C4C4C4;
+    
+    color: #8C8C8C;
+}
+
+.pinPhoto {
+    position: absolute;
+    width: 227px;
+    height: 38px;
+    left: 52px;
+    top: 381px;
+    background-color:#FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    color: #8C8C8C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.buttons_pos1 {
+    position: absolute;
+    top: 340px;
+}

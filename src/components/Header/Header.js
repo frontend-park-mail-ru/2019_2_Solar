@@ -25,8 +25,6 @@ export class HeaderComponent {
     }
 
     render() {
-        //${this._data.username} ${this._data.avatarphoto}
-
         const context = { 
             username: this._data.body.user.username, 
             avatarphoto: AvatarPhoto,
