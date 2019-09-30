@@ -267,14 +267,14 @@ application.addEventListener('click', (evt) => {
 
 
 fetch(backendAddress + '/profile/data', {
-        method: 'GET',
-        body: null,
-        credentials: 'include',
-    })
-    .then((response) => {
-        if (response.ok) {
-            createProfile()
-        } else {
-            createSignup();
-        }
-    });
+    method: 'GET',
+    body: null,
+    credentials: 'include',
+})
+.then((response) => {
+    if (response.ok) {
+        createProfile()
+    } else {
+        createSignup();
+    }
+});
