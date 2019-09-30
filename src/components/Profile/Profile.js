@@ -2,7 +2,7 @@ import './Profile.scss';
 import profiletemplate from '../../templates/profile.hbs';
 
 import AvatarPhotoImg from '../../images/bg.png';
-import SetImg from '../../images/baseline_edit_black_48dp.png';
+import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
 
 export class ProfileComponent {

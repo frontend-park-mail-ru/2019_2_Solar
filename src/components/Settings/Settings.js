@@ -1,9 +1,9 @@
 import './Settings.scss';
 import settingstemplate from '../../templates/settings.hbs';
 
-import FImg from '../../images/24px.svg';
-import SImg from '../../images/24px (3).svg';
-import TImg from '../../images/24px (1).svg';
+import FImg from '../../images/edit.svg';
+import SImg from '../../images/account.svg';
+import TImg from '../../images/themes.svg';
 import FoImg from '../../images/bg.png';
 
 

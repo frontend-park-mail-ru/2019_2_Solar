@@ -3,12 +3,12 @@ import headertemplate from '../../templates/header.hbs';
 
 import AvatarPhoto from '../../images/nophoto.png';
 import Logo from '../../images/logo.jpg';
-import Lupa from '../../images/baseline_zoom_in_black_18dp.png';
-import PadIm from '../../images/baseline_keyboard_arrow_right_black_18dp.png';
+import Lupa from '../../images/zoom.png';
+import PadIm from '../../images/arrow.png';
 import Plus from '../../images/plus.png';
 import Question from '../../images/question.png';
 import Dialog from '../../images/dilog.png';
-import Setting from '../../images/333333.png';
+import Setting from '../../images/more.png';
 
 export class HeaderComponent {
     constructor(parent = document.body) {
