@@ -1,0 +1,96 @@
+input {
+    display: block;
+    padding-left: 10px;
+}
+
+.underlineTag {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.size {
+    font-size: 200%;
+}
+
+.paddingMenuCl {
+    padding-left: 200px;
+}
+
+.paddingMenuTitle {
+    padding-left: 150px;
+    width: 480px;
+}
+
+.signupTitleSolar {
+    position: absolute;
+    height: 211px;
+    top: 200px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 66px;
+
+    color: #000000;
+}
+
+.signupUnderTitle {
+
+    position: absolute;
+    height: 71px;
+    top: 357px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 28px;
+
+    color: #000000;
+}
+
+.blockinput {
+    position: absolute;
+    width: 323px;
+    height: 45px;
+}
+
+.buttonSignup {
+    position: absolute;
+    width: 333px; /*323*/
+    height: 45px;
+    top: 630px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+
+    text-align: center;
+    color: white;
+    border: 0;
+}
+
+.underbutton {
+    position: absolute;
+    width: 323px;
+    height: 45px;
+    top: 680px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+}
+
+.inputdata_top1 {
+    top: 452px;
+}
+
+.inputdata_top2 {
+    top: 510px;
+}
+
+.inputdata_top3 {
+    top: 566px;
+}

@@ -1,0 +1,97 @@
+.buttonLogin {
+    position: absolute;
+    width: 250px;
+    height: 45px;
+    left: 69px;
+    top: 74.76%;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+
+    text-align: center;
+    color: white;
+    border: 0;
+}
+
+.underbuttonLogin {
+    position: absolute;
+    width: 250px;
+    height: 45px;
+    left: 69px;
+    top: 86.14%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+}
+
+.titleLogin {
+    position: absolute;
+    left: 6.19%;
+    right: 6.44%;
+    top: 26.29%;
+    bottom: 57.04%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.logoStyleL {
+    position: absolute;
+    width: 70px;
+    padding-top: 25px;
+    align-self: center;
+    margin-left: -35px;
+}
+
+.blocklogin {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    width: 388px;
+    height: 426px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+    padding: 22px 0px;
+
+}
+
+.underBlockLoginCl {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    position: absolute;
+    overflow: auto;
+    display: flex;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.inputSingIn {
+    position: absolute;
+    height: 45px;
+    left: 69px;
+    width: 250px;
+
+    background: #FFFFFF;
+    border: 1px solid #A19F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.inputdata_email_top {
+    top: 48.83%;
+}
+
+.inputdata_password_top {
+    top: 60.74%;
+}

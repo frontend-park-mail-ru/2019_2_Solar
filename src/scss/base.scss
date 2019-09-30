@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+.background {
+    background: url(../images/signupbg.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.backgroundLogin {
+    background: url(../images/loginbg1.jpg);
+    background-repeat: no-repeat;
+    background-size :cover;
+    background-attachment: fixed;
+}
+
+.backgroundIndex {
+    background-color: rgb(255, 255, 255);
+}
+
+.titleSingIn {
+    position: absolute;
+    left: 6.19%;
+    right: 6.44%;
+    top: 26.29%;
+    bottom: 57.04%;
+}
+
+.aUnblock {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 5px;
+}
