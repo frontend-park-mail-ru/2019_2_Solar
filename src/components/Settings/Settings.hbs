@@ -28,7 +28,7 @@
         <input type="text" id="surname" placeholder="Введите свою фамилию" {{#if surname}}value={{surname}}{{/if}} class="inputForm surname-input_pos">
         <div class="normText username-block_pos">Имя пользователя</div>
         <div class="normText href_pos">wwww.sunrise.com/</div>
-        <input type="text" id="username" placeholder="username" value={{username}} class="inputForm href-input_pos">
+        <input type="text" id="username" placeholder="username" {{#if username}}value={{username}}{{/if}} class="inputForm href-input_pos">
         <div class="normText username-block_pos">Статус</div>
         <input type="text" id="status" placeholder="Расскажите о себе" {{#if status}}value={{status}}{{/if}} class="inputForm status-input_pos">
         <input type="submit" class="botOut" value="Готово">

@@ -28,26 +28,34 @@ function createSignup() {
 		const email = signUpForm.elements['email'].value;
         const username = signUpForm.elements['username'].value;
         const password = signUpForm.elements['password'].value;
-        
-        let data = {'email': email, 'password': password, 'username': username};
 
-        fetch(backendAddress + '/registration/', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        .then((response) => {
-            if (response.ok) {
-                createProfile();
-            } else {
-                const error = response.json();
-                console.log(error.body);
-                alert ('Ошибка регистрации');
-            }
-        });
+        let data;
+        if(email=="" || username=="" || password=="") {
+            data = {};
+            alert('Ошибка регистрации');
+        } else {
+            data = {'email': email, 'password': password, 'username': username};
+
+            console.log(data);
+
+            fetch(backendAddress + '/registration/', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then((response) => {
+                if (response.ok) {
+                    createProfile();
+                } else {
+                    const error = response.json();
+                    console.log(error.body);
+                    alert ('Ошибка регистрации');
+                }
+            });
+        }
 	});
 };
 
@@ -219,30 +227,25 @@ function createPin() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
-    const createPin = new CreatePinComponent(application);
-    createPin.render();
+    // const createPin = new CreatePinComponent(application);
+    // createPin.render();
 
     fetch(backendAddress + '/profile/data', {
         method: 'GET',
         body: null,
         credentials: 'include',
     })
-    .then((response) => {
-        if (response.ok) {
-            const responseBody = response.json();
-            console.log('hello');
+    .then ((response) => {
+        return response.json();
+    })
+    .then((responseBody) => {
+        const header = new HeaderComponent(application);
+        header.data = responseBody;
+        header.render();
+        console.log('hello');
 
-            const header = new HeaderComponent(application);
-            header.data = responseBody;
-            header.render();
-            console.log('hello');
-
-            const createPin = new CreatePinComponent(application);
-            createPin.render();
-        } else {
-            alert('Ошибка при создании пина');
-            createProfile();
-        }
+        const createPin = new CreatePinComponent(application);
+        createPin.render();
     });
 }
 

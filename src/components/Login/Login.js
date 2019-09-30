@@ -1,5 +1,5 @@
 import './Login.scss';
-import LoginTemplate from '../Login/login.hbs';
+import LoginTemplate from '../Login/Login.hbs';
 
 import Logo from '../../images/logo.png';
 
