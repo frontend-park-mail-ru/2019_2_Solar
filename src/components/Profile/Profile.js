@@ -1,5 +1,5 @@
 import './Profile.scss';
-import ProfileTemplate from '../Profile/profile.hbs';
+import ProfileTemplate from '../Profile/Profile.hbs';
 
 import AvatarPhotoImg from '../../images/bg.png';
 import SetImg from '../../images/grey-pen.png';
