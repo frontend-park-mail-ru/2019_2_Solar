@@ -7,6 +7,4 @@
 
 # Project files
 node_modules
-dist/*
-dist/
 dist
