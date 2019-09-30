@@ -1,0 +1,36 @@
+<div class="leftColumn">
+    <div class="marginTopF">
+        <img src={{PHfimg}} class="marginLeftCol">
+        <a href="" class="leftTextSt">Изменить профиль</a>
+    </div>
+    <div class="marginTopT">
+        <img src={{PHsimg}} class="marginLeftCol">
+        <a href="" class="leftTextSt">Настройки аккаунта</a>
+    </div>
+    <div class="marginTopT">
+        <img src={{PHtimg}} class="marginLeftCol">
+        <a href="" class="leftTextSt">Настроить тему</a>
+    </div>
+</div>
+<div class="rightColumn">
+    <div class="setTitle">Изменить профиль</div>
+    <form id="UserSettings">
+        <a href="/" data-section="profile" class="botNoOut"><span class="out_pos">Отмена<span></span></a>
+        <div class="withPhotoBlock">
+            <img src={{avatarphoto}} class="avatarPhoto">
+            <div class="underAvatar">{{username}}</div>
+            <input type="button" id="avatarphotop" value="Изменить" onclick="document.getElementById('avatarphoto').click();" class="avatarBot">
+            <input type="file" name="avatarphoto" id="avatarphoto" accept="image/*" class="norm-button" style="display:none">
+        </div>
+        <div class="normText name-block_pos">Имя</div>
+        <input type="text" id="name" placeholder="Введите своё имя" {{#if name}}value={{name}}{{/if}} class="inputForm name-input_pos">
+        <div class="normText surname-block_pos">Фамилия</div>
+        <input type="text" id="surname" placeholder="Введите свою фамилию" {{#if surname}}value={{surname}}{{/if}} class="inputForm surname-input_pos">
+        <div class="normText username-block_pos">Имя пользователя</div>
+        <div class="normText href_pos">wwww.sunrise.com/</div>
+        <input type="text" id="username" placeholder="username" value={{username}} class="inputForm href-input_pos">
+        <div class="normText username-block_pos">Статус</div>
+        <input type="text" id="status" placeholder="Расскажите о себе" {{#if status}}value={{status}}{{/if}} class="inputForm status-input_pos">
+        <input type="submit" class="botOut" value="Готово">
+    </form>
+</div>

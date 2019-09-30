@@ -1,14 +1,14 @@
 import './Header.scss';
-import headertemplate from '../../templates/header.hbs';
+import HeaderTemplate from '../Header/header.hbs';
 
 import AvatarPhoto from '../../images/nophoto.png';
-import Logo from '../../images/logo.jpg';
-import Lupa from '../../images/baseline_zoom_in_black_18dp.png';
-import PadIm from '../../images/baseline_keyboard_arrow_right_black_18dp.png';
+import Logo from '../../images/logo.png';
+import Lupa from '../../images/zoom.png';
+import PadIm from '../../images/arrow.png';
 import Plus from '../../images/plus.png';
 import Question from '../../images/question.png';
 import Dialog from '../../images/dilog.png';
-import Setting from '../../images/333333.png';
+import Setting from '../../images/more.png';
 
 export class HeaderComponent {
     constructor(parent = document.body) {
@@ -25,8 +25,6 @@ export class HeaderComponent {
     }
 
     render() {
-        //${this._data.username} ${this._data.avatarphoto}
-
         const context = { 
             username: this._data.body.user.username, 
             avatarphoto: AvatarPhoto,
@@ -39,7 +37,7 @@ export class HeaderComponent {
             PHdialog: Dialog,
             PHsetting: Setting,
         };
-        const html = headertemplate(context);
+        const html = HeaderTemplate(context);
 
         this._parent.innerHTML += html;
     }

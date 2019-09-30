@@ -17,8 +17,6 @@
     left: 50%;
     margin-left: -344px;
     top: 41px;
-
-    /*background-color: plum;*/
 }
 
 .avatarPhotoP {
@@ -116,4 +114,26 @@
     line-height: 14px;
 
     color: #A19F9C;
+}
+
+.settings_pos {
+    position: absolute;
+    left: 597px;
+    top: 60px;
+}
+
+.cretepin_pos {
+    position: absolute;
+    left: 597px;
+    top: 125px;
+}
+
+.textpad_pos {
+    left: 188px;
+    top: 203px;
+}
+
+.textpad_pos2 {
+    left: 332px;
+    top: 203px;
 }

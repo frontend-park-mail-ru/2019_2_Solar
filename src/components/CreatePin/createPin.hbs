@@ -1,0 +1,17 @@
+<div class="allBlock">
+    <img src="" class="imgClassD">
+    <div class="titleTextP">{{title}}</div>
+
+    <form id="Pin">
+        <input type="text" id="pinname" placeholder="Добавьте название" value="" class="textTitleName">
+        <input type="text" id="pincontent" placeholder="Добавьте описание" value="" class="textUnderTitleName">
+
+        <input type="button" id="changePin" value="Загрузить изображение" onclick="document.getElementById('pinphoto').click();" class="pinPhoto">
+        <input type="file" name="pinphoto" id="pinphoto" multiple accept="image/*" style="display:none">
+
+        <div class="buttons_pos1" >
+            <a href="/" data-section="profile" class="botNoOut"><span class="out_pos">Отмена<span></span></a>
+             <input type="submit" class="botOut" value="Готово">
+        </div>
+    </form>
+</div>

@@ -7,6 +7,7 @@ import {SignUpComponent} from './components/SignUp/SignUp.js';
 import {IndexComponent} from './components/Index/Index.js';
 import {SettingsComponent} from './components/Settings/Settings.js'
 import {HeaderComponent} from './components/Header/Header.js';
+import {CreatePinComponent} from './components/CreatePin/CreatePin.js';
 import './scss/base.scss';
 
 const application = document.getElementById('application');
@@ -121,7 +122,7 @@ function createSettings() {
         header.data = responseBody;
         header.render();
 
-        const settings = new SettingsComponent();
+        const settings = new SettingsComponent(application);
         settings.data = responseBody;
         settings.render();
 
@@ -168,11 +169,9 @@ function createSettings() {
             })
             .then ((response) => {
                 if (response.ok) {
-                    alert('1');
                     pictureresponse = true;
                     createProfile();
                 } else {
-                    alert('2');
                     pictureresponse = false;
 
                     if (dataresponse == true) {
@@ -216,12 +215,44 @@ function createProfile() {
     });
 };
 
+function createPin() {
+    application.innerHTML = '';
+    document.body.className ='backgroundIndex';
+
+    const createPin = new CreatePinComponent(application);
+    createPin.render();
+
+    fetch(backendAddress + '/profile/data', {
+        method: 'GET',
+        body: null,
+        credentials: 'include',
+    })
+    .then((response) => {
+        if (response.ok) {
+            const responseBody = response.json();
+            console.log('hello');
+
+            const header = new HeaderComponent(application);
+            header.data = responseBody;
+            header.render();
+            console.log('hello');
+
+            const createPin = new CreatePinComponent(application);
+            createPin.render();
+        } else {
+            alert('Ошибка при создании пина');
+            createProfile();
+        }
+    });
+}
+
 const functions = {
     "signup": createSignup,
     "login": createLogin,
     "index": createIndex,
     "profile": createProfile,
     "settings": createSettings,
+    "createpin":createPin,
 };
 
 application.addEventListener('click', (evt) => {
