@@ -36,8 +36,6 @@ function createSignup() {
         } else {
             data = {'email': email, 'password': password, 'username': username};
 
-            console.log(data);
-
             fetch(backendAddress + '/registration/', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -50,8 +48,6 @@ function createSignup() {
                     if (response.ok) {
                         createProfile();
                     } else {
-                        const error = response.json();
-                        console.log(error.body);
                         alert('Ошибка регистрации');
                     }
                 });
@@ -127,10 +123,36 @@ function createSettings() {
 
             const header = new HeaderComponent(application);
             header.data = responseBody;
-            header.render();
 
             const settings = new SettingsComponent(application);
             settings.data = responseBody;
+
+            let avaflag = false;
+
+            fetch(backendAddress + '/profile/picture', {
+                method: 'GET',
+                body: null,
+                credentials: 'include',
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        avaflag = true;
+                    }
+                    return response.blob();
+                })
+                .then(function(blob) {
+                    if (avaflag) {
+                        const objectURL = URL.createObjectURL(blob);
+
+                        const avaimg = document.getElementById('avatarPhotoSettings');
+                        avaimg.src = objectURL;
+
+                        const avaimgHeader = document.getElementById('avatarPhotoHeader');
+                        avaimgHeader.src = objectURL;
+                    }
+                });
+
+            header.render();
             settings.render();
 
             const settingsForm = document.getElementById('UserSettings');
@@ -167,6 +189,7 @@ function createSettings() {
 
                 const formData = new FormData();
                 formData.append('profilePicture', settingsForm.elements['avatarphoto'].files[0]);
+
                 fetch(backendAddress + '/profile/picture', {
                     method: 'POST',
                     body: formData,
@@ -174,13 +197,12 @@ function createSettings() {
                 })
                     .then((response) => {
                         if (response.ok) {
-                            pictureresponse = true;
                             createProfile();
                         } else {
-                            pictureresponse = false;
-
-                            if (dataresponse == true) {
+                            if (dataresponse) {
                                 createProfile();
+                            } else {
+                                alert('Вот я!');
                             }
                         }
                     });
@@ -208,10 +230,36 @@ function createProfile() {
 
             const header = new HeaderComponent(application);
             header.data = responseBody;
-            header.render();
 
             const profile = new ProfileComponent(application);
             profile.data = responseBody;
+
+            let avaflag = false;
+
+            fetch(backendAddress + '/profile/picture', {
+                method: 'GET',
+                body: null,
+                credentials: 'include',
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        avaflag = true;
+                    }
+                    return response.blob();
+                })
+                .then(function(blob) {
+                    if (avaflag) {
+                        const objectURL = URL.createObjectURL(blob);
+
+                        const avaimg = document.getElementById('avatarPhotoI');
+                        avaimg.src = objectURL;
+
+                        const avaimgHeader = document.getElementById('avatarPhotoHeader');
+                        avaimgHeader.src = objectURL;
+                    }
+                });
+
+            header.render();
             profile.render();
         })
         .catch(() => {
@@ -239,12 +287,11 @@ function createPin() {
             const header = new HeaderComponent(application);
             header.data = responseBody;
             header.render();
-            console.log('hello');
 
             const createPin = new CreatePinComponent(application);
             createPin.render();
         });
-}
+};
 
 const functions = {
     'signup': createSignup,

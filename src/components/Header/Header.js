@@ -1,7 +1,7 @@
 import './Header.scss';
 import HeaderTemplate from '../Header/Header.hbs';
 
-import AvatarPhoto from '../../images/nophoto.png';
+// import AvatarPhoto from '../../images/nophoto.png';
 import Logo from '../../images/logo.png';
 import Lupa from '../../images/zoom.png';
 import PadIm from '../../images/arrow.png';
@@ -27,7 +27,7 @@ export class HeaderComponent {
     render() {
         const context = {
             username: this._data.body.user.username,
-            avatarphoto: AvatarPhoto,
+            // avatarphoto: AvatarPhoto,
 
             PHlogo: Logo,
             PHLupa: Lupa,

@@ -17,7 +17,7 @@
     <form id="UserSettings">
         <a href="/" data-section="profile" class="botNoOut"><span class="out_pos">Отмена<span></span></a>
         <div class="withPhotoBlock">
-            <img src={{avatarphoto}} class="avatarPhoto">
+            <img id="avatarPhotoSettings" class="avatarPhoto">
             <div class="underAvatar">{{username}}</div>
             <input type="button" id="avatarphotop" value="Изменить" onclick="document.getElementById('avatarphoto').click();" class="avatarBot">
             <input type="file" name="avatarphoto" id="avatarphoto" accept="image/*" class="norm-button" style="display:none">
