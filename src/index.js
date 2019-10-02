@@ -202,7 +202,7 @@ function createSettings() {
                             if (dataresponse) {
                                 createProfile();
                             } else {
-                                alert('Вот я!');
+                                createSettings();
                             }
                         }
                     });
