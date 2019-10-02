@@ -1,7 +1,7 @@
 import './Profile.scss';
 import ProfileTemplate from '../Profile/Profile.hbs';
 
-import AvatarPhotoImg from '../../images/bg.png';
+// import AvatarPhotoImg from '../../images/bg.png';
 import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
 
@@ -19,14 +19,16 @@ export class ProfileComponent {
         this._data = {...dataToSet};
     }
 
-    render() {
-        //${this._data.username} ${this._data.avatarphoto}
-        console.log(this._data);
-        console.log(this._data.body.user.email);
+    set avatar(avatardata) {
+        this._avatar = avatardata;
+    }
 
-        const context = { 
-            username: this._data.body.user.username, 
-            avatarphoto: AvatarPhotoImg,
+    render() {
+    // ${this._data.username} ${this._data.avatarphoto}
+
+        const context = {
+            username: this._data.body.user.username,
+            // avatarphoto: this._avatar,
             status: this._data.body.user.status,
 
             PHsetimg: SetImg,

@@ -16,10 +16,10 @@ export class CreatePinComponent {
     }
 
     render() {
-        const context = { 
-            title: "Создание пина",
+        const context = {
+            title: 'Создание пина',
         };
-        
+
         const html = CreatePinTemplate(context);
 
         this._parent.innerHTML += html;

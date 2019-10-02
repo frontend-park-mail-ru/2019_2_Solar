@@ -4,7 +4,7 @@ import SettingsTemplate from '../Settings/Settings.hbs';
 import FImg from '../../images/edit.svg';
 import SImg from '../../images/account.svg';
 import TImg from '../../images/themes.svg';
-import FoImg from '../../images/bg.png';
+// import FoImg from '../../images/bg.png';
 
 
 export class SettingsComponent {
@@ -22,9 +22,9 @@ export class SettingsComponent {
     }
 
     render() {
-        let context = { 
-            username: this._data.body.user.username, 
-            avatarphoto: FoImg,
+        const context = {
+            username: this._data.body.user.username,
+            // avatarphoto: FoImg,
             status: this._data.body.user.status,
             name: this._data.body.user.name,
             surname: this._data.body.user.surname,
