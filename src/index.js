@@ -13,6 +13,9 @@ import './scss/base.scss';
 const application = document.getElementById('application');
 const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com';
 
+/**
+ * Create, render and set events for a Signup page.
+ */
 function createSignup() {
     application.innerHTML = '';
     document.body.className = 'background';
@@ -55,6 +58,9 @@ function createSignup() {
     });
 };
 
+/**
+ * Create, render and set events for a Login page.
+ */
 function createLogin() {
     application.innerHTML = '';
     document.body.className = 'backgroundLogin';
@@ -90,6 +96,9 @@ function createLogin() {
     });
 };
 
+/**
+ * Create, render and set events for an Index page.
+ */
 function createIndex() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
@@ -101,6 +110,9 @@ function createIndex() {
     index.render();
 };
 
+/**
+ * Create, render and set events for a Settings page.
+ */
 function createSettings() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
@@ -210,7 +222,9 @@ function createSettings() {
         });
 };
 
-
+/**
+ * Create, render and set events for a Profile page.
+ */
 function createProfile() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
@@ -268,6 +282,9 @@ function createProfile() {
         });
 };
 
+/**
+ * Create, render and set events for a CreatePin page.
+ */
 function createPin() {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
