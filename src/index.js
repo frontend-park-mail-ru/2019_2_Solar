@@ -8,10 +8,11 @@ import {IndexComponent} from './components/Index/Index.js';
 import {SettingsComponent} from './components/Settings/Settings.js';
 import {HeaderComponent} from './components/Header/Header.js';
 import {CreatePinComponent} from './components/CreatePin/CreatePin.js';
+import {validateSignup} from './utils/validation.js';
 import './scss/base.scss';
 
 const application = document.getElementById('application');
-const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com';
+const backendAddress = 'http://localhost:8080';
 
 /**
  * Create, render and set events for a Signup page.
@@ -32,29 +33,27 @@ function createSignup() {
         const username = signUpForm.elements['username'].value;
         const password = signUpForm.elements['password'].value;
 
-        let data;
-        if (email=='' || username=='' || password=='') {
-            data = {};
-            alert('Ошибка регистрации');
-        } else {
-            data = {'email': email, 'password': password, 'username': username};
-
-            fetch(backendAddress + '/registration/', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then((response) => {
-                    if (response.ok) {
-                        createProfile();
-                    } else {
-                        alert('Ошибка регистрации');
-                    }
-                });
+        if (!validateSignup(signUpForm)) {
+            alert('Did not validate');
+            return;
         }
+        const data = {'email': email, 'password': password, 'username': username};
+
+        fetch(backendAddress + '/registration/', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => {
+                if (response.ok) {
+                    createProfile();
+                } else {
+                    alert('Ошибка регистрации');
+                }
+            });
     });
 };
 
