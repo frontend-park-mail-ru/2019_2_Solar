@@ -338,7 +338,7 @@ fetch(backendAddress + '/profile/data', {
     .then((response) => {
         if (response.ok) {
             createProfile();
-        } else {
-            createSignup();
+            return;
         }
+        createSignup();
     });
