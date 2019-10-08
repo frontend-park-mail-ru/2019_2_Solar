@@ -1,6 +1,7 @@
 'use strict';
 
 // 1838 x 981
+import bus from './utils/bus.js';
 import {ProfileComponent} from './components/Profile/Profile.js';
 import {LoginComponent} from './components/Login/Login.js';
 import {SignUpComponent} from './components/SignUp/SignUp.js';
@@ -8,12 +9,13 @@ import {IndexComponent} from './components/Index/Index.js';
 import {SettingsComponent} from './components/Settings/Settings.js';
 import {HeaderComponent} from './components/Header/Header.js';
 import {CreatePinComponent} from './components/CreatePin/CreatePin.js';
+import {validateSignup} from './utils/validation.js';
 import './scss/base.scss';
 
 const application = document.getElementById('application');
-const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com';
+const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com/';
 
-function createSignup() {
+bus.on('create-signup', () => {
     application.innerHTML = '';
     document.body.className = 'background';
 
@@ -21,41 +23,42 @@ function createSignup() {
     signUp.render();
 
     const signUpForm = document.getElementById('inputdata');
+    console.log(signUpForm);
 
     signUpForm.addEventListener('submit', (e) => {
+        console.log('sending...');
         e.preventDefault();
 
         const email = signUpForm.elements['email'].value;
         const username = signUpForm.elements['username'].value;
         const password = signUpForm.elements['password'].value;
 
-        let data;
-        if (email=='' || username=='' || password=='') {
-            data = {};
-            alert('Ошибка регистрации');
-        } else {
-            data = {'email': email, 'password': password, 'username': username};
-
-            fetch(backendAddress + '/registration/', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then((response) => {
-                    if (response.ok) {
-                        createProfile();
-                    } else {
-                        alert('Ошибка регистрации');
-                    }
-                });
+        if (!validateSignup(signUpForm)) {
+            alert('Did not validate');
+            return;
         }
-    });
-};
+        const data = {'email': email, 'password': password, 'username': username};
+        console.log(data);
 
-function createLogin() {
+        fetch(backendAddress + '/registration/', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => {
+                if (response.ok) {
+                    bus.emit('create-profile');
+                } else {
+                    alert('Ошибка регистрации');
+                }
+            });
+    });
+});
+
+bus.on('create-login', () => {
     application.innerHTML = '';
     document.body.className = 'backgroundLogin';
 
@@ -82,15 +85,15 @@ function createLogin() {
         })
             .then((response) => {
                 if (response.ok) {
-                    createProfile();
+                    bus.emit('create-profile');
                 } else {
                     alert('Ошибка авторизации');
                 }
             });
     });
-};
+});
 
-function createIndex() {
+bus.on('create-index', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
@@ -99,9 +102,9 @@ function createIndex() {
 
     const index = new IndexComponent();
     index.render();
-};
+});
 
-function createSettings() {
+bus.on('create-settings', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
@@ -197,10 +200,10 @@ function createSettings() {
                 })
                     .then((response) => {
                         if (response.ok) {
-                            createProfile();
+                            bus.emit('create-profile');
                         } else {
                             if (dataresponse) {
-                                createProfile();
+                                bus.emit('create-profile');
                             } else {
                                 createSettings();
                             }
@@ -208,10 +211,9 @@ function createSettings() {
                     });
             });
         });
-};
+});
 
-
-function createProfile() {
+bus.on('create-profile', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
@@ -264,11 +266,11 @@ function createProfile() {
         })
         .catch(() => {
             alert('Ошибка авторизации');
-            createLogin();
+            bus.emit('create-login');
         });
-};
+});
 
-function createPin() {
+bus.on('createPin', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
@@ -291,27 +293,7 @@ function createPin() {
             const createPin = new CreatePinComponent(application);
             createPin.render();
         });
-};
-
-const functions = {
-    'signup': createSignup,
-    'login': createLogin,
-    'index': createIndex,
-    'profile': createProfile,
-    'settings': createSettings,
-    'createpin': createPin,
-};
-
-application.addEventListener('click', (evt) => {
-    const {target} = evt;
-
-    if (target.dataset.section) {
-        evt.preventDefault();
-        evt.stopPropagation();
-        functions[target.dataset.section]();
-    }
 });
-
 
 fetch(backendAddress + '/profile/data', {
     method: 'GET',
@@ -320,8 +302,8 @@ fetch(backendAddress + '/profile/data', {
 })
     .then((response) => {
         if (response.ok) {
-            createProfile();
-        } else {
-            createSignup();
+            bus.emit('create-profile');
+            return;
         }
+        bus.emit('create-signup');
     });
