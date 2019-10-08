@@ -1,8 +1,8 @@
-const emailRegex = "^(?=.{1,50})";
-const passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,30})";
-const usernameRegex = "^(?=.{1,30})";
-const nameRegex = "^(?=.{1,30})";
-const statusRegex = "^(?=.{1,200})";
+const emailRegex = '^(?=.{1,50})';
+const passwordRegex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,30})';
+const usernameRegex = '^(?=.{1,30})';
+const nameRegex = '^(?=.{1,30})';
+const statusRegex = '^(?=.{1,200})';
 
 /**
  * Validate email.

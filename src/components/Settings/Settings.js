@@ -1,3 +1,4 @@
+import bus from '../../utils/bus.js';
 import './Settings.scss';
 import SettingsTemplate from '../Settings/Settings.hbs';
 
@@ -52,5 +53,11 @@ export class SettingsComponent {
         const html = SettingsTemplate(context);
 
         this._parent.innerHTML += html;
+
+        const toProfile = document.getElementById('settings-page').querySelectorAll('[data-section=\'profile\']')[0];
+        toProfile.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('create-profile');
+        });
     }
 }

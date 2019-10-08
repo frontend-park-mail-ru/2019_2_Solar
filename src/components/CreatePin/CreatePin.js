@@ -40,5 +40,11 @@ export class CreatePinComponent {
         const html = CreatePinTemplate(context);
 
         this._parent.innerHTML += html;
+
+        const toProfile = document.getElementById('createpin-page').querySelectorAll('[data-section=\'profile\']')[0];
+        toProfile.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('create-profile');
+        });
     }
 }

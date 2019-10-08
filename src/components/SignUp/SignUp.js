@@ -1,3 +1,4 @@
+import bus from '../../utils/bus.js';
 import './SignUp.scss';
 import SignupTemplate from '../SignUp/SignUp.hbs';
 
@@ -29,5 +30,11 @@ export class SignUpComponent {
         const html = SignupTemplate(context);
 
         this._parent.innerHTML += html;
+
+        const toLogin = document.getElementById('signup-page').querySelectorAll('[data-section=\'login\']')[0];
+        toLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('create-login');
+        });
     }
 }

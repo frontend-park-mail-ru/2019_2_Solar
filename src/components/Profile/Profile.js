@@ -1,3 +1,4 @@
+import bus from '../../utils/bus.js';
 import './Profile.scss';
 import ProfileTemplate from '../Profile/Profile.hbs';
 
@@ -56,5 +57,15 @@ export class ProfileComponent {
         const html = ProfileTemplate(context);
 
         this._parent.innerHTML += html;
+        const toSettings = document.getElementById('profile-page').querySelectorAll('[data-section=\'settings\']')[0];
+        toSettings.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('create-settings');
+        });
+        const toCreatePin = document.getElementById('profile-page').querySelectorAll('[data-section=\'createpin\']')[0];
+        toCreatePin.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('create-pin');
+        });
     }
 }

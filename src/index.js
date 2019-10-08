@@ -1,6 +1,7 @@
 'use strict';
 
 // 1838 x 981
+import bus from './utils/bus.js';
 import {ProfileComponent} from './components/Profile/Profile.js';
 import {LoginComponent} from './components/Login/Login.js';
 import {SignUpComponent} from './components/SignUp/SignUp.js';
@@ -12,12 +13,9 @@ import {validateSignup} from './utils/validation.js';
 import './scss/base.scss';
 
 const application = document.getElementById('application');
-const backendAddress = 'http://localhost:8080';
+const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com/';
 
-/**
- * Create, render and set events for a Signup page.
- */
-function createSignup() {
+bus.on('create-signup', () => {
     application.innerHTML = '';
     document.body.className = 'background';
 
@@ -25,8 +23,10 @@ function createSignup() {
     signUp.render();
 
     const signUpForm = document.getElementById('inputdata');
+    console.log(signUpForm);
 
     signUpForm.addEventListener('submit', (e) => {
+        console.log('sending...');
         e.preventDefault();
 
         const email = signUpForm.elements['email'].value;
@@ -38,6 +38,7 @@ function createSignup() {
             return;
         }
         const data = {'email': email, 'password': password, 'username': username};
+        console.log(data);
 
         fetch(backendAddress + '/registration/', {
             method: 'POST',
@@ -49,18 +50,15 @@ function createSignup() {
         })
             .then((response) => {
                 if (response.ok) {
-                    createProfile();
+                    bus.emit('create-profile');
                 } else {
                     alert('Ошибка регистрации');
                 }
             });
     });
-};
+});
 
-/**
- * Create, render and set events for a Login page.
- */
-function createLogin() {
+bus.on('create-login', () => {
     application.innerHTML = '';
     document.body.className = 'backgroundLogin';
 
@@ -87,18 +85,15 @@ function createLogin() {
         })
             .then((response) => {
                 if (response.ok) {
-                    createProfile();
+                    bus.emit('create-profile');
                 } else {
                     alert('Ошибка авторизации');
                 }
             });
     });
-};
+});
 
-/**
- * Create, render and set events for an Index page.
- */
-function createIndex() {
+bus.on('create-index', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
@@ -107,12 +102,9 @@ function createIndex() {
 
     const index = new IndexComponent();
     index.render();
-};
+});
 
-/**
- * Create, render and set events for a Settings page.
- */
-function createSettings() {
+bus.on('create-settings', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
@@ -208,10 +200,10 @@ function createSettings() {
                 })
                     .then((response) => {
                         if (response.ok) {
-                            createProfile();
+                            bus.emit('create-profile');
                         } else {
                             if (dataresponse) {
-                                createProfile();
+                                bus.emit('create-profile');
                             } else {
                                 createSettings();
                             }
@@ -219,12 +211,9 @@ function createSettings() {
                     });
             });
         });
-};
+});
 
-/**
- * Create, render and set events for a Profile page.
- */
-function createProfile() {
+bus.on('create-profile', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
@@ -277,14 +266,11 @@ function createProfile() {
         })
         .catch(() => {
             alert('Ошибка авторизации');
-            createLogin();
+            bus.emit('create-login');
         });
-};
+});
 
-/**
- * Create, render and set events for a CreatePin page.
- */
-function createPin() {
+bus.on('createPin', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 
@@ -307,27 +293,7 @@ function createPin() {
             const createPin = new CreatePinComponent(application);
             createPin.render();
         });
-};
-
-const functions = {
-    'signup': createSignup,
-    'login': createLogin,
-    'index': createIndex,
-    'profile': createProfile,
-    'settings': createSettings,
-    'createpin': createPin,
-};
-
-application.addEventListener('click', (evt) => {
-    const {target} = evt;
-
-    if (target.dataset.section) {
-        evt.preventDefault();
-        evt.stopPropagation();
-        functions[target.dataset.section]();
-    }
 });
-
 
 fetch(backendAddress + '/profile/data', {
     method: 'GET',
@@ -336,8 +302,8 @@ fetch(backendAddress + '/profile/data', {
 })
     .then((response) => {
         if (response.ok) {
-            createProfile();
+            bus.emit('create-profile');
             return;
         }
-        createSignup();
+        bus.emit('create-signup');
     });
