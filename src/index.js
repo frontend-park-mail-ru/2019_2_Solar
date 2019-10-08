@@ -23,10 +23,8 @@ bus.on('create-signup', () => {
     signUp.render();
 
     const signUpForm = document.getElementById('inputdata');
-    console.log(signUpForm);
 
     signUpForm.addEventListener('submit', (e) => {
-        console.log('sending...');
         e.preventDefault();
 
         const email = signUpForm.elements['email'].value;
@@ -38,7 +36,6 @@ bus.on('create-signup', () => {
             return;
         }
         const data = {'email': email, 'password': password, 'username': username};
-        console.log(data);
 
         fetch(backendAddress + '/registration/', {
             method: 'POST',
