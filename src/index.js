@@ -13,7 +13,7 @@ import {validateSignup} from './utils/validation.js';
 import './scss/base.scss';
 
 const application = document.getElementById('application');
-const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com/';
+const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com';
 
 bus.on('create-signup', () => {
     application.innerHTML = '';
