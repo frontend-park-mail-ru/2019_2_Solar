@@ -1,6 +1,7 @@
 import bus from '../../utils/bus.js';
 import './SignUp.scss';
 import SignupTemplate from '../SignUp/SignUp.hbs';
+import {ButtonComponent} from '../Button/Button.js';
 
 /** Class representing a Signup component. */
 export class SignUpComponent {
@@ -26,7 +27,10 @@ export class SignUpComponent {
      * Render Signup component.
      */
     render() {
-        const context = {};
+        const button = new ButtonComponent();
+        const context = {
+            button: button.render({text: "Зарегистрироваться"}),
+        };
         const html = SignupTemplate(context);
 
         this._parent.innerHTML += html;
