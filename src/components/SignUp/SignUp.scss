@@ -1,78 +1,79 @@
-input {
-    display: block;
-    padding-left: 10px;
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.underlineTag {
-    text-decoration: underline;
-    font-weight: bold;
+.signup-block {
+    display: flex;
+    width: 450px;
+    margin-top: 200px;
+    font-family: Roboto, sans-serif;
+
+    flex-direction: column;
 }
 
-.size {
-    font-size: 200%;
+.signup-block_margin {
+    margin-left: 150px;
 }
 
-.paddingMenuCl {
-    padding-left: 200px;
-}
+.signup-block__title-solar {
+    height: 160px;
 
-.paddingMenuTitle {
-    padding-left: 150px;
-    width: 480px;
-}
-
-.signupTitleSolar {
-    position: absolute;
-    height: 211px;
-    top: 200px;
-
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 50px;
     line-height: 66px;
 
     color: #000000;
+    width: 100%;
 }
 
-.signupUnderTitle {
-
-    position: absolute;
-    height: 71px;
-    top: 357px;
-
+.signup-block__under-title {
+    height: 80px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
     line-height: 28px;
-
     color: #000000;
 }
 
-.blockinput {
-    position: absolute;
-    width: 323px;
-    height: 45px;
+.signup-form-block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.buttonSignup {
-    position: absolute;
-
-    top: 630px;
-    // background-color: #FF8F0C;
-    // border-radius: 5px;
-
-    // text-align: center;
-    // color: white;
-    // border: 0;
+input {
+    display: block;
+    padding-left: 10px;
 }
 
-.underbutton {
-    position: absolute;
+.signup-form-block__input {
+    display: flex;
+    width: 336px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #A19F9C;
+    box-sizing: border-box;
+}
+
+.signup-form-block__input_email-margin {
+    margin-top: 10px;
+}
+
+.signup-form-block__input_margin-top {
+    margin-top: 5px;
+}
+
+.signup-form-block__button_margin {
+    margin-top: 15px;
+}
+
+.signup-form-block__underbutton-text {
     width: 323px;
     height: 45px;
-    top: 680px;
 
     font-family: Roboto;
     font-style: normal;
@@ -82,14 +83,13 @@ input {
     text-align: center;
 }
 
-.inputdata_top1 {
-    top: 452px;
+.a-bold-decoration {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 5px;
 }
 
-.inputdata_top2 {
-    top: 510px;
-}
-
-.inputdata_top3 {
-    top: 566px;
+.a-bold-decoration_margin {
+    margin-top: 5px;
 }

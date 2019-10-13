@@ -1,15 +1,17 @@
-<div id="signup-page" class="paddingMenuCl ">
-    <form id="inputdata">
-        <input type="email" name="email" placeholder="Email" class="blockinput inputdata_top1">
-        <input type="password" name="password" placeholder="Пароль" class="blockinput inputdata_top2">
-        <input type="text" name="username" placeholder="Имя пользователя" class="blockinput inputdata_top3">
-        {{!-- <input type="submit" value="Зарегистрироваться" class="buttonSignup"> --}}
-        <div class="buttonSignup">{{{button}}}</div>
-    </form>
-    <div class="underbutton">
-        Уже зарегистрировались?
-        <a href="#" data-section="login" class="aUnblock">Войти</a>
+<div id="signup-page" class="signup-block signup-block_margin">
+    <div class="signup-block__title-solar">Добро пожаловать на пинтерест (нет)</div>
+    <div class="signup-block__under-title">На самом деле мы не пинтерест, а кое-что покруче!</div>
+
+    <div class="signup-form-block">
+        <form id="inputdata">
+            <input type="email" name="email" placeholder="Email" class="signup-form-block__input signup-form-block__input_email-margin">
+            <input type="password" name="password" placeholder="Пароль" class="signup-form-block__input signup-form-block__input_margin-top">
+            <input type="text" name="username" placeholder="Имя пользователя" class="signup-form-block__input signup-form-block__input_margin-top">
+            <div class="signup-form-block__button_margin">{{{button}}}</div>
+        </form>
+        <div class="signup-form-block__underbutton-text a-bold-decoration_margin">
+            Уже зарегистрировались?
+            <a href="#" data-section="login" class="a-bold-decoration">Войти</a>
+        </div>
     </div>
 </div>
-<div class="signupTitleSolar paddingMenuTitle">Добро пожаловать на пинтерест (нет)</div>
-<div class="signupUnderTitle paddingMenuTitle">На самом деле мы не пинтерест, а кое-что покруче!</div>

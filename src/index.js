@@ -1,6 +1,5 @@
 'use strict';
 
-// 1838 x 981
 import bus from './utils/bus.js';
 import {ProfileComponent} from './components/Profile/Profile.js';
 import {LoginComponent} from './components/Login/Login.js';
