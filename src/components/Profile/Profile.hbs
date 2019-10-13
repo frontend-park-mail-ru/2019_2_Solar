@@ -1,20 +1,20 @@
-<div id="profile-page" class="underheader">
-    <div class="profileIcons">
-        <img id="avatarPhotoI" class="avatarPhotoP">
-        <div class="usernameStyleP">{{username}}</div>
-        <div class="underusename">{{status}}</div>
+<div id="profile-page" class="profile-underheader">
+    <div class="profile-icons profile-icons_position">
+        <img id="avatarPhotoI" class="profile-avatar-photo profile-avatar-photo_margin">
+        <div class="profile-username profile-username_margin">{{username}}</div>
+        <div class="profile-status profile-status_margin">{{status}}</div>
         <a href="#">
-            <img src={{PHsetimg}} data-section="settings" class="sizeIcons settings_pos">
+            <img src={{PHsetimg}} data-section="settings" class="profile-icon-size profile-icon-size_settings-pos">
         </a>
         <a href="#" data-section="createpin">
-            <img src={{PHplus}} data-section="createpin" class="sizeIcons cretepin_pos">
+            <img src={{PHplus}} data-section="createpin" class="profile-icon-size profile-icon-size_createpin-pos">
         </a>
-        <a class="logout" href="#" data-section="login">Выйти</a>
-        <a class="butwithoutCol textpad_pos" href="">
-            <span class="textPad">Доски</span>
+        <a class="profile-logout profile-logout_pos" href="#" data-section="login">Выйти</a>
+        <a class="profile-button profile-button_board-pos" href="">
+            <span class="profile-button__text">Доски</span>
         </a>
-        <a class="butwithoutCol textpad_pos2" href="">
-            <span class="textPad">Пины</span>
+        <a class="profile-button profile-button_pin-pos" href="">
+            <span class="profile-button__text">Пины</span>
         </a>
     </div>
 </div>

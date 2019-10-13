@@ -266,12 +266,9 @@ bus.on('create-profile', () => {
         });
 });
 
-bus.on('createPin', () => {
+bus.on('create-pin', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
-
-    // const createPin = new CreatePinComponent(application);
-    // createPin.render();
 
     fetch(backendAddress + '/profile/data', {
         method: 'GET',
