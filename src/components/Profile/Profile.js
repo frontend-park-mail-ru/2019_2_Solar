@@ -1,8 +1,6 @@
 import bus from '../../utils/bus.js';
 import './Profile.scss';
 import ProfileTemplate from '../Profile/Profile.hbs';
-
-// import AvatarPhotoImg from '../../images/bg.png';
 import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
 
@@ -70,10 +68,10 @@ export class ProfileComponent {
             bus.emit('create-pin');
         });
 
-        const toLogout = document.getElementById('profile-page').querySelectorAll('[data-section=\'login\']')[0];
+        const toLogout = document.getElementById('profile-page').querySelectorAll('[data-section=\'logout\']')[0];
         toLogout.addEventListener('click', (e) => {
             e.preventDefault();
-            bus.emit('create-login');
+            bus.emit('create-logout');
         });
     }
 }

@@ -9,6 +9,7 @@ import {SettingsComponent} from './components/Settings/Settings.js';
 import {HeaderComponent} from './components/Header/Header.js';
 import {CreatePinComponent} from './components/CreatePin/CreatePin.js';
 import {validateSignup} from './utils/validation.js';
+import {deleteCookie} from './utils/deleteCookies.js';
 import './scss/base.scss';
 
 const application = document.getElementById('application');
@@ -286,6 +287,11 @@ bus.on('create-pin', () => {
             const createPin = new CreatePinComponent(application);
             createPin.render();
         });
+});
+
+bus.on('create-logout', () => {
+    deleteCookie();
+    bus.emit('create-login');
 });
 
 fetch(backendAddress + '/profile/data', {
