@@ -289,6 +289,28 @@ bus.on('create-pin', () => {
         });
 });
 
+bus.on('create-createboard', () => {
+    application.innerHTML = '';
+    document.body.className ='backgroundIndex';
+
+    fetch(backendAddress + '/profile/data', {
+        method: 'GET',
+        body: null,
+        credentials: 'include',
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseBody) => {
+            const header = new HeaderComponent(application);
+            header.data = responseBody;
+            header.render();
+
+            const createBoard = new CreateBoardComponent(application);
+            createBoard.render();
+        });
+});
+
 bus.on('create-logout', () => {
     deleteCookie();
     bus.emit('create-login');
