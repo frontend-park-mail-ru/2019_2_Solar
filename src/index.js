@@ -267,7 +267,7 @@ bus.on('create-profile', () => {
         });
 });
 
-bus.on('create-pin', () => {
+bus.on('create-createpin', () => {
     application.innerHTML = '';
     document.body.className ='backgroundIndex';
 

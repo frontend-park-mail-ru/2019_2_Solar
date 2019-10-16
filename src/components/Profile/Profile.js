@@ -65,7 +65,7 @@ export class ProfileComponent {
         const toCreatePin = document.getElementById('profile-page').querySelectorAll('[data-section=\'createpin\']')[0];
         toCreatePin.addEventListener('click', (e) => {
             e.preventDefault();
-            bus.emit('create-pin');
+            bus.emit('create-createpin');
         });
 
         const toLogout = document.getElementById('profile-page').querySelectorAll('[data-section=\'logout\']')[0];
