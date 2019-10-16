@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.viewpin-page__flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewpin-block {
+    display: flex;
+    width: 976px;
+}
+
+.viewpin-block__left-column {
+    display:flex;
+    flex-direction: column;
+    width: 490px;
+}
+
+.viewpin-block__left-column_state {
+    margin-left: 40px;
+}
+
+.viewpin-block__pin-photo {
+    width: 451px;
+    height: 649px;
+
+    background: #C4C4C4;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.viewpin-block__right-column {
+    flex-direction: column;
+    padding-left: 30px;
+}
+
+.viewpin-block__right-column__title {
+    width: 463px;
+    height: 44px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    color: #3D3D3D;
+}
+
+.viewpin-block__right-column__buttom-save {
+    width: 121px;
+    height: 38px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.viewpin-block__right-column__buttom-save_pos {
+    margin-left:70%;
+}
+
+.viewpin-block__right-column__author{
+    width: 54px;
+    height: 44px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #8C8C8C;
+}
+
+.viewpin-block__right-column__username {
+    width: 391px;
+    height: 32px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.viewpin-block__right-column__context {
+    width: 391px;
+    height: 32px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.viewpin-block__right-column__context_margin {
+    margin-top: 50px;
+}
+
+.viewpin-block__right-column__comment-block {
+    width: 463px;
+    height: 44px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    color: #3D3D3D;
+    border-bottom: 1px solid #C4C4C4;
+    border-color: #8C8C8C;
+}
+
+.comment {
+    display:flex;
+    width: 455px;
+}
+
+.comment__left-block {
+    width: 85px;
+    display: flex;
+}
+
+.comment__left-block__img {
+    border-radius: 100px;
+    width: 73px;
+    height:73px;
+    background-image: url(./images/bg.png);
+    border: 0;
+}
+
+.comment__creator {
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 16px;
+
+color: #000000;
+}
+
+.comment__right-block {
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment__content {
+    overflow: hidden;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #000000;
+}
+
+.comment__context_margin {
+    margin-top:3px;
+}
+
+.comment_margin {
+    margin-top: 15px;
+}
+
+.viewpin-form__sending-comment {
+    width: 455px;
+    height: 74px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    
+    color: #000000;
+}
+
+.viewpin-form__sending-comment_margin {
+    margin-top:30px;
+}
+
+.viewpin-form__send-comment {
+    width: 121px;
+    height: 38px;
+    background-color: #FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    color: #8C8C8C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input {
+    padding-left: 10px;
+}

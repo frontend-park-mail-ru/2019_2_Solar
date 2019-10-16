@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=He, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>createpin</title>
+    <link rel="stylesheet" href="./createPin.css">
+    <link rel="stylesheet" href="./boardForPin.css">
+</head>
+<body>
+    <div id="createpin-page" class="createpin-block">
+        <img src="" class="createpin-block__img createpin-block__img_pos">
+        <div class="createpin-block__title createpin-block__title_pos">{{title}}</div>
+
+        <form id="PinData">
+            <input type="text" id="pinname" placeholder="Добавьте название" value="" class="createpin-form__title createpin-form__title_pos">
+            <input type="text" id="pincontent" placeholder="Добавьте описание" value="" class="createpin-form__content createpin-form__content_pos">
+
+            <input type="button" id="changePin" value="Загрузить изображение" onclick="document.getElementById('pinphoto').click();" class="createpin-form__pinphoto createpin-form__pinphoto_pos">
+            <input type="file" name="pinphoto" id="pinphoto" multiple accept="image/*" style="display:none">
+            
+            <div class="createpin__buttons" >
+                <a href="#" type="submit" data-section="profile" class="createpin__buttons__button-out createpin__buttons_pos">Отмена</a>
+                <input type="submit" class="createpin__buttons__button-save createpin__buttons__button-save_pos" value="Готово">
+            </div>
+        </form>
+
+        <div class="your-boards__title your-boards__title_pos">Мои доски</div>
+        <div class="your-boards your-boards_state">
+            <!-- досочка из boardforpins -->
+            <div class="board-for-pin">
+                <img src="" class="board-for-pin__img">
+                <div class="board-for-pin__content">Какое-нибудь название с продолжением</div>
+            </div>
+            <div class="board-for-pin your-boards_board_margin">
+                <img src="" class="board-for-pin__img">
+                <div class="board-for-pin__content">Какое-нибудь название с продолжением</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

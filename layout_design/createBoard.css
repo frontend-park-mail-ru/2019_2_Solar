@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.createboard-page__flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.createboard-block {
+    display: flex;
+    flex-direction: column;
+    width: 976px;
+    align-items: center;
+}
+
+.createboard-block__title {
+    height: 44px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.createboard-form__title {
+    width: 850px;
+    height: 44px;
+
+    border:0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid #C4C4C4;
+    color: #8C8C8C;
+}
+
+.createboard-form__title_pos {
+    margin-top: 30px;
+}
+
+.createboard-form__content {
+    width: 850px;
+    height: 44px;
+
+    border:0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    
+    border-bottom: 1px solid #C4C4C4;
+    
+    color: #8C8C8C;
+}
+
+.createboard-form__content_pos {
+    margin-top: 17px;
+}
+
+.createboard-form__button-save {
+    width: 121px;
+    height: 38px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.createboard-foem__button-out {
+    width: 121px;
+    height: 38px;
+    padding: 9px 30px 9px 30px;
+    background-color: #FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    color: #8C8C8C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.createboard-foem_button_pos {
+    margin-left: 69%;
+    margin-right: 0;
+    margin-top: 40px;
+}
+
+.create-form__button-save_pos {
+    margin-left: 15px;
+}
