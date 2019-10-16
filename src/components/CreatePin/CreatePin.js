@@ -1,5 +1,7 @@
+import bus from '../../utils/bus.js';
 import './CreatePin.scss';
 import CreatePinTemplate from '../CreatePin/CreatePin.hbs';
+import {BoardForCreatePinComponent} from '../BoardForCreatePin/BoardForCreatePin.js';
 
 /** Class representing a CreatePin component. */
 export class CreatePinComponent {
@@ -33,8 +35,11 @@ export class CreatePinComponent {
      * Render CreatePin component.
      */
     render() {
+        const board = new BoardForCreatePinComponent();
+
         const context = {
             title: 'Создание пина',
+            board: board.render({boardTitle: "Какое-нибудь название с продолжением"}),
         };
 
         const html = CreatePinTemplate(context);

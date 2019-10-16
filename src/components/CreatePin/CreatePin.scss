@@ -1,30 +1,28 @@
-.allBlock {
+.createpin-block {
     position: absolute;
     width: 976px;
     height: 895px;
     left: 50%;
     margin-left:-488px;
     top: 79px;
-
-    //background: #FFE4E4;
 }
 
-.imgClassD {
-    position: absolute;
+.createpin-block__img {
     width: 227px;
     height: 327px;
-    left: 52px;
-    top: 42px;
 
     background: #C4C4C4;
 }
 
-.titleTextP {
+.createpin-block__img_pos {
     position: absolute;
+    left: 52px;
+    top: 42px;
+}
+
+.createpin-block__title {
     width: 333px;
     height: 70px;
-    left: 329px;
-    top: 40px;
 
     font-family: Roboto;
     font-style: normal;
@@ -37,12 +35,15 @@
     color: #000000;
 }
 
-.textTitleName {
+.createpin-block__title_pos {
     position: absolute;
+    left: 329px;
+    top: 40px;
+}
+
+.createpin-form__title {
     width: 586px;
     height: 44px;
-    left: 329px;
-    top: 178px;
 
     border:0;
     font-family: Roboto;
@@ -54,17 +55,19 @@
     align-items: center;
 
     border-bottom: 1px solid #C4C4C4;
-
     color: #8C8C8C;
 }
 
-.textUnderTitleName {
+.createpin-form__title_pos {
     position: absolute;
+    left: 329px;
+    top: 178px;
+}
+
+.createpin-form__content {
     width: 586px;
     height: 44px;
-    left: 329px;
-    top: 284px;
-    
+
     border:0;
     font-family: Roboto;
     font-style: normal;
@@ -79,12 +82,16 @@
     color: #8C8C8C;
 }
 
-.pinPhoto {
+.createpin-form__content_pos {
     position: absolute;
+    left: 329px;
+    top: 284px;
+}
+
+.createpin-form__pinphoto {
     width: 227px;
     height: 38px;
-    left: 52px;
-    top: 381px;
+
     background-color:#FFFFFF;
     border: 1px solid #A29F9C;
     box-sizing: border-box;
@@ -97,7 +104,92 @@
     font-size: 16px;
 }
 
-.buttons_pos1 {
+.createpin-form__pinphoto_pos {
     position: absolute;
-    top: 340px;
+    left: 52px;
+    top: 381px;
+}
+
+.createpin__buttons {
+    position: absolute;
+    top: 875px;
+    position: fixed;
+}
+
+.createpin__buttons_pos {
+    position: absolute;
+    left: 650px;
+}
+
+.createpin__buttons__button-save {
+    width: 121px;
+    height: 38px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.createpin__buttons__button-save_pos {
+    position: absolute;
+    left: 790px;
+}
+
+.createpin__buttons__button-out {
+    width: 121px;
+    height: 38px;
+    padding: 9px 30px 9px 30px;
+    background-color: #FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    color: #8C8C8C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.your-boards {
+    display: flex;
+    width: 866px;
+}
+
+.your-boards_state {
+    margin-top: 513px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.your-boards_board_margin {
+    margin-left: 20px;
+}
+
+.your-boards__title {
+    width: 303px;
+    height: 44px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.your-boards__title_pos {
+    position: absolute;
+    left: 50px;
+    top: 450px;
 }
