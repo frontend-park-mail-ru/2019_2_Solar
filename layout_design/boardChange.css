@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.boardchange-page__flex-container {
+    padding: 0;
+    margin: 0;
+    margin-top: 40px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boardchange-block {
+    display: flex;
+    flex-direction: column;
+    width: 976px;
+    align-items: center;
+}
+
+.boardchange-block__title {
+    height: 44px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.boardchange-form__title {
+    width: 850px;
+    height: 44px;
+
+    border:0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid #C4C4C4;
+    color: #8C8C8C;
+}
+
+.boardchange-form__title_pos {
+    margin-top: 30px;
+}
+
+.boardchange-form__content {
+    width: 850px;
+    height: 44px;
+
+    border:0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    
+    border-bottom: 1px solid #C4C4C4;
+    
+    color: #8C8C8C;
+}
+
+.boardchange-form__content_pos {
+    margin-top: 17px;
+}
+
+.boardchange-form__button-save {
+    width: 121px;
+    height: 38px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.boardchange-form__button-out {
+    width: 121px;
+    height: 38px;
+    padding: 9px 30px 9px 30px;
+    background-color: #FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    color: #8C8C8C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.boardchange-form__button-del {
+    width: 121px;
+    height: 38px;
+    background-color: #FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    color: #8C8C8C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.boardchange-form_button_pos {
+    display: flex;
+    margin-top: 40px;
+}
+
+.create-form__button-save_pos {
+    margin-left: 15px;
+}
+
+.create-form__button-out_pos {
+    margin-left: 60%;
+}
+
+.boardchange-form__pin-title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.boardchange-form__pin-title_pos {
+    margin-top: 75px;
+}
+
+.boardchange-form__pins {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.boardchange-form__plus-pin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 229px;
+    height: 329px;
+    background-color: #A8A8A8;
+
+    color: white;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.boardchange-form__plus-pin_margin {
+    margin-left: 15px;
+}

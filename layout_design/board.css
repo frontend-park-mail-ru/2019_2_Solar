@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.board-page__flex-container {
+    padding: 0;
+    margin: 0;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.board-page__left-column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.board-page__right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-page__right-column_pos {
+    margin-left: 10px;
+}
+
+.board-page-columns {
+    display: flex;
+    width: 830px;
+}
+
+.board-page__right-column__avatar {
+    border-radius: 100px;
+    width: 126px;
+    height:126px;
+    background-image: url(./images/bg.png);
+}
+
+.board-page__right-column__username {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.board-page__left-column__images{
+    margin-bottom: 30px;
+}
+
+.board-page__left-column__images__pen {
+    width: 35px;
+    height: 35px;
+}
+
+.board-page__left-column__images__plus {
+    width: 33px;
+    height: 33px;
+}
+
+.board-page__left-column__images__plus_pos {
+    margin-left: 5px;
+}
+
+.board-page__left-column__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.board-page__left-column__undertitle {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.board-page__left-column__buttons {
+    margin-top: 75px;
+    display: flex;
+    flex-direction: row;
+}
+
+.board-page__left-column__buttons__yourpins {
+    background: #D2D2D2;
+    border-radius: 5px;
+    width: 121px;
+    height: 37px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.board-page__left-column__buttons__anotherpins {
+    background: #FFFFFF;
+    border-radius: 5px;
+    width: 121px;
+    height: 37px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    color: #A19F9C;
+}
+
+.board-page__left-column__buttons__anotherpins_pos {
+    margin-left: 23px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.board-page-yourpins {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    margin-top: 45px;
+}
