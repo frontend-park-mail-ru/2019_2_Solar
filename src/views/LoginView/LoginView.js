@@ -1,13 +1,13 @@
 import bus from '../../utils/bus.js';
-import './Login.scss';
-import LoginTemplate from '../Login/Login.hbs';
+import './LoginView.scss';
+import LoginViewTemplate from './LoginView.hbs';
 
 import Logo from '../../images/logo.png';
 
-/** Class representing a Login component. */
-export default class LoginComponent {
+/** Class representing a Login view. */
+export default class LoginView {
     /**
-     * Login component constructor.
+     * Login view constructor.
      * @param {object} parent - Root application div.
      * @constructor
      */
@@ -25,13 +25,13 @@ export default class LoginComponent {
     }
 
     /**
-     * Render Login component.
+     * Render Login view.
      */
     render() {
         const context = {
             PHlogo: Logo,
         };
-        const html = LoginTemplate(context);
+        const html = LoginViewTemplate(context);
 
         this._parent.innerHTML += html;
 

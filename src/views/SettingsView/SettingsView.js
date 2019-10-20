@@ -1,16 +1,16 @@
 import bus from '../../utils/bus.js';
-import './Settings.scss';
-import SettingsTemplate from '../Settings/Settings.hbs';
+import './SettingsView.scss';
+import SettingsViewTemplate from './SettingsView.hbs';
 
 import FImg from '../../images/edit.svg';
 import SImg from '../../images/account.svg';
 import TImg from '../../images/themes.svg';
 // import FoImg from '../../images/bg.png';
 
-/** Class representing a Settings component. */
-export default class SettingsComponent {
+/** Class representing a Settings view. */
+export default class SettingsView {
     /**
-     * Settings component constructor.
+     * Settings view constructor.
      * @constructor
      * @param {object} parent - Root application div.
      */
@@ -20,23 +20,23 @@ export default class SettingsComponent {
     }
 
     /**
-     * Get Settings component data.
-     * @return {object} Settings component data.
+     * Get Settings view data.
+     * @return {object} Settings view data.
      */
     get data() {
         return this._data;
     }
 
     /**
-     * Get Settings component data.
-     * @param {object} dataToSet component data.
+     * Get Settings view data.
+     * @param {object} dataToSet view data.
      */
     set data(dataToSet) {
         this._data = {...dataToSet};
     }
 
     /**
-     * Render Settings component.
+     * Render Settings view.
      */
     render() {
         const context = {
@@ -50,7 +50,7 @@ export default class SettingsComponent {
             PHsimg: SImg,
             PHtimg: TImg,
         };
-        const html = SettingsTemplate(context);
+        const html = SettingsViewTemplate(context);
 
         this._parent.innerHTML += html;
 

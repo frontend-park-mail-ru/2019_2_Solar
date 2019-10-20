@@ -1,10 +1,10 @@
-import './Pin.scss';
-import PinTemplate from '../Pin/Pin.hbs';
+import './PinView.scss';
+import PinViewTemplate from './PinView.hbs';
 
-/** Class representing a Pin component. */
-export default class PinComponent {
+/** Class representing a Pin view. */
+export default class PinView {
     /**
-     * Pin component constructor.
+     * Pin view constructor.
      * @constructor
      * @param {object} parent - Root application div.
      */
@@ -14,15 +14,15 @@ export default class PinComponent {
     }
 
     /**
-     * Get Pin component data.
-     * @return {object} Pin component data.
+     * Get Pin view data.
+     * @return {object} Pin view data.
      */
     get data() {
         return this._data;
     }
 
     /**
-     * Set Pin component data.
+     * Set Pin view data.
      * @param {object} dataToSet
      */
     set data(dataToSet) {
@@ -30,12 +30,12 @@ export default class PinComponent {
     }
 
     /**
-     * Render Pin component.
+     * Render Pin view.
      */
     render() {
         const context = {};
 
-        const html = PinTemplate(context);
+        const html = PinViewTemplate(context);
 
         this._parent.innerHTML += html;
     }

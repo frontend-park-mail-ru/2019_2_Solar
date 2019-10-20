@@ -1,12 +1,12 @@
 import bus from '../../utils/bus.js';
-import './CreatePin.scss';
-import CreatePinTemplate from '../CreatePin/CreatePin.hbs';
-import BoardForCreatePinComponent from '../BoardForCreatePin/BoardForCreatePin.js';
+import './CreatePinView.scss';
+import CreatePinViewTemplate from './CreatePinView.hbs';
+import BoardForCreatePinComponent from '../../components/BoardForCreatePin/BoardForCreatePin.js';
 
-/** Class representing a CreatePin component. */
-export default class CreatePinComponent {
+/** Class representing a CreatePin view. */
+export default class CreatePinView {
     /**
-     * CreatePin component constructor.
+     * CreatePin view constructor.
      * @constructor
      * @param {object} parent - Root application div.
      */
@@ -16,15 +16,15 @@ export default class CreatePinComponent {
     }
 
     /**
-     * Get CreatePin component data.
-     * @return {object} CreatePin component data.
+     * Get CreatePin view data.
+     * @return {object} CreatePin view data.
      */
     get data() {
         return this._data;
     }
 
     /**
-     * Set CreatePin component data.
+     * Set CreatePin view data.
      * @param {object} dataToSet
      */
     set data(dataToSet) {
@@ -32,7 +32,7 @@ export default class CreatePinComponent {
     }
 
     /**
-     * Render CreatePin component.
+     * Render CreatePin view.
      */
     render() {
         const board = new BoardForCreatePinComponent();
@@ -42,7 +42,7 @@ export default class CreatePinComponent {
             board: board.render({boardTitle: 'Какое-нибудь название с продолжением'}),
         };
 
-        const html = CreatePinTemplate(context);
+        const html = CreatePinViewTemplate(context);
 
         this._parent.innerHTML += html;
 

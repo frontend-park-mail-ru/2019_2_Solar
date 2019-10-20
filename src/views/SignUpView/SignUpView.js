@@ -1,11 +1,12 @@
-import './SignUp.scss';
-import SignupTemplate from '../SignUp/SignUp.hbs';
-import ButtonComponent from '../Button/Button.js';
+import bus from '../../utils/bus.js';
+import './SignUpView.scss';
+import SignupViewTemplate from './SignUpView.hbs';
+import ButtonComponent from '../../components/Button/Button.js';
 
-/** Class representing a Signup component. */
-export default class SignUpComponent {
+/** Class representing a Signup view. */
+export default class SignUpView {
     /**
-     * Signup component constructor.
+     * Signup view constructor.
      * @constructor
      * @param {object} parent - Root application div.
      */
@@ -23,14 +24,14 @@ export default class SignUpComponent {
     }
 
     /**
-     * Render Signup component.
+     * Render Signup view.
      */
     render() {
         const button = new ButtonComponent();
         const context = {
             button: button.render({text: 'Зарегистрироваться'}),
         };
-        const html = SignupTemplate(context);
+        const html = SignupViewTemplate(context);
 
         this._parent.innerHTML += html;
 

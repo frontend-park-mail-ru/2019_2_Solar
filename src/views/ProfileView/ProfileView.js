@@ -1,13 +1,13 @@
 import bus from '../../utils/bus.js';
-import './Profile.scss';
-import ProfileTemplate from '../Profile/Profile.hbs';
+import './ProfileView.scss';
+import ProfileViewTemplate from './ProfileView.hbs';
 import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
 
-/** Class representing a Profile component. */
-export default class ProfileComponent {
+/** Class representing a Profile view. */
+export default class ProfileView {
     /**
-     * Profile page component constructor.
+     * Profile page view constructor.
      * @constructor
      * @param {object} parent - Root application div.
      */
@@ -17,15 +17,15 @@ export default class ProfileComponent {
     }
 
     /**
-     * Get Profile component data.
-     * @return {object} Profile component data.
+     * Get Profile view data.
+     * @return {object} Profile view data.
      */
     get data() {
         return this._data;
     }
 
     /**
-     * Set Profile component data.
+     * Set Profile view data.
      * @param {object} dataToSet
      */
     set data(dataToSet) {
@@ -33,7 +33,7 @@ export default class ProfileComponent {
     }
 
     /**
-     * Set Profile component avatar.
+     * Set Profile view avatar.
      * @param {object} avatarData
      */
     set avatar(avatarData) {
@@ -41,7 +41,7 @@ export default class ProfileComponent {
     }
 
     /**
-     * Render Profile component.
+     * Render Profile view.
      */
     render() {
         const context = {
@@ -52,7 +52,7 @@ export default class ProfileComponent {
             PHsetimg: SetImg,
             PHplus: PlusImgFAdd,
         };
-        const html = ProfileTemplate(context);
+        const html = ProfileViewTemplate(context);
 
         this._parent.innerHTML += html;
 

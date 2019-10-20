@@ -1,11 +1,11 @@
 import bus from './utils/bus.js';
-import ProfileComponent from './components/Profile/Profile.js';
-import LoginComponent from './components/Login/Login.js';
-import SignUpComponent from './components/SignUp/SignUp.js';
-import IndexComponent from './components/Index/Index.js';
-import SettingsComponent from './components/Settings/Settings.js';
+import ProfileView from './views/ProfileView/ProfileView.js';
+import LoginView from './views/LoginView/LoginView.js';
+import SignUpView from './views/SignUpView/SignUpView.js';
+import IndexView from './views/IndexView/IndexView.js';
+import SettingsView from './views/SettingsView/SettingsView.js';
 import HeaderComponent from './components/Header/Header.js';
-import CreatePinComponent from './components/CreatePin/CreatePin.js';
+import CreatePinView from './views/CreatePinView/CreatePinView.js';
 import {validateSignup} from './utils/validation.js';
 import {deleteCookie} from './utils/deleteCookies.js';
 import './scss/base.scss';
@@ -17,7 +17,7 @@ bus.on('create-signup', () => {
     application.innerHTML = '';
     document.body.className = 'background';
 
-    const signUp = new SignUpComponent(application);
+    const signUp = new SignUpView(application);
     signUp.render();
 
     const signUpForm = document.getElementById('inputdata');
@@ -57,7 +57,7 @@ bus.on('create-login', () => {
     application.innerHTML = '';
     document.body.className = 'backgroundLogin';
 
-    const login = new LoginComponent(application);
+    const login = new LoginView(application);
     login.render();
 
     const loginForm = document.getElementById('inputdata');
@@ -95,7 +95,7 @@ bus.on('create-index', () => {
     const header = new HeaderComponent(application);
     header.render();
 
-    const index = new IndexComponent();
+    const index = new IndexView();
     index.render();
 });
 
@@ -122,7 +122,7 @@ bus.on('create-settings', () => {
             const header = new HeaderComponent(application);
             header.data = responseBody;
 
-            const settings = new SettingsComponent(application);
+            const settings = new SettingsView(application);
             settings.data = responseBody;
 
             let avaflag = false;
@@ -228,7 +228,7 @@ bus.on('create-profile', () => {
             const header = new HeaderComponent(application);
             header.data = responseBody;
 
-            const profile = new ProfileComponent(application);
+            const profile = new ProfileView(application);
             profile.data = responseBody;
 
             let avaflag = false;
@@ -282,7 +282,7 @@ bus.on('create-createpin', () => {
             header.data = responseBody;
             header.render();
 
-            const createPin = new CreatePinComponent(application);
+            const createPin = new CreatePinView(application);
             createPin.render();
         });
 });
@@ -304,7 +304,7 @@ bus.on('create-pin', () => {
             header.data = responseBody;
             header.render();
 
-            const pin = new PinComponent(application);
+            const pin = new PinView(application);
             pin.render();
         });
 });
@@ -326,7 +326,7 @@ bus.on('create-createboard', () => {
             header.data = responseBody;
             header.render();
 
-            const createBoard = new CreateBoardComponent(application);
+            const createBoard = new CreateBoardView(application);
             createBoard.render();
         });
 });

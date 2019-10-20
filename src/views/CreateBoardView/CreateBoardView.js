@@ -1,12 +1,12 @@
-import CreateBoardTemplate from '../CreateBoard/CreateBoard.hbs';
-import './CreateBoard.scss';
+import CreateBoardViewTemplate from './CreateBoardView.hbs';
+import './CreateBoardView.scss';
 
 import bus from '../../utils/bus.js';
 
-/** Class representing a CreateBoard component. */
-export default class CreateBoardComponent {
+/** Class representing a CreateBoard view. */
+export default class CreateBoardView {
     /**
-     * CreateBoard component constructor.
+     * CreateBoardView view constructor.
      * @constructor
      * @param {object} parent - Root application div.
      */
@@ -16,15 +16,15 @@ export default class CreateBoardComponent {
     }
 
     /**
-     * Get CreateBoard component data.
-     * @return {object} CreateBoard component data.
+     * Get CreateBoardView view data.
+     * @return {object} CreateBoardView view data.
      */
     get data() {
         return this._data;
     }
 
     /**
-     * Set CreateBoard component data.
+     * Set CreateBoardView view data.
      * @param {object} dataToSet
      */
     set data(dataToSet) {
@@ -32,12 +32,12 @@ export default class CreateBoardComponent {
     }
 
     /**
-     * Render CreateBoard component.
+     * Render CreateBoardView view.
      */
     render() {
         const context = {};
 
-        const html = CreateBoardTemplate(context);
+        const html = CreateBoardViewTemplate(context);
 
         this._parent.innerHTML += html;
 

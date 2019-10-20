@@ -1,7 +1,7 @@
-/** Class representing an Index component. */
-export default class IndexComponent {
+/** Class representing an Index view. */
+export default class IndexView {
     /**
-     * Index page component constructor.
+     * Index view constructor.
      * @constructor
      * @param {object} parent - Root application div.
      */
@@ -10,7 +10,7 @@ export default class IndexComponent {
     }
 
     /**
-     * Render Index component.
+     * Render Index view.
      */
     render() {
         const comma = document.createElement('div');
