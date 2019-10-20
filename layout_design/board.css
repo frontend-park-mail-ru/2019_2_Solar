@@ -9,6 +9,11 @@
     list-style: none;
     display: flex;
     flex-direction: column;
+}
+
+.board-page__flex-columns-container {
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
