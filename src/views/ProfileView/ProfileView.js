@@ -1,18 +1,25 @@
-import bus from '../../utils/bus.js';
-import './ProfileView.scss';
+import BaseView from '../BaseView/BaseView.js';
+
 import ProfileViewTemplate from './ProfileView.hbs';
+import './ProfileView.scss';
+
+import HeaderComponent from '../../components/Header/Header.js';
+
+import bus from '../../utils/bus.js';
+import {BACKEND_ADDRESS} from '../../config/Config.js';
+
 import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
 
 /** Class representing a Profile view. */
-export default class ProfileView {
+export default class ProfileView extends BaseView {
     /**
      * Profile page view constructor.
      * @constructor
-     * @param {object} parent - Root application div.
+     * @param {object} el - Root application div.
      */
-    constructor(parent = document.body) {
-        this._parent = parent;
+    constructor(el) {
+        super(el);
         this._data = {};
     }
 
@@ -44,34 +51,65 @@ export default class ProfileView {
      * Render Profile view.
      */
     render() {
-        const context = {
-            username: this._data.body.user.username,
-            // avatarphoto: this._avatar,
-            status: this._data.body.user.status,
+        fetch(BACKEND_ADDRESS + '/profile/data', {
+            method: 'GET',
+            body: null,
+            credentials: 'include',
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((responseBody) => {
+                const header = new HeaderComponent(this.el);
+                header.data = responseBody;
 
-            PHsetimg: SetImg,
-            PHplus: PlusImgFAdd,
-        };
-        const html = ProfileViewTemplate(context);
+                document.body.className ='backgroundIndex';
+                const context = {
+                    username: responseBody.body.user.username,
+                    // avatarphoto: this._avatar,
+                    status: responseBody.body.user.status,
 
-        this._parent.innerHTML += html;
+                    PHsetimg: SetImg,
+                    PHplus: PlusImgFAdd,
+                };
+                this.el.innerHTML = ProfileViewTemplate(context);
 
-        const toSettings = document.getElementById('profile-page').querySelectorAll('[data-section=\'settings\']')[0];
-        toSettings.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('create-settings');
-        });
+                const toLogout = document.getElementById('profile-page').querySelectorAll('[data-section=\'logout\']')[0];
+                toLogout.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    bus.emit('create-logout');
+                });
 
-        const toCreatePin = document.getElementById('profile-page').querySelectorAll('[data-section=\'createpin\']')[0];
-        toCreatePin.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('create-createpin');
-        });
+                let avaflag = false;
 
-        const toLogout = document.getElementById('profile-page').querySelectorAll('[data-section=\'logout\']')[0];
-        toLogout.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('create-logout');
-        });
+                fetch(BACKEND_ADDRESS + '/profile/picture', {
+                    method: 'GET',
+                    body: null,
+                    credentials: 'include',
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            avaflag = true;
+                        }
+                        return response.blob();
+                    })
+                    .then(function(blob) {
+                        if (avaflag) {
+                            const objectURL = URL.createObjectURL(blob);
+
+                            const avaimg = document.getElementById('avatarPhotoI');
+                            avaimg.src = objectURL;
+
+                            const avaimgHeader = document.getElementById('avatarPhotoHeader');
+                            avaimgHeader.src = objectURL;
+                        }
+                    });
+
+                header.render();
+            })
+            .catch(() => {
+                alert('Ошибка авторизации');
+                bus.emit('/login');
+            });
     }
 }

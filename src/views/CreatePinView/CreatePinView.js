@@ -1,17 +1,21 @@
-import bus from '../../utils/bus.js';
-import './CreatePinView.scss';
+import BaseView from '../BaseView/BaseView.js';
+
 import CreatePinViewTemplate from './CreatePinView.hbs';
+import './CreatePinView.scss';
+
 import BoardForCreatePinComponent from '../../components/BoardForCreatePin/BoardForCreatePin.js';
 
+import {BACKEND_ADDRESS} from '../../config/Config.js';
+
 /** Class representing a CreatePin view. */
-export default class CreatePinView {
+export default class CreatePinView extends BaseView {
     /**
      * CreatePin view constructor.
      * @constructor
-     * @param {object} parent - Root application div.
+     * @param {object} el - Root application div.
      */
-    constructor(parent = document.body) {
-        this._parent = parent;
+    constructor(el) {
+        super(el);
         this._data = {};
     }
 
@@ -35,21 +39,27 @@ export default class CreatePinView {
      * Render CreatePin view.
      */
     render() {
-        const board = new BoardForCreatePinComponent();
+        fetch(BACKEND_ADDRESS + '/profile/data', {
+            method: 'GET',
+            body: null,
+            credentials: 'include',
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((responseBody) => {
+                const header = new HeaderComponent(this.el);
+                header.data = responseBody;
+                header.render();
 
-        const context = {
-            title: 'Создание пина',
-            board: board.render({boardTitle: 'Какое-нибудь название с продолжением'}),
-        };
+                const board = new BoardForCreatePinComponent();
 
-        const html = CreatePinViewTemplate(context);
+                const context = {
+                    title: 'Создание пина',
+                    board: board.render({boardTitle: 'Какое-нибудь название с продолжением'}),
+                };
 
-        this._parent.innerHTML += html;
-
-        const toProfile = document.getElementById('createpin-page').querySelectorAll('[data-section=\'profile\']')[0];
-        toProfile.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('create-profile');
-        });
+                this.el.innerHTML = CreatePinViewTemplate(context);
+            });
     }
 }

@@ -1,17 +1,21 @@
+import BaseView from '../BaseView/BaseView.js';
+
 import CreateBoardViewTemplate from './CreateBoardView.hbs';
 import './CreateBoardView.scss';
 
-import bus from '../../utils/bus.js';
+import HeaderComponent from '../../components/Header/Header.js';
+
+import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 /** Class representing a CreateBoard view. */
-export default class CreateBoardView {
+export default class CreateBoardView extends BaseView {
     /**
      * CreateBoardView view constructor.
      * @constructor
-     * @param {object} parent - Root application div.
+     * @param {object} el - Root application div.
      */
-    constructor(parent = document.body) {
-        this._parent = parent;
+    constructor(el) {
+        super(el);
         this._data = {};
     }
 
@@ -35,16 +39,22 @@ export default class CreateBoardView {
      * Render CreateBoardView view.
      */
     render() {
-        const context = {};
+        fetch(BACKEND_ADDRESS + '/profile/data', {
+            method: 'GET',
+            body: null,
+            credentials: 'include',
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((responseBody) => {
+                const header = new HeaderComponent(this.el);
+                header.data = responseBody;
+                header.render();
 
-        const html = CreateBoardViewTemplate(context);
-
-        this._parent.innerHTML += html;
-
-        const toProfile = document.getElementById('createboard-page').querySelectorAll('[data-section=\'profile\']')[0];
-        toProfile.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('create-profile');
-        });
+                document.body.className = 'backgroundIndex';
+                const context = {};
+                this.el.innerHTML = CreateBoardViewTemplate(context);
+            });
     }
 }
