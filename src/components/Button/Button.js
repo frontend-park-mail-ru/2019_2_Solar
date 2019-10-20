@@ -2,7 +2,7 @@ import './Button.scss';
 import ButtonTemplate from '../Button/Button.hbs';
 
 /** Class representing a Button component. */
-export class ButtonComponent {
+export default class ButtonComponent {
     /**
      * Button component constructor.
      * @constructor

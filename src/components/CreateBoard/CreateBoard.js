@@ -4,7 +4,7 @@ import './CreateBoard.scss';
 import bus from '../../utils/bus.js';
 
 /** Class representing a CreateBoard component. */
-export class CreateBoardComponent {
+export default class CreateBoardComponent {
     /**
      * CreateBoard component constructor.
      * @constructor

@@ -1,10 +1,9 @@
-import bus from '../../utils/bus.js';
 import './SignUp.scss';
 import SignupTemplate from '../SignUp/SignUp.hbs';
-import {ButtonComponent} from '../Button/Button.js';
+import ButtonComponent from '../Button/Button.js';
 
 /** Class representing a Signup component. */
-export class SignUpComponent {
+export default class SignUpComponent {
     /**
      * Signup component constructor.
      * @constructor

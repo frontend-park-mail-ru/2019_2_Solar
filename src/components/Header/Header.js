@@ -10,7 +10,7 @@ import Dialog from '../../images/dilog.png';
 import Setting from '../../images/more.png';
 
 /** Class representing a Header component. */
-export class HeaderComponent {
+export default class HeaderComponent {
     /**
      * Header component constructor.
      * @param {object} parent - Root application div.

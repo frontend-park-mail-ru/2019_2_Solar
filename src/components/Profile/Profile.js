@@ -5,7 +5,7 @@ import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
 
 /** Class representing a Profile component. */
-export class ProfileComponent {
+export default class ProfileComponent {
     /**
      * Profile page component constructor.
      * @constructor

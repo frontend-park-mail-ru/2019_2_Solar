@@ -5,7 +5,7 @@ import LoginTemplate from '../Login/Login.hbs';
 import Logo from '../../images/logo.png';
 
 /** Class representing a Login component. */
-export class LoginComponent {
+export default class LoginComponent {
     /**
      * Login component constructor.
      * @param {object} parent - Root application div.

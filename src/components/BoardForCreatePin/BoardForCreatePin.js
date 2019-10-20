@@ -2,7 +2,7 @@ import './BoardForCreatePin.scss';
 import BoardForCreatePinTemplate from '../BoardForCreatePin/BoardForCreatePin.hbs';
 
 /** Class representing a BoardForCreatePin component. */
-export class BoardForCreatePinComponent {
+export default class BoardForCreatePinComponent {
     /**
      * BoardForCreatePin component constructor.
      * @constructor

@@ -1,5 +1,5 @@
 /** Class representing an Index component. */
-export class IndexComponent {
+export default class IndexComponent {
     /**
      * Index page component constructor.
      * @constructor

@@ -2,7 +2,7 @@ import './Pin.scss';
 import PinTemplate from '../Pin/Pin.hbs';
 
 /** Class representing a Pin component. */
-export class PinComponent {
+export default class PinComponent {
     /**
      * Pin component constructor.
      * @constructor

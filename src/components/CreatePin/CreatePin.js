@@ -1,10 +1,10 @@
 import bus from '../../utils/bus.js';
 import './CreatePin.scss';
 import CreatePinTemplate from '../CreatePin/CreatePin.hbs';
-import {BoardForCreatePinComponent} from '../BoardForCreatePin/BoardForCreatePin.js';
+import BoardForCreatePinComponent from '../BoardForCreatePin/BoardForCreatePin.js';
 
 /** Class representing a CreatePin component. */
-export class CreatePinComponent {
+export default class CreatePinComponent {
     /**
      * CreatePin component constructor.
      * @constructor

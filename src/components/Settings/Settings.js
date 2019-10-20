@@ -8,7 +8,7 @@ import TImg from '../../images/themes.svg';
 // import FoImg from '../../images/bg.png';
 
 /** Class representing a Settings component. */
-export class SettingsComponent {
+export default class SettingsComponent {
     /**
      * Settings component constructor.
      * @constructor
