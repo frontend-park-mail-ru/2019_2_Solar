@@ -1,5 +1,6 @@
 import './PinForIndex.scss';
 import PinForIndexTemplate from '../PinForIndex/PinForIndex.hbs';
+import PlusImg from '../../images/plus2.png';
 
 /** Class representing a PinForIndex component. */
 export default class PinForIndexComponent {
@@ -27,6 +28,7 @@ export default class PinForIndexComponent {
      * @return {string}
      */
     render(context) {
+        context['PHPlus'] = PlusImg;
         return PinForIndexTemplate(context);
     }
 }
