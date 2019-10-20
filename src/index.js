@@ -1,5 +1,3 @@
-'use strict';
-
 import bus from './utils/bus.js';
 import {ProfileComponent} from './components/Profile/Profile.js';
 import {LoginComponent} from './components/Login/Login.js';
@@ -13,7 +11,7 @@ import {deleteCookie} from './utils/deleteCookies.js';
 import './scss/base.scss';
 
 const application = document.getElementById('application');
-const backendAddress = 'http://solar-env-backend.v2zxh2s3me.us-east-2.elasticbeanstalk.com';
+const backendAddress = 'http://localhost:8080';
 
 bus.on('create-signup', () => {
     application.innerHTML = '';
