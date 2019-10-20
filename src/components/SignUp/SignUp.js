@@ -29,7 +29,7 @@ export class SignUpComponent {
     render() {
         const button = new ButtonComponent();
         const context = {
-            button: button.render({text: "Зарегистрироваться"}),
+            button: button.render({text: 'Зарегистрироваться'}),
         };
         const html = SignupTemplate(context);
 

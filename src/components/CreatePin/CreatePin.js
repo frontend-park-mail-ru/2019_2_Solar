@@ -39,7 +39,7 @@ export class CreatePinComponent {
 
         const context = {
             title: 'Создание пина',
-            board: board.render({boardTitle: "Какое-нибудь название с продолжением"}),
+            board: board.render({boardTitle: 'Какое-нибудь название с продолжением'}),
         };
 
         const html = CreatePinTemplate(context);
