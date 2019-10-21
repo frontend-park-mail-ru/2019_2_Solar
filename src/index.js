@@ -5,6 +5,7 @@ import SignUpView from './views/SignUpView/SignUpView.js';
 import IndexView from './views/IndexView/IndexView.js';
 import SettingsView from './views/SettingsView/SettingsView.js';
 import CreatePinView from './views/CreatePinView/CreatePinView.js';
+import BoardView from './views/BoardView/BoardView.js';
 import {deleteCookie} from './utils/deleteCookies.js';
 import './scss/base.scss';
 import Router from './utils/router.js';
@@ -28,6 +29,7 @@ router
     .register('/profile', ProfileView)
     .register('/create_pin', CreatePinView)
     .register('/create_board', CreateBoardView)
+    .register('/board', BoardView)
     .register('/index', IndexView);
 router.start();
 
