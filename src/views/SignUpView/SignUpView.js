@@ -7,6 +7,8 @@ import ButtonComponent from '../../components/Button/Button.js';
 import {validateSignup} from '../../utils/validation.js';
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
+import bus from '../../utils/bus.js';
+
 /** Class representing a Signup view. */
 export default class SignUpView extends BaseView {
     /**

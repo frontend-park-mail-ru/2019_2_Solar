@@ -39,8 +39,7 @@ fetch(BACKEND_ADDRESS + '/profile/data', {
 })
     .then((response) => {
         if (response.ok) {
-            router.open('/profile');
+            bus.emit('/profile');
             return;
         }
-        router.open('/signup');
     });
