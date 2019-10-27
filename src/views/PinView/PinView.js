@@ -1,21 +1,27 @@
+import BaseView from '../BaseView/BaseView.js';
+
 import './PinView.scss';
 import PinViewTemplate from './PinView.hbs';
 
+import PinCommentComponent from '../../components/PinComment/PinComment.js';
+
+import bg from '../../images/bg.png';
+
 /** Class representing a Pin view. */
-export default class PinView {
+export default class PinView extends BaseView {
     /**
      * Pin view constructor.
      * @constructor
-     * @param {object} parent - Root application div.
+     * @param {object} el - Root application div.
      */
-    constructor(parent = document.body) {
-        this._parent = parent;
+    constructor(el) {
+        super(el);
         this._data = {};
     }
 
     /**
      * Get Pin view data.
-     * @return {object} Pin view data.
+     * @return {object} BoardView view data.
      */
     get data() {
         return this._data;
@@ -33,10 +39,18 @@ export default class PinView {
      * Render Pin view.
      */
     render() {
-        const context = {};
+        document.body.className ='backgroundIndex';
+        this.el.innerHTML = '';
 
-        const html = PinViewTemplate(context);
+        const comment = new PinCommentComponent();
 
-        this._parent.innerHTML += html;
+        const context = {
+            pinName: 'Название',
+            pinAuthor: 'Username',
+            pinContent: 'Описание',
+            comment: comment.render({commentAuthorImg: bg, commentAuthor: 'Username', commentContent: 'Описание'}),
+        };
+
+        this.el.innerHTML += PinViewTemplate(context);
     }
 }

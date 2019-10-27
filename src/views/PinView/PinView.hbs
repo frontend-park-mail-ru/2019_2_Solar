@@ -7,47 +7,17 @@
             <form id="viewPinData">
                     <input type="submit" class="viewpin-block__right-column__buttom-save viewpin-block__right-column__buttom-save_pos" value="Сохранить">
             </form>
-            <div class="viewpin-block__right-column__title">Название</div>
-            <div>
+            <div class="viewpin-block__right-column__title">{{pinName}}</div>
+            <div class="viewpin-block__right-column__author-block">
                 <span class="viewpin-block__right-column__author">Автор:</span>
-                <a href="#" class="viewpin-block__right-column__username">Username</a>
+                <a href="#" class="viewpin-block__right-column__username">{{pinAuthor}}</a>
             </div>
             <div class="viewpin-block__right-column__title viewpin-block__right-column__context_margin">Описание</div>
-            <div class="viewpin-block__right-column__context">Описание</div>
+            <div class="viewpin-block__right-column__context">{{pinContent}}</div>
             <div class="viewpin-block__right-column__comment-block viewpin-block__right-column__context_margin">Комментарии</div>
             
             <!-- комментарий в компонент-->
-            <div class="comment comment_margin">
-                <div class="comment__left-block">
-                    <img src="" class="comment__left-block__img">
-                </div>
-                <div class="comment__right-block">
-                    <div class="comment__creator">Username</div>
-                    <div class="comment__content comment__context_margin">Текст комментария</div>
-                </div>
-            </div>
-
-            <!-- комментарий в компонент-->
-            <div class="comment comment_margin">
-                <div class="comment__left-block">
-                    <img src="" class="comment__left-block__img">
-                </div>
-                <div class="comment__right-block">
-                    <div class="comment__creator">Username</div>
-                    <div class="comment__content comment__context_margin">Текст комментария</div>
-                </div>
-            </div>
-
-                <!-- комментарий в компонент-->
-                <div class="comment comment_margin">
-                <div class="comment__left-block">
-                    <img src="" class="comment__left-block__img">
-                </div>
-                <div class="comment__right-block">
-                    <div class="comment__creator">Username</div>
-                    <div class="comment__content comment__context_margin">Текст комментария</div>
-                </div>
-            </div>
+            {{{comment}}}
     
             <form id="viewPinCommentData">
                 <input type="text" id="comment" placeholder="Напишите комментарий ..." class="viewpin-form__sending-comment viewpin-form__sending-comment_margin">
