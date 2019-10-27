@@ -8,6 +8,7 @@ import Plus from '../../images/plus.png';
 import Question from '../../images/question.png';
 import Dialog from '../../images/dilog.png';
 import Setting from '../../images/more.png';
+import Bell from '../../images/bell.png';
 
 /** Class representing a Header component. */
 export default class HeaderComponent {
@@ -43,6 +44,7 @@ export default class HeaderComponent {
     render() {
         const context = {
             username: this._data.body.user.username,
+            alertsCount: 10,
             // avatarphoto: AvatarPhoto,
 
             PHlogo: Logo,
@@ -52,6 +54,7 @@ export default class HeaderComponent {
             PHquestion: Question,
             PHdialog: Dialog,
             PHsetting: Setting,
+            PHbell: Bell,
         };
         const html = HeaderTemplate(context);
 
