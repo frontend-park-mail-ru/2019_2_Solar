@@ -33,6 +33,7 @@ router
     .register('/pin_editing', PinEditingView)
     .register('/create_board', CreateBoardView)
     .register('/board', BoardView)
+    .register('/pin', PinView)
     .register('/board_change', BoardChangeView)
     .register('/index', IndexView);
 router.start();
