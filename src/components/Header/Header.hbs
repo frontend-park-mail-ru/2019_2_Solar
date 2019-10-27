@@ -33,7 +33,9 @@
                 </li>
             </ul>
         </nav>
-        <span class="alerts-count">{{alertsCount}}</span>
+        {{#if alertsCount}}
+            <span class="alerts-count">{{alertsCount}}</span>
+        {{/if}}
         <a href=""><img src={{PHsetting}} class="mun-img dialog__items"></a>
     </div>
 </div>
