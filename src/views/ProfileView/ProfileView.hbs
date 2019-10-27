@@ -6,9 +6,17 @@
         <a href="/settings">
             <img src={{PHsetimg}} class="profile-icon-size profile-icon-size_settings-pos">
         </a>
-        <a href="/create_pin">
-            <img src={{PHplus}} data-section="createpin" class="profile-icon-size profile-icon-size_createpin-pos">
-        </a>
+        <nav class="create-menu-profile profile-icon-size_createpin-pos">
+            <ul>
+                <li>
+                    <img src={{PHplus}} data-section="createpin" class="profile-icon-size">
+                    <ul class="create-menu-profile__pad_menu">
+                        <li><a href="/create_pin">Пин</a></li>
+                        <li><a href="/create_board">Доска</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
         <a href="/settings">настройки</a>
         <a class="profile-logout profile-logout_pos" href="#" data-section="logout">Выйти</a>
         <a class="profile-button profile-button_board-pos" href="">
