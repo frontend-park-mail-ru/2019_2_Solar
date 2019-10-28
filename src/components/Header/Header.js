@@ -75,5 +75,12 @@ export default class HeaderComponent {
             e.preventDefault();
             bus.emit('/create_pin');
         });
+
+        /* for picture points*/
+        const toSettings = document.getElementById('header').querySelectorAll('[data-section=\'settings\']')[0];
+        toSettings.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('/settings');
+        });
     }
 }

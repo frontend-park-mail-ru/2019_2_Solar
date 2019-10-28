@@ -74,12 +74,6 @@ export default class ProfileView extends BaseView {
                 };
                 this.el.innerHTML = ProfileViewTemplate(context);
 
-                const toLogout = document.getElementById('profile-page').querySelectorAll('[data-section=\'logout\']')[0];
-                toLogout.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    bus.emit('create-logout');
-                });
-
                 let avaflag = false;
 
                 fetch(BACKEND_ADDRESS + '/profile/picture', {
@@ -107,7 +101,7 @@ export default class ProfileView extends BaseView {
 
                 header.render();
 
-                /* for picture settings*/
+                /* for picture settings */
                 const toSettings = document.getElementById('profile-page').querySelectorAll('[data-section=\'settings\']')[0];
                 toSettings.addEventListener('click', (e) => {
                     e.preventDefault();
