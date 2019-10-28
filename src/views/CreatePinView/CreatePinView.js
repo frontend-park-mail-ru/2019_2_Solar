@@ -4,8 +4,10 @@ import CreatePinViewTemplate from './CreatePinView.hbs';
 import './CreatePinView.scss';
 
 import BoardForCreatePinComponent from '../../components/BoardForCreatePin/BoardForCreatePin.js';
+import HeaderComponent from '../../components/Header/Header.js';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
+import bus from '../../utils/bus.js';
 
 /** Class representing a CreatePin view. */
 export default class CreatePinView extends BaseView {
@@ -48,6 +50,9 @@ export default class CreatePinView extends BaseView {
                 return response.json();
             })
             .then((responseBody) => {
+                document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
+
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
                 header.render();
@@ -59,7 +64,14 @@ export default class CreatePinView extends BaseView {
                     board: board.render({boardTitle: 'Какое-нибудь название с продолжением'}),
                 };
 
-                this.el.innerHTML = CreatePinViewTemplate(context);
+                this.el.innerHTML += CreatePinViewTemplate(context);
+
+                const createPinForm = document.getElementById('createPinData');
+
+                createPinForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    bus.emit('/profile');
+                });
             });
     }
 }
