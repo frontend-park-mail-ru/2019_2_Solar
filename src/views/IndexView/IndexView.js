@@ -32,6 +32,7 @@ export default class IndexView extends BaseView {
             })
             .then((responseBody) => {
                 document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
