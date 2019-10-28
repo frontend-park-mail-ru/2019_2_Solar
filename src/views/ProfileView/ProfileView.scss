@@ -20,7 +20,7 @@
     position: absolute;
     left: 50%;
     margin-left: -344px;
-    top: 41px;
+    /*top: 41px;*/
 }
 
 .profile-avatar-photo {
@@ -194,4 +194,13 @@
 
 a {
     text-decoration: none;
+}
+
+.profile-pins-boards {
+    display: flex;
+    margin-top: 320px;
+    margin-left: 50px;
+    margin-right: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

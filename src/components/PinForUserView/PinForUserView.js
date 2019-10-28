@@ -1,6 +1,7 @@
 import './PinForUserView.scss';
 import PinForUserViewTemplate from '../PinForUserView/PinForUserView.hbs';
 import GrayPen from '../../images/grey-pen.png';
+import bus from '../../utils/bus.js';
 
 /** Class representing a PinForUserView component. */
 export default class PinForUserViewComponent {
@@ -25,10 +26,21 @@ export default class PinForUserViewComponent {
     /**
      * Render PinForUserView component.
      * @param {object} context - Context to render with.
-     * @return {string}
      */
     render(context) {
         context['PHGrayPen'] = GrayPen;
-        return PinForUserViewTemplate(context);
+        this._parent.innerHTML += PinForUserViewTemplate(context);
+
+        const toPinSettings = document.querySelectorAll('[data-section=\'pinSettings\']')[0];
+        toPinSettings.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('/pin_editing');
+        });
+
+        const toPinView = document.querySelectorAll('[data-section=\'pinView\']')[0];
+        toPinView.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('/pin');
+        });
     }
 }

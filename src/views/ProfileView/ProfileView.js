@@ -4,12 +4,16 @@ import ProfileViewTemplate from './ProfileView.hbs';
 import './ProfileView.scss';
 
 import HeaderComponent from '../../components/Header/Header.js';
+import PinForUserViewComponent from '../../components/PinForUserView/PinForUserView.js';
+import BoardForUserViewComponent from '../../components/BoardForUserView/BoardForUserView.js';
 
 import bus from '../../utils/bus.js';
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
+
+import bg from '../../images/bg.png';
 
 /** Class representing a Profile view. */
 export default class ProfileView extends BaseView {
@@ -106,6 +110,32 @@ export default class ProfileView extends BaseView {
                 toSettings.addEventListener('click', (e) => {
                     e.preventDefault();
                     bus.emit('/settings');
+                });
+
+                /* for pins view */
+                const pinViewList = document.getElementById('profilePins');
+                pinViewList.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const viewPinBoards = document.getElementById('profilePinsBoardsView');
+                    viewPinBoards.innerHTML = '';
+
+                    const pinForUserView = new PinForUserViewComponent(viewPinBoards);
+                    pinForUserView.render({pinImg: bg,
+                        content: 'Какое-нибудь название с продолжением'});
+                });
+
+                /* for boards view */
+                const boardViewList = document.getElementById('profileBoards');
+                boardViewList.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const viewPinBoards = document.getElementById('profilePinsBoardsView');
+                    viewPinBoards.innerHTML = '';
+
+                    const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
+                    boardForUserView.render({boardImg: bg,
+                        content: 'Какое-нибудь название с продолжением'});
                 });
             })
             .catch(() => {
