@@ -1,0 +1,23 @@
+<div id="createpin-page" class="createpin-block">
+        <img src="" class="createpin-block__img createpin-block__img_pos">
+        <div class="createpin-block__title createpin-block__title_pos">Изменение пина</div>
+
+        <form id="PinData">
+            <input type="text" id="pinname" placeholder="Добавьте название" value={{pinName}} class="createpin-form__title createpin-form__title_pos">
+            <input type="text" id="pincontent" placeholder="Добавьте описание" value={{content}} class="createpin-form__content createpin-form__content_pos">
+
+            <input type="button" id="changePin" value="Загрузить изображение" onclick="document.getElementById('pinphoto').click();" class="createpin-form__pinphoto createpin-form__pinphoto_pos">
+            <input type="file" name="pinphoto" id="pinphoto" multiple accept="image/*" style="display:none">
+            
+            <div class="createpin__buttons" >
+                <input type="submit" name="button_del" class="createpin__buttons__button-del createpin__buttons__button-del_pos" value="Удалить">
+                <a href="#" type="submit" data-section="profile" class="createpin__buttons__button-out createpin__buttons_pos">Отмена</a>
+                <input type="submit" name="button_ok" class="createpin__buttons__button-save createpin__buttons__button-save_pos" value="Готово">
+            </div>
+        </form>
+
+        <div class="your-boards__title your-boards__title_pos">Мои доски</div>
+        <div class="your-boards your-boards_state">
+            {{{boardForPins}}}
+        </div>
+    </div>

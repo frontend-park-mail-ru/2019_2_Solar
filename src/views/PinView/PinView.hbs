@@ -1,0 +1,28 @@
+<div id="viewpin-page" class="viewpin-page__flex-container">
+    <div class="viewpin-block">
+        <div class="viewpin-block__left-column viewpin-block__left-column_state">
+            <img src="" class="viewpin-block__pin-photo">
+        </div>
+        <div class="viewpin-block__right-column">
+            <form id="viewPinData">
+                    <input type="submit" class="viewpin-block__right-column__buttom-save viewpin-block__right-column__buttom-save_pos" value="Сохранить">
+            </form>
+            <div class="viewpin-block__right-column__title">{{pinName}}</div>
+            <div class="viewpin-block__right-column__author-block">
+                <span class="viewpin-block__right-column__author">Автор:</span>
+                <a href="#" class="viewpin-block__right-column__username">{{pinAuthor}}</a>
+            </div>
+            <div class="viewpin-block__right-column__title viewpin-block__right-column__context_margin">Описание</div>
+            <div class="viewpin-block__right-column__context">{{pinContent}}</div>
+            <div class="viewpin-block__right-column__comment-block viewpin-block__right-column__context_margin">Комментарии</div>
+            
+            <!-- комментарий в компонент-->
+            {{{comment}}}
+    
+            <form id="viewPinCommentData">
+                <input type="text" id="comment" placeholder="Напишите комментарий ..." class="viewpin-form__sending-comment viewpin-form__sending-comment_margin">
+                <input type="submit" class="viewpin-form__send-comment comment_margin" value="Отправить">
+            </form>
+        </div>
+    </div>
+</div>

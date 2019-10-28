@@ -1,0 +1,29 @@
+<div id="profile-page" class="profile-underheader">
+    <div class="profile-icons profile-icons_position">
+        <img id="avatarPhotoI" class="profile-avatar-photo profile-avatar-photo_margin">
+        <div class="profile-username profile-username_margin">{{username}}</div>
+        <div class="profile-status profile-status_margin">{{status}}</div>
+        <a href="/settings">
+            <img src={{PHsetimg}} class="profile-icon-size profile-icon-size_settings-pos">
+        </a>
+        <nav class="create-menu-profile profile-icon-size_createpin-pos">
+            <ul>
+                <li>
+                    <img src={{PHplus}} data-section="createpin" class="profile-icon-size">
+                    <ul class="create-menu-profile__pad_menu">
+                        <li><a href="/create_pin">Пин</a></li>
+                        <li><a href="/create_board">Доска</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <a href="/settings">настройки</a>
+        <a class="profile-logout profile-logout_pos" href="#" data-section="logout">Выйти</a>
+        <a class="profile-button profile-button_board-pos" href="">
+            <span class="profile-button__text">Доски</span>
+        </a>
+        <a class="profile-button profile-button_pin-pos" href="">
+            <span class="profile-button__text">Пины</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,243 @@
+.settings-left-column {
+    width: 283px;
+    height: 906px;
+}
+
+.settings-left-column_pos {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    margin-left: -566px;
+}
+
+.left-column_margin-first {
+    margin-top: 46px;
+}
+
+.left-column_margin-second {
+    margin-top: 20px;
+}
+
+.icon_left-column-margin {
+    margin-left: 47px;
+}
+
+.settings-left-column__text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    padding-left: 10px;
+    position: absolute;
+    margin-top: 4px;
+
+    color:#8C8C8C;
+
+    &:hover {
+        color: #FF8F0C;
+    }
+}
+
+.settings-right-column {
+    width: 756px;
+    height: 906px;
+}
+
+.settings-right-column_pos {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    margin-left: -283px;
+}
+
+.right-column__title {
+    width: 303px;
+    height: 44px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.right-column__title-pos {
+    position: absolute;
+    left: 38px;
+    top: 37px;
+}
+
+.button-exit {
+    width: 121px;
+    height: 38px;
+    background-color:#FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    color: #8C8C8C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.button-exit_pos {
+    position: absolute;
+    left: 455px;
+    top: 45px;
+}
+
+.button-exit__text {
+    top: 8px;
+    position: absolute;
+    margin-left: -30px;
+}
+
+.button-save {
+    width: 121px;
+    height: 38px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.button-save_pos {
+    position: absolute;
+    left: 595px;
+    top: 45px;
+}
+
+.settings-right-column__avatar-block {
+    width: 256px;
+    height: 329px;
+}
+
+.settings-right-column__avatar-block_pos {
+    position: absolute;
+    top: 105px;
+    left: 50%;
+    margin-left: -128px;
+}
+
+.settings-avatar-photo {
+    border-radius: 100px;
+    width: 192px;
+    height:192px;
+    background-image: url(../../images/bg.png);
+}
+
+.settings-avatar-photo_margin {
+    margin-left: 33px;
+    margin-top: 24px;;
+}
+
+.settings-avatar-photo__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 5px;
+
+    color: #000000;
+}
+
+.settings-avatar-photo__button {
+    width: 121px;
+    height: 38px;
+    background-color:#FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    color: #8C8C8C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.settings-avatar-photo__button_margin {
+    margin-left: 69px;
+    margin-top: 15px;
+}
+
+.button-without-styles {
+    display:none;
+}
+
+.settings-form-text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.name-block_pos {
+    margin-left: 35px;
+    margin-top: 448px;
+}
+
+input {
+    display: block;
+    padding-left: 10px;
+}
+
+.settings-form__input-block {
+    position: absolute;
+    height: 45px;
+    width: 307px;
+    background: #FFFFFF;
+    border: 1px solid #A19F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.settings-form__input-block_name_pos {
+    margin-left: 35px;
+    margin-top: 10px;
+}
+
+.surname-block_pos {
+    margin-left: 379px;
+    margin-top: -20px;
+}
+
+.settings-form__input-block_surname_pos {
+    margin-left: 379px;
+    margin-top: 10px;
+}
+
+.username-block_pos {
+    margin-left: 35px;
+    margin-top: 100px;
+}
+
+.href_pos {
+    margin-left: 35px;
+    padding-top: 20px;
+}
+
+.settings-form__input-block_href_pos {
+    margin-left: 35px;
+    margin-top: 10px;
+}
+
+.settings-form__input-block_status_pos {
+    margin-left: 35px;
+    margin-top: 10px;
+    width: 679px;
+}
