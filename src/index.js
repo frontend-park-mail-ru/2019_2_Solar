@@ -8,6 +8,7 @@ import CreatePinView from './views/CreatePinView/CreatePinView.js';
 import BoardView from './views/BoardView/BoardView.js';
 import BoardChangeView from './views/BoardChangeView/BoardChangeView.js';
 import PinEditingView from './views/PinEditingView/PinEditingView.js';
+import PinView from './views/PinView/PinView.js';
 import {deleteCookie} from './utils/deleteCookies.js';
 import './scss/base.scss';
 import Router from './utils/router.js';
