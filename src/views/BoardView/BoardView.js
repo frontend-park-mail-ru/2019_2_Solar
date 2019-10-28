@@ -83,7 +83,7 @@ export default class BoardView extends BaseView {
                 const toSettings = document.getElementById('board-page').querySelectorAll('[data-section=\'settings\']')[0];
                 toSettings.addEventListener('click', (e) => {
                     e.preventDefault();
-                    bus.emit('/settings');
+                    bus.emit('/board_change');
                 });
 
                 /* for pin plus */
