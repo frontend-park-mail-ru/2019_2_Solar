@@ -11,6 +11,7 @@ import grayPenImg from '../../images/grey-pen.png';
 import bg from '../../images/bg.png';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
+import bus from '../../utils/bus.js';
 
 /** Class representing a BoardView view. */
 export default class BoardView extends BaseView {
@@ -54,6 +55,7 @@ export default class BoardView extends BaseView {
             })
             .then((responseBody) => {
                 document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
@@ -61,19 +63,35 @@ export default class BoardView extends BaseView {
 
                 this.data = responseBody;
 
-                const pinForUserView = new PinForUserViewComponent();
-
                 const context = {
                     username: this._data.body.user.username,
                     boardName: 'Название доски',
                     pinCount: 1,
-                    pinForUserView: pinForUserView.render({pinImg: bg,
-                        content: 'Какое-нибудь название с продолжением'}),
+
                     PHGrayPen: grayPenImg,
                     PHPlus: plusImg,
                 };
 
-                this.el.innerHTML = BoardViewTemplate(context);
+                this.el.innerHTML += BoardViewTemplate(context);
+
+                const boardViewPinsList = document.getElementById('boardViewPins');
+                const pinForUserView = new PinForUserViewComponent(boardViewPinsList);
+                pinForUserView.render({pinImg: bg,
+                    content: 'Какое-нибудь название с продолжением'});
+
+                /* for picture settings */
+                const toSettings = document.getElementById('board-page').querySelectorAll('[data-section=\'settings\']')[0];
+                toSettings.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    bus.emit('/settings');
+                });
+
+                /* for pin plus */
+                const toCreatePin = document.getElementById('board-page').querySelectorAll('[data-section=\'createPin\']')[0];
+                toCreatePin.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    bus.emit('/create_pin');
+                });
             });
     }
 }
