@@ -1,6 +1,6 @@
 <div id="header" class="header">
     <div class="logo">
-        <img class="logo__picture" src={{PHlogo}}>
+        <img data-section="index" class="logo__picture" src={{PHlogo}}>
     </div>
     <div class="search">
         <div class="search__icon">
@@ -11,14 +11,14 @@
         </div>
     </div>
     <div class="left-controls">
-        <a href="" class="left-controls__text-to-ind">Главная</a>
-        <a href="" class="left-controls__text-to-ind">Подписки</a>
-        <a href=""><img src={{PHplus}} class="plus-img plus-img_margin-left"></a>
+        <a href="/index" class="left-controls__text-to-ind">Главная</a>
+        <a href="/index" class="left-controls__text-to-ind">Подписки</a>
+        <a><img data-section="create-pin" src={{PHplus}} class="plus-img plus-img_margin-left"></a>
         <a href=""><img src={{PHquestion}} class="ask-img ask-img_margin-left"></a>
     </div>
     <div class="controls">
         <img id="avatarPhotoHeader" class="avatar">
-        <a class="controls__link usernameclass" href="">{{username}}</a>
+        <a href="/profile" class="controls__link usernameclass">{{username}}</a>
     </div>
     <div class ="dialog-block">
         <a href=""><img src={{PHdialog}} class="dialog-img dialog__items"></a>
@@ -36,6 +36,6 @@
         {{#if alertsCount}}
             <span class="alerts-count">{{alertsCount}}</span>
         {{/if}}
-        <a href=""><img src={{PHsetting}} class="mun-img dialog__items"></a>
+        <a href=""><img data-section="settings" src={{PHsetting}} class="mun-img dialog__items"></a>
     </div>
 </div>

@@ -52,6 +52,7 @@ export default class BoardChangeView extends BaseView {
             })
             .then((responseBody) => {
                 document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
@@ -69,7 +70,7 @@ export default class BoardChangeView extends BaseView {
                         content: 'Какое-нибудь название с продолжением'}),
                 };
 
-                this.el.innerHTML = BoardChangeViewTemplate(context);
+                this.el.innerHTML += BoardChangeViewTemplate(context);
             });
     }
 }

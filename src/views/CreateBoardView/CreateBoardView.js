@@ -6,6 +6,7 @@ import './CreateBoardView.scss';
 import HeaderComponent from '../../components/Header/Header.js';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
+import bus from '../../utils/bus.js';
 
 /** Class representing a CreateBoard view. */
 export default class CreateBoardView extends BaseView {
@@ -48,13 +49,23 @@ export default class CreateBoardView extends BaseView {
                 return response.json();
             })
             .then((responseBody) => {
+                document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
+
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
                 header.render();
 
                 document.body.className = 'backgroundIndex';
                 const context = {};
-                this.el.innerHTML = CreateBoardViewTemplate(context);
+                this.el.innerHTML += CreateBoardViewTemplate(context);
+
+                const createBoardForm = document.getElementById('createBoardData');
+
+                createBoardForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    bus.emit('/profile');
+                });
             });
     }
 }

@@ -4,6 +4,10 @@ import './PinView.scss';
 import PinViewTemplate from './PinView.hbs';
 
 import PinCommentComponent from '../../components/PinComment/PinComment.js';
+import HeaderComponent from '../../components/Header/Header.js';
+
+import {BACKEND_ADDRESS} from '../../config/Config.js';
+import bus from '../../utils/bus.js';
 
 import bg from '../../images/bg.png';
 
@@ -39,18 +43,39 @@ export default class PinView extends BaseView {
      * Render Pin view.
      */
     render() {
-        document.body.className ='backgroundIndex';
-        this.el.innerHTML = '';
+        fetch(BACKEND_ADDRESS + '/profile/data', {
+            method: 'GET',
+            body: null,
+            credentials: 'include',
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((responseBody) => {
+                document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
 
-        const comment = new PinCommentComponent();
+                const header = new HeaderComponent(this.el);
+                header.data = responseBody;
+                header.render();
 
-        const context = {
-            pinName: 'Название',
-            pinAuthor: 'Username',
-            pinContent: 'Описание',
-            comment: comment.render({commentAuthorImg: bg, commentAuthor: 'Username', commentContent: 'Описание'}),
-        };
+                const comment = new PinCommentComponent();
 
-        this.el.innerHTML += PinViewTemplate(context);
+                const context = {
+                    pinName: 'Название',
+                    pinAuthor: 'Username',
+                    pinContent: 'Описание',
+                    comment: comment.render({commentAuthorImg: bg, commentAuthor: 'Username', commentContent: 'Описание'}),
+                };
+
+                this.el.innerHTML += PinViewTemplate(context);
+
+                const viewPinDataForm = document.getElementById('viewPinData');
+
+                viewPinDataForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    bus.emit('/profile');
+                });
+            });
     }
 }

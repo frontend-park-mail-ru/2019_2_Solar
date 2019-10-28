@@ -4,7 +4,7 @@ import SignupViewTemplate from './SignUpView.hbs';
 import './SignUpView.scss';
 import ButtonComponent from '../../components/Button/Button.js';
 
-import {validateSignup} from '../../utils/validation.js';
+// import {validateSignup} from '../../utils/validation.js';
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import bus from '../../utils/bus.js';
@@ -48,10 +48,18 @@ export default class SignUpView extends BaseView {
             const username = signUpForm.elements['username'].value;
             const password = signUpForm.elements['password'].value;
 
-            if (!validateSignup(signUpForm)) {
+            // if (!validateSignup(signUpForm)) {
+            //     alert('Did not validate');
+            //     return;
+            // }
+
+            /* for interface sem */
+            if (email == '' || username == '' || password == '') {
                 alert('Did not validate');
                 return;
             }
+            /* **************** */
+
             const data = {'email': email, 'password': password, 'username': username};
 
             fetch(BACKEND_ADDRESS + '/registration/', {

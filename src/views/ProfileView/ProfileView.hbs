@@ -4,7 +4,7 @@
         <div class="profile-username profile-username_margin">{{username}}</div>
         <div class="profile-status profile-status_margin">{{status}}</div>
         <a href="/settings">
-            <img src={{PHsetimg}} class="profile-icon-size profile-icon-size_settings-pos">
+            <img src={{PHsetimg}} data-section="settings" class="profile-icon-size profile-icon-size_settings-pos">
         </a>
         <nav class="create-menu-profile profile-icon-size_createpin-pos">
             <ul>
@@ -17,13 +17,14 @@
                 </li>
             </ul>
         </nav>
-        <a href="/settings">настройки</a>
-        <a class="profile-logout profile-logout_pos" href="#" data-section="logout">Выйти</a>
-        <a class="profile-button profile-button_board-pos" href="">
+        <a data-section="logout" href='/login' class="profile-logout profile-logout_pos">Выйти</a>
+        <div id="profileBoards" class="profile-button profile-button_board-pos">
             <span class="profile-button__text">Доски</span>
-        </a>
-        <a class="profile-button profile-button_pin-pos" href="">
+        </div>
+        <div id="profilePins" class="profile-button profile-button_pin-pos">
             <span class="profile-button__text">Пины</span>
-        </a>
+        </div>
+    </div>
+    <div id="profilePinsBoardsView" class="profile-pins-boards">
     </div>
 </div>

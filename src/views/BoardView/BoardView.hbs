@@ -3,8 +3,8 @@
             <div class="board-page-columns">
                 <div class="board-page__left-column">
                     <div class="board-page__left-column__images">
-                        <a><img src={{PHGrayPen}} class="board-page__left-column__images__pen"></a>
-                        <a><img src={{PHPlus}} class="board-page__left-column__images__plus board-page__left-column__images__plus_pos"></a>
+                        <a><img data-section="settings" src={{PHGrayPen}} class="board-page__left-column__images__pen"></a>
+                        <a><img data-section="createPin" src={{PHPlus}} class="board-page__left-column__images__plus board-page__left-column__images__plus_pos"></a>
                     </div>
                     <div class="board-page__left-column__title">{{boardName}}</div>
                     <div class="board-page__left-column__undertitle">{{pinCount}} пинов</div>
@@ -19,12 +19,11 @@
                 </div>
 
                 <div class="board-page__right-column board-page__right-column_pos">
-                    <img src="" class="board-page__right-column__avatar">
+                    <img id="boardViewAvatar" class="board-page__right-column__avatar">
                     <div class="board-page__right-column__username">{{username}}</div>
                 </div>
             </div>
         </div>
-        <div class="board-page-yourpins">
-            {{{pinForUserView}}}
+        <div id="boardViewPins" class="board-page-yourpins">
         </div>
     </div>

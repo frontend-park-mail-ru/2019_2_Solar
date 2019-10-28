@@ -4,12 +4,16 @@ import ProfileViewTemplate from './ProfileView.hbs';
 import './ProfileView.scss';
 
 import HeaderComponent from '../../components/Header/Header.js';
+import PinForUserViewComponent from '../../components/PinForUserView/PinForUserView.js';
+import BoardForUserViewComponent from '../../components/BoardForUserView/BoardForUserView.js';
 
 import bus from '../../utils/bus.js';
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
+
+import bg from '../../images/bg.png';
 
 /** Class representing a Profile view. */
 export default class ProfileView extends BaseView {
@@ -74,12 +78,6 @@ export default class ProfileView extends BaseView {
                 };
                 this.el.innerHTML = ProfileViewTemplate(context);
 
-                const toLogout = document.getElementById('profile-page').querySelectorAll('[data-section=\'logout\']')[0];
-                toLogout.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    bus.emit('create-logout');
-                });
-
                 let avaflag = false;
 
                 fetch(BACKEND_ADDRESS + '/profile/picture', {
@@ -106,6 +104,39 @@ export default class ProfileView extends BaseView {
                     });
 
                 header.render();
+
+                /* for picture settings */
+                const toSettings = document.getElementById('profile-page').querySelectorAll('[data-section=\'settings\']')[0];
+                toSettings.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    bus.emit('/settings');
+                });
+
+                /* for pins view */
+                const pinViewList = document.getElementById('profilePins');
+                pinViewList.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const viewPinBoards = document.getElementById('profilePinsBoardsView');
+                    viewPinBoards.innerHTML = '';
+
+                    const pinForUserView = new PinForUserViewComponent(viewPinBoards);
+                    pinForUserView.render({pinImg: bg,
+                        content: 'Какое-нибудь название с продолжением'});
+                });
+
+                /* for boards view */
+                const boardViewList = document.getElementById('profileBoards');
+                boardViewList.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const viewPinBoards = document.getElementById('profilePinsBoardsView');
+                    viewPinBoards.innerHTML = '';
+
+                    const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
+                    boardForUserView.render({boardImg: bg,
+                        content: 'Какое-нибудь название с продолжением'});
+                });
             })
             .catch(() => {
                 alert('Ошибка авторизации');

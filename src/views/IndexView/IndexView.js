@@ -1,6 +1,10 @@
 import BaseView from '../BaseView/BaseView.js';
+import HeaderComponent from '../../components/Header/Header.js';
+
+import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import './IndexView.scss';
+import IndexViewTemplate from '../IndexView/IndexView.hbs';
 
 /** Class representing an Index view. */
 export default class IndexView extends BaseView {
@@ -18,12 +22,25 @@ export default class IndexView extends BaseView {
      * Render Index view.
      */
     render() {
-        const comma = document.createElement('div');
-        comma.textContent = 'Здесь будет главная страница';
-        document.body.className ='backgroundIndex';
+        fetch(BACKEND_ADDRESS + '/profile/data', {
+            method: 'GET',
+            body: null,
+            credentials: 'include',
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((responseBody) => {
+                document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
 
-        this.el.innerHTML = comma;
-        const header = new HeaderComponent(this.el);
-        header.render();
+                const header = new HeaderComponent(this.el);
+                header.data = responseBody;
+                header.render();
+
+                const index = IndexViewTemplate();
+
+                this.el.innerHTML += index;
+            });
     }
 }

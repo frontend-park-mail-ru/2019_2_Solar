@@ -4,6 +4,7 @@ import LoginViewTemplate from './LoginView.hbs';
 import './LoginView.scss';
 
 import bus from '../../utils/bus.js';
+import {deleteCookie} from '../../utils/deleteCookies.js';
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import Logo from '../../images/logo.png';
@@ -32,6 +33,8 @@ export default class LoginView extends BaseView {
      * Render Login view.
      */
     render() {
+        deleteCookie();
+
         document.body.className = 'backgroundLogin';
         const context = {
             PHlogo: Logo,

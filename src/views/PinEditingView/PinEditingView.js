@@ -51,6 +51,7 @@ export default class PinEditingView extends BaseView {
             })
             .then((responseBody) => {
                 document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
@@ -67,7 +68,7 @@ export default class PinEditingView extends BaseView {
                     boardForPins: board.render({boardTitle: 'Какое-нибудь название с продолжением'}),
                 };
 
-                this.el.innerHTML = PinEditingViewTemplate(context);
+                this.el.innerHTML += PinEditingViewTemplate(context);
             });
     }
 }
