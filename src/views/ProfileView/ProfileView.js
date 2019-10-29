@@ -64,10 +64,11 @@ export default class ProfileView extends BaseView {
                 return response.json();
             })
             .then((responseBody) => {
+                document.body.className ='backgroundIndex';
+
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
 
-                document.body.className ='backgroundIndex';
                 const context = {
                     username: responseBody.body.user.username,
                     // avatarphoto: this._avatar,

@@ -56,7 +56,6 @@ export default class CreateBoardView extends BaseView {
                 header.data = responseBody;
                 header.render();
 
-                document.body.className = 'backgroundIndex';
                 const context = {};
                 this.el.innerHTML += CreateBoardViewTemplate(context);
 
