@@ -24,9 +24,8 @@ export default class PinCommentComponent {
     /**
      * Render PinComment component.
      * @param {object} context - Context to render with.
-     * @return {string}
      */
     render(context) {
-        return PinCommentTemplate(context);
+        this._parent.innerHTML += PinCommentTemplate(context);
     }
 }

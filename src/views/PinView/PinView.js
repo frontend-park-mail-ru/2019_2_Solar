@@ -59,22 +59,35 @@ export default class PinView extends BaseView {
                 header.data = responseBody;
                 header.render();
 
-                const comment = new PinCommentComponent();
-
                 const context = {
                     pinName: 'Название',
                     pinAuthor: 'Username',
                     pinContent: 'Описание',
-                    comment: comment.render({commentAuthorImg: bg, commentAuthor: 'Username', commentContent: 'Описание'}),
                 };
 
                 this.el.innerHTML += PinViewTemplate(context);
 
-                const viewPinDataForm = document.getElementById('viewPinData');
+                /* заполнение поля комментариев */
+                const pinViewCommentsList = document.getElementById('pinViewComments');
+                const comment = new PinCommentComponent(pinViewCommentsList);
+                comment.render({commentAuthorImg: bg, commentAuthor: 'Username', commentContent: 'Описание'});
 
+                /* Обработка форм на странице */
+                const viewPinDataForm = document.getElementById('viewPinData');
                 viewPinDataForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     bus.emit('/profile');
+                });
+
+                const viewPinCommentForm = document.getElementById('viewPinCommentData');
+                viewPinCommentForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const commentForList = viewPinCommentForm.elements['comment'].value;
+                    const commentForAdd = new PinCommentComponent(pinViewCommentsList);
+                    commentForAdd.render({commentAuthorImg: bg, commentAuthor: 'Username', commentContent: commentForList});
+
+                    viewPinCommentForm.elements['comment'].value = '';
                 });
             });
     }

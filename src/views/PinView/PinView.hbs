@@ -16,11 +16,11 @@
             <div class="viewpin-block__right-column__context">{{pinContent}}</div>
             <div class="viewpin-block__right-column__comment-block viewpin-block__right-column__context_margin">Комментарии</div>
             
-            <!-- комментарий в компонент-->
-            {{{comment}}}
+            <div id="pinViewComments">
+            </div>
     
             <form id="viewPinCommentData">
-                <input type="text" id="comment" placeholder="Напишите комментарий ..." class="viewpin-form__sending-comment viewpin-form__sending-comment_margin">
+                <input type="text" id="comment" name="comment" placeholder="Напишите комментарий ..." class="viewpin-form__sending-comment viewpin-form__sending-comment_margin">
                 <input type="submit" class="viewpin-form__send-comment comment_margin" value="Отправить">
             </form>
         </div>

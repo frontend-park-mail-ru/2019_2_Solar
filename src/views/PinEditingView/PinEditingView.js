@@ -8,6 +8,7 @@ import BoardForCreatePinComponent from '../../components/BoardForCreatePin/Board
 import HeaderComponent from '../../components/Header/Header.js';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
+import bus from '../../utils/bus.js';
 
 /** Class representing a PinEditing view. */
 export default class PinEditingView extends BaseView {
@@ -69,6 +70,12 @@ export default class PinEditingView extends BaseView {
                 };
 
                 this.el.innerHTML += PinEditingViewTemplate(context);
+
+                const pinEditingForm = document.getElementById('PinEditingData');
+                pinEditingForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    bus.emit('/profile');
+                });
             });
     }
 }
