@@ -9,6 +9,7 @@ import HeaderComponent from '../../components/Header/Header.js';
 import bg from '../../images/bg.png';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
+import bus from '../../utils/bus.js';
 
 /** Class representing a BoardChange view. */
 export default class BoardChangeView extends BaseView {
@@ -71,6 +72,12 @@ export default class BoardChangeView extends BaseView {
                 };
 
                 this.el.innerHTML += BoardChangeViewTemplate(context);
+
+                const boardChangeForm = document.getElementById('BoardChangeData');
+                boardChangeForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    bus.emit('/profile');
+                });
             });
     }
 }
