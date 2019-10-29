@@ -105,6 +105,15 @@ export default class ProfileView extends BaseView {
 
                 header.render();
 
+                /* Открыты доски, когда ты только заходишь на профиль */
+                const viewPinBoards = document.getElementById('profilePinsBoardsView');
+                const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
+                boardForUserView.render({boardImg: bg,
+                    content: 'Какое-нибудь название с продолжением'});
+
+                const boardViewList = document.getElementById('profileBoards');
+                boardViewList.className = 'profile-button profile-button_board-pos profile-button_push';
+
                 /* for picture settings */
                 const toSettings = document.getElementById('profile-page').querySelectorAll('[data-section=\'settings\']')[0];
                 toSettings.addEventListener('click', (e) => {
@@ -117,8 +126,9 @@ export default class ProfileView extends BaseView {
                 pinViewList.addEventListener('click', (e) => {
                     e.preventDefault();
 
-                    const viewPinBoards = document.getElementById('profilePinsBoardsView');
                     viewPinBoards.innerHTML = '';
+                    boardViewList.className = 'profile-button profile-button_board-pos';
+                    pinViewList.className = 'profile-button profile-button_pin-pos profile-button_push';
 
                     const pinForUserView = new PinForUserViewComponent(viewPinBoards);
                     pinForUserView.render({pinImg: bg,
@@ -126,14 +136,13 @@ export default class ProfileView extends BaseView {
                 });
 
                 /* for boards view */
-                const boardViewList = document.getElementById('profileBoards');
                 boardViewList.addEventListener('click', (e) => {
                     e.preventDefault();
 
-                    const viewPinBoards = document.getElementById('profilePinsBoardsView');
                     viewPinBoards.innerHTML = '';
+                    boardViewList.className = 'profile-button profile-button_board-pos profile-button_push';
+                    pinViewList.className = 'profile-button profile-button_pin-pos';
 
-                    const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
                     boardForUserView.render({boardImg: bg,
                         content: 'Какое-нибудь название с продолжением'});
                 });
