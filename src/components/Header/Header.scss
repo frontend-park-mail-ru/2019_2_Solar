@@ -204,3 +204,17 @@ a {
 a {
     text-decoration: none;
 }
+
+/* dialog */
+.dialogview__flex-container {
+    padding:0;
+    margin:0;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    width: 470px;
+    /*height: 100%;*/
+    height: 900px;
+    z-index: 7;
+    background-color: plum;
+}

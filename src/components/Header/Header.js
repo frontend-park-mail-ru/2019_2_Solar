@@ -1,6 +1,8 @@
 import './Header.scss';
 import HeaderTemplate from '../Header/Header.hbs';
 
+import Dialog1ViewComponent from '../DialogComponent/Dialog1ViewComponent/Dialog1ViewComponent.js';
+
 import bus from '../../utils/bus.js';
 
 import Logo from '../../images/logo.png';
@@ -81,6 +83,30 @@ export default class HeaderComponent {
         toSettings.addEventListener('click', (e) => {
             e.preventDefault();
             bus.emit('/settings');
+        });
+
+        /* Заглушка для отображения диалога */
+        const messageView = document.getElementById('dialogview-page');
+        let messageViewIsOpen = false;
+
+        const messageImg = document.getElementById('messageImg');
+        messageImg.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if (messageViewIsOpen == false) {
+                const dialog1 = new Dialog1ViewComponent(messageView);
+                dialog1.render();
+                messageViewIsOpen = true;
+
+                const newMessage = document.getElementById('newMessagwButton');
+                newMessage.addEventListener('click', (e)=> {
+                    messageView.innerHTML = '';
+                    
+                });
+            } else {
+                messageView.innerHTML = '';
+                messageViewIsOpen = false;
+            }
         });
     }
 }

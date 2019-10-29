@@ -1,41 +1,45 @@
-<div id="header" class="header">
-    <div class="logo">
-        <img data-section="index" class="logo__picture" src={{PHlogo}}>
-    </div>
-    <div class="search">
-        <div class="search__icon">
-                <img src={{PHLupa}}>
+<div id="header">
+    <div class="header">
+        <div class="logo">
+            <img data-section="index" class="logo__picture" src={{PHlogo}}>
         </div>
-        <div class="search__input">
-            <input type="search" placeholder="Поисковая строка">
+        <div class="search">
+            <div class="search__icon">
+                    <img src={{PHLupa}}>
+            </div>
+            <div class="search__input">
+                <input type="search" placeholder="Поисковая строка">
+            </div>
+        </div>
+        <div class="left-controls">
+            <a href="/index" class="left-controls__text-to-ind">Главная</a>
+            <a href="/index" class="left-controls__text-to-ind">Подписки</a>
+            <a><img data-section="create-pin" src={{PHplus}} class="plus-img plus-img_margin-left"></a>
+            <a href=""><img src={{PHquestion}} class="ask-img ask-img_margin-left"></a>
+        </div>
+        <div class="controls">
+            <img id="avatarPhotoHeader" class="avatar">
+            <a href="/profile" class="controls__link usernameclass">{{username}}</a>
+        </div>
+        <div class ="dialog-block">
+            <a href=""><img id="messageImg" src={{PHdialog}} class="dialog-img dialog__items"></a>
+            <nav class="alerts-menu">
+                <ul>
+                    <li class="alerts-menu_margin-list">
+                        <img src={{PHbell}} class="bell-img dialog__items">
+                        <ul class="alerts-menu__pad_menu">
+                            <li><a href="#">на вас подписался гражданин кто</a></li>
+                            <li><a href="#">Вам написал сообщение гражданин кто</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            {{#if alertsCount}}
+                <span class="alerts-count">{{alertsCount}}</span>
+            {{/if}}
+            <a href=""><img data-section="settings" src={{PHsetting}} class="mun-img dialog__items"></a>
         </div>
     </div>
-    <div class="left-controls">
-        <a href="/index" class="left-controls__text-to-ind">Главная</a>
-        <a href="/index" class="left-controls__text-to-ind">Подписки</a>
-        <a><img data-section="create-pin" src={{PHplus}} class="plus-img plus-img_margin-left"></a>
-        <a href=""><img src={{PHquestion}} class="ask-img ask-img_margin-left"></a>
-    </div>
-    <div class="controls">
-        <img id="avatarPhotoHeader" class="avatar">
-        <a href="/profile" class="controls__link usernameclass">{{username}}</a>
-    </div>
-    <div class ="dialog-block">
-        <a href=""><img src={{PHdialog}} class="dialog-img dialog__items"></a>
-        <nav class="alerts-menu">
-            <ul>
-                <li class="alerts-menu_margin-list">
-                    <img src={{PHbell}} class="bell-img dialog__items">
-                    <ul class="alerts-menu__pad_menu">
-                        <li><a href="#">на вас подписался гражданин кто</a></li>
-                        <li><a href="#">Вам написал сообщение гражданин кто</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        {{#if alertsCount}}
-            <span class="alerts-count">{{alertsCount}}</span>
-        {{/if}}
-        <a href=""><img data-section="settings" src={{PHsetting}} class="mun-img dialog__items"></a>
+    <div id="dialogview-page" class="dialogview__flex-container">
     </div>
 </div>
