@@ -26,7 +26,6 @@ bus.on('create-logout', () => {
 const router = new Router(application);
 router
     .register('/', SignUpView)
-    .register('/signup', SignUpView)
     .register('/login', LoginView)
     .register('/settings', SettingsView)
     .register('/profile', ProfileView)
