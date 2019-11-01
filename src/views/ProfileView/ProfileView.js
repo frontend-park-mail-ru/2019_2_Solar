@@ -12,6 +12,7 @@ import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
+import NoPhoto from '../../images/nophoto.png';
 
 import bg from '../../images/bg.png';
 
@@ -71,38 +72,12 @@ export default class ProfileView extends BaseView {
 
                 const context = {
                     username: responseBody.body.user.username,
-                    // avatarphoto: this._avatar,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : NoPhoto,
                     status: responseBody.body.user.status,
-
                     PHsetimg: SetImg,
                     PHplus: PlusImgFAdd,
                 };
                 this.el.innerHTML = ProfileViewTemplate(context);
-
-                let avaflag = false;
-
-                fetch(BACKEND_ADDRESS + '/profile/picture', {
-                    method: 'GET',
-                    body: null,
-                    credentials: 'include',
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            avaflag = true;
-                        }
-                        return response.blob();
-                    })
-                    .then(function(blob) {
-                        if (avaflag) {
-                            const objectURL = URL.createObjectURL(blob);
-
-                            const avaimg = document.getElementById('avatarPhotoI');
-                            avaimg.src = objectURL;
-
-                            const avaimgHeader = document.getElementById('avatarPhotoHeader');
-                            avaimgHeader.src = objectURL;
-                        }
-                    });
 
                 header.render();
 
