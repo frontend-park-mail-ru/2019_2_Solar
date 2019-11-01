@@ -18,7 +18,7 @@
         <form id="UserSettings">
             <a href="/profile" class="button-exit button-exit_pos"><span class="button-exit__text">Отмена</span></a>
             <div class="settings-right-column__avatar-block settings-right-column__avatar-block_pos">
-                <img id="avatarPhotoSettings" class="settings-avatar-photo settings-avatar-photo_margin">
+                <img src="{{avatarphoto}}" id="avatarPhotoSettings" class="settings-avatar-photo settings-avatar-photo_margin">
                 <div class="settings-avatar-photo__title">{{username}}</div>
                 <input type="button" id="avatarphotop" value="Изменить" onclick="document.getElementById('avatarphoto').click();" class="settings-avatar-photo__button settings-avatar-photo__button_margin">
                 <input type="file" name="avatarphoto" id="avatarphoto" accept="image/*" class="button-without-styles">

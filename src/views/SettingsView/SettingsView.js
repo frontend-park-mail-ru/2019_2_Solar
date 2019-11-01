@@ -10,8 +10,9 @@ import {BACKEND_ADDRESS} from '../../config/Config.js';
 import FImg from '../../images/edit.svg';
 import SImg from '../../images/account.svg';
 import TImg from '../../images/themes.svg';
+import NoPhoto from '../../images/nophoto.png';
+
 import bus from '../../utils/bus.js';
-// import FoImg from '../../images/bg.png';
 
 /** Class representing a Settings view. */
 export default class SettingsView extends BaseView {
@@ -64,37 +65,12 @@ export default class SettingsView extends BaseView {
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
 
-                let avaflag = false;
-
-                fetch(BACKEND_ADDRESS + '/profile/picture', {
-                    method: 'GET',
-                    body: null,
-                    credentials: 'include',
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            avaflag = true;
-                        }
-                        return response.blob();
-                    })
-                    .then(function(blob) {
-                        if (avaflag) {
-                            const objectURL = URL.createObjectURL(blob);
-
-                            const avaimg = document.getElementById('avatarPhotoSettings');
-                            avaimg.src = objectURL;
-
-                            const avaimgHeader = document.getElementById('avatarPhotoHeader');
-                            avaimgHeader.src = objectURL;
-                        }
-                    });
-
-                document.body.className ='backgroundIndex';
+                document.body.className = 'backgroundIndex';
                 // this.data = responseBody;
 
                 const context = {
                     username: responseBody.body.user.username,
-                    // avatarphoto: FoImg,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : NoPhoto,
                     status: responseBody.body.user.status,
                     name: responseBody.body.user.name,
                     surname: responseBody.body.user.surname,
