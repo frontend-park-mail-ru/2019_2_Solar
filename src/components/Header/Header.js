@@ -16,6 +16,8 @@ import Dialog from '../../images/dilog.png';
 import Setting from '../../images/more.png';
 import Bell from '../../images/bell.png';
 
+import bg from '../../images/bg.png';
+
 /** Class representing a Header component. */
 export default class HeaderComponent {
     /**
@@ -51,7 +53,7 @@ export default class HeaderComponent {
         const context = {
             username: this._data.body.user.username,
             alertsCount: 10,
-            // avatarphoto: AvatarPhoto,
+            avatarPhoto: (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg,
 
             PHlogo: Logo,
             PHLupa: Lupa,

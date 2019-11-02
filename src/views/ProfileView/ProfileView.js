@@ -12,7 +12,6 @@ import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import SetImg from '../../images/grey-pen.png';
 import PlusImgFAdd from '../../images/plus2.png';
-import NoPhoto from '../../images/nophoto.png';
 
 import bg from '../../images/bg.png';
 
@@ -66,20 +65,20 @@ export default class ProfileView extends BaseView {
             })
             .then((responseBody) => {
                 document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
+                header.render();
 
                 const context = {
                     username: responseBody.body.user.username,
-                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : NoPhoto,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
                     status: responseBody.body.user.status,
                     PHsetimg: SetImg,
                     PHplus: PlusImgFAdd,
                 };
-                this.el.innerHTML = ProfileViewTemplate(context);
-
-                header.render();
+                this.el.innerHTML += ProfileViewTemplate(context);
 
                 /* Открыты доски, когда ты только заходишь на профиль */
                 const viewPinBoards = document.getElementById('profilePinsBoardsView');

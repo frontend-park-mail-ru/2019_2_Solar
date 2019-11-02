@@ -1,30 +1,36 @@
-<div id="profile-page" class="profile-underheader">
-    <div class="profile-icons profile-icons_position">
-        <img src="{{avatarphoto}}" id="avatarPhotoI" class="profile-avatar-photo profile-avatar-photo_margin">
-        <div class="profile-username profile-username_margin">{{username}}</div>
-        <div class="profile-status profile-status_margin">{{status}}</div>
-        <a href="/settings">
-            <img src={{PHsetimg}} data-section="settings" class="profile-icon-size profile-icon-size_settings-pos">
-        </a>
-        <nav class="create-menu-profile profile-icon-size_createpin-pos">
-            <ul>
-                <li>
-                    <img src={{PHplus}} data-section="createpin" class="profile-icon-size">
-                    <ul class="create-menu-profile__pad_menu">
-                        <li><a href="/create_pin">Пин</a></li>
-                        <li><a href="/create_board">Доска</a></li>
+<div id="profile-page" class="profile-container">
+    <div class="profile-container_pos">
+        <div class="profile-underheader">
+            <img src="{{avatarphoto}}" id="avatarPhotoI" class="profile-avatar-photo">
+            <div class="profile-underheader__content">
+                <div class="profile-username">{{username}}</div>
+                <div class="profile-status">{{status}}</div>
+            </div>
+            <div class="profile-underheader__icons">
+                <a href="/settings">
+                    <img src={{PHsetimg}} data-section="settings" class="profile-icon-size">
+                </a>
+                <nav class="create-menu-profile">
+                    <ul>
+                        <li>
+                            <img src={{PHplus}} data-section="createpin" class="profile-icon-size profile-icon-size_pos">
+                            <ul class="create-menu-profile__pad_menu">
+                                <li><a href="/create_pin">Пин</a></li>
+                                <li><a href="/create_board">Доска</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-        </nav>
-        <a data-section="logout" href='/login' class="profile-logout profile-logout_pos">Выйти</a>
-        <div id="profileBoards" class="profile-button profile-button_board-pos">
-            <span class="profile-button__text">Доски</span>
+                </nav>
+                <a data-section="logout" href='/login' class="profile-logout profile-icon-size_pos">Выйти</a>
+            </div>
         </div>
-        <div id="profilePins" class="profile-button profile-button_pin-pos">
-            <span class="profile-button__text">Пины</span>
+
+        <div class="profile-buttons">
+            <div id="profileBoards" class="profile-button">Доски</div>
+            <div id="profilePins" class="profile-button profile-button_pin-pos">Пины</div>
         </div>
     </div>
+
     <div id="profilePinsBoardsView" class="profile-pins-boards">
     </div>
 </div>
