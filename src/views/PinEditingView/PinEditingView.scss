@@ -1,4 +1,8 @@
 .createpin__buttons__button-del {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 121px;
     height: 38px;
     background-color: #FFFFFF;
@@ -14,6 +18,16 @@
 }
 
 .createpin__buttons__button-del_pos {
-    position: absolute;
-    left: 50px;
+    margin-right: auto;
+}
+
+.pinediting__buttons_pos {
+    margin-top: auto;
+}
+
+.pinediting__left-column__img {
+    width: 277px;
+    height: 427px;
+    border-radius: 5px;
+    background-image: url(../../images/bg.png);
 }
