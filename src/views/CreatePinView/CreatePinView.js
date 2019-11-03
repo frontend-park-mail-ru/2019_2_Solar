@@ -3,7 +3,6 @@ import BaseView from '../BaseView/BaseView.js';
 import CreatePinViewTemplate from './CreatePinView.hbs';
 import './CreatePinView.scss';
 
-import BoardForCreatePinComponent from '../../components/BoardForCreatePin/BoardForCreatePin.js';
 import HeaderComponent from '../../components/Header/Header.js';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
@@ -57,11 +56,8 @@ export default class CreatePinView extends BaseView {
                 header.data = responseBody;
                 header.render();
 
-                const board = new BoardForCreatePinComponent();
-
                 const context = {
                     title: 'Создание пина',
-                    board: board.render({boardTitle: 'Какое-нибудь название с продолжением'}),
                 };
 
                 this.el.innerHTML += CreatePinViewTemplate(context);
