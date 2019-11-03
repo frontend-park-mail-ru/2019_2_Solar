@@ -10,7 +10,7 @@ import {BACKEND_ADDRESS} from '../../config/Config.js';
 import FImg from '../../images/edit.svg';
 import SImg from '../../images/account.svg';
 import TImg from '../../images/themes.svg';
-import NoPhoto from '../../images/nophoto.png';
+import bg from '../../images/bg.png';
 
 import bus from '../../utils/bus.js';
 
@@ -60,17 +60,20 @@ export default class SettingsView extends BaseView {
                 }
             })
             .then((responseBody) => {
+                document.body.className = 'backgroundIndex';
+                this.el.innerHTML = '';
+
                 const oldusername = responseBody.body.user.username;
 
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
+                header.render();
 
-                document.body.className = 'backgroundIndex';
                 // this.data = responseBody;
 
                 const context = {
                     username: responseBody.body.user.username,
-                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : NoPhoto,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
                     status: responseBody.body.user.status,
                     name: responseBody.body.user.name,
                     surname: responseBody.body.user.surname,
@@ -79,8 +82,7 @@ export default class SettingsView extends BaseView {
                     PHsimg: SImg,
                     PHtimg: TImg,
                 };
-                this.el.innerHTML = SettingsViewTemplate(context);
-                header.render();
+                this.el.innerHTML += SettingsViewTemplate(context);
 
                 const settingsForm = document.getElementById('UserSettings');
 
