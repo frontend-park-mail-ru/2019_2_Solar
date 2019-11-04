@@ -14,6 +14,8 @@ import Bell from '../../images/bell.png';
 
 import bg from '../../images/bg.png';
 
+import {BACKEND_ADDRESS} from '../../config/Config.js';
+
 /** Class representing a Header component. */
 export default class HeaderComponent {
     /**
