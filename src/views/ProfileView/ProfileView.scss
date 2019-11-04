@@ -184,3 +184,10 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.columns {
+    column-width: 320px;
+    column-gap: 15px;
+    width: 90%;
+    max-width: 100%;
+}
