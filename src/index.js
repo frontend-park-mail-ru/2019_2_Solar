@@ -10,6 +10,7 @@ import BoardChangeView from './views/BoardChangeView/BoardChangeView.js';
 import PinEditingView from './views/PinEditingView/PinEditingView.js';
 import PinView from './views/PinView/PinView.js';
 import DialogView from './views/DialogView/DialogView.js';
+import UserView from './views/UserView/UserView.js';
 import {deleteCookie} from './utils/deleteCookies.js';
 import './scss/base.scss';
 import Router from './utils/router.js';
@@ -37,6 +38,7 @@ router
     .register('/pin', PinView)
     .register('/board_change', BoardChangeView)
     .register('/dialog', DialogView)
+    .register('/user', UserView)
     .register('/index', IndexView);
 router.start();
 
