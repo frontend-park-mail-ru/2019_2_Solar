@@ -80,6 +80,12 @@ export default class ProfileView extends BaseView {
                 };
                 this.el.innerHTML += ProfileViewTemplate(context);
 
+                const ToHeaderDialog = document.getElementById('header').querySelectorAll('[data-section=\'dialog\']')[0];
+                ToHeaderDialog.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    bus.emit('/dialog');
+                });
+
                 /* Открыты доски, когда ты только заходишь на профиль */
                 const viewPinBoards = document.getElementById('profilePinsBoardsView');
                 const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
