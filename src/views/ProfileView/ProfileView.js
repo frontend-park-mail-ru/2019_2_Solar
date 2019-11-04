@@ -67,8 +67,9 @@ export default class ProfileView extends BaseView {
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
 
+                window.GlobalUser = responseBody;
+
                 const header = new HeaderComponent(this.el);
-                header.data = responseBody;
                 header.render();
 
                 const context = {

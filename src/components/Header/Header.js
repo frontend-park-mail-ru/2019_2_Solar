@@ -48,6 +48,8 @@ export default class HeaderComponent {
      * Render Header component.
      */
     render() {
+        this._data = GlobalUser;
+
         const context = {
             username: this._data.body.user.username,
             alertsCount: 10,
