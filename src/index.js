@@ -39,8 +39,8 @@ router
     .register('/board_change', BoardChangeView)
     .register('/dialog', DialogView)
     .register('/user', UserView)
+    .register('/board/:id', BoardView)
     .register('/index', IndexView);
-router.start();
 
 // Startup logic
 fetch(BACKEND_ADDRESS + '/profile/data', {
@@ -50,7 +50,22 @@ fetch(BACKEND_ADDRESS + '/profile/data', {
 })
     .then((response) => {
         if (response.ok) {
-            bus.emit('/profile');
-            return;
+            window.socket = new WebSocket('ws://localhost:8080' + '/chat');
+
+            socket.onopen = function(result) {
+                console.log('onopen');
+            };
+            socket.onmessage = function(result) {
+                console.log(result);
+            };
+
+            return response.json();
+        } else {
+            router.open('/');
         }
+    })
+    .then((responseBody) => {
+        window.GlobalUser = responseBody;
     });
+
+router.start();
