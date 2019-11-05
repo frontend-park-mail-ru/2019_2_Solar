@@ -1,8 +1,6 @@
 import './Header.scss';
 import HeaderTemplate from '../Header/Header.hbs';
 
-import bus from '../../utils/bus.js';
-
 import Logo from '../../images/logo.png';
 import Lupa from '../../images/zoom.png';
 import PadIm from '../../images/arrow.png';
@@ -67,26 +65,5 @@ export default class HeaderComponent {
         const html = HeaderTemplate(context);
 
         this._parent.innerHTML = html;
-
-        /* for picture logo*/
-        const toIndex = document.getElementById('header').querySelectorAll('[data-section=\'index\']')[0];
-        toIndex.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('/index');
-        });
-
-        /* for picture plus*/
-        const toCreatePin = document.getElementById('header').querySelectorAll('[data-section=\'create-pin\']')[0];
-        toCreatePin.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('/create_pin');
-        });
-
-        /* for picture points*/
-        const toSettings = document.getElementById('header').querySelectorAll('[data-section=\'settings\']')[0];
-        toSettings.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('/settings');
-        });
     }
 }
