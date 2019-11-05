@@ -58,7 +58,7 @@ fetch(BACKEND_ADDRESS + '/profile/data', {
             socket.onmessage = function(result) {
                 console.log(result);
             };
-
+            router.open('/profile');
             return response.json();
         } else {
             router.open('/');
