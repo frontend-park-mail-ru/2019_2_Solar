@@ -62,7 +62,7 @@ export default class SignUpView extends BaseView {
 
             const data = {'email': email, 'password': password, 'username': username};
 
-            fetch(BACKEND_ADDRESS + '/registration/', {
+            fetch(BACKEND_ADDRESS + '/registration', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include',

@@ -37,7 +37,35 @@ export default class Router {
      * @param {string} path
      */
     open(path) {
-        const route = this.routes[path];
+        console.log(path);
+        // const route = this.routes[path];
+
+        let route;
+        let argname;
+        let argvalue;
+
+        for (let key in this.routes) {
+            if (this.routes[key]) {
+                const view = this.routes[key];
+
+                const match = key.match(/([^:]+):?(.+)?/);
+
+                argname = match[2];
+
+                if (argname) {
+                    key = key.replace(':' + argname, '(.+)');
+                }
+
+                if (!path.match(key)) {
+                    continue;
+                }
+
+                route = view;
+                argvalue = path.match(key)[1];
+            }
+        }
+
+        console.log(route, argname, argvalue);
 
         if (!route) {
             this.open('/');

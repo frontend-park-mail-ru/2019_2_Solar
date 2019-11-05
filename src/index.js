@@ -9,6 +9,8 @@ import BoardView from './views/BoardView/BoardView.js';
 import BoardChangeView from './views/BoardChangeView/BoardChangeView.js';
 import PinEditingView from './views/PinEditingView/PinEditingView.js';
 import PinView from './views/PinView/PinView.js';
+import DialogView from './views/DialogView/DialogView.js';
+import UserView from './views/UserView/UserView.js';
 import {deleteCookie} from './utils/deleteCookies.js';
 import './scss/base.scss';
 import Router from './utils/router.js';
@@ -26,7 +28,6 @@ bus.on('create-logout', () => {
 const router = new Router(application);
 router
     .register('/', SignUpView)
-    .register('/signup', SignUpView)
     .register('/login', LoginView)
     .register('/settings', SettingsView)
     .register('/profile', ProfileView)
@@ -36,8 +37,10 @@ router
     .register('/board', BoardView)
     .register('/pin', PinView)
     .register('/board_change', BoardChangeView)
+    .register('/dialog', DialogView)
+    .register('/user', UserView)
+    .register('/board/:id', BoardView)
     .register('/index', IndexView);
-router.start();
 
 // Startup logic
 fetch(BACKEND_ADDRESS + '/profile/data', {
@@ -47,7 +50,22 @@ fetch(BACKEND_ADDRESS + '/profile/data', {
 })
     .then((response) => {
         if (response.ok) {
-            bus.emit('/profile');
-            return;
+            window.socket = new WebSocket('ws://localhost:8080' + '/chat');
+
+            socket.onopen = function(result) {
+                console.log('onopen');
+            };
+            socket.onmessage = function(result) {
+                console.log(result);
+            };
+            router.open('/profile');
+            return response.json();
+        } else {
+            router.open('/');
         }
+    })
+    .then((responseBody) => {
+        window.GlobalUser = responseBody;
     });
+
+router.start();

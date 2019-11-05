@@ -55,6 +55,10 @@
     color: #3D3D3D;
 }
 
+.viewpin-block__right-column__title_pos {
+    margin-top: 20px;
+}
+
 .viewpin-block__right-column__buttom-save {
     width: 121px;
     height: 38px;
@@ -70,7 +74,7 @@
 }
 
 .viewpin-block__right-column__buttom-save_pos {
-    margin-left:70%;
+    margin-left: 30px;
 }
 
 .viewpin-block__right-column__author-block {
@@ -184,4 +188,24 @@ a {
 
 .comment_margin {
     margin-top: 15px;
+}
+
+.viewpin-form__board-select_design {
+    background-color: #FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    height: 38px;
+}
+
+.viewpin-form__board-select_design_pos {
+    margin-left: auto;
+}
+
+.view-pin-data-form {
+    display: flex;
 }

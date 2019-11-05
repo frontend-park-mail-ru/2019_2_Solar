@@ -1,25 +1,27 @@
-<div id="createpin-page" class="createpin-block">
-    <img id="createPinImg" class="createpin-block__img createpin-block__img_pos">
-    <div class="createpin-block__title createpin-block__title_pos">{{title}}</div>
+<div id="createpin-page" class="createpin-container">
+    <form id="createPinData" class="createpin-form">
+        <div class="createpin__left-column">
+            <img id="createPinImg" class="createpin__left-column__img">
+            <input type="button" id="changePin" value="Загрузить изображение" onclick="document.getElementById('pinphoto').click();" class="createpin-form__pinphoto createpin-form__pinphoto_pos">
+            <input type="file" name="pinphoto" id="pinphoto" multiple accept="image/*" style="display:none">
+        </div>
+        <div class="createpin__right-column">
+            <div class="createpin__right-column__title">{{title}}</div>
+            <input type="text" id="pinname" placeholder="Добавьте название" value="" class="createpin-form__title createpin-form__title_pos">
+            <input type="text" id="pincontent" placeholder="Добавьте описание" value="" class="createpin-form__content createpin-form__content_pos">
 
-    <form id="createPinData">
-        <input type="text" id="pinname" placeholder="Добавьте название" value="" class="createpin-form__title createpin-form__title_pos">
-        <input type="text" id="pincontent" placeholder="Добавьте описание" value="" class="createpin-form__content createpin-form__content_pos">
+            <div class="createpin__right-column__choose-board">
+                <div class="createpin__right-column__choose-board__title">Выберете доску</div>
+                <select name="board-select" class="board-select_design board-select_design_pos">
+                    <option disabled>Выберете доску</option>
+                </select>
+                        
+            </div>
 
-        <input type="button" id="changePin" value="Загрузить изображение" onclick="document.getElementById('pinphoto').click();" class="createpin-form__pinphoto createpin-form__pinphoto_pos">
-        <input type="file" name="pinphoto" id="pinphoto" multiple accept="image/*" style="display:none">
-        
-        <div class="createpin__buttons" >
-            <a href="/profile" type="submit" class="createpin__buttons__button-out createpin__buttons_pos">Отмена</a>
-            <input type="submit" class="createpin__buttons__button-save createpin__buttons__button-save_pos" value="Готово">
+            <div class="createpin__buttons createpin__buttons_pos" >
+                <a href="/profile" type="submit" class="createpin__buttons__button-out">Отмена</a>
+                <input type="submit" class="createpin__buttons__button-save createpin__buttons__button-save_pos" value="Готово">
+            </div>
         </div>
     </form>
-
-    <div class="your-boards__title your-boards__title_pos">Мои доски</div>
-    <div class="your-boards your-boards_state">
-        {{{board}}}
-        <div class="your-boards_board_margin">
-            {{{board}}}
-        </div>
-    </div>
 </div>

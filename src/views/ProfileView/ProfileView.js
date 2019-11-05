@@ -65,46 +65,27 @@ export default class ProfileView extends BaseView {
             })
             .then((responseBody) => {
                 document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
+
+                window.GlobalUser = responseBody;
 
                 const header = new HeaderComponent(this.el);
-                header.data = responseBody;
+                header.render();
 
                 const context = {
                     username: responseBody.body.user.username,
-                    // avatarphoto: this._avatar,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
                     status: responseBody.body.user.status,
-
                     PHsetimg: SetImg,
                     PHplus: PlusImgFAdd,
                 };
-                this.el.innerHTML = ProfileViewTemplate(context);
+                this.el.innerHTML += ProfileViewTemplate(context);
 
-                let avaflag = false;
-
-                fetch(BACKEND_ADDRESS + '/profile/picture', {
-                    method: 'GET',
-                    body: null,
-                    credentials: 'include',
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            avaflag = true;
-                        }
-                        return response.blob();
-                    })
-                    .then(function(blob) {
-                        if (avaflag) {
-                            const objectURL = URL.createObjectURL(blob);
-
-                            const avaimg = document.getElementById('avatarPhotoI');
-                            avaimg.src = objectURL;
-
-                            const avaimgHeader = document.getElementById('avatarPhotoHeader');
-                            avaimgHeader.src = objectURL;
-                        }
-                    });
-
-                header.render();
+                const ToHeaderDialog = document.getElementById('header').querySelectorAll('[data-section=\'dialog\']')[0];
+                ToHeaderDialog.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    bus.emit('/dialog');
+                });
 
                 /* Открыты доски, когда ты только заходишь на профиль */
                 const viewPinBoards = document.getElementById('profilePinsBoardsView');

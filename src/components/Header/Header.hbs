@@ -1,8 +1,8 @@
 <div id="header">
     <div class="header">
-        <div class="logo">
+        <a href='/index' class="logo">
             <img data-section="index" class="logo__picture" src={{PHlogo}}>
-        </div>
+        </a>
         <div class="search">
             <div class="search__icon">
                     <img src={{PHLupa}}>
@@ -14,15 +14,15 @@
         <div class="left-controls">
             <a href="/index" class="left-controls__text-to-ind">Главная</a>
             <a href="/index" class="left-controls__text-to-ind">Подписки</a>
-            <a><img data-section="create-pin" src={{PHplus}} class="plus-img plus-img_margin-left"></a>
-            <a href=""><img src={{PHquestion}} class="ask-img ask-img_margin-left"></a>
+            <a href="/create_pin"><img data-section="create-pin" src={{PHplus}} class="plus-img plus-img_margin-left"></a>
+            <a><img src={{PHquestion}} class="ask-img ask-img_margin-left"></a>
         </div>
         <div class="controls">
-            <img id="avatarPhotoHeader" class="avatar">
+            <img src="{{avatarPhoto}}" id="avatarPhotoHeader" class="avatar">
             <a href="/profile" class="controls__link usernameclass">{{username}}</a>
         </div>
         <div class ="dialog-block">
-            <a href=""><img id="messageImg" src={{PHdialog}} class="dialog-img dialog__items"></a>
+            <a href="/dialog"><img id="messageImg" data-section="dialog" src={{PHdialog}} class="dialog-img dialog__items"></a>
             <nav class="alerts-menu">
                 <ul>
                     <li class="alerts-menu_margin-list">
@@ -37,9 +37,7 @@
             {{#if alertsCount}}
                 <span class="alerts-count">{{alertsCount}}</span>
             {{/if}}
-            <a href=""><img data-section="settings" src={{PHsetting}} class="mun-img dialog__items"></a>
+            <a href="/settings"><img data-section="settings" src={{PHsetting}} class="mun-img dialog__items"></a>
         </div>
-    </div>
-    <div id="dialogview-page" class="dialogview__flex-container">
     </div>
 </div>

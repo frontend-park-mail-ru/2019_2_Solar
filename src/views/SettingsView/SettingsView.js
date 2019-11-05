@@ -10,8 +10,9 @@ import {BACKEND_ADDRESS} from '../../config/Config.js';
 import FImg from '../../images/edit.svg';
 import SImg from '../../images/account.svg';
 import TImg from '../../images/themes.svg';
+import bg from '../../images/bg.png';
+
 import bus from '../../utils/bus.js';
-// import FoImg from '../../images/bg.png';
 
 /** Class representing a Settings view. */
 export default class SettingsView extends BaseView {
@@ -59,42 +60,20 @@ export default class SettingsView extends BaseView {
                 }
             })
             .then((responseBody) => {
+                document.body.className = 'backgroundIndex';
+                this.el.innerHTML = '';
+
                 const oldusername = responseBody.body.user.username;
 
                 const header = new HeaderComponent(this.el);
                 header.data = responseBody;
+                header.render();
 
-                let avaflag = false;
-
-                fetch(BACKEND_ADDRESS + '/profile/picture', {
-                    method: 'GET',
-                    body: null,
-                    credentials: 'include',
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            avaflag = true;
-                        }
-                        return response.blob();
-                    })
-                    .then(function(blob) {
-                        if (avaflag) {
-                            const objectURL = URL.createObjectURL(blob);
-
-                            const avaimg = document.getElementById('avatarPhotoSettings');
-                            avaimg.src = objectURL;
-
-                            const avaimgHeader = document.getElementById('avatarPhotoHeader');
-                            avaimgHeader.src = objectURL;
-                        }
-                    });
-
-                document.body.className ='backgroundIndex';
                 // this.data = responseBody;
 
                 const context = {
                     username: responseBody.body.user.username,
-                    // avatarphoto: FoImg,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
                     status: responseBody.body.user.status,
                     name: responseBody.body.user.name,
                     surname: responseBody.body.user.surname,
@@ -103,8 +82,7 @@ export default class SettingsView extends BaseView {
                     PHsimg: SImg,
                     PHtimg: TImg,
                 };
-                this.el.innerHTML = SettingsViewTemplate(context);
-                header.render();
+                this.el.innerHTML += SettingsViewTemplate(context);
 
                 const settingsForm = document.getElementById('UserSettings');
 

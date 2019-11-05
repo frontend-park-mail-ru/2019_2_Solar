@@ -4,10 +4,13 @@
             <img id="pinViewImg" class="viewpin-block__pin-photo">
         </div>
         <div class="viewpin-block__right-column">
-            <form id="viewPinData">
+            <form id="viewPinData" class="view-pin-data-form">
+                    <select name="board-select" class="viewpin-form__board-select_design viewpin-form__board-select_design_pos">
+                        <option disabled>Выберете доску</option>
+                    </select>
                     <input type="submit" class="viewpin-block__right-column__buttom-save viewpin-block__right-column__buttom-save_pos" value="Сохранить">
             </form>
-            <div class="viewpin-block__right-column__title">{{pinName}}</div>
+            <div class="viewpin-block__right-column__title viewpin-block__right-column__title_pos">{{pinName}}</div>
             <div class="viewpin-block__right-column__author-block">
                 <span class="viewpin-block__right-column__author">Автор:</span>
                 <a href="#" class="viewpin-block__right-column__username">{{pinAuthor}}</a>

@@ -63,7 +63,23 @@ export default class CreateBoardView extends BaseView {
 
                 createBoardForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    bus.emit('/profile');
+                    const data = {
+                        'title': createBoardForm.elements['boardname'].value,
+                        'description': createBoardForm.elements['boardcontent'].value,
+                        'category': 'something',
+                    };
+
+                    fetch(BACKEND_ADDRESS + '/board', {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        credentials: 'include',
+                        headers: {'Content-Type': 'application/json'},
+                    })
+                        .then((response) => {
+                            if (response.ok) {
+                                bus.emit('/profile');
+                            }
+                        });
                 });
             });
     }

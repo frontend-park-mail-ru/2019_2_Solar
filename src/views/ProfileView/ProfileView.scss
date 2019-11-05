@@ -3,25 +3,23 @@
     padding: 0;
 }
 
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.profile-container_pos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .profile-underheader {
-    position: absolute;
-    width: 100%;
-    height: 321px;
-    left: 0px;
-    top: 61px;
-    z-index: -1;
-}
-
-.profile-icons {
     width: 688px;
-    height: 268px;
-}
-
-.profile-icons_position {
-    position: absolute;
-    left: 50%;
-    margin-left: -344px;
-    /*top: 41px;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .profile-avatar-photo {
@@ -29,11 +27,6 @@
     width: 126px;
     height:126px;
     background-image: url(../../images/bg.png);
-}
-
-.profile-avatar-photo_margin {
-    margin-left: 50px;
-    margin-top: 48px;
 }
 
 .profile-username {
@@ -51,10 +44,11 @@
     color: #000000;
 }
 
-.profile-username_margin {
-    position: absolute;
-    left: 226px;
-    top: 67px;
+.profile-underheader__content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 45px;
+    margin-top: 5px;
 }
 
 .profile-status {
@@ -72,26 +66,10 @@
     color: #000000;
 }
 
-.profile-status_margin {
-    position: absolute;
-    left: 226px;
-    top: 104px;
-}
-
-.profile-icon-size {
-    width:35px;
-}
-
-.profile-icon-size_settings-pos {
-    position: absolute;
-    left: 597px;
-    top: 60px;
-}
-
-.profile-icon-size_createpin-pos {
-    position: absolute;
-    left: 597px;
-    top: 125px;
+.profile-underheader__icons {
+    display: flex;
+    flex-direction: column;
+    margin-left: 45px;
 }
 
 .profile-logout {
@@ -104,14 +82,23 @@
     color: #A19F9C;
 }
 
-.profile-logout_pos {
-    position: absolute;
-    left: 596px;
-    top: 190px;
+.profile-icon-size {
+    width:35px;
+}
+
+.profile-icon-size_pos {
+    padding-top: 40px;
+}
+
+.profile-buttons {
+    display: flex;
+    margin-top: 20px;
 }
 
 .profile-button {
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 121px;
     height: 38px;
 
@@ -135,21 +122,8 @@
     color: #000000;
 }
 
-.profile-button__text {
-    position: absolute;
-    text-align: center;
-    padding-left: 40px;
-    margin-top: 10px;
-}
-
-.profile-button_board-pos {
-    left: 188px;
-    top: 203px;
-}
-
 .profile-button_pin-pos {
-    left: 332px;
-    top: 203px;
+    margin-left: 20px;
 }
 
 /* Profile create-menu */
@@ -204,9 +178,16 @@ a {
 
 .profile-pins-boards {
     display: flex;
-    margin-top: 320px;
+    margin-top: 40px;
     margin-left: 50px;
     margin-right: 50px;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.columns {
+    column-width: 320px;
+    column-gap: 15px;
+    width: 90%;
+    max-width: 100%;
 }
