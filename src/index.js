@@ -1,4 +1,5 @@
 import bus from './utils/bus.js';
+import FetchModule from './utils/fetchModule.js';
 import ProfileView from './views/ProfileView/ProfileView.js';
 import LoginView from './views/LoginView/LoginView.js';
 import SignUpView from './views/SignUpView/SignUpView.js';
@@ -41,6 +42,9 @@ router
     .register('/user', UserView)
     .register('/board/:id', BoardView)
     .register('/index', IndexView);
+
+window.csrf_token = "";
+window.fetchModule = new FetchModule(application);
 
 // Startup logic
 fetch(BACKEND_ADDRESS + '/profile/data', {
