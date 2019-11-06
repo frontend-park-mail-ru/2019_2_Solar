@@ -34,6 +34,7 @@ export default class SignUpView extends BaseView {
      */
     render() {
         document.body.className = 'background';
+
         const button = new ButtonComponent();
         const context = {
             button: button.render({text: 'Зарегистрироваться'}),
@@ -62,8 +63,8 @@ export default class SignUpView extends BaseView {
 
             const data = {'email': email, 'password': password, 'username': username};
 
-            fetch(BACKEND_ADDRESS + '/registration', {
-                method: 'POST',
+            fetchModule.Post({
+                url: BACKEND_ADDRESS + '/registration',
                 body: JSON.stringify(data),
                 credentials: 'include',
                 headers: {
