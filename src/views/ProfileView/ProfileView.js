@@ -55,19 +55,19 @@ export default class ProfileView extends BaseView {
      * Render Profile view.
      */
     render() {
-        fetch(BACKEND_ADDRESS + '/profile/data', {
-            method: 'GET',
+        fetchModule.Get({
+            url: BACKEND_ADDRESS + '/profile/data',
             body: null,
-            credentials: 'include',
         })
             .then((response) => {
                 return response.json();
             })
             .then((responseBody) => {
+                GlobalUser = responseBody;
+                CSRFtoken = responseBody.csrf_token;
+
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
-
-                window.GlobalUser = responseBody;
 
                 const header = new HeaderComponent(this.el);
                 header.render();
@@ -81,12 +81,6 @@ export default class ProfileView extends BaseView {
                 };
                 this.el.innerHTML += ProfileViewTemplate(context);
 
-                const ToHeaderDialog = document.getElementById('header').querySelectorAll('[data-section=\'dialog\']')[0];
-                ToHeaderDialog.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    bus.emit('/dialog');
-                });
-
                 /* Открыты доски, когда ты только заходишь на профиль */
                 const viewPinBoards = document.getElementById('profilePinsBoardsView');
                 const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
@@ -95,13 +89,6 @@ export default class ProfileView extends BaseView {
 
                 const boardViewList = document.getElementById('profileBoards');
                 boardViewList.className = 'profile-button profile-button_board-pos profile-button_push';
-
-                /* for picture settings */
-                const toSettings = document.getElementById('profile-page').querySelectorAll('[data-section=\'settings\']')[0];
-                toSettings.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    bus.emit('/settings');
-                });
 
                 /* for pins view */
                 const pinViewList = document.getElementById('profilePins');
