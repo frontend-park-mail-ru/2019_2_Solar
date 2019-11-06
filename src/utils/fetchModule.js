@@ -34,7 +34,7 @@ export default class FetchModule {
         credentials = 'include',
         headers = {
             'Content-Type': 'application/json',
-            'csrf-token': window.csrf_token,
+            'csrf-token': window.CSRFtoken,
         },
     } = {}
     ) {

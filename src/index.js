@@ -43,14 +43,13 @@ router
     .register('/board/:id', BoardView)
     .register('/index', IndexView);
 
-window.csrf_token = "";
+window.CSRFtoken = "";
 window.fetchModule = new FetchModule(application);
 
 // Startup logic
-fetch(BACKEND_ADDRESS + '/profile/data', {
-    method: 'GET',
+fetchModule.Get({
+    url: BACKEND_ADDRESS + '/profile/data',
     body: null,
-    credentials: 'include',
 })
     .then((response) => {
         if (response.ok) {
@@ -62,6 +61,7 @@ fetch(BACKEND_ADDRESS + '/profile/data', {
             socket.onmessage = function(result) {
                 console.log(result);
             };
+
             router.open('/profile');
             return response.json();
         } else {
