@@ -17,9 +17,11 @@ export default class BoardChangeView extends BaseView {
      * BoardChange view constructor.
      * @constructor
      * @param {object} el - Root application div.
+     * @param {*} args
      */
-    constructor(el) {
+    constructor(el, args) {
         super(el);
+        this.args = args;
         this._data = {};
     }
 
