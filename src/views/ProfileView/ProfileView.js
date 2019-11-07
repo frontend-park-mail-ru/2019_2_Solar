@@ -85,12 +85,30 @@ export default class ProfileView extends BaseView {
 
                 /* Открыты доски, когда ты только заходишь на профиль */
                 const viewPinBoards = document.getElementById('profilePinsBoardsView');
-                const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
-                boardForUserView.render({boardImg: bg,
-                    content: 'Какое-нибудь название с продолжением'});
-
                 const boardViewList = document.getElementById('profileBoards');
                 boardViewList.className = 'profile-button profile-button_board-pos profile-button_push';
+
+                fetchModule.Get({
+                    url: BACKEND_ADDRESS + '/board/list/my',
+                    body: null,
+                })
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((responseBody) => {
+                        CSRFtoken = responseBody.csrf_token;
+
+                        const boardsProfile = responseBody.body.boards;
+
+                        for (let i = 0; i < boardsProfile.length; i++) {
+                            const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
+                            boardForUserView.render({id: boardsProfile[i].id, boardImg: bg,
+                                content: boardsProfile[i].title});
+                        }
+                    })
+                    .catch(() => {
+                        return null;
+                    });
 
                 /* for pins view */
                 const pinViewList = document.getElementById('profilePins');
@@ -101,9 +119,26 @@ export default class ProfileView extends BaseView {
                     boardViewList.className = 'profile-button profile-button_board-pos';
                     pinViewList.className = 'profile-button profile-button_pin-pos profile-button_push';
 
-                    const pinForUserView = new PinForUserViewComponent(viewPinBoards);
-                    pinForUserView.render({pinImg: bg,
-                        content: 'Какое-нибудь название с продолжением'});
+                    fetchModule.Get({
+                        url: BACKEND_ADDRESS + '/pin/list/my',
+                        body: null,
+                    })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((responseBody) => {
+                            CSRFtoken = responseBody.csrf_token;
+
+                            const pinsProfile = responseBody.body.pins;
+                            for (let i = 0; i < pinsProfile.length; i++) {
+                                const pinForUserView = new PinForUserViewComponent(viewPinBoards);
+                                pinForUserView.render({pinImg: bg,
+                                    content: 'Какое-нибудь название с продолжением'});
+                            }
+                        })
+                        .catch(() => {
+                            return null;
+                        });
                 });
 
                 /* for boards view */
@@ -114,12 +149,30 @@ export default class ProfileView extends BaseView {
                     boardViewList.className = 'profile-button profile-button_board-pos profile-button_push';
                     pinViewList.className = 'profile-button profile-button_pin-pos';
 
-                    boardForUserView.render({boardImg: bg,
-                        content: 'Какое-нибудь название с продолжением'});
+                    fetchModule.Get({
+                        url: BACKEND_ADDRESS + '/board/list/my',
+                        body: null,
+                    })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((responseBody) => {
+                            CSRFtoken = responseBody.csrf_token;
+
+                            const boardsProfile = responseBody.body.boards;
+
+                            for (let i = 0; i < boardsProfile.length; i++) {
+                                const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
+                                boardForUserView.render({id: boardsProfile[i].id, boardImg: bg,
+                                    content: boardsProfile[i].title});
+                            }
+                        })
+                        .catch(() => {
+                            return null;
+                        });
                 });
             })
             .catch(() => {
-                alert('Ошибка авторизации');
                 bus.emit('/login');
             });
     }

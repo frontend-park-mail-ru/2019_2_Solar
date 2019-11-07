@@ -35,6 +35,16 @@ export default class SignUpView extends BaseView {
      * Render Signup view.
      */
     render() {
+        fetchModule.Get({
+            url: BACKEND_ADDRESS + '/profile/data',
+            body: null,
+        })
+            .then((response) => {
+                if (response.ok) {
+                    bus.emit('/profile');
+                }
+            });
+
         document.body.className = 'background';
 
         const button = new ButtonComponent();
