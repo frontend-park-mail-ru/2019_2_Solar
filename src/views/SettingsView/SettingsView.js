@@ -46,10 +46,9 @@ export default class SettingsView extends BaseView {
      * Render Settings view.
      */
     render() {
-        fetch(BACKEND_ADDRESS + '/profile/data', {
-            method: 'GET',
+        fetchModule.Get({
+            url: BACKEND_ADDRESS + '/profile/data',
             body: null,
-            credentials: 'include',
         })
             .then((response) => {
                 if (response.ok) {
@@ -60,6 +59,8 @@ export default class SettingsView extends BaseView {
                 }
             })
             .then((responseBody) => {
+                CSRFtoken = responseBody.csrf_token;
+
                 document.body.className = 'backgroundIndex';
                 this.el.innerHTML = '';
 
@@ -101,11 +102,9 @@ export default class SettingsView extends BaseView {
 
                     let dataresponse = true;
 
-                    fetch(BACKEND_ADDRESS + '/profile/data', {
-                        method: 'POST',
+                    fetchModule.Post({
+                        url: BACKEND_ADDRESS + '/profile/data',
                         body: JSON.stringify(data),
-                        credentials: 'include',
-                        headers: {'Content-Type': 'application/json'},
                     })
                         .then((response) => {
                             if (response.ok) {
@@ -119,10 +118,9 @@ export default class SettingsView extends BaseView {
                     const formData = new FormData();
                     formData.append('profilePicture', settingsForm.elements['avatarphoto'].files[0]);
 
-                    fetch(BACKEND_ADDRESS + '/profile/picture', {
-                        method: 'POST',
+                    fetchModule.Post({
+                        url: BACKEND_ADDRESS + '/profile/picture',
                         body: formData,
-                        credentials: 'include',
                     })
                         .then((response) => {
                             if (response.ok) {
