@@ -53,9 +53,12 @@ export default class CreatePinView extends BaseView {
                 CSRFtoken = responseBody.csrf_token;
 
                 const boardsNames = [];
-                const boardsCreatePin = responseBody.body.boards;
-                for (let i = 0; i < boardsCreatePin.length; i++) {
-                    boardsNames.push(boardsCreatePin[i].title + ':' + boardsCreatePin[i].id);
+                if (responseBody.body.boards) {
+                    const boardsCreatePin = responseBody.body.boards;
+                    console.log(boardsCreatePin);
+                    for (let i = 0; i < boardsCreatePin.length; i++) {
+                        boardsNames.push(boardsCreatePin[i].title + ':' + boardsCreatePin[i].id);
+                    }
                 }
 
                 document.body.className ='backgroundIndex';
@@ -98,8 +101,6 @@ export default class CreatePinView extends BaseView {
                         .then((response) => {
                             if (response.ok) {
                                 bus.emit('/profile');
-                            } else {
-
                             }
                         });
                 });
