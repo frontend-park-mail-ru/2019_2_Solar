@@ -68,7 +68,7 @@ export default class SignUpView extends BaseView {
                 body: JSON.stringify(data),
                 credentials: 'include',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'text/plain',
                 },
             })
                 .then((response) => {
