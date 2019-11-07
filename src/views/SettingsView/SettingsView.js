@@ -121,6 +121,11 @@ export default class SettingsView extends BaseView {
                     fetchModule.Post({
                         url: BACKEND_ADDRESS + '/profile/picture',
                         body: formData,
+                        credentials: 'include',
+                        headers: {
+                            'Content-Type': 'multipart/form-data; boundary=RaNdOmDeLiMiTeR',
+                            'csrf-token': window.CSRFtoken,
+                        },
                     })
                         .then((response) => {
                             if (response.ok) {
