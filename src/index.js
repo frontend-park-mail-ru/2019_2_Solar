@@ -61,8 +61,6 @@ fetchModule.Get({
             socket.onmessage = function(result) {
                 console.log(result);
             };
-
-            router.open('/profile');
             return response.json();
         } else {
             router.open('/');
