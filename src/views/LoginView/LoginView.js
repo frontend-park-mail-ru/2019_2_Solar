@@ -14,10 +14,12 @@ export default class LoginView extends BaseView {
     /**
      * Login view constructor.
      * @param {object} el - Root application div.
+     * @param {*} args
      * @constructor
      */
-    constructor(el) {
+    constructor(el, args) {
         super(el);
+        this.args = args;
         this._form = null;
     }
 

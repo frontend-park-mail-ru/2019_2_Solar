@@ -15,9 +15,11 @@ export default class SignUpView extends BaseView {
      * Signup view constructor.
      * @constructor
      * @param {object} parent - Root application div.
+     * @param {*} args
      */
-    constructor(parent) {
+    constructor(parent, args) {
         super(parent);
+        this.args = args;
         this._form = null;
     }
 

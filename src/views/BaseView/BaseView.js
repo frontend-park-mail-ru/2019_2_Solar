@@ -8,9 +8,11 @@ export default class BaseView {
      * Constructor for a BaseView.
      * @constructor
      * @param {object} el
+     * @param {*} args
      */
-    constructor(el) {
+    constructor(el, args) {
         this.el = el;
+        this.args = args;
 
         this.el.dataset.view = this.constructor.name;
         this.el.hidden = true;
