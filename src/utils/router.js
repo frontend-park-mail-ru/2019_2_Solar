@@ -88,7 +88,7 @@ export default class Router {
         }
 
         if (!view) {
-            view = new View(el);
+            view = new View(el, argvalue);
         }
 
         if (!view.active) {
