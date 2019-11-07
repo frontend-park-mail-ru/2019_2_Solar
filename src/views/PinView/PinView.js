@@ -46,7 +46,7 @@ export default class PinView extends BaseView {
      */
     render() {
         fetchModule.Get({
-            url: BACKEND_ADDRESS + '/profile/data',
+            url: BACKEND_ADDRESS + '/pin/' + this.args,
             body: null,
         })
             .then((response) => {
@@ -55,43 +55,84 @@ export default class PinView extends BaseView {
             .then((responseBody) => {
                 CSRFtoken = responseBody.csrf_token;
 
-                document.body.className ='backgroundIndex';
-                this.el.innerHTML = '';
+                const boardsNames = [];
+                fetchModule.Get({
+                    url: BACKEND_ADDRESS + '/board/list/my',
+                    body: null,
+                })
+                    .then((responseBoards) => {
+                        return responseBoards.json();
+                    })
+                    .then((responseBoardsBody) => {
+                        CSRFtoken = responseBoardsBody.csrf_token;
 
-                const header = new HeaderComponent(this.el);
-                header.data = responseBody;
-                header.render();
+                        if (responseBoardsBody.body.boards) {
+                            const boardsViewPin = responseBoardsBody.body.boards;
+                            for (let i = 0; i < boardsViewPin.length; i++) {
+                                boardsNames.push(boardsViewPin[i].title + ':' + boardsViewPin[i].id);
+                            }
+                        }
 
-                const context = {
-                    pinName: 'Название',
-                    pinAuthor: 'Username',
-                    pinContent: 'Описание',
-                };
+                        document.body.className ='backgroundIndex';
+                        this.el.innerHTML = '';
 
-                this.el.innerHTML += PinViewTemplate(context);
+                        const header = new HeaderComponent(this.el);
+                        header.render();
 
-                /* заполнение поля комментариев */
-                const pinViewCommentsList = document.getElementById('pinViewComments');
-                const comment = new PinCommentComponent(pinViewCommentsList);
-                comment.render({commentAuthorImg: bg, commentAuthor: 'Username', commentContent: 'Описание'});
+                        const context = {
+                            pinImg: BACKEND_ADDRESS + '/' + responseBody.body.pins.pin_dir,
+                            pinName: responseBody.body.pins.title,
+                            pinAuthor: responseBody.body.pins.owner_username,
+                            pinContent: responseBody.body.pins.description,
+                            boardsNames: boardsNames,
+                        };
 
-                /* Обработка форм на странице */
-                const viewPinDataForm = document.getElementById('viewPinData');
-                viewPinDataForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    bus.emit('/profile');
-                });
+                        this.el.innerHTML += PinViewTemplate(context);
 
-                const viewPinCommentForm = document.getElementById('viewPinCommentData');
-                viewPinCommentForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
+                        /* заполнение поля комментариев */
+                        const pinViewCommentsList = document.getElementById('pinViewComments');
+                        const pinComments = responseBody.body.comments;
 
-                    const commentForList = viewPinCommentForm.elements['comment'].value;
-                    const commentForAdd = new PinCommentComponent(pinViewCommentsList);
-                    commentForAdd.render({commentAuthorImg: bg, commentAuthor: 'Username', commentContent: commentForList});
+                        if (pinComments) {
+                            for (let i = 0; i < pinComments.length; i++) {
+                                const comment = new PinCommentComponent(pinViewCommentsList);
+                                comment.render({
+                                    commentAuthorImg: bg,
+                                    commentAuthor: pinComments[i].author_username,
+                                    commentContent: pinComments[i].text});
+                            }
+                        }
 
-                    viewPinCommentForm.elements['comment'].value = '';
-                });
+                        /* Обработка форм на странице */
+                        const viewPinDataForm = document.getElementById('viewPinData');
+                        viewPinDataForm.addEventListener('submit', (e) => {
+                            e.preventDefault();
+                            bus.emit('/profile');
+                        });
+
+                        const viewPinCommentForm = document.getElementById('viewPinCommentData');
+                        viewPinCommentForm.addEventListener('submit', (e) => {
+                            e.preventDefault();
+
+                            const commentForList = viewPinCommentForm.elements['comment'].value;
+
+                            fetchModule.Post({
+                                url: BACKEND_ADDRESS + '/pin/' + responseBody.body.pins.id + '/comment',
+                                body: JSON.stringify({text: commentForList}),
+                            })
+                                .then((response) => {
+                                    if (response.ok) {
+                                        const commentForAdd = new PinCommentComponent(pinViewCommentsList);
+                                        commentForAdd.render({
+                                            commentAuthorImg: (GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + GlobalUser.body.user.avatar_dir) : bg,
+                                            commentAuthor: GlobalUser.body.user.username,
+                                            commentContent: commentForList});
+
+                                        viewPinCommentForm.elements['comment'].value = '';
+                                    }
+                                });
+                        });
+                    });
             });
     }
 }

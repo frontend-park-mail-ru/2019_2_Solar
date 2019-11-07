@@ -33,7 +33,7 @@ router
     .register('/settings', SettingsView)
     .register('/profile', ProfileView)
     .register('/create_pin', CreatePinView)
-    .register('/pin', PinView)
+    .register('/pin/:id', PinView)
     .register('/pin_change', PinEditingView)
     .register('/create_board', CreateBoardView)
     .register('/board_change', BoardChangeView)

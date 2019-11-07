@@ -1,19 +1,22 @@
 <div id="viewpin-page" class="viewpin-page__flex-container">
     <div class="viewpin-block">
         <div class="viewpin-block__left-column viewpin-block__left-column_state">
-            <img id="pinViewImg" class="viewpin-block__pin-photo">
+            <img id="pinViewImg" src="{{pinImg}}" class="viewpin-block__pin-photo">
         </div>
         <div class="viewpin-block__right-column">
             <form id="viewPinData" class="view-pin-data-form">
                     <select name="board-select" class="viewpin-form__board-select_design viewpin-form__board-select_design_pos">
                         <option disabled>Выберете доску</option>
+                        {{#each boardsNames}}
+                            <option>{{this}}</option>
+                        {{/each}}
                     </select>
                     <input type="submit" class="viewpin-block__right-column__buttom-save viewpin-block__right-column__buttom-save_pos" value="Сохранить">
             </form>
             <div class="viewpin-block__right-column__title viewpin-block__right-column__title_pos">{{pinName}}</div>
             <div class="viewpin-block__right-column__author-block">
                 <span class="viewpin-block__right-column__author">Автор:</span>
-                <a href="#" class="viewpin-block__right-column__username">{{pinAuthor}}</a>
+                <a href="users/{{authorId}}" class="viewpin-block__right-column__username">{{pinAuthor}}</a>
             </div>
             <div class="viewpin-block__right-column__title viewpin-block__right-column__context_margin">Описание</div>
             <div class="viewpin-block__right-column__context">{{pinContent}}</div>
