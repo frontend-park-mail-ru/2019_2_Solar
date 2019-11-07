@@ -43,7 +43,7 @@ export default class CreatePinView extends BaseView {
      */
     render() {
         fetchModule.Get({
-            url: BACKEND_ADDRESS + '/profile/data',
+            url: BACKEND_ADDRESS + '/board/list/my',
             body: null,
         })
             .then((response) => {
@@ -52,15 +52,21 @@ export default class CreatePinView extends BaseView {
             .then((responseBody) => {
                 CSRFtoken = responseBody.csrf_token;
 
+                const boardsNames = [];
+                const boardsCreatePin = responseBody.body.boards;
+                for (let i = 0; i < boardsCreatePin.length; i++) {
+                    boardsNames.push(boardsCreatePin[i].title + ':' + boardsCreatePin[i].id);
+                }
+
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
-                header.data = responseBody;
                 header.render();
 
                 const context = {
                     title: 'Создание пина',
+                    boardsNames: boardsNames,
                 };
 
                 this.el.innerHTML += CreatePinViewTemplate(context);
@@ -69,7 +75,33 @@ export default class CreatePinView extends BaseView {
 
                 createPinForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    bus.emit('/profile');
+                    const boardFromHbs = createPinForm.elements['board'].value.split(':');
+
+                    const formData = new FormData();
+                    const pin = {
+                        title: createPinForm.elements['title'].value,
+                        description: createPinForm.elements['description'].value,
+                        board_id: boardFromHbs[1],
+                    };
+
+                    formData.append('pinPicture', createPinForm.elements['pinPicture'].files[0]);
+                    formData.append('pin', JSON.stringify(pin));
+
+                    fetchModule.Post({
+                        url: BACKEND_ADDRESS + '/profile/picture',
+                        body: formData,
+                        credentials: 'include',
+                        headers: {
+                            'csrf-token': window.CSRFtoken,
+                        },
+                    })
+                        .then((response) => {
+                            if (response.ok) {
+                                bus.emit('/profile');
+                            } else {
+
+                            }
+                        });
                 });
             });
     }
