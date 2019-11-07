@@ -50,8 +50,8 @@ export default class LoginView extends BaseView {
 
             const data = {'email': email, 'password': password};
 
-            fetch(BACKEND_ADDRESS + '/login', {
-                method: 'POST',
+            fetchModule.Post({
+                url: BACKEND_ADDRESS + '/login',
                 body: JSON.stringify(data),
                 credentials: 'include',
                 headers: {

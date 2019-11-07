@@ -1,4 +1,5 @@
 import bus from './utils/bus.js';
+import FetchModule from './utils/fetchModule.js';
 import ProfileView from './views/ProfileView/ProfileView.js';
 import LoginView from './views/LoginView/LoginView.js';
 import SignUpView from './views/SignUpView/SignUpView.js';
@@ -32,21 +33,23 @@ router
     .register('/settings', SettingsView)
     .register('/profile', ProfileView)
     .register('/create_pin', CreatePinView)
-    .register('/pin_editing', PinEditingView)
+    .register('/pin', PinView)
+    .register('/pin_change', PinEditingView)
     .register('/create_board', CreateBoardView)
     .register('/board', BoardView)
-    .register('/pin', PinView)
     .register('/board_change', BoardChangeView)
     .register('/dialog', DialogView)
     .register('/user', UserView)
     .register('/board/:id', BoardView)
     .register('/index', IndexView);
 
+window.CSRFtoken = "";
+window.fetchModule = new FetchModule(application);
+
 // Startup logic
-fetch(BACKEND_ADDRESS + '/profile/data', {
-    method: 'GET',
+fetchModule.Get({
+    url: BACKEND_ADDRESS + '/profile/data',
     body: null,
-    credentials: 'include',
 })
     .then((response) => {
         if (response.ok) {
@@ -58,7 +61,6 @@ fetch(BACKEND_ADDRESS + '/profile/data', {
             socket.onmessage = function(result) {
                 console.log(result);
             };
-            router.open('/profile');
             return response.json();
         } else {
             router.open('/');

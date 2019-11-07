@@ -1,11 +1,20 @@
 /** Class create fetch. */
 export default class FetchModule {
     /**
+     * Router constructor.
+     * @constructor
+     * @param {object} root
+     */
+    constructor(root) {
+        this.root = root;
+    }
+
+    /**
      * Fetch get method.
      * @param {*} - list with url, body, credentials.
-     * @return {*}
+     * @return {promise}
      */
-    doGet({
+    Get({
         url = '/',
         body = null,
         credentials = 'include',
@@ -16,21 +25,25 @@ export default class FetchModule {
 
     /**
      * Fetch post methos.
-     * @param {*} param0 - list with url, body, credentials.
-     * @return {*}
+     * @param {*} - list with url, body, credentials.
+     * @return {promise}
      */
-    doPost({
+    Post({
         url = '/',
         body = null,
         credentials = 'include',
+        headers = {
+            'Content-Type': 'application/json',
+            'csrf-token': window.CSRFtoken,
+        },
     } = {}
     ) {
-        return this._fetch({method: 'POST', url, body, credentials});
+        return this._fetch({method: 'POST', url, body, credentials, headers});
     }
 
     /**
      * Method create fetch.
-     * @param {*} param0 - list with method, url, body, credentials.
+     * @param {*} - list with method, url, body, credentials.
      * @return {promise} - response.
      */
     _fetch({
@@ -38,9 +51,9 @@ export default class FetchModule {
         url = '/',
         body = null,
         credentials = 'include',
+        headers = {},
     } = {}
     ) {
-        console.log('do fetch');
-        return fetch(url, {method, body, credentials});
+        return fetch(url, {method, body, credentials, headers});
     }
 }
