@@ -123,7 +123,6 @@ export default class SettingsView extends BaseView {
                         body: formData,
                         credentials: 'include',
                         headers: {
-                            'Content-Type': 'multipart/form-data; boundary=RaNdOmDeLiMiTeR',
                             'csrf-token': window.CSRFtoken,
                         },
                     })
