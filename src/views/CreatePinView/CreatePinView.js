@@ -40,15 +40,16 @@ export default class CreatePinView extends BaseView {
      * Render CreatePin view.
      */
     render() {
-        fetch(BACKEND_ADDRESS + '/profile/data', {
-            method: 'GET',
+        fetchModule.Get({
+            url: BACKEND_ADDRESS + '/profile/data',
             body: null,
-            credentials: 'include',
         })
             .then((response) => {
                 return response.json();
             })
             .then((responseBody) => {
+                CSRFtoken = responseBody.csrf_token;
+
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
 

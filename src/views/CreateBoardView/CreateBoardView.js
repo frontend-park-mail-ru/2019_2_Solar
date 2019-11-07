@@ -40,15 +40,16 @@ export default class CreateBoardView extends BaseView {
      * Render CreateBoardView view.
      */
     render() {
-        fetch(BACKEND_ADDRESS + '/profile/data', {
-            method: 'GET',
+        fetchModule.Get({
+            url: BACKEND_ADDRESS + '/profile/data',
             body: null,
-            credentials: 'include',
         })
             .then((response) => {
                 return response.json();
             })
             .then((responseBody) => {
+                CSRFtoken = responseBody.csrf_token;
+
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
 
@@ -66,14 +67,12 @@ export default class CreateBoardView extends BaseView {
                     const data = {
                         'title': createBoardForm.elements['boardname'].value,
                         'description': createBoardForm.elements['boardcontent'].value,
-                        'category': 'something',
+                        'category': 'cars',
                     };
 
-                    fetch(BACKEND_ADDRESS + '/board', {
-                        method: 'POST',
+                    fetchModule.Post({
+                        url: BACKEND_ADDRESS + '/board',
                         body: JSON.stringify(data),
-                        credentials: 'include',
-                        headers: {'Content-Type': 'application/json'},
                     })
                         .then((response) => {
                             if (response.ok) {
