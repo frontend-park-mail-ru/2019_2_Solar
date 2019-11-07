@@ -132,8 +132,8 @@ export default class ProfileView extends BaseView {
                             const pinsProfile = responseBody.body.pins;
                             for (let i = 0; i < pinsProfile.length; i++) {
                                 const pinForUserView = new PinForUserViewComponent(viewPinBoards);
-                                pinForUserView.render({pinImg: bg,
-                                    content: 'Какое-нибудь название с продолжением'});
+                                pinForUserView.render({id: pinsProfile[i].id, pinImg: BACKEND_ADDRESS + '/' + pinsProfile[i].pin_dir,
+                                    content: pinsProfile[i].title});
                             }
                         })
                         .catch(() => {
