@@ -84,14 +84,14 @@ export default class CreatePinView extends BaseView {
                     const pin = {
                         title: createPinForm.elements['title'].value,
                         description: createPinForm.elements['description'].value,
-                        board_id: boardFromHbs[1],
+                        board_id: Number(boardFromHbs[1]),
                     };
 
                     formData.append('pinPicture', createPinForm.elements['pinPicture'].files[0]);
                     formData.append('pin', JSON.stringify(pin));
 
                     fetchModule.Post({
-                        url: BACKEND_ADDRESS + '/profile/picture',
+                        url: BACKEND_ADDRESS + '/pin',
                         body: formData,
                         credentials: 'include',
                         headers: {
