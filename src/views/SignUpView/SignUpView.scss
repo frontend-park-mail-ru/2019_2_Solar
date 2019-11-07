@@ -3,6 +3,9 @@ body {
     padding: 0;
 }
 
+.signup-form-block__error-text {
+    color: red;
+}
 .signup-block {
     display: flex;
     width: 450px;
