@@ -25,10 +25,9 @@ export default class PinForIndexComponent {
     /**
      * Render PinForIndex component.
      * @param {object} context - Context to render with.
-     * @return {string}
      */
     render(context) {
         context['PHPlus'] = PlusImg;
-        return PinForIndexTemplate(context);
+        this._parent.innerHTML += PinForIndexTemplate(context);
     }
 }

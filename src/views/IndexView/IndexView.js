@@ -1,6 +1,8 @@
 import BaseView from '../BaseView/BaseView.js';
 import HeaderComponent from '../../components/Header/Header.js';
 
+import PinForIndex from '../../components/PinForIndex/PinForIndex.js';
+
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import './IndexView.scss';
@@ -25,7 +27,7 @@ export default class IndexView extends BaseView {
      */
     render() {
         fetchModule.Get({
-            url: BACKEND_ADDRESS + '/profile/data',
+            url: BACKEND_ADDRESS + '/pin/list/new',
             body: null,
         })
             .then((response) => {
@@ -38,12 +40,27 @@ export default class IndexView extends BaseView {
                 this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
-                header.data = responseBody;
                 header.render();
 
                 const index = IndexViewTemplate();
 
                 this.el.innerHTML += index;
+
+                const indexPage = document.getElementById('index-page');
+                if (responseBody.body.pins) {
+                    const pinsIndex = responseBody.body.pins;
+                    console.log(pinsIndex);
+
+                    for (let i = 0; i < pinsIndex.length; i++) {
+                        const pinForIndexView = new PinForIndex(indexPage);
+                        pinForIndexView.render({
+                            id: pinsIndex[i].id,
+                            pinImg: BACKEND_ADDRESS + '/' + pinsIndex[i].pin_dir,
+                            content: pinsIndex[i].title});
+                    }
+                } else {
+                    indexPage.textContent = 'Ещё нет пинов для Вашего просмотра :с';
+                }
             });
     }
 }
