@@ -74,7 +74,11 @@ export default class SignUpView extends BaseView {
                     return response.json();
                 })
                 .then((responseBody) => {
-                    errText.textContent = 'Ошибочка: ' + responseBody.body;
+                    if (responseBody.body.info) {
+                        errText.textContent = 'Ошибочка: ' + responseBody.body.info;
+                    } else {
+                        errText.textContent = 'Ошибочка: ' + responseBody.body;
+                    }
                 });
         });
     }
