@@ -36,7 +36,6 @@ router
     .register('/pin', PinView)
     .register('/pin_change', PinEditingView)
     .register('/create_board', CreateBoardView)
-    .register('/board', BoardView)
     .register('/board_change', BoardChangeView)
     .register('/dialog', DialogView)
     .register('/user', UserView)
