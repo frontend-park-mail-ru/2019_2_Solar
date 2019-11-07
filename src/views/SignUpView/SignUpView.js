@@ -4,7 +4,7 @@ import SignupViewTemplate from './SignUpView.hbs';
 import './SignUpView.scss';
 import ButtonComponent from '../../components/Button/Button.js';
 
-// import {validateSignup} from '../../utils/validation.js';
+import {validateSignup} from '../../utils/validation.js';
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import bus from '../../utils/bus.js';
@@ -46,22 +46,16 @@ export default class SignUpView extends BaseView {
         const signUpForm = document.getElementById('inputdata_signup');
         signUpForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            const errText = document.getElementById('errorText');
 
             const email = signUpForm.elements['email'].value;
             const username = signUpForm.elements['username'].value;
             const password = signUpForm.elements['password'].value;
 
-            // if (!validateSignup(signUpForm)) {
-            //     alert('Did not validate');
-            //     return;
-            // }
-
-            /* for interface sem */
-            if (email == '' || username == '' || password == '') {
-                alert('Did not validate');
+            if (!validateSignup(signUpForm)) {
+                errText.textContent = 'Ошибочка: ' + 'невалидные данные';
                 return;
             }
-            /* **************** */
 
             const data = {'email': email, 'password': password, 'username': username};
 
@@ -80,7 +74,6 @@ export default class SignUpView extends BaseView {
                     return response.json();
                 })
                 .then((responseBody) => {
-                    const errText = document.getElementById('errorText');
                     errText.textContent = 'Ошибочка: ' + responseBody.body;
                 });
         });
