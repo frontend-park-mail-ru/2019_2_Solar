@@ -63,9 +63,12 @@ export default class LoginView extends BaseView {
                 .then((response) => {
                     if (response.ok) {
                         bus.emit('/profile');
-                    } else {
-                        alert('Ошибка авторизации');
                     }
+                    return response.json();
+                })
+                .then((responseBody) => {
+                    const errText = document.getElementById('loginTextErr');
+                    errText.textContent = 'Ошибочка: ' + responseBody.body.info;
                 });
         });
     }

@@ -76,9 +76,12 @@ export default class SignUpView extends BaseView {
                 .then((response) => {
                     if (response.ok) {
                         bus.emit('/profile');
-                    } else {
-                        alert('Ошибка регистрации');
                     }
+                    return response.json();
+                })
+                .then((responseBody) => {
+                    const errText = document.getElementById('errorText');
+                    errText.textContent = 'Ошибочка: ' + responseBody.body;
                 });
         });
     }

@@ -3,6 +3,11 @@ body {
     padding: 0;
 }
 
+.login-text-error {
+    font-family: Roboto;
+    color: red;
+    margin-top: 4px;
+}
 .login-block_background {
     bottom: 0px;
     left: 0px;
@@ -67,7 +72,7 @@ input {
 }
 
 .login-form-block__input_email_margin {
-    margin-top: 30px;   
+    margin-top: 20px;   
 }
 
 .login-form-block__input_password_margin {
