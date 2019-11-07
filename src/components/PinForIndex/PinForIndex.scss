@@ -4,9 +4,12 @@
     box-sizing: border-box;
     border-radius: 5px;
     width: 229px;
-
     background: #FFFFFF;
     border: 1px solid #D9D9D9;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    margin-inline-start: 15px;
+    margin-inline-end: 15px;
 }
 
 .pin-for-index__content {
