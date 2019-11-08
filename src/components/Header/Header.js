@@ -50,7 +50,6 @@ export default class HeaderComponent {
 
         const context = {
             username: this._data.body.user.username,
-            alertsCount: 10,
             avatarPhoto: (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg,
 
             PHlogo: Logo,
@@ -65,5 +64,46 @@ export default class HeaderComponent {
         const html = HeaderTemplate(context);
 
         this._parent.innerHTML = html;
+
+        document.getElementById('spanNum').textContent = String(0);
+        setInterval(() => {
+            fetchModule.Get({
+                url: BACKEND_ADDRESS + '/notice',
+                body: null,
+            })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((responseBody) => {
+                    CSRFtoken = responseBody.csrt_token;
+
+                    console.log(responseBody);
+                    const noticelen = responseBody.body.notices;
+                    document.getElementById('spanNum').textContent = String(noticelen.length);
+
+                    const list = document.getElementById('list');
+                    for (let i = 0; i < noticelen.length; i++) {
+                        list.innerHTML += '<li><a href="#">'+ noticelen[i].message + '</li>';
+                    }
+                });
+        }, 10000);
+
+        const viewSearchForm = document.getElementById('headerSearch');
+
+        viewSearchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const searchText = viewSearchForm.elements['searchtext'].value;
+            fetchModule.Post({
+                url: BACKEND_ADDRESS + '/find/pins/by/tag/' + searchText,
+                body: null,
+            })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((responseBody) => {
+                    console.log(responseBosy);
+                });
+        });
     }
 }

@@ -1,16 +1,17 @@
 <div id="header">
     <div class="header">
-        <a href='/index' class="logo">
+        <a href='/index/new' class="logo">
             <img data-section="index" class="logo__picture" src={{PHlogo}}>
         </a>
-        <div class="search">
+        <form id="headerSearch" class="search">
             <div class="search__icon">
                     <img src={{PHLupa}}>
             </div>
             <div class="search__input">
-                <input type="search" placeholder="Поисковая строка">
+                <input type="search" id="searchtext" name="searchtext" placeholder="Поисковая строка">
             </div>
-        </div>
+            <input type="submit" style="display:none;" value="Найти">
+        </form>
         <div class="left-controls">
             <a href="/index/new" class="left-controls__text-to-ind">Главная</a>
             <a href="/index/subscribe" class="left-controls__text-to-ind">Подписки</a>
@@ -27,16 +28,12 @@
                 <ul>
                     <li class="alerts-menu_margin-list">
                         <img src={{PHbell}} class="bell-img dialog__items">
-                        <ul class="alerts-menu__pad_menu">
-                            <li><a href="#">на вас подписался гражданин кто</a></li>
-                            <li><a href="#">Вам написал сообщение гражданин кто</a></li>
+                        <ul id="list" class="alerts-menu__pad_menu">
                         </ul>
                     </li>
                 </ul>
             </nav>
-            {{#if alertsCount}}
-                <span class="alerts-count">{{alertsCount}}</span>
-            {{/if}}
+            <span id="spanNum" class="alerts-count"></span>
             <a href="/settings"><img data-section="settings" src={{PHsetting}} class="mun-img dialog__items"></a>
         </div>
     </div>
