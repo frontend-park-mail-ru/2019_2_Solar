@@ -86,7 +86,7 @@ export default class HeaderComponent {
                         list.innerHTML += '<li><a href="#">'+ noticelen[i].message + '</li>';
                     }
                 });
-        }, 10000);
+        }, 30000);
 
         const viewSearchForm = document.getElementById('headerSearch');
 
