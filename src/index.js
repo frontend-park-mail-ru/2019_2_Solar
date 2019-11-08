@@ -38,8 +38,8 @@ router
     .register('/create_board', CreateBoardView)
     .register('/board_change', BoardChangeView)
     .register('/dialog', DialogView)
-    .register('/user', UserView)
     .register('/board/:id', BoardView)
+    .register('/users/:username', UserView)
     .register('/index', IndexView);
 
 window.CSRFtoken = "";
