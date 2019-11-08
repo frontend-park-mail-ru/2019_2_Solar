@@ -84,8 +84,13 @@ export default class UserView extends BaseView {
                     })
                         .then((response) => {
                             if (response.ok) {
-                                console.log('hey');
                                 document.getElementById('buttonSub').disabled = true;
+                                const message = 'На вас подписался ' + GlobalUser.body.user.username;
+
+                                fetchModule.Post({
+                                    url: BACKEND_ADDRESS + '/notice/' + responseBody.body.user.id,
+                                    body: JSON.stringify({message: message}),
+                                });
                             }
                         });
                 });
