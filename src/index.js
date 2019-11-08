@@ -40,7 +40,7 @@ router
     .register('/dialog', DialogView)
     .register('/board/:id', BoardView)
     .register('/users/:username', UserView)
-    .register('/index', IndexView);
+    .register('/index/:type', IndexView);
 
 window.CSRFtoken = "";
 window.fetchModule = new FetchModule(application);

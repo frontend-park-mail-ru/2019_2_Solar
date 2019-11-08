@@ -97,7 +97,7 @@ export default class PinView extends BaseView {
                             for (let i = 0; i < pinComments.length; i++) {
                                 const comment = new PinCommentComponent(pinViewCommentsList);
                                 comment.render({
-                                    commentAuthorImg: bg,
+                                    commentAuthorImg: (pinComments[i].author_dir) ? (BACKEND_ADDRESS + '/' + pinComments[i].author_dir) : bg,
                                     commentAuthor: pinComments[i].author_username,
                                     commentContent: pinComments[i].text});
                             }

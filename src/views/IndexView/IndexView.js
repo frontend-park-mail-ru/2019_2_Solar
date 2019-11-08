@@ -27,7 +27,7 @@ export default class IndexView extends BaseView {
      */
     render() {
         fetchModule.Get({
-            url: BACKEND_ADDRESS + '/pin/list/new',
+            url: BACKEND_ADDRESS + '/pin/list/' + this.args,
             body: null,
         })
             .then((response) => {

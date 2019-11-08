@@ -110,11 +110,11 @@
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
-}
 
-.profile-button:hover {
-    background-color:#D2D2D2;
-    color: #000000;
+    &:hover {
+        background-color:#D2D2D2;
+        color: #000000;
+    }
 }
 
 .profile-button_push {
