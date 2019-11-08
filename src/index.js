@@ -33,13 +33,13 @@ router
     .register('/settings', SettingsView)
     .register('/profile', ProfileView)
     .register('/create_pin', CreatePinView)
-    .register('/pin', PinView)
+    .register('/pin/:id', PinView)
     .register('/pin_change', PinEditingView)
     .register('/create_board', CreateBoardView)
     .register('/board_change', BoardChangeView)
     .register('/dialog', DialogView)
-    .register('/user', UserView)
     .register('/board/:id', BoardView)
+    .register('/users/:username', UserView)
     .register('/index', IndexView);
 
 window.CSRFtoken = "";

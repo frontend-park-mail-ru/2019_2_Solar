@@ -7,8 +7,8 @@ import '../ProfileView/ProfileView.scss';
 import HeaderComponent from '../../components/Header/Header.js';
 // import PinForIndexComponent from '../../components/PinForIndex/PinForIndex.js';
 
-/* import bus from '../../utils/bus.js';
-import {BACKEND_ADDRESS} from '../../config/Config.js'; */
+// import bus from '../../utils/bus.js';
+import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import bg from '../../images/bg.png';
 
@@ -54,14 +54,41 @@ export default class UserView extends BaseView {
      * Render User view.
      */
     render() {
-        const header = new HeaderComponent(this.el);
-        header.render();
+        fetchModule.Get({
+            url: BACKEND_ADDRESS + '/users/' + this.args,
+            body: null,
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((responseBody) => {
+                CSRFtoken = responseBody.csrf_token;
 
-        const context = {
-            avatarphoto: bg,
-            username: 'Username',
-            status: 'Status',
-        };
-        this.el.innerHTML += UserViewTemplate(context);
+                const header = new HeaderComponent(this.el);
+                header.render();
+
+                const context = {
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
+                    username: responseBody.body.user.username,
+                    status: responseBody.body.user.status,
+                };
+                this.el.innerHTML += UserViewTemplate(context);
+
+                const subscribeForm = document.getElementById('userData');
+                subscribeForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    fetchModule.Post({
+                        url: BACKEND_ADDRESS + '/subscribe/' + responseBody.body.user.username,
+                        body: null,
+                    })
+                        .then((response) => {
+                            if (response.ok) {
+                                console.log('hey');
+                                document.getElementById('buttonSub').disabled = true;
+                            }
+                        });
+                });
+            });
     }
 }

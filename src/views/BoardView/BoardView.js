@@ -11,7 +11,6 @@ import grayPenImg from '../../images/grey-pen.png';
 import bg from '../../images/bg.png';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
-import bus from '../../utils/bus.js';
 
 /** Class representing a BoardView view. */
 export default class BoardView extends BaseView {
@@ -48,7 +47,7 @@ export default class BoardView extends BaseView {
      */
     render() {
         fetchModule.Get({
-            url: BACKEND_ADDRESS + '/profile/data',
+            url: BACKEND_ADDRESS + '/board/' + this.args,
             body: null,
         })
             .then((response) => {
@@ -61,15 +60,15 @@ export default class BoardView extends BaseView {
                 this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
-                header.data = responseBody;
                 header.render();
 
                 this.data = responseBody;
 
                 const context = {
-                    username: this._data.body.user.username,
-                    boardName: 'Название доски',
-                    pinCount: 1,
+                    username: GlobalUser.body.user.username,
+                    boardName: responseBody.body.board.title,
+                    pinCount: responseBody.body.pins.length,
+                    avatarImg: (GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + GlobalUser.body.user.avatar_dir) : bg,
 
                     PHGrayPen: grayPenImg,
                     PHPlus: plusImg,
@@ -78,23 +77,12 @@ export default class BoardView extends BaseView {
                 this.el.innerHTML += BoardViewTemplate(context);
 
                 const boardViewPinsList = document.getElementById('boardViewPins');
-                const pinForUserView = new PinForUserViewComponent(boardViewPinsList);
-                pinForUserView.render({pinImg: bg,
-                    content: 'Какое-нибудь название с продолжением'});
-
-                /* for picture settings */
-                const toSettings = document.getElementById('board-page').querySelectorAll('[data-section=\'settings\']')[0];
-                toSettings.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    bus.emit('/board_change');
-                });
-
-                /* for pin plus */
-                const toCreatePin = document.getElementById('board-page').querySelectorAll('[data-section=\'createPin\']')[0];
-                toCreatePin.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    bus.emit('/create_pin');
-                });
+                const pinsBoard = responseBody.body.pins;
+                for (let i = 0; i < pinsBoard.length; i++) {
+                    const pinForUserView = new PinForUserViewComponent(boardViewPinsList);
+                    pinForUserView.render({id: pinsBoard[i].id, pinImg: BACKEND_ADDRESS + '/' + pinsBoard[i].pin_dir,
+                        content: pinsBoard[i].title});
+                }
             });
     }
 }
