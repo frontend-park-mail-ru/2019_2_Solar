@@ -1,0 +1,35 @@
+.message {
+    display:flex;
+    flex-direction: column;
+}
+
+.message_margin {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.message__creator {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    
+    color: #000000;
+}
+
+.message__content {
+    overflow: hidden;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #000000;
+}
+
+.message__context_margin {
+    margin-top:3px;
+}

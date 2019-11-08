@@ -1,0 +1,24 @@
+<div id="boardchange-page" class="boardchange-page__flex-container">
+    <div class="boardchange-block">
+        <div class="boardchange-block__title">Изменение доски</div>
+        <form id="BoardChangeData">
+            <input type="text" id="boardname" placeholder="Добавьте название" value={{boardName}} class="boardchange-form__title boardchange-form__title_pos ">
+            <input type="text" id="boardcontent" placeholder="Добавьте описание" value={{content}} class="boardchange-form__content boardchange-form__content_pos">
+            
+            <div class="boardchange-form_button_pos" >
+                <input type="submit" name="button_del" class="boardchange-form__button-del" value="Удалить">
+                <a href="/profile" type="submit" data-section="profile" class="boardchange-form__button-out create-form__button-out_pos">Отмена</a>
+                <input type="submit" name="button_ok" class="boardchange-form__button-save create-form__button-save_pos" value="Готово">
+            </div>
+
+            <div class="boardchange-form__pin-title boardchange-form__pin-title_pos">Пины на доске</div>
+            
+            <div class="boardchange-form__pins">
+                {{{pinForBoardEditing}}}
+                <div class="boardchange-form__plus-pin boardchange-form__plus-pin_margin">
+                    +
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.login-text-error {
+    font-family: Roboto;
+    color: red;
+    margin-top: 4px;
+}
+.login-block_background {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    position: absolute;
+    overflow: auto;
+    display: flex;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.login-block {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    width: 388px;
+    height: 430px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+    padding: 22px 0px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-block__logo {
+    width: 70px;
+    height: 70px;
+}
+
+.login-block__logo_padding {
+    padding-top: 25px;
+}
+
+.login-block__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+
+    color: #000000;
+
+    margin-top: 10px;
+}
+
+input {
+    display: block;
+    padding-left: 10px;
+}
+
+.login-form-block__input {
+    display: flex;
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #A19F9C;
+    box-sizing: border-box;
+}
+
+.login-form-block__input_email_margin {
+    margin-top: 20px;   
+}
+
+.login-form-block__input_password_margin {
+    margin-top: 7px;   
+}
+
+.button {
+    background-color: #FF8F0C;
+    border-radius: 5px;
+
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    border: 0;
+}
+
+.login-block__button {
+    width: 250px;
+    height: 45px;
+}
+
+.login-block__button_margin {
+    margin-top: 11px;
+}
+
+.login-block__underbutton-text {
+    width: 250px;
+    height: 45px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+}
+
+.a-bold-decoration {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 5px;
+}
+
+.a-bold-decoration_margin {
+    margin-top: 5px;
+}

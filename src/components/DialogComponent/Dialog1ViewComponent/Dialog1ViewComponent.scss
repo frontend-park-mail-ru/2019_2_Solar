@@ -1,0 +1,45 @@
+.dialogview__title-one {
+    margin-left: 46px;
+    margin-right: 30px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dialogview__title-one__text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: #000000;
+}
+
+.dialogview__title-one__button {
+    display: flex;
+    margin-left:auto;
+    align-items: center;
+    justify-content: center;
+    width: 156px;
+    height: 37px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+
+    background: #FF8F0C;
+    border-radius: 5px;
+}
+
+.dialogview__title-two {
+    margin-left: 46px;
+    margin-right: 30px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

@@ -1,0 +1,30 @@
+<div id="createpin-page" class="createpin-container">
+    <form id="createPinData" class="createpin-form">
+        <div class="createpin__left-column">
+            <img id="createPinImg" class="createpin__left-column__img">
+            <input type="button" id="changePin" value="Загрузить изображение" onclick="document.getElementById('pinphoto').click();" class="createpin-form__pinphoto createpin-form__pinphoto_pos">
+            <input type="file" name="pinPicture" id="pinphoto" multiple accept="image/*" style="display:none">
+        </div>
+        <div class="createpin__right-column">
+            <div class="createpin__right-column__title">{{title}}</div>
+            <input type="text" id="pinname" name="title" placeholder="Добавьте название" value="" class="createpin-form__title createpin-form__title_pos">
+            <input type="text" id="pincontent" name="description" placeholder="Добавьте описание" value="" class="createpin-form__content createpin-form__content_pos">
+
+            <div class="createpin__right-column__choose-board">
+                <div class="createpin__right-column__choose-board__title">Выберете доску</div>
+                <select name="board" id="board-select" class="board-select_design board-select_design_pos">
+                    <option disabled>Выберете доску</option>
+                    {{#each boardsNames}}
+                        <option>{{this}}</option>
+                    {{/each}}
+                </select>
+                        
+            </div>
+
+            <div class="createpin__buttons createpin__buttons_pos" >
+                <a href="/profile" type="submit" class="createpin__buttons__button-out">Отмена</a>
+                <input type="submit" class="createpin__buttons__button-save createpin__buttons__button-save_pos" value="Готово">
+            </div>
+        </div>
+    </form>
+</div>
