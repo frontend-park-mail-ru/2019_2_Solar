@@ -11,28 +11,88 @@ body {
     width: 450px;
     margin-top: 200px;
     font-family: Roboto, sans-serif;
-
+    border: 8px solid #FF8F0C;
+    box-shadow: 1px 2px 2px rgba(255, 0, 0, .5);
+    border-radius: 25px;
     flex-direction: column;
+    transition: box-shadow 2s ease;
+    &:hover {
+        transition: box-shadow 0.5s ease;
+        box-shadow: 1px 2px 80px rgba(255, 0, 0, .5);
+    }
+    position: relative;
+    display: inline-block;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 10%;
+        height: 15px;
+        display: block;
+        margin-top: 10%;
+        left: 45%;
+        border-radius: 5px;
+        background-color: #FF8F0C;
+        transition: width .5s cubic-bezier(0,.55,.54,.98);
+        transition: left .5s cubic-bezier(0,.55,.54,.98);
+        -webkit-transition: width .5s cubic-bezier(0,.55,.54,.98);
+        transition: .5s cubic-bezier(0,.55,.54,.98);
+        filter: drop-shadow(2px 2px 2px rgba(255,0,0,.5));
+    }
+    &:hover:after {
+        width: 140%;
+        left: -20%;
+        transition: left .3s cubic-bezier(1,.13,.83,.67);
+        transition: width .3s cubic-bezier(1,.13,.83,.67);
+        transition: .3s cubic-bezier(1,.13,.83,.67);
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        width: 10%;
+        height: 15px;
+        display: block;
+        margin-top: -10%;
+        right: 45%;
+        border-radius: 5px;
+        background-color: #FF8F0C;
+        transition: width .5s cubic-bezier(0,.55,.54,.98);
+        transition: left .5s cubic-bezier(0,.55,.54,.98);
+        transition: box-shadow 0.5s ease;
+        -webkit-transition: width .5s cubic-bezier(0,.55,.54,.98);
+        transition: .5s cubic-bezier(0,.55,.54,.98);
+        filter: drop-shadow(2px 2px 2px rgba(255,0,0,.5));
+    }
+    &:hover:before {
+        width: 140%;
+        right: -20%;
+        transition: left .3s cubic-bezier(1,.13,.83,.67);
+        transition: width .3s cubic-bezier(1,.13,.83,.67);
+        transition: .3s cubic-bezier(1,.13,.83,.67);
+    }
 }
 
 .signup-block_margin {
-    margin-left: 150px;
+    margin-left: 10%;
 }
 
 .signup-block__title-solar {
-    height: 160px;
-
+    width: auto;
+    text-align: center;
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 50px;
     line-height: 66px;
+    padding: 10%;
 
     color: #000000;
-    width: 100%;
+    // width: 100%;
+    
 }
 
 .signup-block__under-title {
+    width: 100%;
+    text-align: center;
     height: 80px;
     font-family: Roboto;
     font-style: normal;
@@ -90,7 +150,25 @@ input {
     text-decoration: none;
     font-weight: bold;
     color: #000000;
-    padding-left: 5px;
+    position: relative;
+    display: inline-block;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        display: block;
+        margin-top: -1px;
+        right: 0;
+        background: #000000;
+        transition: width .2s ease;
+        -webkit-transition: width .2s ease;
+    }
+    &:hover:after {
+        width: 100%;
+        left: 0;
+        background: #000000;
+    }
 }
 
 .a-bold-decoration_margin {
