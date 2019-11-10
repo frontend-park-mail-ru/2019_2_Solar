@@ -10,7 +10,6 @@ body {
     display: flex;
     width: 450px;
     margin-top: 200px;
-    font-family: Roboto, sans-serif;
 
     flex-direction: column;
 }
@@ -22,7 +21,6 @@ body {
 .signup-block__title-solar {
     height: 160px;
 
-    font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 50px;
@@ -34,7 +32,6 @@ body {
 
 .signup-block__under-title {
     height: 80px;
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
@@ -78,7 +75,6 @@ input {
     width: 323px;
     height: 45px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
