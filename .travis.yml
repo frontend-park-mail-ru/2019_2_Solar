@@ -16,19 +16,6 @@ before_install:
 script:
   - docker run solar/sunrise npm test -- --coverage
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-2"
-  app: "solar"
-  env: "Solar-env"
-  bucket_name: "elasticbeanstalk-us-east-2-135780901986"
-  bucket_path: "solar"
-  on:
-    branch: dev
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: "$AWS_SECRET_KEY"
-
 branches:
   only:
     - dev
