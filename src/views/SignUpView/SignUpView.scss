@@ -73,6 +73,11 @@ body {
 .signup-form-block__error-text {
     color: red;
 }
+
+.form-block__error-input {
+  box-shadow: 0 0 2px 1px red;
+}
+
 .signup-block {
     z-index: 999;
     background-color: #ffffff;
