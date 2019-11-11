@@ -77,7 +77,6 @@ export default class HeaderComponent {
                 .then((responseBody) => {
                     CSRFtoken = responseBody.csrt_token;
 
-                    console.log(responseBody);
                     const noticelen = responseBody.body.notices;
                     document.getElementById('spanNum').textContent = String(noticelen.length);
 
