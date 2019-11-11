@@ -73,6 +73,11 @@ body {
 .signup-form-block__error-text {
     color: red;
 }
+
+.form-block__error-input {
+  box-shadow: 0 0 2px 1px red;
+}
+
 .signup-block {
     z-index: 999;
     background-color: #ffffff;
@@ -163,7 +168,6 @@ body {
     width: 100%;
     text-align: center;
     height: 80px;
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
@@ -207,7 +211,6 @@ input {
     width: 323px;
     height: 45px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 13px;

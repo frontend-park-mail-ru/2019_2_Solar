@@ -4,7 +4,7 @@ import SignupViewTemplate from './SignUpView.hbs';
 import './SignUpView.scss';
 import ButtonComponent from '../../components/Button/Button.js';
 
-import {validateSignup} from '../../utils/validation.js';
+import {validateSignup, errorDraw, deleteErrorDraw} from '../../utils/validation.js';
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
 import bus from '../../utils/bus.js';
@@ -62,8 +62,19 @@ export default class SignUpView extends BaseView {
             const username = signUpForm.elements['username'].value;
             const password = signUpForm.elements['password'].value;
 
-            if (!validateSignup(signUpForm)) {
-                errText.textContent = 'Ошибочка: ' + 'невалидные данные';
+            const validation = validateSignup(signUpForm);
+            const inputForm = {
+                email: document.getElementById('signUpEmail'),
+                username: document.getElementById('signUpUsername'),
+                password: document.getElementById('signUpPassword'),
+            };
+
+            deleteErrorDraw(inputForm, 'form-block__error-input');
+
+            if ( validation != null) {
+                errText.textContent = 'Ошибочка данных: ' + validation.errorMessage;
+
+                errorDraw(inputForm, validation.errorNumbers, 'form-block__error-input');
                 return;
             }
 

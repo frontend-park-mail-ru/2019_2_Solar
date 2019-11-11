@@ -7,6 +7,7 @@ import HeaderComponent from '../../components/Header/Header.js';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 import bus from '../../utils/bus.js';
+import showFile from '../../utils/readFile.js';
 
 /** Class representing a CreatePin view. */
 export default class CreatePinView extends BaseView {
@@ -73,6 +74,11 @@ export default class CreatePinView extends BaseView {
                 };
 
                 this.el.innerHTML += CreatePinViewTemplate(context);
+
+                const pinImgField = document.getElementById('pinphoto');
+                pinImgField.addEventListener('change', (e) => {
+                    showFile(e, 'createPinImg');
+                });
 
                 const createPinForm = document.getElementById('createPinData');
 

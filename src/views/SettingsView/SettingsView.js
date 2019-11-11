@@ -6,6 +6,7 @@ import './SettingsView.scss';
 import HeaderComponent from '../../components/Header/Header.js';
 
 import {BACKEND_ADDRESS} from '../../config/Config.js';
+import showFile from '../../utils/readFile.js';
 
 import FImg from '../../images/edit.svg';
 import SImg from '../../images/account.svg';
@@ -89,6 +90,11 @@ export default class SettingsView extends BaseView {
 
                 const settingsForm = document.getElementById('UserSettings');
 
+                const imgField = document.getElementById('avatarphoto');
+                imgField.addEventListener('change', (e) => {
+                    showFile(e, 'avatarPhotoSettings');
+                });
+
                 settingsForm.addEventListener('submit', (e) => {
                     e.preventDefault();
 
@@ -134,8 +140,6 @@ export default class SettingsView extends BaseView {
                             } else {
                                 if (dataresponse) {
                                     bus.emit('/profile');
-                                } else {
-                                    createSettings();
                                 }
                             }
                         });
