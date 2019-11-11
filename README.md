@@ -4,7 +4,7 @@
 
 ## Попробовать онлайн
 
-http://solar-env.v2zxh2s3me.us-east-2.elasticbeanstalk.com/
+http://167.172.183.157/
 
 ## Установка и запуск
 
@@ -25,7 +25,9 @@ npm test
 ## Сделано с помощью
 
 * VanillaJS - лучший JS-фреймворк
-* Express
+* Handlebars
+* Docker
+* nginx
 
 ## Авторы
 
