@@ -6,9 +6,9 @@
     <div class="signup-form-block">
         <div id="errorText" class="signup-form-block__error-text"></div>
         <form id="inputdata_signup">
-            <input type="email" name="email" placeholder="Email" id="signUpEmail" title="Должен содержать: [a-z][A-Z]" class="signup-form-block__input signup-form-block__input_email-margin">
-            <input type="text" name="username" placeholder="Имя пользователя" id="signUpUsername" title="Длина больше 8 сим, должен содержать: [a-z][A-Z]" class="signup-form-block__input signup-form-block__input_margin-top">
-            <input type="password" name="password" placeholder="Пароль" title="Должен содержать: [a-z][A-Z][!][0-9]" id="signUpPassword" class="signup-form-block__input signup-form-block__input_margin-top">
+            <input type="email" name="email" placeholder="Email" id="signUpEmail" title="Должен содержать: @ и ." class="signup-form-block__input signup-form-block__input_email-margin">
+            <input type="text" name="username" placeholder="Имя пользователя" id="signUpUsername" title="Длина от 3 символов, может содержать смиволы a-z, A-Z, 0-9, _, -" class="signup-form-block__input signup-form-block__input_margin-top">
+            <input type="password" name="password" placeholder="Пароль" title="Длина от 8 символов, должен содержать хотя бы один символ из a-z, A-Z" id="signUpPassword" class="signup-form-block__input signup-form-block__input_margin-top">
             <div class="signup-form-block__button_margin">{{{button}}}</div>
         </form>
         <div class="signup-form-block__underbutton-text a-bold-decoration_margin">
