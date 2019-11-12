@@ -1,6 +1,6 @@
 const emailRegex = '^(?=.{1,50})';
-const passwordRegex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,30})';
-const usernameRegex = '^(?=.{1,30})';
+const passwordRegex = '[a-zA-Z]';
+const usernameRegex = '[^a-zA-Z0-9_-]';
 const nameRegex = '^(?=.{1,30})';
 const statusRegex = '^(?=.{1,200})';
 
@@ -19,7 +19,10 @@ export function validateEmail(value) {
  * @return {boolean} Valid or not.
  */
 export function validatePassword(value) {
-    return (new RegExp(passwordRegex)).test(value);
+    if (value.length > 7) {
+        return (new RegExp(passwordRegex)).test(value);
+    }
+    return false;
 }
 
 /**
@@ -28,7 +31,10 @@ export function validatePassword(value) {
  * @return {boolean} Valid or not.
  */
 export function validateUsername(value) {
-    return (new RegExp(usernameRegex)).test(value);
+    if (value.length > 2) {
+        return !(new RegExp(usernameRegex)).test(value);
+    }
+    return false;
 }
 
 /**
