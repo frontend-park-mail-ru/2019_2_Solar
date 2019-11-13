@@ -24,8 +24,9 @@
 }
 
 .viewpin-block__pin-photo {
-    width: 451px;
-    height: 649px;
+    object-fit: cover;
+    width: 488px;
+    height: 650px;
 
     background: #C4C4C4;
     border: 1px solid #A29F9C;
