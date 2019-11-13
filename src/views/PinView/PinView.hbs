@@ -8,7 +8,7 @@
                     <select name="board-select" class="viewpin-form__board-select_design viewpin-form__board-select_design_pos">
                         <option disabled>Выберете доску</option>
                         {{#each boardsNames}}
-                            <option>{{this}}</option>
+                            <option value={{this.board_id}}>{{this.board}}</option>
                         {{/each}}
                     </select>
                     <input type="submit" class="viewpin-block__right-column__buttom-save viewpin-block__right-column__buttom-save_pos" value="Сохранить">

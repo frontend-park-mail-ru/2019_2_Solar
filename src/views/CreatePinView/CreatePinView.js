@@ -58,7 +58,7 @@ export default class CreatePinView extends BaseView {
                     const boardsCreatePin = responseBody.body.boards;
                     console.log(boardsCreatePin);
                     for (let i = 0; i < boardsCreatePin.length; i++) {
-                        boardsNames.push(boardsCreatePin[i].title + ':' + boardsCreatePin[i].id);
+                        boardsNames.push({board: boardsCreatePin[i].title, board_id: boardsCreatePin[i].id});
                     }
                 }
 
@@ -84,13 +84,13 @@ export default class CreatePinView extends BaseView {
 
                 createPinForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    const boardFromHbs = createPinForm.elements['board'].value.split(':');
+                    const boardFromHbs = createPinForm.elements['board'].value;
 
                     const formData = new FormData();
                     const pin = {
                         title: createPinForm.elements['title'].value,
                         description: createPinForm.elements['description'].value,
-                        board_id: Number(boardFromHbs[1]),
+                        board_id: Number(boardFromHbs),
                     };
 
                     formData.append('pinPicture', createPinForm.elements['pinPicture'].files[0]);
