@@ -12,6 +12,7 @@ $shadows-medium: multiple-box-shadow(200);
 $shadows-big:    multiple-box-shadow(100);
 
 .stars1 {
+  z-index: -999;
   width: 3px;
   height: 3px;
   background: transparent;
@@ -29,6 +30,7 @@ $shadows-big:    multiple-box-shadow(100);
 }
     
 .stars2 {
+  z-index: -999;
   width: 4px;
   height: 4px;
   background: transparent;
@@ -46,6 +48,7 @@ $shadows-big:    multiple-box-shadow(100);
 }
     
 .stars3 {
+  z-index: -999;
   width: 5px;
   height: 5px;
   background: transparent;
@@ -76,6 +79,7 @@ body {
 }
 
 .signup-block {
+    float: left;
     z-index: 999;
     background-color: #ffffff;
     display: flex;
@@ -92,14 +96,14 @@ body {
         box-shadow: 1px 2px 80px rgba(255, 0, 0, .5);
     }
     position: relative;
-    display: inline-block;
+    // display: inline-block;
     &:after {
         content: '';
         position: absolute;
         width: 10%;
         height: 15px;
         display: block;
-        margin-top: 10%;
+        margin-top: 120%;
         left: 45%;
         border-radius: 5px;
         background-color: #FF8F0C;
@@ -251,4 +255,55 @@ input {
   to {
     transform: translateY(-3000px);
   }
+}
+
+.background {
+  background-color: #ffffff;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.signup-floating-images_container {
+  position: absolute;
+  display: inline-grid;
+  z-index: 1;
+  grid-template-columns: 1fr 1fr;
+  float: right;
+  right: 0;
+  width: 60rem;
+  height: 100%;
+}
+
+.signup-floating-images_column {
+  width: 100%;
+  & .signup-floating-images_column-scroll-1 {
+    width: 50%;
+    position:absolute;
+	  top:0;
+    animation: scroll 30s linear 1s infinite;
+  }
+  & .signup-floating-images_column-scroll-2 {
+    right: 0;
+    width: 50%;
+    position:absolute;
+	  top:0;
+    animation: scroll 20s linear 1s infinite;
+    &:hover {
+      background-color: #FF8F0C;
+      & img {
+        border: 5px solid #FFFFFF;
+      }
+    }
+  }
+  & img {
+    border-radius: 20px;
+    border: 5px solid #FF8F0C;
+    margin: 10px;
+    width: calc(100% - 20px);
+  }
+}
+
+@keyframes scroll {
+	100% { top: -100%; }  /* top is the number of spans (in this case 8) multiplied by span height (45px as described above)*/
 }

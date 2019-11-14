@@ -7,6 +7,13 @@ import ButtonComponent from '../../components/Button/Button.js';
 import {validateSignup, errorDraw, deleteErrorDraw} from '../../utils/validation.js';
 import {BACKEND_ADDRESS} from '../../config/Config.js';
 
+import sunriseKuinji from '../../images/sunrise_kuinji.jpg';
+import sunriseSea from '../../images/sunrise_sea.jpg';
+import sunriseOcean from '../../images/sunrise_ocean.jpg';
+import sunriseFlowers from '../../images/sunrise_flowers.jpg';
+import sunriseVan from '../../images/sunrise_van.jpg';
+import sunriseTown from '../../images/sunrise_town.jpg';
+
 import bus from '../../utils/bus.js';
 
 /** Class representing a Signup view. */
@@ -48,6 +55,8 @@ export default class SignUpView extends BaseView {
                     const button = new ButtonComponent();
                     const context = {
                         button: button.render({text: 'Зарегистрироваться'}),
+                        imagesColumn1: [sunriseKuinji, sunriseFlowers, sunriseSea],
+                        imagesColumn2: [sunriseTown, sunriseVan, sunriseOcean],
                     };
                     this.el.innerHTML = SignupViewTemplate(context);
 
