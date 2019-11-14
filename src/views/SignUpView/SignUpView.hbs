@@ -1,7 +1,7 @@
 <div id="signup-page">
     <div class="signup-block signup-block_margin">
-    <div class="signup-block__title-solar">Sunrise</div>
-    <div class="signup-block__under-title">Место, где вы можете выразить настоящего себя!</div>
+        <div class="signup-block__title-solar">Sunrise</div>
+        <div class="signup-block__under-title">Место, где вы можете выразить настоящего себя!</div>
 
     <div class="signup-form-block">
         <div id="errorText" class="signup-form-block__error-text"></div>
@@ -16,7 +16,29 @@
             <a href="/login" class="a-bold-decoration">Войти</a>
         </div>
     </div>
+    <div class="signup-floating-images_container">
+        <div class="signup-floating-images_column">
+            <div class="signup-floating-images_column-scroll-1">
+                {{#each imagesColumn1}}
+                    <img src={{this}}>
+                {{/each}}
+                {{#each imagesColumn1}}
+                    <img src={{this}}>
+                {{/each}}
+            </div>
+        </div>
+        <div class="signup-floating-images_column">
+            <div class="signup-floating-images_column-scroll-2">
+                {{#each imagesColumn2}}
+                    <img src={{this}}>
+                {{/each}}
+                {{#each imagesColumn2}}
+                    <img src={{this}}>
+                {{/each}}
+            </div>
+        </div>
     </div>
+    <div class="start1"></div>
     <div class="stars2"></div>
     <div class="stars3"></div>
 </div>
