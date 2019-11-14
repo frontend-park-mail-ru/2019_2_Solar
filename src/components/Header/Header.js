@@ -51,6 +51,7 @@ export default class HeaderComponent {
         const context = {
             username: this._data.body.user.username,
             avatarPhoto: (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg,
+            notice: 0,
 
             PHlogo: Logo,
             PHLupa: Lupa,

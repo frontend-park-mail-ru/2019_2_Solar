@@ -63,9 +63,12 @@ export default class CreateBoardView extends BaseView {
                 this.el.innerHTML += CreateBoardViewTemplate(context);
 
                 const createBoardForm = document.getElementById('createBoardData');
+                const errorEl = document.getElementById('createBoardError');
 
                 createBoardForm.addEventListener('submit', (e) => {
                     e.preventDefault();
+                    cleanBoardElement(errorEl);
+
                     const data = {
                         'title': createBoardForm.elements['boardname'].value,
                         'description': createBoardForm.elements['boardcontent'].value,
@@ -80,8 +83,32 @@ export default class CreateBoardView extends BaseView {
                             if (response.ok) {
                                 bus.emit('/profile');
                             }
+                            return response.json();
+                        })
+                        .then((responseBody) => {
+                            createBoardError(errorEl, responseBody.body.info ? responseBody.body.info : responseBody.body, 'createboard-error');
                         });
                 });
             });
     }
+}
+
+/**
+ * createPinError
+ * @param {*} element
+ * @param {string} errorMessage
+ * @param {string} classname
+ */
+function createBoardError(element, errorMessage, classname) {
+    element.textContent = errorMessage;
+    element.className = classname;
+}
+
+/**
+ * clean element
+ * @param {*} element
+ */
+function cleanBoardElement(element) {
+    element.textContent = '';
+    element.className = '';
 }

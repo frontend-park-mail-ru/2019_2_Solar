@@ -84,7 +84,14 @@ export default class CreatePinView extends BaseView {
 
                 createPinForm.addEventListener('submit', (e) => {
                     e.preventDefault();
+                    cleanElement('createPinError');
+
                     const boardFromHbs = createPinForm.elements['board'].value;
+
+                    if (boardFromHbs == 0) {
+                        createPinError('createPinError', 'Не выбрана доска для пина!', 'createpin-error');
+                        return;
+                    }
 
                     const formData = new FormData();
                     const pin = {
@@ -108,8 +115,34 @@ export default class CreatePinView extends BaseView {
                             if (response.ok) {
                                 bus.emit('/profile');
                             }
+                            return response.json();
+                        })
+                        .then((responseBody) => {
+                            createPinError('createPinError', responseBody.body.info ? responseBody.body.info : responseBody.body, 'createpin-error');
                         });
                 });
             });
     }
+}
+
+/**
+ * createPinError
+ * @param {string} elementId
+ * @param {string} errorMessage
+ * @param {string} classname
+ */
+function createPinError(elementId, errorMessage, classname) {
+    const errorEl = document.getElementById(elementId);
+    errorEl.textContent = errorMessage;
+    errorEl.className = classname;
+}
+
+/**
+ * clean element
+ * @param {string} elementId
+ */
+function cleanElement(elementId) {
+    const errorEl = document.getElementById(elementId);
+    errorEl.textContent = '';
+    errorEl.className = '';
 }

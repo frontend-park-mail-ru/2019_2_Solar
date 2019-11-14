@@ -8,6 +8,18 @@
     justify-content: center;
 }
 
+.createboard-error {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #FADADD;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
 .createboard-block {
     display: flex;
     flex-direction: column;
