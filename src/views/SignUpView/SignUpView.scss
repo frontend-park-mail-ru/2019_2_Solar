@@ -289,12 +289,6 @@ input {
     position:absolute;
 	  top:0;
     animation: scroll 20s linear 1s infinite;
-    &:hover {
-      background-color: #FF8F0C;
-      & img {
-        border: 5px solid #FFFFFF;
-      }
-    }
   }
   & img {
     border-radius: 20px;
