@@ -18,8 +18,9 @@
 }
 
 .createpin__left-column__img {
-    width: 227px;
-    height: 327px;
+    object-fit: cover;
+    width: 246px;
+    height: 329px;
     border-radius: 5px;
     background-image: url(../../images/bg.png);
 }
@@ -29,7 +30,7 @@
     align-items: center;
     justify-content: center;
 
-    width: 227px;
+    width: 246px;
     height: 38px;
 
     background-color:#FFFFFF;

@@ -1,6 +1,8 @@
-const emailRegex = '^(?=.{1,50})';
-const passwordRegex = '[a-zA-Z]';
-const usernameRegex = '[^a-zA-Z0-9_-]';
+const emailRegex = '^.+@.+\..+$';
+const passwordRegex = '^[a-zA-Z0-9_]{8,30}$';
+const passwordHasDownCaseRegex = '^.*[a-z]+.*$';
+const passwordHasUpperCaseRegex = '^.*[A-Z]+.*$';
+const usernameRegex = '^[a-zA-Z0-9_]{3,30}$';
 const nameRegex = '^(?=.{1,30})';
 const statusRegex = '^(?=.{1,200})';
 
@@ -19,8 +21,10 @@ export function validateEmail(value) {
  * @return {boolean} Valid or not.
  */
 export function validatePassword(value) {
-    if (value.length > 7) {
-        return (new RegExp(passwordRegex)).test(value);
+    if ((new RegExp(passwordHasDownCaseRegex)).test(value)) {
+        if ((new RegExp(passwordHasUpperCaseRegex)).test(value)) {
+            return (new RegExp(passwordRegex)).test(value);
+        }
     }
     return false;
 }
@@ -31,10 +35,7 @@ export function validatePassword(value) {
  * @return {boolean} Valid or not.
  */
 export function validateUsername(value) {
-    if (value.length > 2) {
-        return !(new RegExp(usernameRegex)).test(value);
-    }
-    return false;
+    return (new RegExp(usernameRegex)).test(value);
 }
 
 /**

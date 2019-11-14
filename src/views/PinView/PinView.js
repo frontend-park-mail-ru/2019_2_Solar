@@ -69,7 +69,7 @@ export default class PinView extends BaseView {
                         if (responseBoardsBody.body.boards) {
                             const boardsViewPin = responseBoardsBody.body.boards;
                             for (let i = 0; i < boardsViewPin.length; i++) {
-                                boardsNames.push(boardsViewPin[i].title + ':' + boardsViewPin[i].id);
+                                boardsNames.push({board: boardsViewPin[i].title, board_id: boardsViewPin[i].id});
                             }
                         }
 

@@ -15,7 +15,7 @@
                 <select name="board" id="board-select" class="board-select_design board-select_design_pos">
                     <option disabled>Выберете доску</option>
                     {{#each boardsNames}}
-                        <option>{{this}}</option>
+                        <option value={{this.board_id}}>{{this.board}}</option>
                     {{/each}}
                 </select>
                         
