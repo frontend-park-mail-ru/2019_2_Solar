@@ -37,7 +37,6 @@ export default class Router {
      * @param {string} path
      */
     open(path) {
-        console.log(path);
         // const route = this.routes[path];
 
         let route;
@@ -65,7 +64,7 @@ export default class Router {
             }
         }
 
-        console.log(route, argname, argvalue);
+        // console.log(route, argname, argvalue);
 
         if (!route) {
             this.open('/');

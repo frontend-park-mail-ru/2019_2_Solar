@@ -49,7 +49,6 @@ export default class IndexView extends BaseView {
                 const indexPage = document.getElementById('index-page');
                 if (responseBody.body.pins) {
                     const pinsIndex = responseBody.body.pins;
-                    console.log(pinsIndex);
 
                     for (let i = 0; i < pinsIndex.length; i++) {
                         const pinForIndexView = new PinForIndex(indexPage);
