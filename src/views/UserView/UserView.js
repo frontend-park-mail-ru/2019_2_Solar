@@ -74,6 +74,10 @@ export default class UserView extends BaseView {
                 };
                 this.el.innerHTML += UserViewTemplate(context);
 
+                if (responseBody.body.user.is_followee) {
+                    checkFollowee('buttonSub', 'button-already-subscribe');
+                }
+
                 const subscribeForm = document.getElementById('userData');
                 subscribeForm.addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -84,7 +88,7 @@ export default class UserView extends BaseView {
                     })
                         .then((response) => {
                             if (response.ok) {
-                                document.getElementById('buttonSub').disabled = true;
+                                checkFollowee('buttonSub', 'button-already-subscribe');
                                 const message = 'На вас подписался ' + GlobalUser.body.user.username;
 
                                 fetchModule.Post({
@@ -96,4 +100,16 @@ export default class UserView extends BaseView {
                 });
             });
     }
+}
+
+/**
+ * checkFollowee
+ * @param {*} elementID
+ * @param {*} className
+ */
+function checkFollowee(elementID, className) {
+    const element = document.getElementById(elementID);
+    element.disabled = true;
+    element.className = className;
+    element.value = 'Вы подписаны';
 }
