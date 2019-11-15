@@ -33,12 +33,20 @@ module.exports = {
             },
             {
                 test: /\.hbs$/,
-                loader: "handlebars-loader"
+                loader: "handlebars-loader",
+                options: {
+                    helperDirs: [path.join(__dirname, './src/utils/handlebarsHelpers')],
+                    // knownHelpers: ['iii'],
+                    // knownHelpersOnly: false,
+                }
             }
         ]
     },
     resolve: {
-        extensions: ['*', '.js']
+        extensions: ['*', '.js'],
+        alias: {
+            handlebars: 'handlebars/dist/handlebars.min.js'
+         }
     },
     output: {
         filename: 'main.js',
