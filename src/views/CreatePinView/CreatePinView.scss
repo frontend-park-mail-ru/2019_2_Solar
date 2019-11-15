@@ -5,6 +5,18 @@
     margin-top: 40px;
 }
 
+.createpin-error {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #FADADD;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
 .createpin__left-column {
     display: flex;
     flex-direction: column;

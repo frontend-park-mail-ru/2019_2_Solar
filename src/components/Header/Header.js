@@ -51,6 +51,7 @@ export default class HeaderComponent {
         const context = {
             username: this._data.body.user.username,
             avatarPhoto: (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg,
+            notice: 0,
 
             PHlogo: Logo,
             PHLupa: Lupa,
@@ -65,27 +66,27 @@ export default class HeaderComponent {
 
         this._parent.innerHTML = html;
 
-        document.getElementById('spanNum').textContent = String(0);
-        setInterval(() => {
-            fetchModule.Get({
-                url: BACKEND_ADDRESS + '/notice',
-                body: null,
-            })
-                .then((response) => {
-                    return response.json();
-                })
-                .then((responseBody) => {
-                    CSRFtoken = responseBody.csrt_token;
+        // document.getElementById('spanNum').textContent = String(0);
+        // setInterval(() => {
+        //     fetchModule.Get({
+        //         url: BACKEND_ADDRESS + '/notice',
+        //         body: null,
+        //     })
+        //         .then((response) => {
+        //             return response.json();
+        //         })
+        //         .then((responseBody) => {
+        //             CSRFtoken = responseBody.csrt_token;
 
-                    const noticelen = responseBody.body.notices;
-                    document.getElementById('spanNum').textContent = String(noticelen.length);
+        //             const noticelen = responseBody.body.notices;
+        //             document.getElementById('spanNum').textContent = String(noticelen.length);
 
-                    const list = document.getElementById('list');
-                    for (let i = 0; i < noticelen.length; i++) {
-                        list.innerHTML += '<li><a href="#">'+ noticelen[i].message + '</li>';
-                    }
-                });
-        }, 30000);
+        //             const list = document.getElementById('list');
+        //             for (let i = 0; i < noticelen.length; i++) {
+        //                 list.innerHTML += '<li><a href="#">'+ noticelen[i].message + '</li>';
+        //             }
+        //         });
+        // }, 30000);
 
         const viewSearchForm = document.getElementById('headerSearch');
 

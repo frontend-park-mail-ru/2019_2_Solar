@@ -56,6 +56,9 @@ fetchModule.Get({
 
             socket.onopen = function(result) {
                 console.log('onopen');
+                for (let i = 0; i < 3; i++) {
+                    socket.send(JSON.stringify({id_sender: 5, username_recipient: 'ADshishova', text: 'Hello, ADshishova!'}));
+                }
             };
             socket.onmessage = function(result) {
                 console.log(result);
