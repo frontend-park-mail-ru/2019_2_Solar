@@ -20,6 +20,11 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif|ico)$/,
+                loader: 'image-webpack-loader',
+                enforce: 'pre'
+            },
+            {
+                test: /\.(png|svg|jpg|gif|ico)$/,
                 use: ['file-loader']
             },
             {
