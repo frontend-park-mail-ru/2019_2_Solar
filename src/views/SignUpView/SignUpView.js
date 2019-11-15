@@ -69,7 +69,6 @@ export default class SignUpView extends BaseView {
                         const username = signUpForm.elements['username'].value;
                         const password = signUpForm.elements['password'].value;
 
-                        const validation = validateSignup(signUpForm);
                         const inputForm = {
                             email: document.getElementById('signUpEmail'),
                             username: document.getElementById('signUpUsername'),
@@ -78,8 +77,9 @@ export default class SignUpView extends BaseView {
 
                         deleteErrorDraw(inputForm, 'form-block__error-input');
 
-                        if ( validation != null) {
-                            errText.textContent = 'Ошибочка данных: ' + validation.errorMessage;
+                        const validation = validateSignup(signUpForm);
+                        if (!validation.result) {
+                            errText.textContent = validation.message;
 
                             errorDraw(inputForm, validation.errorNumbers, 'form-block__error-input');
                             return;

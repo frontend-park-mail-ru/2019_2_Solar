@@ -1,4 +1,5 @@
-// n is number of stars required
+@import url('https://fonts.googleapis.com/css?family=Tangerine');
+
 @function multiple-box-shadow ($n) {
   $value: '#{random(2000)}px #{random(2000)}px #FF8F0C';
   @for $i from 2 through $n {
@@ -68,6 +69,8 @@ $shadows-big:    multiple-box-shadow(100);
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
 .signup-form-block__error-text {
@@ -153,23 +156,20 @@ body {
 .signup-block__title-solar {
     width: auto;
     text-align: center;
-    font-family: Roboto, sans-serif;
+    font-family: Tangerine, serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 100px;
     line-height: 66px;
     padding: 10%;
-
     color: #000000;
-    // width: 100%;
-    
 }
 
 .signup-block__under-title {
     width: 100%;
     text-align: center;
     height: 80px;
-    font-style: normal;
+    font-style: italic;
     font-weight: normal;
     font-size: 22px;
     line-height: 28px;
