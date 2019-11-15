@@ -20,6 +20,7 @@ import CreateBoardView from './views/CreateBoardView/CreateBoardView.js';
 
 const application = document.getElementById('application');
 
+
 bus.on('create-logout', () => {
     deleteCookie();
     bus.emit('/login');
@@ -42,7 +43,7 @@ router
     .register('/users/:username', UserView)
     .register('/index/:type', IndexView);
 
-window.CSRFtoken = "";
+window.CSRFtoken = '';
 window.fetchModule = new FetchModule(application);
 
 // Startup logic
