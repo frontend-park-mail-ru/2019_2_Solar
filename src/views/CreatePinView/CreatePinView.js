@@ -56,7 +56,6 @@ export default class CreatePinView extends BaseView {
                 const boardsNames = [];
                 if (responseBody.body.boards) {
                     const boardsCreatePin = responseBody.body.boards;
-                    console.log(boardsCreatePin);
                     for (let i = 0; i < boardsCreatePin.length; i++) {
                         boardsNames.push({board: boardsCreatePin[i].title, board_id: boardsCreatePin[i].id});
                     }

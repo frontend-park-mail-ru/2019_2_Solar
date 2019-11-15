@@ -68,7 +68,6 @@ export default class DialogView extends BaseView {
                     const createMessageForm = document.getElementById('createMessageData');
                     createMessageForm.addEventListener('submit', (e) => {
                         e.preventDefault();
-                        console.log(createMessageForm);
 
                         const message = createMessageForm.elements['message'].value;
                         const newMessage = new MessageComponent(messageViewList);
