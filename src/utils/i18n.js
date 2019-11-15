@@ -1,22 +1,38 @@
-import i18n from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 import ru from '../locales/ru.json';
 import en from '../locales/en.json';
 
-i18n
-    .use(LanguageDetector)
-    .init({
-        resources: {
-            ru: {
-                translation: ru['ru'],
-            },
-            en: {
-                translation: en['en'],
-            },
-        },
-        keySeparator: false,
-        fallbackLng: 'ru',
-        lng: 'ru',
-    });
+/**
+ * @class
+ */
+class I18n {
+    /**
+     * I18n constructor.
+     * @constructor
+     */
+    constructor() {
+        this.language = 'ru';
+        this.languageMap = {
+            'ru': ru,
+            'en': en,
+        };
+    }
 
-export default i18n;
+    /**
+     * Set app language.
+     * @param {string} str
+     */
+    setLanguage(str) {
+        this.language = str;
+    }
+
+    /**
+     * Return key from a language dict.
+     * @param {string} str
+     * @return {str}
+     */
+    t(str) {
+        return this.languageMap[this.language][this.language][str];
+    }
+}
+
+export default new I18n();

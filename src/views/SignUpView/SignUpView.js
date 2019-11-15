@@ -15,6 +15,7 @@ import sunriseVan from '../../images/sunrise_van.jpg';
 import sunriseTown from '../../images/sunrise_town.jpg';
 
 import bus from '../../utils/bus.js';
+import i18n from '../../utils/i18n.js';
 
 /** Class representing a Signup view. */
 export default class SignUpView extends BaseView {
@@ -54,11 +55,19 @@ export default class SignUpView extends BaseView {
 
                     const button = new ButtonComponent();
                     const context = {
-                        button: button.render({text: 'Зарегистрироваться'}),
+                        button: button.render({text: i18n.t('signup.register')}),
                         imagesColumn1: [sunriseKuinji, sunriseFlowers, sunriseSea],
                         imagesColumn2: [sunriseTown, sunriseVan, sunriseOcean],
                     };
                     this.el.innerHTML = SignupViewTemplate(context);
+                    document.getElementById('changeLangToEng').addEventListener('click', () => {
+                        i18n.setLanguage('en');
+                        bus.emit('/');
+                    });
+                    document.getElementById('changeLangToRu').addEventListener('click', () => {
+                        i18n.setLanguage('ru');
+                        bus.emit('/');
+                    });
 
                     const signUpForm = document.getElementById('inputdata_signup');
                     signUpForm.addEventListener('submit', (e) => {

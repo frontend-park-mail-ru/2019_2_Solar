@@ -97,9 +97,8 @@ export default class Router {
                     view.hide();
                 }
             });
-
-            view.show();
         }
+        view.show();
 
         this.routes[path] = {View, view, el};
     }

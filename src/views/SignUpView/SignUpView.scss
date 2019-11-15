@@ -300,3 +300,29 @@ input {
 @keyframes scroll {
 	100% { top: -100%; }  /* top is the number of spans (in this case 8) multiplied by span height (45px as described above)*/
 }
+
+.changeLangToEng {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  top: 20px;
+  left: 20px;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.changeLangToRu {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  top: 20px;
+  left: 70px;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  text-decoration: underline;
+  cursor: pointer;
+}
