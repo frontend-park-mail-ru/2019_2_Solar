@@ -1,7 +1,4 @@
 const emailRegex = '^.+@.+\..+$';
-const passwordRegex = '^[a-zA-Z0-9_]{8,30}$';
-const passwordHasDownCaseRegex = '^.*[a-z]+.*$';
-const passwordHasUpperCaseRegex = '^.*[A-Z]+.*$';
 const usernameRegex = '^[a-zA-Z0-9_]{3,30}$';
 const nameRegex = '^(?=.{1,30})';
 const statusRegex = '^(?=.{1,200})';
@@ -21,12 +18,17 @@ export function validateEmail(value) {
  * @return {boolean} Valid or not.
  */
 export function validatePassword(value) {
-    if ((new RegExp(passwordHasDownCaseRegex)).test(value)) {
-        if ((new RegExp(passwordHasUpperCaseRegex)).test(value)) {
-            return (new RegExp(passwordRegex)).test(value);
-        }
+    console.log(value);
+    if (value.length < 8 || value.length > 30) {
+        return {result: false, message: 'Длина пароля - от 8 до 30 символов'};
     }
-    return false;
+    if (!(new RegExp('[A-Z]+')).test(value)) {
+        return {result: false, message: 'Пароль должен содержать хотя бы одну заглавную буквy'};
+    }
+    if (!(new RegExp('[a-z]+')).test(value)) {
+        return {result: false, message: 'Пароль должен содержать хотя бы одну незаглавную букву'};
+    }
+    return {result: true};
 }
 
 /**
@@ -62,35 +64,23 @@ export function validateStatus(value) {
  * @return {boolean} Valid or not.
  */
 export function validateSignup(signUpForm) {
-    const errorList = {
-        errorMessage: '',
-        errorNumbers: [],
-    };
-
     if (!validateEmail(signUpForm.elements['email'].value)) {
         errorList.errorMessage += 'емейл, ';
         errorList.errorNumbers.push('email');
+        return {result: false, message: 'email'};
     }
 
-    if (!validatePassword(signUpForm.elements['password'].value)) {
-        errorList.errorMessage += 'пароль, ';
-        errorList.errorNumbers.push('password');
+    if (!validatePassword(signUpForm.elements['password'].value).result) {
+        return {result: false, message: validatePassword(signUpForm.elements['password'].value).message};
     }
 
     if (!validateUsername(signUpForm.elements['username'].value)) {
         errorList.errorMessage += 'никнейм, ';
         errorList.errorNumbers.push('username');
+        return {result: false, message: 'nickname'};
     }
 
-    if (errorList.errorMessage.length > 0) {
-        errorList.errorMessage = errorList.errorMessage.slice(0, -2);
-    }
-
-    if (errorList.errorMessage.length > 0 && errorList.errorNumbers.length > 0) {
-        return errorList;
-    }
-
-    return null;
+    return {result: true};
 }
 
 /**

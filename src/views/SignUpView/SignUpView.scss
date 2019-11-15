@@ -68,6 +68,8 @@ $shadows-big:    multiple-box-shadow(100);
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
 .signup-form-block__error-text {
