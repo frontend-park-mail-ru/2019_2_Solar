@@ -112,12 +112,16 @@ export default class CreatePinView extends BaseView {
                     })
                         .then((response) => {
                             if (response.ok) {
-                                bus.emit('/profile');
+                                return null;
                             }
                             return response.json();
                         })
                         .then((responseBody) => {
-                            createPinError('createPinError', responseBody.body.info ? responseBody.body.info : responseBody.body, 'createpin-error');
+                            if (responseBody == null) {
+                                bus.emit('/profile');
+                            } else {
+                                createPinError('createPinError', responseBody.body.info ? responseBody.body.info : responseBody.body, 'createpin-error');
+                            }
                         });
                 });
             });
