@@ -18,7 +18,6 @@ export function validateEmail(value) {
  * @return {boolean} Valid or not.
  */
 export function validatePassword(value) {
-    console.log(value);
     if (value.length < 8 || value.length > 30) {
         return {result: false, message: 'Длина пароля - от 8 до 30 символов'};
     }
