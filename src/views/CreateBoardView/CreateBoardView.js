@@ -81,12 +81,16 @@ export default class CreateBoardView extends BaseView {
                     })
                         .then((response) => {
                             if (response.ok) {
-                                bus.emit('/profile');
+                                return null;
                             }
                             return response.json();
                         })
                         .then((responseBody) => {
-                            createBoardError(errorEl, responseBody.body.info ? responseBody.body.info : responseBody.body, 'createboard-error');
+                            if (responseBody == null) {
+                                bus.emit('/profile');
+                            } else {
+                                createBoardError(errorEl, responseBody.body.info ? responseBody.body.info : responseBody.body, 'createboard-error');
+                            }
                         });
                 });
             });
