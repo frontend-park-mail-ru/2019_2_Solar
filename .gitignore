@@ -8,3 +8,4 @@
 # Project files
 node_modules
 dist
+coverage
