@@ -9,7 +9,7 @@
     "build": "webpack --mode production",
     "eslint": "eslint --fix src/ server.js",
     "start:dev": "webpack-dev-server --hot",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
