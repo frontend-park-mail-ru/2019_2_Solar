@@ -2,19 +2,19 @@
     <div class="signup-block signup-block_margin">
         <div class="signup-block__title-solar">Sunrise</div>
         {{!-- <div class="signup-block__under-title">Место, где вы можете выразить настоящего себя!</div> --}}
-        <div class="signup-block__under-title">{{iii 'content'}}</div>
+        <div class="signup-block__under-title">{{i18n 'signup.content'}}</div>
 
         <div class="signup-form-block">
             <div id="errorText" class="signup-form-block__error-text"></div>
             <form id="inputdata_signup">
-                <input type="email" name="email" placeholder="Email" id="signUpEmail" title="Должен содержать: @ и ." class="signup-form-block__input signup-form-block__input_email-margin">
-                <input type="text" name="username" placeholder="Имя пользователя" id="signUpUsername" title="Длина от 3 символов, может содержать смиволы a-z, A-Z, 0-9, _, -" class="signup-form-block__input signup-form-block__input_margin-top">
-                <input type="password" name="password" placeholder="Пароль" title="Длина от 8 символов, должен содержать хотя бы один символ из a-z, A-Z" id="signUpPassword" class="signup-form-block__input signup-form-block__input_margin-top">
+                <input type="email" name="email" placeholder="{{i18n 'signup.email'}}" id="signUpEmail" title="Должен содержать: @ и ." class="signup-form-block__input signup-form-block__input_email-margin">
+                <input type="text" name="username" placeholder="{{i18n 'signup.username'}}" id="signUpUsername" title="Длина от 3 символов, может содержать смиволы a-z, A-Z, 0-9, _, -" class="signup-form-block__input signup-form-block__input_margin-top">
+                <input type="password" name="password" placeholder="{{i18n 'signup.password'}}" title="Длина от 8 символов, должен содержать хотя бы один символ из a-z, A-Z" id="signUpPassword" class="signup-form-block__input signup-form-block__input_margin-top">
                 <div class="signup-form-block__button_margin">{{{button}}}</div>
             </form>
             <div class="signup-form-block__underbutton-text a-bold-decoration_margin">
-                Уже зарегистрировались?
-                <a href="/login" class="a-bold-decoration">Войти</a>
+                {{i18n 'signup.registered'}}
+                <a href="/login" class="a-bold-decoration">{{i18n 'signup.enter'}}</a>
             </div>
         </div>
     </div>
@@ -40,6 +40,8 @@
             </div>
         </div>
     </div>
+    <button id="changeLangToEng" class="changeLangToEng">English</button>
+    <button id="changeLangToRu" class="changeLangToRu">Русский</button>
     <div class="start1"></div>
     <div class="stars2"></div>
     <div class="stars3"></div>
