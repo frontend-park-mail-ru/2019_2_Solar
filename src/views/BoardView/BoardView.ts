@@ -6,7 +6,7 @@ import './BoardView.scss';
 import PinForUserViewComponent from '../../components/PinForUserView/PinForUserView';
 import HeaderComponent from '../../components/Header/Header';
 
-import plusImg from '../../images/plus2.png';
+import plusImg from '../../images/grayplus.svg';
 import grayPenImg from '../../images/grey-pen.png';
 import bg from '../../images/bg.png';
 

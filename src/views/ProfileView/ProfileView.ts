@@ -11,7 +11,7 @@ import bus from '../../utils/bus';
 import {BACKEND_ADDRESS} from '../../config/Config';
 
 import SetImg from '../../images/grey-pen.png';
-import PlusImgFAdd from '../../images/plus2.png';
+import PlusImgFAdd from '../../images/grayplus.svg';
 
 import bg from '../../images/bg.png';
 
