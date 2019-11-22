@@ -57,11 +57,11 @@ export default class IndexView extends BaseView {
                         const header = new HeaderComponent(this.el);
                         header.render();
 
-                        const index = IndexViewTemplate();
+                        const index = IndexViewTemplate({arg: this.args});
 
                         this.el.innerHTML += index;
 
-                        const indexPage = document.getElementById('index-page');
+                        const indexPage = document.getElementById('index-page:' + this.args);
                         if (responseBody.body.pins) {
                             const pinsIndex = responseBody.body.pins;
 
