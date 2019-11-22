@@ -102,7 +102,6 @@ export default class SignUpView extends BaseView {
                             body: JSON.stringify(data),
                             credentials: 'include',
                             headers: {
-                                'Content-Type': 'text/plain',
                                 'csrf-token': 'any'
                             },
                         })
