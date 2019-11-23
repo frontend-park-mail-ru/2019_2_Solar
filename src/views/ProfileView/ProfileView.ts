@@ -191,7 +191,7 @@ export default class ProfileView extends BaseView {
                         chatFlag = true;
                         buttonForAsk.setAttribute( 'src', Close);
                     } else {
-                        chatField.className = '';
+                        chatField.className = 'dont-see';
                         chatFlag = false;
                         buttonForAsk.setAttribute( 'src', Question);
                     }
