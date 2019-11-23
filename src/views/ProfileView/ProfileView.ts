@@ -81,6 +81,12 @@ export default class ProfileView extends BaseView {
                 const header = new HeaderComponent(this.el);
                 header.render();
 
+                let value = "; " + document.cookie;
+                let parts = value.split("; session_key=");
+                let cookie;
+                if (parts.length == 2) {
+                    cookie = parts.pop().split(";").shift();
+                }
                 const context = {
                     username: responseBody.body.user.username,
                     avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
@@ -88,6 +94,7 @@ export default class ProfileView extends BaseView {
                     PHsetimg: SetImg,
                     PHplus: PlusImgFAdd,
                     PHquestion: Question,
+                    sessionID: cookie,
                 };
                 this.el.innerHTML += ProfileViewTemplate(context);
 
