@@ -6,12 +6,14 @@ import './ProfileView.scss';
 import HeaderComponent from '../../components/Header/Header';
 import PinForUserViewComponent from '../../components/PinForUserView/PinForUserView';
 import BoardForUserViewComponent from '../../components/BoardForUserView/BoardForUserView';
+import Question from '../../images/question2.svg';
+import Close from '../../images/closeicon.svg';
 
 import bus from '../../utils/bus';
 import {BACKEND_ADDRESS} from '../../config/Config';
 
 import SetImg from '../../images/grey-pen.png';
-import PlusImgFAdd from '../../images/plus2.png';
+import PlusImgFAdd from '../../images/grayplus.svg';
 
 import bg from '../../images/bg.png';
 
@@ -85,6 +87,7 @@ export default class ProfileView extends BaseView {
                     status: responseBody.body.user.status,
                     PHsetimg: SetImg,
                     PHplus: PlusImgFAdd,
+                    PHquestion: Question,
                 };
                 this.el.innerHTML += ProfileViewTemplate(context);
 
@@ -175,6 +178,23 @@ export default class ProfileView extends BaseView {
                         .catch(() => {
                             return null;
                         });
+                });
+
+                // button for chat
+                let chatFlag = false;
+                const askButton = document.getElementById('ask-button');
+                const chatField = document.getElementById('supportChat');
+                const buttonForAsk = document.getElementById('buttonForAsk');
+                askButton.addEventListener('click', (e) => {
+                    if (chatFlag == false) {
+                        chatField.className = 'chat-onopen';
+                        chatFlag = true;
+                        buttonForAsk.setAttribute( 'src', Close);
+                    } else {
+                        chatField.className = '';
+                        chatFlag = false;
+                        buttonForAsk.setAttribute( 'src', Question);
+                    }
                 });
             })
             .catch(() => {

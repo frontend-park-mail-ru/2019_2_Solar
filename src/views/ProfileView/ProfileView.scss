@@ -186,3 +186,31 @@ a {
     width: 90%;
     max-width: 100%;
 }
+
+
+
+// for chat
+.ask-img {
+    width: 40px;
+    height: 40px;
+}
+
+.ask-button_pos {
+    position: absolute;
+    bottom: 10px;
+    margin: 20px;
+    right: 10px;
+}
+
+.chat-onopen {
+    position: absolute;
+    bottom: 10px;
+    margin: 20px;
+    margin-bottom: 72px;
+    right: 10px;
+    height: 400px;
+    width: 200px;
+    border: 2px solid #FF8F0C;
+    border-radius: 5px;
+    background: white;
+}

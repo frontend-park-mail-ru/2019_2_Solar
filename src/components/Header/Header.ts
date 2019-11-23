@@ -2,13 +2,13 @@ import './Header.scss';
 import HeaderTemplate from '../Header/Header.hbs';
 
 import Logo from '../../images/logo.png';
-import Lupa from '../../images/zoom.png';
+import Lupa from '../../images/search.svg';
 import PadIm from '../../images/arrow.png';
-import Plus from '../../images/plus.png';
-import Question from '../../images/question.png';
-import Dialog from '../../images/dilog.png';
+import Plus from '../../images/plus.svg';
+import Question from '../../images/question2.svg';
+import Dialog from '../../images/message.svg';
 import Setting from '../../images/more.png';
-import Bell from '../../images/bell.png';
+import Bell from '../../images/notifications.svg';
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
 

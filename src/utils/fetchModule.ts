@@ -31,7 +31,7 @@ class FetchModule {
         body = null,
         credentials = 'include' as RequestCredentials,
         headers = {
-            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/json',
             'csrf-token': (<any>window).CSRFtoken,
         },
     } = {}

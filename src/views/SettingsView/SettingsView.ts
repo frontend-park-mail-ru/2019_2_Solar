@@ -131,7 +131,6 @@ export default class SettingsView extends BaseView {
                         body: formData,
                         credentials: 'include',
                         headers: {
-                            'Content-Type': 'application/json',
                             'csrf-token': (<any>window).CSRFtoken,
                         },
                     })

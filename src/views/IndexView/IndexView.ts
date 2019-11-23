@@ -30,40 +30,52 @@ export default class IndexView extends BaseView {
      * Render Index view.
      */
     render() {
-        fetchModule.Get({
-            url: BACKEND_ADDRESS + '/pin/list/' + this.args,
+        fetchModule.Get ({
+            url: BACKEND_ADDRESS + '/profile/data',
             body: null,
         })
             .then((response) => {
                 return response.json();
             })
             .then((responseBody) => {
+                (<any>window).GlobalUser = responseBody;
                 (<any>window).CSRFtoken = responseBody.csrf_token;
 
-                document.body.className ='backgroundIndex';
-                this.el.innerHTML = '';
+                fetchModule.Get({
+                    url: BACKEND_ADDRESS + '/pin/list/' + this.args,
+                    body: null,
+                })
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((responseBody) => {
+                        (<any>window).CSRFtoken = responseBody.csrf_token;
 
-                const header = new HeaderComponent(this.el);
-                header.render();
+                        document.body.className ='backgroundIndex';
+                        this.el.innerHTML = '';
 
-                const index = IndexViewTemplate();
+                        const header = new HeaderComponent(this.el);
+                        header.render();
 
-                this.el.innerHTML += index;
+                        const index = IndexViewTemplate({arg: this.args});
 
-                const indexPage = document.getElementById('index-page');
-                if (responseBody.body.pins) {
-                    const pinsIndex = responseBody.body.pins;
+                        this.el.innerHTML += index;
 
-                    for (let i = 0; i < pinsIndex.length; i++) {
-                        const pinForIndexView = new PinForIndex(indexPage);
-                        pinForIndexView.render({
-                            id: pinsIndex[i].id,
-                            pinImg: BACKEND_ADDRESS + '/' + pinsIndex[i].pin_dir,
-                            content: pinsIndex[i].title});
-                    }
-                } else {
-                    indexPage.textContent = 'Ещё нет пинов для Вашего просмотра :с';
-                }
-            });
+                        const indexPage = document.getElementById('index-page:' + this.args);
+                        if (responseBody.body.pins) {
+                            const pinsIndex = responseBody.body.pins;
+
+                            for (let i = 0; i < pinsIndex.length; i++) {
+                                const pinForIndexView = new PinForIndex(indexPage);
+                                pinForIndexView.render({
+                                    id: pinsIndex[i].id,
+                                    pinImg: BACKEND_ADDRESS + '/' + pinsIndex[i].pin_dir,
+                                    content: pinsIndex[i].title});
+                            }
+                        } else {
+                            indexPage.textContent = 'Ещё нет пинов для Вашего просмотра :с';
+                        }
+                    });
+                });
     }
 }

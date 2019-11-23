@@ -58,7 +58,6 @@ export default class LoginView extends BaseView {
                 body: JSON.stringify(data),
                 credentials: 'include',
                 headers: {
-                    'Content-Type': 'application/json',
                     'csrf-token': 'any'
                 },
             })

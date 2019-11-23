@@ -1,6 +1,6 @@
 import './PinForIndex.scss';
 import PinForIndexTemplate from '../PinForIndex/PinForIndex.hbs';
-import PlusImg from '../../images/plus2.png';
+import PlusImg from '../../images/grayplus.svg';
 
 /** Class representing a PinForIndex component. */
 export default class PinForIndexComponent {
