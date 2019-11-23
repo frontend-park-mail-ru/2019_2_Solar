@@ -7,6 +7,7 @@ import HeaderComponent from '../../components/Header/Header';
 import PinForUserViewComponent from '../../components/PinForUserView/PinForUserView';
 import BoardForUserViewComponent from '../../components/BoardForUserView/BoardForUserView';
 import Question from '../../images/question2.svg';
+import Close from '../../images/closeicon.svg';
 
 import bus from '../../utils/bus';
 import {BACKEND_ADDRESS} from '../../config/Config';
@@ -183,13 +184,16 @@ export default class ProfileView extends BaseView {
                 let chatFlag = false;
                 const askButton = document.getElementById('ask-button');
                 const chatField = document.getElementById('supportChat');
+                const buttonForAsk = document.getElementById('buttonForAsk');
                 askButton.addEventListener('click', (e) => {
                     if (chatFlag == false) {
                         chatField.className = 'chat-onopen';
                         chatFlag = true;
+                        buttonForAsk.setAttribute( 'src', Close);
                     } else {
                         chatField.className = '';
                         chatFlag = false;
+                        buttonForAsk.setAttribute( 'src', Question);
                     }
                 });
             })
