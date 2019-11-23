@@ -6,6 +6,7 @@ import './ProfileView.scss';
 import HeaderComponent from '../../components/Header/Header';
 import PinForUserViewComponent from '../../components/PinForUserView/PinForUserView';
 import BoardForUserViewComponent from '../../components/BoardForUserView/BoardForUserView';
+import Question from '../../images/question2.svg';
 
 import bus from '../../utils/bus';
 import {BACKEND_ADDRESS} from '../../config/Config';
@@ -85,6 +86,7 @@ export default class ProfileView extends BaseView {
                     status: responseBody.body.user.status,
                     PHsetimg: SetImg,
                     PHplus: PlusImgFAdd,
+                    PHquestion: Question,
                 };
                 this.el.innerHTML += ProfileViewTemplate(context);
 
@@ -175,6 +177,20 @@ export default class ProfileView extends BaseView {
                         .catch(() => {
                             return null;
                         });
+                });
+
+                // button for chat
+                let chatFlag = false;
+                const askButton = document.getElementById('ask-button');
+                const chatField = document.getElementById('supportChat');
+                askButton.addEventListener('click', (e) => {
+                    if (chatFlag == false) {
+                        chatField.className = 'chat-onopen';
+                        chatFlag = true;
+                    } else {
+                        chatField.className = '';
+                        chatFlag = false;
+                    }
                 });
             })
             .catch(() => {
