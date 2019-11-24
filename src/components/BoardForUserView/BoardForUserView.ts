@@ -1,6 +1,6 @@
 import './BoardForUserView.scss';
 import BoardForUserViewTemplate from '../BoardForUserView/BoardForUserView.hbs';
-import GrayPen from '../../images/grey-pen.png';
+import GrayPen from '../../images/graypen.svg';
 
 /** Class representing a BoardForUserView component. */
 export default class BoardForUserViewComponent {
