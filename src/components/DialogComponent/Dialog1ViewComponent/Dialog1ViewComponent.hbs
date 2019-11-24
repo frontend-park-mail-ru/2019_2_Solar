@@ -1,8 +1,13 @@
-<div class="dialogview__title-one">
-    <div class="dialogview__title-one__text">Напишите друзьям</div>
-    <div id="newMessageButton" class="dialogview__title-one__button">Новое сообщение</div>
-</div>
-<div class="dialogview__title-one__text dialogview__title-two">
-    Входящие
+<div>
+    <div class="dialogview__title-one">
+        <div class="dialogview__title-one__text">Напишите друзьям</div>
+    </div>
+    <form id="newMessageData" class="dialogviewform">
+        <input type="text" id="username" placeholder="Имя получателя" class="dialog-form-input-user">
+        <input type="submit" id="newMessageButton" value="Новое сообщение" class="dialogview__title-one__button dialogview__title-one__button_margin">
+    </form>
+    <div class="dialogview__title-one__text dialogview__title-two">
+        Входящие
+    </div>
 </div>
 <div id="incomingMessagesList"></div>
