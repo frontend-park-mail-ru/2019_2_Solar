@@ -80,6 +80,30 @@ export default class DialogView extends BaseView {
                         createMessageForm.elements['message'].value = '';
                     });
                 });
+
+                // CHAT
+                (<any>window).socket1 = new WebSocket('ws://localhost:8080' + '/chat');
+
+                (<any>window).socket1.onopen = function(result) {
+                    console.log('Соединение установлено на 8080');
+                    (<any>window).socket1.send(result);
+                };
+
+                (<any>window).socket1.onclose = function(event) {
+                if (event.wasClean) {
+                    console.log('cоединение закрыто чисто на 8080');
+                } else {
+                    console.log('соединение - обрыв на 8080');
+                }
+                };
+        
+                (<any>window).socket1.onmessage = function(event) {
+                    console.log("пришли данные " + event.data);
+                };
+                
+                (<any>window).socket1.onerror = function(event) {
+                    console.log("ошибка " + event.message);
+                };
             });
     }
 }
