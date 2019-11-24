@@ -5,7 +5,7 @@ import './UserView.scss';
 import '../ProfileView/ProfileView.scss';
 
 import HeaderComponent from '../../components/Header/Header';
-// import PinForIndexComponent from '../../components/PinForIndex/PinForIndex';
+import PinForIndex from '../../components/PinForIndex/PinForIndex';
 
 // import bus from '../../utils/bus';
 import {BACKEND_ADDRESS} from '../../config/Config';
@@ -79,29 +79,42 @@ export default class UserView extends BaseView {
                 };
                 this.el.innerHTML += UserViewTemplate(context);
 
+                const userPinsView = document.getElementById('userPinsView');
+                pinsView(responseBody,userPinsView);
+
+                let isFolloweeflag = false;
                 if (responseBody.body.user.is_followee) {
-                    checkFollowee('buttonSub', 'button-already-subscribe');
+                    isFolloweeflag = true;
+                    checkFollowee('buttonSub', 'button-already-subscribe', 'Отписаться');
                 }
 
                 const subscribeForm = document.getElementById('userData');
                 subscribeForm.addEventListener('submit', (e) => {
                     e.preventDefault();
 
-                    fetchModule.Post({
-                        url: BACKEND_ADDRESS + '/subscribe/' + responseBody.body.user.username,
-                        body: null,
-                    })
-                        .then((response) => {
-                            if (response.ok) {
-                                checkFollowee('buttonSub', 'button-already-subscribe');
-                                const message = 'На вас подписался ' + (<any>window).GlobalUser.body.user.username;
-
-                                fetchModule.Post({
-                                    url: BACKEND_ADDRESS + '/notice/' + responseBody.body.user.id,
-                                    body: JSON.stringify({message: message}),
-                                });
-                            }
-                        });
+                    if (!isFolloweeflag) {
+                        fetchModule.Post({
+                            url: BACKEND_ADDRESS + '/subscribe/' + responseBody.body.user.username,
+                            body: null,
+                        })
+                            .then((response) => {
+                                if (response.ok) {
+                                    isFolloweeflag = true;
+                                    checkFollowee('buttonSub', 'button-already-subscribe', 'Отписаться');
+                                }
+                            });
+                    } else {
+                        fetchModule.Delete({
+                            url: BACKEND_ADDRESS + '/subscribe/' + responseBody.body.user.username,
+                            body: null,
+                        })
+                            .then((response) => {
+                                if (response.ok) {
+                                    isFolloweeflag = false;
+                                    checkFollowee('buttonSub', 'button-subscribe', 'Подписаться');
+                                }
+                            });
+                    }                   
                 });
             });
     }
@@ -111,10 +124,24 @@ export default class UserView extends BaseView {
  * checkFollowee
  * @param {*} elementID
  * @param {*} className
+ * @param {*} text
  */
-function checkFollowee(elementID, className) {
+function checkFollowee(elementID, className, text) {
     const element = <HTMLInputElement> document.getElementById(elementID);
-    element.disabled = true;
     element.className = className;
-    element.value = 'Вы подписаны';
+    element.value = text;
+}
+
+/**
+ * pinsView
+ * @param responseBody 
+ * @param userPinsView 
+ */
+function pinsView(responseBody, userPinsView) {
+    const pinsUser = responseBody.body.pins;
+    for (let i = 0; i < pinsUser.length; i++) {
+        const pinForUserView = new PinForIndex(userPinsView);
+        pinForUserView.render({id: pinsUser[i].id, pinImg: BACKEND_ADDRESS + '/' + pinsUser[i].pin_dir,
+            content: pinsUser[i].title});
+    }
 }
