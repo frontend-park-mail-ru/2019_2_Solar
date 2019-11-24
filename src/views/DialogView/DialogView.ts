@@ -61,49 +61,41 @@ export default class DialogView extends BaseView {
                 const dialog1 = new Dialog1ViewComponent(messageView);
                 dialog1.render({});
 
-                const newMessage = document.getElementById('newMessageButton');
-                newMessage.addEventListener('click', (e)=> {
-                    messageView.innerHTML = '';
-                    const dialog3 = new Dialog3ViewComponent(messageView);
-                    dialog3.render({});
+                const newMessageForm = <HTMLFormElement>document.getElementById('newMessageData');
+                newMessageForm.addEventListener('submit', (e)=> {
+                    e.preventDefault();
+                    const username_resipient = newMessageForm.elements['username'].value;
 
-                    const messageViewList = document.getElementById('MessagesList');
+                    fetchModule.Get({
+                        url: BACKEND_ADDRESS + '/users/' + username_resipient,
+                        body: null,
+                    })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((responseBody) => {
+                            if (responseBody.body.user) {
+                                messageView.innerHTML = '';
+                                const dialog3 = new Dialog3ViewComponent(messageView);
+                                dialog3.render({});
+            
+                                const messageViewList = document.getElementById('MessagesList');
+            
+                                const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
+                                createMessageForm.addEventListener('submit', (e) => {
+                                    e.preventDefault();
+            
+                                    const message = createMessageForm.elements['message'].value;
+                                    const newMessage = new MessageComponent(messageViewList);
+                                    newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
 
-                    const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
-                    createMessageForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-
-                        const message = createMessageForm.elements['message'].value;
-                        const newMessage = new MessageComponent(messageViewList);
-                        newMessage.render({messageAuthor: 'Username', messageContent: message});
-
-                        createMessageForm.elements['message'].value = '';
-                    });
+                                    (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
+            
+                                    createMessageForm.elements['message'].value = '';
+                                });
+                            }
+                        });
                 });
-
-                // CHAT
-                (<any>window).socket1 = new WebSocket('ws://localhost:8080' + '/chat');
-
-                (<any>window).socket1.onopen = function(result) {
-                    console.log('Соединение установлено на 8080');
-                    (<any>window).socket1.send(result);
-                };
-
-                (<any>window).socket1.onclose = function(event) {
-                if (event.wasClean) {
-                    console.log('cоединение закрыто чисто на 8080');
-                } else {
-                    console.log('соединение - обрыв на 8080');
-                }
-                };
-        
-                (<any>window).socket1.onmessage = function(event) {
-                    console.log("пришли данные " + event.data);
-                };
-                
-                (<any>window).socket1.onerror = function(event) {
-                    console.log("ошибка " + event.message);
-                };
             });
     }
 }

@@ -1,4 +1,5 @@
 import bus from './utils/bus';
+import MessageComponent from './components/Message/Message';
 import ProfileView from './views/ProfileView/ProfileView';
 import LoginView from './views/LoginView/LoginView';
 import SignUpView from './views/SignUpView/SignUpView';
@@ -64,3 +65,33 @@ fetchModule.Get({
     });
 
 router.start();
+
+// CHAT
+(<any>window).socket1 = new WebSocket('ws://localhost:8080' + '/chat');
+
+(<any>window).socket1.onopen = function(result) {
+    console.log('Соединение установлено на 8080');
+};
+
+(<any>window).socket1.onclose = function(event) {
+if (event.wasClean) {
+    console.log('cоединение закрыто чисто на 8080');
+} else {
+    console.log('соединение - обрыв на 8080');
+}
+};
+
+(<any>window).socket1.onmessage = function(event) {
+    console.log("пришли данные " + event.data);
+    const data = JSON.parse(event.data);
+
+    const messageList = document.getElementById('MessagesList')
+    if (messageList != null) {
+        const newMessage = new MessageComponent(messageList);
+        newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
+    }
+};
+
+(<any>window).socket1.onerror = function(event) {
+    console.log("ошибка " + event.message);
+};
