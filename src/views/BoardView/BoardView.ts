@@ -7,7 +7,7 @@ import PinForUserViewComponent from '../../components/PinForUserView/PinForUserV
 import HeaderComponent from '../../components/Header/Header';
 
 import plusImg from '../../images/grayplus.svg';
-import grayPenImg from '../../images/grey-pen.png';
+import grayPenImg from '../../images/graypen.svg';
 import bg from '../../images/bg.png';
 
 import {BACKEND_ADDRESS} from '../../config/Config';

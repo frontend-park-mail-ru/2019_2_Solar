@@ -11,6 +11,7 @@ import PinEditingView from './views/PinEditingView/PinEditingView';
 import PinView from './views/PinView/PinView';
 import DialogView from './views/DialogView/DialogView';
 import UserView from './views/UserView/UserView';
+import SearchView from './views/SearchView/SearchView';
 import {deleteCookie} from './utils/deleteCookies';
 import './scss/base.scss';
 import Router from './utils/router';
@@ -41,6 +42,7 @@ router
     .register('/dialog', DialogView)
     .register('/board/:id', BoardView)
     .register('/users/:username', UserView)
+    .register('/search', SearchView)
     .register('/index/:type', IndexView);
 
 (<any>window).CSRFtoken = '';
