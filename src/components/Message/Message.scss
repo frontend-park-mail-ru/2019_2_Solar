@@ -1,12 +1,10 @@
 .message {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
 .message_margin {
-    margin-top: 15px;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin: 15px 15px 0 15px;
 }
 
 .message__creator {
@@ -29,5 +27,5 @@
 }
 
 .message__context_margin {
-    margin-top:3px;
+    margin-top: 3px;
 }

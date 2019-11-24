@@ -61,7 +61,7 @@ export default class DialogView extends BaseView {
                 const dialog1 = new Dialog1ViewComponent(messageView);
                 dialog1.render({});
 
-                const newMessage = document.getElementById('newMessagwButton');
+                const newMessage = document.getElementById('newMessageButton');
                 newMessage.addEventListener('click', (e)=> {
                     messageView.innerHTML = '';
                     const dialog3 = new Dialog3ViewComponent(messageView);
