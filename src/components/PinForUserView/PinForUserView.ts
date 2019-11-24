@@ -1,6 +1,6 @@
 import './PinForUserView.scss';
 import PinForUserViewTemplate from '../PinForUserView/PinForUserView.hbs';
-import GrayPen from '../../images/grey-pen.png';
+import GrayPen from '../../images/graypen.svg';
 
 /** Class representing a PinForUserView component. */
 export default class PinForUserViewComponent {

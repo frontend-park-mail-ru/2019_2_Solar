@@ -12,7 +12,7 @@ import Close from '../../images/closeicon.svg';
 import bus from '../../utils/bus';
 import {BACKEND_ADDRESS} from '../../config/Config';
 
-import SetImg from '../../images/grey-pen.png';
+import SetImg from '../../images/graypen.svg';
 import PlusImgFAdd from '../../images/grayplus.svg';
 
 import bg from '../../images/bg.png';
