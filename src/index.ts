@@ -52,15 +52,6 @@ fetchModule.Get({
 })
     .then((response) => {
         if (response.ok) {
-            (<any>window).socket = new WebSocket('ws://localhost:8080' + '/chat');
-
-            (<any>window).socket.onopen = function(result) {
-                for (let i = 0; i < 3; i++) {
-                    (<any>window).socket.send(JSON.stringify({id_sender: 5, username_recipient: 'ADshishova', text: 'Hello, ADshishova!'}));
-                }
-            };
-            (<any>window).socket.onmessage = function(result) {
-            };
             return response.json();
         } else {
             router.open('/');
