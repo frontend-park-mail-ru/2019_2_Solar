@@ -11,7 +11,7 @@ export function setCookie(name, value, days, path) {
 
     const lastDate = new Date();
     lastDate.setDate(lastDate.getDate() + days);
-    value = escape(value) + ((days==null) ? '' : '; expires='+lastDate.toUTCString());
+    value = escape(value) + ((days == null) ? '' : '; expires=' + lastDate.toUTCString());
     document.cookie = name + '=' + value + '; path=' + path; // вешаем куки
 }
 

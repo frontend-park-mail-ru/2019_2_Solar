@@ -7,7 +7,6 @@ import '../ProfileView/ProfileView.scss';
 import HeaderComponent from '../../components/Header/Header';
 import PinForIndex from '../../components/PinForIndex/PinForIndex';
 
-// import bus from '../../utils/bus';
 import {BACKEND_ADDRESS} from '../../config/Config';
 
 import bg from '../../images/bg.png';

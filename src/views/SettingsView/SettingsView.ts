@@ -74,8 +74,6 @@ export default class SettingsView extends BaseView {
                 header.data = responseBody;
                 header.render();
 
-                // this.data = responseBody;
-
                 const context = {
                     username: responseBody.body.user.username,
                     avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
