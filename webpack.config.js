@@ -3,13 +3,22 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.ts',
     module: {
         rules: [
             {
                 test: /\.(js)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader', 'eslint-loader']
+            },
+            {
+                enforce: 'pre',
+                test: /\.(js)$/,
+                loader: 'source-map-loader'
+            },
+            {
+                test: /\.(ts)$/,
+                loader: 'awesome-typescript-loader'
             },
             {
                 test: /\.scss$/,
@@ -20,16 +29,28 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif|ico)$/,
-                use: ['file-loader']
+                loader: 'image-webpack-loader',
+                enforce: 'pre'
+            },
+            {
+                test: /\.(png|svg|jpg|gif|ico)$/,
+                loader: 'url-loader',
+                options: {
+                    // Images larger than 10 KB won’t be inlined
+                    limit: 10 * 1024
+                }
             },
             {
                 test: /\.hbs$/,
-                loader: "handlebars-loader"
+                loader: "handlebars-loader",
+                options: {
+                    helperDirs: [path.join(__dirname, './src/utils/handlebarsHelpers')],
+                }
             }
         ]
     },
     resolve: {
-        extensions: ['*', '.js']
+        extensions: ['*', '.js', '.ts']
     },
     output: {
         filename: 'main.js',

@@ -1,16 +1,14 @@
 .message {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
 .message_margin {
-    margin-top: 15px;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin: 13px 13px 0 13px;
+    padding: 4px;
 }
 
 .message__creator {
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -21,7 +19,6 @@
 
 .message__content {
     overflow: hidden;
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -31,5 +28,9 @@
 }
 
 .message__context_margin {
-    margin-top:3px;
+    margin-top: 3px;
+}
+
+.your-message_background {
+    background: #d6d6d6;
 }

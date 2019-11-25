@@ -24,8 +24,9 @@
 }
 
 .viewpin-block__pin-photo {
-    width: 451px;
-    height: 649px;
+    object-fit: cover;
+    width: 488px;
+    height: 650px;
 
     background: #C4C4C4;
     border: 1px solid #A29F9C;
@@ -44,7 +45,6 @@
     width: 463px;
     height: 44px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -67,7 +67,6 @@
     border: 0;
     text-align: center;
     color: #FFFFFF;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -86,7 +85,6 @@
     width: 54px;
     height: 44px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -100,7 +98,6 @@
     width: 391px;
     height: 32px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -112,10 +109,8 @@
 }
 
 .viewpin-block__right-column__context {
-    width: 391px;
     height: 32px;
 
-    font-family: Roboto;
     font-style: normal;
     font-size: 16px;
     line-height: 19px;
@@ -133,15 +128,13 @@
     width: 463px;
     height: 44px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 28px;
     display: flex;
     align-items: center;
-
-    color: #3D3D3D;
+    color: #8C8C8C;
     border-bottom: 1px solid #C4C4C4;
     border-color: #8C8C8C;
 }
@@ -150,7 +143,6 @@
     width: 455px;
     height: 74px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -160,7 +152,7 @@
 }
 
 .viewpin-form__sending-comment_margin {
-    margin-top:30px;
+    margin-top: 30px;
 }
 
 .viewpin-form__send-comment {
@@ -172,7 +164,6 @@
     border-radius: 5px;
     text-align: center;
     color: #8C8C8C;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -195,7 +186,6 @@ a {
     border: 1px solid #A29F9C;
     box-sizing: border-box;
     border-radius: 5px;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;

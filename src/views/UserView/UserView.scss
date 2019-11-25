@@ -11,8 +11,39 @@
     border: 0;
     text-align: center;
     color: white;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
+}
+
+.button-already-subscribe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 38px;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color: white;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.user-subscribe-pins {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.columns {
+    column-width: 320px;
+    column-gap: 15px;
+    width: 90%;
+    max-width: 100%;
 }

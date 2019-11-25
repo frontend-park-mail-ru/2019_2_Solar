@@ -1,0 +1,33 @@
+.user-for-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 246px;
+    background: #FFFFFF;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    margin-inline-start: 15px;
+    margin-inline-end: 15px;
+    padding: 10px 5px 10px 5px;
+}
+
+.user-for-search__img {
+    border-radius: 100px;
+    width: 126px;
+    height: 126px;
+    background-image: url(../../images/bg.png);
+}
+
+.user-for-search__username {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}

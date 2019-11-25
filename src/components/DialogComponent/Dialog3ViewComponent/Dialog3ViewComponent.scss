@@ -1,5 +1,5 @@
 .dialog3view__title-one {
-    margin-left: 46px;
+    margin-left: 30px;
     margin-right: 30px;
     margin-top: 25px;
     display: flex;
@@ -8,7 +8,6 @@
 }
 
 .dialog3view__title-one__text {
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -18,7 +17,7 @@
 }
 
 .dialog3view__title-two {
-    margin-left: 46px;
+    margin-left: 30px;
     margin-right: 30px;
     margin-top: 20px;
     display: flex;
@@ -27,7 +26,6 @@
 }
 
 .dialog3view__title-two__text {
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -65,16 +63,17 @@ a {
 }
 
 .message-form__sending-message {
-    width: 100%;
     height: 74px;
     padding-left: 10px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-    
+
+    border-radius: 5px;
+    border: 2px solid #d6d6d6;
+
     color: #000000;
 }
 
@@ -87,7 +86,6 @@ a {
     width: 156px;
     height: 37px;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;

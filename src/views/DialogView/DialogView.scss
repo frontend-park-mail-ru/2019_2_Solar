@@ -1,11 +1,11 @@
 /* dialog */
 .dialogview__flex-container {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    width: 470px;
-    height: 100%;
+    width: 500px;
+    height: 100vh;
     z-index: 7;
     border-left: 1px solid #d6d6d6;
     border-right: 1px solid #d6d6d6;

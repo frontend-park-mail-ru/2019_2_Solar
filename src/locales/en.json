@@ -1,0 +1,11 @@
+{
+    "en": {
+        "signup.content": "The place you'll find the real you!",
+        "signup.email": "Email",
+        "signup.username": "Nickname",
+        "signup.password": "Password",
+        "signup.registered": "Already a user?",
+        "signup.enter": "Log in",
+        "signup.register": "Sign Up"
+    }
+}

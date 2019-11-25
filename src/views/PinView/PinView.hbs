@@ -8,7 +8,7 @@
                     <select name="board-select" class="viewpin-form__board-select_design viewpin-form__board-select_design_pos">
                         <option disabled>Выберете доску</option>
                         {{#each boardsNames}}
-                            <option>{{this}}</option>
+                            <option value={{this.board_id}}>{{this.board}}</option>
                         {{/each}}
                     </select>
                     <input type="submit" class="viewpin-block__right-column__buttom-save viewpin-block__right-column__buttom-save_pos" value="Сохранить">
@@ -18,12 +18,10 @@
                 <span class="viewpin-block__right-column__author">Автор:</span>
                 <a href="/users/{{pinAuthor}}" class="viewpin-block__right-column__username">{{pinAuthor}}</a>
             </div>
-            <div class="viewpin-block__right-column__title viewpin-block__right-column__context_margin">Описание</div>
             <div class="viewpin-block__right-column__context">{{pinContent}}</div>
             <div class="viewpin-block__right-column__comment-block viewpin-block__right-column__context_margin">Комментарии</div>
             
-            <div id="pinViewComments">
-            </div>
+            <div id="pinViewComments"></div>
     
             <form id="viewPinCommentData">
                 <input type="text" id="comment" name="comment" placeholder="Напишите комментарий ..." class="viewpin-form__sending-comment viewpin-form__sending-comment_margin">

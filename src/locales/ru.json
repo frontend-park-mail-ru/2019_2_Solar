@@ -1,0 +1,11 @@
+{
+    "ru": {
+        "signup.content": "Место, где вы можете выразить настоящего себя!",
+        "signup.email": "Электронная почта",
+        "signup.username": "Никнейм",
+        "signup.password": "Пароль",
+        "signup.registered": "Уже зарегистрировались?",
+        "signup.enter": "Войти",
+        "signup.register": "Зарегистрироваться"
+    }
+}

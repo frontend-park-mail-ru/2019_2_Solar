@@ -17,13 +17,12 @@
 }
 
 .comment__creator {
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 14px;
-line-height: 16px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
 
-color: #000000;
+    color: #000000;
 }
 
 .comment__right-block {
@@ -34,7 +33,6 @@ color: #000000;
 
 .comment__content {
     overflow: hidden;
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
