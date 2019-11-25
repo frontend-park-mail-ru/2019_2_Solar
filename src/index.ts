@@ -83,7 +83,6 @@ if (event.wasClean) {
 };
 
 (<any>window).socket1.onmessage = function(event) {
-    console.log("пришли данные " + event.data);
     const data = JSON.parse(event.data);
 
     const messageList = document.getElementById('MessagesList');
@@ -109,8 +108,6 @@ if (event.wasClean) {
         const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
         list.innerHTML += '<li><a href="#">Вам написал '+ data.user_name_sender + ': "' + data.text + '"</li>';
     }
-
-    console.log(sectionFind);
 };
 
 (<any>window).socket1.onerror = function(event) {
