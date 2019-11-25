@@ -77,7 +77,7 @@ export default class DialogView extends BaseView {
                             if (responseBody.body.user) {
                                 messageView.innerHTML = '';
                                 const dialog3 = new Dialog3ViewComponent(messageView);
-                                dialog3.render({});
+                                dialog3.render({username: username_resipient});
             
                                 const messageViewList = document.getElementById('MessagesList');
             
