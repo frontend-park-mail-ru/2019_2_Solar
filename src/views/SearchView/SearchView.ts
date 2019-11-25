@@ -77,15 +77,19 @@ export default class SearchView extends BaseView {
                                 return response.json();
                             })
                             .then((responseBody) => {
-                                if (responseBody.body.pins.length != 0) {
-                                    const pinsSearch = responseBody.body.pins;
-        
-                                    for (let i = 0; i < pinsSearch.length; i++) {
-                                        const pinForIndexView = new PinForIndex(searchPage);
-                                        pinForIndexView.render({
-                                            id: pinsSearch[i].id,
-                                            pinImg: BACKEND_ADDRESS + '/' + pinsSearch[i].pin_dir,
-                                            content: pinsSearch[i].title});
+                                if (responseBody.body.pins) {
+                                    if (responseBody.body.pins.length != 0) {
+                                        const pinsSearch = responseBody.body.pins;
+            
+                                        for (let i = 0; i < pinsSearch.length; i++) {
+                                            const pinForIndexView = new PinForIndex(searchPage);
+                                            pinForIndexView.render({
+                                                id: pinsSearch[i].id,
+                                                pinImg: BACKEND_ADDRESS + '/' + pinsSearch[i].pin_dir,
+                                                content: pinsSearch[i].title});
+                                        }
+                                    } else {
+                                        searchPage.textContent = 'Поиск не дал результатов :с';
                                     }
                                 } else {
                                     searchPage.textContent = 'Поиск не дал результатов :с';
@@ -100,14 +104,18 @@ export default class SearchView extends BaseView {
                                 return response.json();
                             })
                             .then((responseBody) => {
-                                if (responseBody.body.users.length != 0) {
-                                    const usersSearch = responseBody.body.users;
-        
-                                    for (let i = 0; i < usersSearch.length; i++) {
-                                        const UserForSearchView = new UserForSearch(searchPage);
-                                        UserForSearchView.render({
-                                            username: usersSearch[i].username,
-                                            userImg: (usersSearch[i].avatar_dir) ? (BACKEND_ADDRESS + '/' + usersSearch[i].avatar_dir) : bg});
+                                if (responseBody.body.users) {
+                                    if (responseBody.body.users.length != 0) {
+                                        const usersSearch = responseBody.body.users;
+            
+                                        for (let i = 0; i < usersSearch.length; i++) {
+                                            const UserForSearchView = new UserForSearch(searchPage);
+                                            UserForSearchView.render({
+                                                username: usersSearch[i].username,
+                                                userImg: (usersSearch[i].avatar_dir) ? (BACKEND_ADDRESS + '/' + usersSearch[i].avatar_dir) : bg});
+                                        }
+                                    } else {
+                                        searchPage.textContent = 'Поиск не дал результатов :с';
                                     }
                                 } else {
                                     searchPage.textContent = 'Поиск не дал результатов :с';
