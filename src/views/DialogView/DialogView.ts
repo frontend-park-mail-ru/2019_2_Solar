@@ -61,25 +61,59 @@ export default class DialogView extends BaseView {
                 const dialog1 = new Dialog1ViewComponent(messageView);
                 dialog1.render({});
 
-                const newMessage = document.getElementById('newMessagwButton');
-                newMessage.addEventListener('click', (e)=> {
-                    messageView.innerHTML = '';
-                    const dialog3 = new Dialog3ViewComponent(messageView);
-                    dialog3.render({});
+                const messageError = document.getElementById('createMessageError');
 
-                    const messageViewList = document.getElementById('MessagesList');
+                const newMessageForm = <HTMLFormElement>document.getElementById('newMessageData');
+                newMessageForm.addEventListener('submit', (e)=> {
+                    e.preventDefault();
+                    createMessageError(messageError, '', '');
+                    const username_resipient = newMessageForm.elements['username'].value;
 
-                    const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
-                    createMessageForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-
-                        const message = createMessageForm.elements['message'].value;
-                        const newMessage = new MessageComponent(messageViewList);
-                        newMessage.render({messageAuthor: 'Username', messageContent: message});
-
-                        createMessageForm.elements['message'].value = '';
-                    });
+                    fetchModule.Get({
+                        url: BACKEND_ADDRESS + '/users/' + username_resipient,
+                        body: null,
+                    })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((responseBody) => {
+                            if (responseBody.body.user) {
+                                messageView.innerHTML = '';
+                                const dialog3 = new Dialog3ViewComponent(messageView);
+                                dialog3.render({username: username_resipient});
+            
+                                const messageViewList = document.getElementById('MessagesList');
+            
+                                const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
+                                createMessageForm.addEventListener('submit', (e) => {
+                                    e.preventDefault();
+            
+                                    const message = createMessageForm.elements['message'].value;
+                                    if (message != '') {
+                                        const newMessage = new MessageComponent(messageViewList);
+                                        newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
+    
+                                        (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
+                
+                                        createMessageForm.elements['message'].value = '';
+                                    }
+                                });
+                            } else {
+                                createMessageError(messageError, 'Пользователь не найден', 'createmessage-error');
+                            }
+                        });
                 });
             });
     }
+}
+
+/**
+ * createMessageError
+ * @param {*} element
+ * @param {string} errorMessage
+ * @param {string} classname
+ */
+function createMessageError(element, errorMessage, classname) {
+    element.textContent = errorMessage;
+    element.className = classname;
 }

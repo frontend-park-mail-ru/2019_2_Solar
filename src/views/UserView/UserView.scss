@@ -31,3 +31,19 @@
     font-weight: bold;
     font-size: 16px;
 }
+
+.user-subscribe-pins {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.columns {
+    column-width: 320px;
+    column-gap: 15px;
+    width: 90%;
+    max-width: 100%;
+}
