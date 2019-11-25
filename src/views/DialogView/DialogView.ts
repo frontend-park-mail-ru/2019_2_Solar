@@ -61,9 +61,12 @@ export default class DialogView extends BaseView {
                 const dialog1 = new Dialog1ViewComponent(messageView);
                 dialog1.render({});
 
+                const messageError = document.getElementById('createMessageError');
+
                 const newMessageForm = <HTMLFormElement>document.getElementById('newMessageData');
                 newMessageForm.addEventListener('submit', (e)=> {
                     e.preventDefault();
+                    createMessageError(messageError, '', '');
                     const username_resipient = newMessageForm.elements['username'].value;
 
                     fetchModule.Get({
@@ -95,9 +98,22 @@ export default class DialogView extends BaseView {
                                         createMessageForm.elements['message'].value = '';
                                     }
                                 });
+                            } else {
+                                createMessageError(messageError, 'Пользователь не найден', 'createmessage-error');
                             }
                         });
                 });
             });
     }
+}
+
+/**
+ * createMessageError
+ * @param {*} element
+ * @param {string} errorMessage
+ * @param {string} classname
+ */
+function createMessageError(element, errorMessage, classname) {
+    element.textContent = errorMessage;
+    element.className = classname;
 }

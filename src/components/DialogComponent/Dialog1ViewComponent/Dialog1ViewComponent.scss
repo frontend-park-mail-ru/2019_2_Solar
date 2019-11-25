@@ -71,3 +71,16 @@
 .incoming-messages-list {
     margin: 10px 17px 0 17px;
 }
+
+.createmessage-error {
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #FADADD;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: red;
+
+    margin: 10px 30px 0 30px;
+}
