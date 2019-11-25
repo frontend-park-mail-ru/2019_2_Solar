@@ -40,14 +40,14 @@ export default class DialogView extends BaseView {
             .then((response) => {
                 return response.json();
             })
-            .then((responseBody) => {
-                (<any>window).CSRFtoken = responseBody.csrf_token;
+            .then((responseBodyProfile) => {
+                (<any>window).CSRFtoken = responseBodyProfile.csrf_token;
 
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
 
                 const header = new HeaderComponent(this.el);
-                header.data = responseBody;
+                header.data = responseBodyProfile;
                 header.render();
 
                 const dialog = DialogViewTemplate();
@@ -83,7 +83,24 @@ export default class DialogView extends BaseView {
                                 dialog3.render({username: username_resipient});
             
                                 const messageViewList = document.getElementById('MessagesList');
-            
+
+                                fetchModule.Get({
+                                    url: BACKEND_ADDRESS + '/chat/messages/' + responseBody.body.user.id + '/' + responseBodyProfile.body.user.id,
+                                    body: null,
+                                })
+                                    .then((response) => {
+                                        return response.json();
+                                    })
+                                    .then((responseBodyMessages) => {
+                                        if (responseBodyMessages.body.messages) {
+                                            const messages = responseBodyMessages.body.messages;
+                                            for (let i = 0; i < messages.length; i++) {
+                                                const newMessage = new MessageComponent(messageViewList);
+                                                newMessage.render({messageAuthor: messages.user_name_sender, classForBg: '', messageContent: messages.text});
+                                            }
+                                        }
+                                    });
+
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
                                 createMessageForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
