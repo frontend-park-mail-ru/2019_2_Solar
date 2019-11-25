@@ -108,5 +108,18 @@ export default class HeaderComponent {
                     console.log(responseBody);
                 });
         });
+
+        if ((<any>window).chatMessages) {
+            const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+            const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+            if (notice != null) {
+                const notices = (<any>window).chatMessages.getNotice();
+                for (let i =0; i < notices.length; i++) {
+                    notice.textContent = String(Number(notice.textContent) + 1);
+                    const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+                    list.innerHTML += '<li><a href="#">Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
+                }
+            }
+        }
     }
 }
