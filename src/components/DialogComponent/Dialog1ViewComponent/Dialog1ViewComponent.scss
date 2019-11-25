@@ -1,5 +1,5 @@
 .dialogview__title-one {
-    margin-left: 46px;
+    margin-left: 30px;
     margin-right: 30px;
     margin-top: 25px;
     display: flex;
@@ -31,13 +31,56 @@
 
     background: #FF8F0C;
     border-radius: 5px;
+    border: none;
+}
+
+.dialogview__title-one__button_margin {
+    margin-left: 10px;
+}
+
+.dialogviewform {
+    display: flex;
+    margin-top: 10px;
+    margin: 10px 30px 0 30px;
+}
+
+.dialog-form-input-user {
+    display: flex;
+    flex-grow: 1;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    border-radius: 5px;
+    border: 2px solid #d6d6d6;
+    
+    color: #000000;
 }
 
 .dialogview__title-two {
-    margin-left: 46px;
+    margin-left: 30px;
     margin-right: 30px;
     margin-top: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.incoming-messages-list {
+    margin: 10px 17px 0 17px;
+}
+
+.createmessage-error {
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #FADADD;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: red;
+
+    margin: 10px 30px 0 30px;
 }

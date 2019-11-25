@@ -1,4 +1,5 @@
 import bus from './utils/bus';
+import MessageComponent from './components/Message/Message';
 import ProfileView from './views/ProfileView/ProfileView';
 import LoginView from './views/LoginView/LoginView';
 import SignUpView from './views/SignUpView/SignUpView';
@@ -16,6 +17,7 @@ import {deleteCookie} from './utils/deleteCookies';
 import './scss/base.scss';
 import Router from './utils/router';
 import {BACKEND_ADDRESS} from './config/Config';
+import {WS_BACKEND_ADDRESS} from './config/Config';
 import CreateBoardView from './views/CreateBoardView/CreateBoardView';
 import fetchModule from './utils/fetchModule';
 
@@ -54,15 +56,6 @@ fetchModule.Get({
 })
     .then((response) => {
         if (response.ok) {
-            (<any>window).socket = new WebSocket('ws://localhost:8080' + '/chat');
-
-            (<any>window).socket.onopen = function(result) {
-                for (let i = 0; i < 3; i++) {
-                    (<any>window).socket.send(JSON.stringify({id_sender: 5, username_recipient: 'ADshishova', text: 'Hello, ADshishova!'}));
-                }
-            };
-            (<any>window).socket.onmessage = function(result) {
-            };
             return response.json();
         } else {
             router.open('/');
@@ -73,3 +66,53 @@ fetchModule.Get({
     });
 
 router.start();
+
+// CHAT
+(<any>window).socket1 = new WebSocket(WS_BACKEND_ADDRESS + '/chat');
+
+(<any>window).socket1.onopen = function(result) {
+    console.log('Соединение установлено на 8080');
+};
+
+(<any>window).socket1.onclose = function(event) {
+if (event.wasClean) {
+    console.log('cоединение закрыто чисто на 8080');
+} else {
+    console.log('соединение - обрыв на 8080');
+}
+};
+
+(<any>window).socket1.onmessage = function(event) {
+    console.log("пришли данные " + event.data);
+    const data = JSON.parse(event.data);
+
+    const messageList = document.getElementById('MessagesList');
+    if (messageList != null) {
+        const recipientName = document.getElementById('chatUser').textContent;
+
+        if (recipientName == data.user_name_sender) {
+            const newMessage = new MessageComponent(messageList);
+            newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
+        }
+    }
+
+    const allMessageList = document.getElementById('incomingMessagesList'); 
+    if (allMessageList != null) {
+        const newMessage = new MessageComponent(allMessageList);
+        newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
+    }
+
+    const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+    const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+    if (notice != null) {
+        notice.textContent = String(Number(notice.textContent) + 1);
+        const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+        list.innerHTML += '<li><a href="#">Вам написал '+ data.user_name_sender + ': "' + data.text + '"</li>';
+    }
+
+    console.log(sectionFind);
+};
+
+(<any>window).socket1.onerror = function(event) {
+    console.log("ошибка " + event.message);
+};

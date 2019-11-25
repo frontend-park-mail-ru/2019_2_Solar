@@ -85,6 +85,7 @@ export default class Router {
 
         if (!el) {
             el = document.createElement('section');
+            el.dataset.page = path;
             this.root.appendChild(el);
         }
 

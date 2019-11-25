@@ -102,7 +102,7 @@ export default class CreateBoardView extends BaseView {
 }
 
 /**
- * createPinError
+ * createBoardError
  * @param {*} element
  * @param {string} errorMessage
  * @param {string} classname
