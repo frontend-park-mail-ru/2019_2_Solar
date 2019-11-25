@@ -20,6 +20,7 @@ import {BACKEND_ADDRESS} from './config/Config';
 import {WS_BACKEND_ADDRESS} from './config/Config';
 import CreateBoardView from './views/CreateBoardView/CreateBoardView';
 import fetchModule from './utils/fetchModule';
+import chatModule from './utils/chatModule';
 
 const application = document.getElementById('application');
 
@@ -69,6 +70,7 @@ router.start();
 
 // CHAT
 (<any>window).socket1 = new WebSocket(WS_BACKEND_ADDRESS + '/chat');
+(<any>window).chatMessages = new chatModule();
 
 (<any>window).socket1.onopen = function(result) {
     console.log('Соединение установлено на 8080');
@@ -108,6 +110,9 @@ if (event.wasClean) {
         const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
         list.innerHTML += '<li><a href="#">Вам написал '+ data.user_name_sender + ': "' + data.text + '"</li>';
     }
+
+    (<any>window).chatMessages.addData(data.user_name_sender, data.text);
+    console.log((<any>window).chatMessages.getNotice());
 };
 
 (<any>window).socket1.onerror = function(event) {
