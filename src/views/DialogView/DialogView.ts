@@ -86,12 +86,14 @@ export default class DialogView extends BaseView {
                                     e.preventDefault();
             
                                     const message = createMessageForm.elements['message'].value;
-                                    const newMessage = new MessageComponent(messageViewList);
-                                    newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
-
-                                    (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
-            
-                                    createMessageForm.elements['message'].value = '';
+                                    if (message != '') {
+                                        const newMessage = new MessageComponent(messageViewList);
+                                        newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
+    
+                                        (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
+                
+                                        createMessageForm.elements['message'].value = '';
+                                    }
                                 });
                             }
                         });

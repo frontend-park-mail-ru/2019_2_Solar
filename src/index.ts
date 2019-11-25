@@ -17,6 +17,7 @@ import {deleteCookie} from './utils/deleteCookies';
 import './scss/base.scss';
 import Router from './utils/router';
 import {BACKEND_ADDRESS} from './config/Config';
+import {WS_BACKEND_ADDRESS} from './config/Config';
 import CreateBoardView from './views/CreateBoardView/CreateBoardView';
 import fetchModule from './utils/fetchModule';
 
@@ -67,7 +68,7 @@ fetchModule.Get({
 router.start();
 
 // CHAT
-(<any>window).socket1 = new WebSocket('ws://localhost:8080' + '/chat');
+(<any>window).socket1 = new WebSocket(WS_BACKEND_ADDRESS + '/chat');
 
 (<any>window).socket1.onopen = function(result) {
     console.log('Соединение установлено на 8080');
@@ -103,7 +104,11 @@ if (event.wasClean) {
 
     const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
     const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
-    notice.textContent = String(Number(notice.textContent) + 1);
+    if (notice != null) {
+        notice.textContent = String(Number(notice.textContent) + 1);
+        const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+        list.innerHTML += '<li><a href="#">Вам написал '+ data.user_name_sender + ': "' + data.text + '"</li>';
+    }
 
     console.log(sectionFind);
 };
