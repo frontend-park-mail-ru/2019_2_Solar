@@ -120,21 +120,23 @@ export default class PinView extends BaseView {
 
                             const commentForList = viewPinCommentForm.elements['comment'].value;
 
-                            fetchModule.Post({
-                                url: BACKEND_ADDRESS + '/pin/' + responseBody.body.pins.id + '/comment',
-                                body: JSON.stringify({text: commentForList}),
-                            })
-                                .then((response) => {
-                                    if (response.ok) {
-                                        const commentForAdd = new PinCommentComponent(pinViewCommentsList);
-                                        commentForAdd.render({
-                                            commentAuthorImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
-                                            commentAuthor: (<any>window).GlobalUser.body.user.username,
-                                            commentContent: commentForList});
-
-                                        viewPinCommentForm.elements['comment'].value = '';
-                                    }
-                                });
+                            if (commentForList != '') {
+                                fetchModule.Post({
+                                    url: BACKEND_ADDRESS + '/pin/' + responseBody.body.pins.id + '/comment',
+                                    body: JSON.stringify({text: commentForList}),
+                                })
+                                    .then((response) => {
+                                        if (response.ok) {
+                                            const commentForAdd = new PinCommentComponent(pinViewCommentsList);
+                                            commentForAdd.render({
+                                                commentAuthorImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
+                                                commentAuthor: (<any>window).GlobalUser.body.user.username,
+                                                commentContent: commentForList});
+    
+                                            viewPinCommentForm.elements['comment'].value = '';
+                                        }
+                                    });
+                            }
                         });
                     });
             });
