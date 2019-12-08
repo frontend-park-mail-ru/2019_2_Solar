@@ -110,16 +110,25 @@ export default class Router {
      */
     start() {
         this.root.addEventListener('click', function(event) {
-            if (!(event.target instanceof HTMLAnchorElement || event.target instanceof HTMLImageElement)) {
+            if (!(event.target instanceof HTMLAnchorElement)) {
                 return;
-            } else if (event.target instanceof HTMLAnchorElement) {
-                event.preventDefault();
-                const link = event.target;
-    
-                this.open(link.pathname);
-            } else if (event.target instanceof HTMLImageElement) {
-                this.open(event.target.dataset.section);
             }
+
+            event.preventDefault();
+            const link = event.target;
+
+            this.open(link.pathname);
+
+            // if (!(event.target instanceof HTMLAnchorElement || event.target instanceof HTMLImageElement)) {
+            //     return;
+            // } else if (event.target instanceof HTMLAnchorElement) {
+            //     event.preventDefault();
+            //     const link = event.target;
+    
+            //     this.open(link.pathname);
+            // } else if (event.target instanceof HTMLImageElement) {
+            //     this.open(event.target.dataset.section);
+            // }
         }.bind(this));
 
         window.addEventListener('popstate', function() {
