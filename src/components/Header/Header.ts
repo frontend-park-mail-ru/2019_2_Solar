@@ -52,8 +52,6 @@ export default class HeaderComponent {
         this._data = (<any>window).GlobalUser;
 
         const context = {
-            username: this._data.body.user.username,
-            avatarPhoto: (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg,
             notice: 0,
 
             PHlogo: Logo,
@@ -65,9 +63,60 @@ export default class HeaderComponent {
             PHsetting: Setting,
             PHbell: Bell,
         };
-        const html = HeaderTemplate(context);
 
-        this._parent.innerHTML = html;
+        if (this._data.body) {
+            context['username'] = this._data.body.user.username;
+            context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg;
+            
+            const html = HeaderTemplate(context);
+            this._parent.innerHTML = html;
+
+            if ((<any>window).chatMessages) {
+                const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+                const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+                if (notice != null) {
+                    const notices = (<any>window).chatMessages.getNotice();
+                    for (let i =0; i < notices.length; i++) {
+                        notice.textContent = String(Number(notice.textContent) + 1);
+                        const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+                        list.innerHTML += '<li><a href="#">Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
+                    }
+                }
+            }
+        } else {
+            fetchModule.Get({
+                url: BACKEND_ADDRESS + '/profile/data',
+                body: null,
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                })
+                .then((responseBody) => {
+                    (<any>window).GlobalUser = responseBody;
+                    this.data(responseBody);
+
+                    context['username'] = this._data.body.user.username;
+                    context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg;
+                    
+                    const html = HeaderTemplate(context);
+                    this._parent.innerHTML = html;
+
+                    if ((<any>window).chatMessages) {
+                        const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+                        const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+                        if (notice != null) {
+                            const notices = (<any>window).chatMessages.getNotice();
+                            for (let i =0; i < notices.length; i++) {
+                                notice.textContent = String(Number(notice.textContent) + 1);
+                                const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+                                list.innerHTML += '<li><a href="#">Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
+                            }
+                        }
+                    }
+                });
+        }
 
         // const section = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
         // const searchForm = <HTMLFormElement>section.querySelectorAll('[id=\'headerSearch\']')[0];
@@ -78,18 +127,5 @@ export default class HeaderComponent {
 
 
         // console.log(section);
-
-        if ((<any>window).chatMessages) {
-            const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
-            const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
-            if (notice != null) {
-                const notices = (<any>window).chatMessages.getNotice();
-                for (let i =0; i < notices.length; i++) {
-                    notice.textContent = String(Number(notice.textContent) + 1);
-                    const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
-                    list.innerHTML += '<li><a href="#">Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
-                }
-            }
-        }
     }
 }
