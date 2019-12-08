@@ -69,45 +69,15 @@ export default class HeaderComponent {
 
         this._parent.innerHTML = html;
 
-        // document.getElementById('spanNum').textContent = String(0);
-        // setInterval(() => {
-        //     fetchModule.Get({
-        //         url: BACKEND_ADDRESS + '/notice',
-        //         body: null,
-        //     })
-        //         .then((response) => {
-        //             return response.json();
-        //         })
-        //         .then((responseBody) => {
-        //             CSRFtoken = responseBody.csrt_token;
+        // const section = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+        // const searchForm = <HTMLFormElement>section.querySelectorAll('[id=\'headerSearch\']')[0];
+        // searchForm.addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     console.log('ok');
+        // });
 
-        //             const noticelen = responseBody.body.notices;
-        //             document.getElementById('spanNum').textContent = String(noticelen.length);
 
-        //             const list = document.getElementById('list');
-        //             for (let i = 0; i < noticelen.length; i++) {
-        //                 list.innerHTML += '<li><a href="#">'+ noticelen[i].message + '</li>';
-        //             }
-        //         });
-        // }, 30000);
-
-        const viewSearchForm = <HTMLFormElement> document.getElementById('headerSearch');
-
-        viewSearchForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const searchText = viewSearchForm.elements['searchtext'].value;
-            fetchModule.Post({
-                url: BACKEND_ADDRESS + '/find/pins/by/tag/' + searchText,
-                body: null,
-            })
-                .then((response) => {
-                    return response.json();
-                })
-                .then((responseBody) => {
-                    console.log(responseBody);
-                });
-        });
+        // console.log(section);
 
         if ((<any>window).chatMessages) {
             const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];

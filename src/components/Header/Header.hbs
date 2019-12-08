@@ -1,9 +1,9 @@
 <div id="header" class="header-position">
     <div class="header">
         <a href='/index/new' class="logo">
-            <img data-section="index" class="logo__picture" src={{PHlogo}}>
+            <img data-section="/index/new" class="logo__picture" src={{PHlogo}}>
         </a>
-        <form id="headerSearch" class="search">
+        <form id="headerSearch" class="search" onchange="console.log('hi'); bus.emit('/profile',{});">
             <div class="search__icon">
                     <img src={{PHLupa}}>
             </div>
@@ -16,14 +16,14 @@
             <a href="/index/new" class="left-controls__text-to-ind">Главная</a>
             <a href="/index/subscribe" class="left-controls__text-to-ind">Подписки</a>
             <a href="/search" class="left-controls__text-to-ind">Поиск</a>
-            <a href="/create_pin"><img data-section="create-pin" src={{PHplus}} class="plus-img plus-img_margin-left"></a>
+            <a href="/create_pin"><img data-section="/create_pin" src={{PHplus}} class="plus-img plus-img_margin-left"></a>
         </div>
         <div class="controls">
             <img src="{{avatarPhoto}}" id="avatarPhotoHeader" class="avatar">
             <a href="/profile" class="controls__link usernameclass">{{username}}</a>
         </div>
         <div class ="dialog-block">
-            <a href="/dialog"><img id="messageImg" data-section="dialog" src={{PHdialog}} class="dialog-img dialog__items"></a>
+            <a href="/dialog"><img id="messageImg" data-section="/dialog" src={{PHdialog}} class="dialog-img dialog__items"></a>
             <nav class="alerts-menu">
                 <ul>
                     <li class="alerts-menu_margin-list">
@@ -34,7 +34,7 @@
                 </ul>
             </nav>
             <span id="spanNum" class="alerts-count">{{notice}}</span>
-            <a href="/settings"><img data-section="settings" src={{PHsetting}} class="mun-img dialog__items"></a>
+            <a href="/settings"><img data-section="/settings" src={{PHsetting}} class="mun-img dialog__items"></a>
         </div>
     </div>
 </div>
