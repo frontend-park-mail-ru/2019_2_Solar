@@ -83,8 +83,10 @@ export default class PinView extends BaseView {
                         const header = new HeaderComponent(this.el);
                         header.render();
 
+                        const forId = (<any>window).location.pathname;
                         const context = {
                             pinImg: BACKEND_ADDRESS + '/' + responseBody.body.pins.pin_dir,
+                            forID: forId,
                             pinName: responseBody.body.pins.title,
                             pinAuthor: responseBody.body.pins.owner_username,
                             pinContent: responseBody.body.pins.description,
@@ -94,7 +96,7 @@ export default class PinView extends BaseView {
                         this.el.innerHTML += PinViewTemplate(context);
 
                         /* заполнение поля комментариев */
-                        const pinViewCommentsList = document.getElementById('pinViewComments');
+                        const pinViewCommentsList = document.getElementById('pinViewComments' + String(forId));
                         const pinComments = responseBody.body.comments;
 
                         if (pinComments) {
@@ -108,13 +110,13 @@ export default class PinView extends BaseView {
                         }
 
                         /* Обработка форм на странице */
-                        const viewPinDataForm = document.getElementById('viewPinData');
+                        const viewPinDataForm = document.getElementById('viewPinData' + String(forId));
                         viewPinDataForm.addEventListener('submit', (e) => {
                             e.preventDefault();
                             bus.emit('/profile', {});
                         });
 
-                        const viewPinCommentForm = <HTMLFormElement> document.getElementById('viewPinCommentData');
+                        const viewPinCommentForm = <HTMLFormElement> document.getElementById('viewPinCommentData' + String(forId));
                         viewPinCommentForm.addEventListener('submit', (e) => {
                             e.preventDefault();
 
