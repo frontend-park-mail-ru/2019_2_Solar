@@ -84,22 +84,7 @@ export default class DialogView extends BaseView {
             
                                 const messageViewList = document.getElementById('MessagesList');
 
-                                fetchModule.Get({
-                                    url: BACKEND_ADDRESS + '/chat/messages/' + responseBody.body.user.id + '/' + responseBodyProfile.body.user.id,
-                                    body: null,
-                                })
-                                    .then((response) => {
-                                        return response.json();
-                                    })
-                                    .then((responseBodyMessages) => {
-                                        if (responseBodyMessages.body.messages) {
-                                            const messages = responseBodyMessages.body.messages;
-                                            for (let i = 0; i < messages.length; i++) {
-                                                const newMessage = new MessageComponent(messageViewList);
-                                                newMessage.render({messageAuthor: messages.user_name_sender, classForBg: '', messageContent: messages.text});
-                                            }
-                                        }
-                                    });
+                                createOldMessages(messageViewList, responseBody.body.user.id, responseBodyProfile.body.user.id);
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
                                 createMessageForm.addEventListener('submit', (e) => {
@@ -133,4 +118,31 @@ export default class DialogView extends BaseView {
 function createMessageError(element, errorMessage, classname) {
     element.textContent = errorMessage;
     element.className = classname;
+}
+
+/**
+ * createOldMessages
+ * @param messageViewList 
+ */
+function createOldMessages(messageViewList, anotherUserId, profileUserId) {
+    fetchModule.Get({
+        url: BACKEND_ADDRESS + '/chat/messages/' + String(anotherUserId),
+        body: null,
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseBodyMessages) => {
+            if (responseBodyMessages.body.messages) {
+                const messages = responseBodyMessages.body.messages;
+                for (let i = 0; i < messages.length; i++) {
+                    const newMessage = new MessageComponent(messageViewList);
+                    if (messages[i].senderId == profileUserId) {
+                        newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: messages[i].text});
+                    } else {
+                        newMessage.render({messageAuthor: messages[i].senderId + '(будет username)' + ':', classForBg: '', messageContent: messages[i].text});
+                    }
+                }
+            }
+        });
 }
