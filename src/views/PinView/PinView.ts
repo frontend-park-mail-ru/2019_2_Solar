@@ -110,10 +110,11 @@ export default class PinView extends BaseView {
                         }
 
                         /* Обработка форм на странице */
-                        const viewPinDataForm = document.getElementById('viewPinData' + String(forId));
+                        const viewPinDataForm = <HTMLFormElement> document.getElementById('viewPinData' + String(forId));
                         viewPinDataForm.addEventListener('submit', (e) => {
                             e.preventDefault();
-                            bus.emit('/profile', {});
+                            const boardFromHbs = viewPinDataForm.elements['board-select'].value;
+                            savePin(boardFromHbs, responseBody.body.pins.owner_username, responseBody.body.pins.description, responseBody.body.pins.pin_dir, responseBody.body.pins.title);
                         });
 
                         const viewPinCommentForm = <HTMLFormElement> document.getElementById('viewPinCommentData' + String(forId));
@@ -143,4 +144,46 @@ export default class PinView extends BaseView {
                     });
             });
     }
+}
+
+/**
+ * save Pin
+ * @param authorUsername 
+ * @param pinDescription 
+ * @param pinDir 
+ * @param pinTitle 
+ */
+function savePin(boardId, authorUsername, pinDescription, pinDir, pinTitle) {
+    if (boardId == 0) {
+        return;
+    }
+    console.log(boardId, authorUsername, pinDescription, pinDir, pinTitle);
+    fetchModule.Get({
+        url: BACKEND_ADDRESS + '/users/' + authorUsername,
+        body: null,
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseUserBody) => {
+            (<any>window).CSRFtoken = responseUserBody.csrf_token;
+            const data = {
+                'author_id': responseUserBody.body.user.id,
+                'board_id': boardId,
+                'description': pinDescription,
+                'pin_dir': pinDir,
+                'title': pinTitle,
+            };
+
+            fetchModule.Post({
+                url: BACKEND_ADDRESS + '/add/pin',
+                body: JSON.stringify(data),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return null;
+                    }
+                    return response.json();
+                });
+        });
 }
