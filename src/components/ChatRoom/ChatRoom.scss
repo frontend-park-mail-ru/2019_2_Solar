@@ -1,0 +1,33 @@
+.chatroom {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d6d6d6;
+}
+
+.chatroom_margin {
+    margin: 13px 13px 0 13px;
+    padding: 10px 4px 10px 4px;
+}
+
+.chatroom__creator {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    
+    color: #000000;
+}
+
+.chatroom__content {
+    overflow: hidden;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #000000;
+}
+
+.chatroom__context_margin {
+    margin-top: 3px;
+}

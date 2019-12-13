@@ -9,6 +9,7 @@ import DialogViewTemplate from '../DialogView/DialogView.hbs';
 import Dialog1ViewComponent from '../../components/DialogComponent/Dialog1ViewComponent/Dialog1ViewComponent';
 import Dialog3ViewComponent from '../../components/DialogComponent/Dialog3ViewComponent/Dialog3ViewComponent';
 import MessageComponent from '../../components/Message/Message';
+import ChatRoomComponent from '../../components/ChatRoom/ChatRoom';
 import fetchModule from '../../utils/fetchModule';
 
 
@@ -60,6 +61,8 @@ export default class DialogView extends BaseView {
 
                 const dialog1 = new Dialog1ViewComponent(messageView);
                 dialog1.render({});
+
+                chatRoomsView();
 
                 const messageError = document.getElementById('createMessageError');
 
@@ -142,6 +145,29 @@ function createOldMessages(messageViewList, anotherUserId, profileUserId) {
                     } else {
                         newMessage.render({messageAuthor: messages[i].senderId + '(будет username)' + ':', classForBg: '', messageContent: messages[i].text});
                     }
+                }
+            }
+        });
+}
+
+/**
+ * chat rooms view
+ */
+function chatRoomsView() {
+    fetchModule.Get({
+        url: BACKEND_ADDRESS + '/chat/recipients',
+        body: null,
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseBody) => {
+            const chats = responseBody;
+            const allChatsList = document.getElementById('incomingMessagesList');
+            for (let i = 0; i < chats.length; i++) {
+                if (allChatsList != null) {
+                    const newChat = new ChatRoomComponent(allChatsList);
+                    newChat.render({chatroomAuthor: chats[i].id_sender + '(будет username)', chatroomContent: chats[i].text});
                 }
             }
         });
