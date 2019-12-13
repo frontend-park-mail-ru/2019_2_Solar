@@ -4,7 +4,7 @@
             <img id="pinViewImg" src="{{pinImg}}" class="viewpin-block__pin-photo">
         </div>
         <div class="viewpin-block__right-column">
-            <form id="viewPinData" class="view-pin-data-form">
+            <form id="viewPinData{{forID}}" class="view-pin-data-form">
                     <select name="board-select" class="viewpin-form__board-select_design viewpin-form__board-select_design_pos">
                         <option disabled>Выберете доску</option>
                         {{#each boardsNames}}
@@ -21,9 +21,9 @@
             <div class="viewpin-block__right-column__context">{{pinContent}}</div>
             <div class="viewpin-block__right-column__comment-block viewpin-block__right-column__context_margin">Комментарии</div>
             
-            <div id="pinViewComments"></div>
+            <div id="pinViewComments{{forID}}"></div>
     
-            <form id="viewPinCommentData">
+            <form id="viewPinCommentData{{forID}}">
                 <input type="text" id="comment" name="comment" placeholder="Напишите комментарий ..." class="viewpin-form__sending-comment viewpin-form__sending-comment_margin">
                 <input type="submit" class="viewpin-form__send-comment comment_margin" value="Отправить">
             </form>
