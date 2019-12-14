@@ -50,6 +50,17 @@ router
 
 (<any>window).CSRFtoken = '';
 
+// ServiceWorker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.ts')
+        .then((registration) => {
+            console.log('ServiceWorker registration', registration);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+}
+
 // Startup logic
 fetchModule.Get({
     url: BACKEND_ADDRESS + '/profile/data',
@@ -97,11 +108,11 @@ if (event.wasClean) {
         }
     }
 
-    const allMessageList = document.getElementById('incomingMessagesList'); 
-    if (allMessageList != null) {
-        const newMessage = new MessageComponent(allMessageList);
-        newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
-    }
+    // const allMessageList = document.getElementById('incomingMessagesList'); 
+    // if (allMessageList != null) {
+    //     const newMessage = new MessageComponent(allMessageList);
+    //     newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
+    // }
 
     const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
     const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
