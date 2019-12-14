@@ -42,7 +42,7 @@ export default class IndexView extends BaseView {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
 
                 fetchModule.Get({
-                    url: BACKEND_ADDRESS + '/pin/list/' + this.args + '?limit=10&id=9',
+                    url: BACKEND_ADDRESS + '/pin/list/' + this.args + '?limit=20&id=0',
                     body: null,
                 })
                     .then((response) => {
@@ -61,6 +61,7 @@ export default class IndexView extends BaseView {
 
                         this.el.innerHTML += index;
 
+                        let lastId = 0;
                         const indexPage = document.getElementById('index-page:' + this.args);
                         if (responseBody.body.pins) {
                             const pinsIndex = responseBody.body.pins;
@@ -71,13 +72,14 @@ export default class IndexView extends BaseView {
                                     id: pinsIndex[i].id,
                                     pinImg: BACKEND_ADDRESS + '/' + pinsIndex[i].pin_dir,
                                     content: pinsIndex[i].title});
+                                lastId = pinsIndex[i].id;
                             }
                         } else {
                             indexPage.textContent = 'Ещё нет пинов для Вашего просмотра :с';
                         }
 
                         if (String(this.args) == 'new') {
-                            createScroll(this.args);
+                            createScroll(this.args, lastId);
                         }
                     });
                 });
@@ -86,11 +88,12 @@ export default class IndexView extends BaseView {
 
 /**
  * createScroll
- * @param args 
+ * @param argss
+ * @param lastId
  */
-function createScroll(args) {
-    window.addEventListener("scroll", function(){
-        
+function createScroll(args, lastId) {
+    (<any>window).lastEl = lastId;
+    window.addEventListener("scroll", function() {
         if (window.location.pathname != '/index/new') {
             window.removeEventListener("scroll", function() {});
             return;
@@ -104,32 +107,44 @@ function createScroll(args) {
         let y             = yOffset + window_height;
        
         // если пользователь достиг конца
-        if(y >= contentHeight)
+        if (y >= contentHeight && (<any>window).lastEl != 1)
         {
-            fetchModule.Get({
-                url: BACKEND_ADDRESS + '/pin/list/' + args + '?limit=10&id=9',
-                body: null,
-            })
-                .then((response) => {
-                    return response.json();
-                })
-                .then((responseBody) => {
-                    (<any>window).CSRFtoken = responseBody.csrf_token;
-
-
-                    const indexPage = document.getElementById('index-page:' + args);
-                    if (responseBody.body.pins) {
-                        const pinsIndex = responseBody.body.pins;
-
-                        for (let i = 0; i < pinsIndex.length; i++) {
-                            const pinForIndexView = new PinForIndex(indexPage);
-                            pinForIndexView.render({
-                                id: pinsIndex[i].id,
-                                pinImg: BACKEND_ADDRESS + '/' + pinsIndex[i].pin_dir,
-                                content: pinsIndex[i].title});
-                        }
-                    }
-                });
+            // console.log('w: ', (<any>window).lastEl);
+            addPins(args, 20, (<any>window).lastEl);
         }
     });
+}
+
+/**
+ * add pins
+ * @param args
+ * @param limit 
+ * @param id 
+ */
+function addPins(args, limit, id) {
+    fetchModule.Get({
+        url: BACKEND_ADDRESS + '/pin/list/' + args + '?limit=' + limit + '&id=' + id,
+        body: null,
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseBody) => {
+            (<any>window).CSRFtoken = responseBody.csrf_token;
+
+            const indexPage = document.getElementById('index-page:' + args);
+            if (responseBody.body.pins) {
+                const pinsIndex = responseBody.body.pins;
+
+                for (let i = 0; i < pinsIndex.length; i++) {
+                    const pinForIndexView = new PinForIndex(indexPage);
+                    pinForIndexView.render({
+                        id: pinsIndex[i].id,
+                        pinImg: BACKEND_ADDRESS + '/' + pinsIndex[i].pin_dir,
+                        content: pinsIndex[i].title});
+                    (<any>window).lastEl = pinsIndex[i].id;
+                    // console.log('ww: ', (<any>window).lastEl);
+                }
+            }
+        });
 }
