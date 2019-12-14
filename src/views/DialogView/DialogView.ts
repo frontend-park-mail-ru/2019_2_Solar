@@ -62,8 +62,12 @@ export default class DialogView extends BaseView {
                 const dialog1 = new Dialog1ViewComponent(messageView);
                 dialog1.render({});
 
-                chatRoomsView();
+                const allChatsList = document.getElementById('incomingMessagesList');
+                chatRoomsView(allChatsList);
 
+                // const chatsList = allChatsList.getElementsByClassName('chatroom');
+
+                /* Далее для обработки сообщений */
                 const messageError = document.getElementById('createMessageError');
 
                 const newMessageForm = <HTMLFormElement>document.getElementById('newMessageData');
@@ -152,8 +156,9 @@ function createOldMessages(messageViewList, anotherUserId, profileUserId) {
 
 /**
  * chat rooms view
+ * @param allChatsList
  */
-function chatRoomsView() {
+function chatRoomsView(allChatsList) {
     fetchModule.Get({
         url: BACKEND_ADDRESS + '/chat/recipients',
         body: null,
@@ -163,7 +168,6 @@ function chatRoomsView() {
         })
         .then((responseBody) => {
             const chats = responseBody;
-            const allChatsList = document.getElementById('incomingMessagesList');
             for (let i = 0; i < chats.length; i++) {
                 if (allChatsList != null) {
                     const newChat = new ChatRoomComponent(allChatsList);
