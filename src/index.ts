@@ -93,7 +93,7 @@ if (event.wasClean) {
 
         if (recipientName == data.user_name_sender) {
             const newMessage = new MessageComponent(messageList);
-            newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
+            newMessage.render({messageAuthor: data.user_name_sender + ':', classForBg: '', messageContent: data.text});
         }
     }
 

@@ -9,6 +9,7 @@ import DialogViewTemplate from '../DialogView/DialogView.hbs';
 import Dialog1ViewComponent from '../../components/DialogComponent/Dialog1ViewComponent/Dialog1ViewComponent';
 import Dialog3ViewComponent from '../../components/DialogComponent/Dialog3ViewComponent/Dialog3ViewComponent';
 import MessageComponent from '../../components/Message/Message';
+import ChatRoomComponent from '../../components/ChatRoom/ChatRoom';
 import fetchModule from '../../utils/fetchModule';
 
 
@@ -61,6 +62,8 @@ export default class DialogView extends BaseView {
                 const dialog1 = new Dialog1ViewComponent(messageView);
                 dialog1.render({});
 
+                chatRoomsView();
+
                 const messageError = document.getElementById('createMessageError');
 
                 const newMessageForm = <HTMLFormElement>document.getElementById('newMessageData');
@@ -84,22 +87,7 @@ export default class DialogView extends BaseView {
             
                                 const messageViewList = document.getElementById('MessagesList');
 
-                                fetchModule.Get({
-                                    url: BACKEND_ADDRESS + '/chat/messages/' + responseBody.body.user.id + '/' + responseBodyProfile.body.user.id,
-                                    body: null,
-                                })
-                                    .then((response) => {
-                                        return response.json();
-                                    })
-                                    .then((responseBodyMessages) => {
-                                        if (responseBodyMessages.body.messages) {
-                                            const messages = responseBodyMessages.body.messages;
-                                            for (let i = 0; i < messages.length; i++) {
-                                                const newMessage = new MessageComponent(messageViewList);
-                                                newMessage.render({messageAuthor: messages.user_name_sender, classForBg: '', messageContent: messages.text});
-                                            }
-                                        }
-                                    });
+                                createOldMessages(messageViewList, responseBody.body.user.id, responseBodyProfile.body.user.id);
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
                                 createMessageForm.addEventListener('submit', (e) => {
@@ -133,4 +121,54 @@ export default class DialogView extends BaseView {
 function createMessageError(element, errorMessage, classname) {
     element.textContent = errorMessage;
     element.className = classname;
+}
+
+/**
+ * createOldMessages
+ * @param messageViewList 
+ */
+function createOldMessages(messageViewList, anotherUserId, profileUserId) {
+    fetchModule.Get({
+        url: BACKEND_ADDRESS + '/chat/messages/' + String(anotherUserId),
+        body: null,
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseBodyMessages) => {
+            if (responseBodyMessages.body.messages) {
+                const messages = responseBodyMessages.body.messages;
+                for (let i = 0; i < messages.length; i++) {
+                    const newMessage = new MessageComponent(messageViewList);
+                    if (messages[i].senderId == profileUserId) {
+                        newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: messages[i].text});
+                    } else {
+                        newMessage.render({messageAuthor: messages[i].senderId + '(будет username)' + ':', classForBg: '', messageContent: messages[i].text});
+                    }
+                }
+            }
+        });
+}
+
+/**
+ * chat rooms view
+ */
+function chatRoomsView() {
+    fetchModule.Get({
+        url: BACKEND_ADDRESS + '/chat/recipients',
+        body: null,
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseBody) => {
+            const chats = responseBody;
+            const allChatsList = document.getElementById('incomingMessagesList');
+            for (let i = 0; i < chats.length; i++) {
+                if (allChatsList != null) {
+                    const newChat = new ChatRoomComponent(allChatsList);
+                    newChat.render({chatroomAuthor: chats[i].id_sender + '(будет username)', chatroomContent: chats[i].text});
+                }
+            }
+        });
 }
