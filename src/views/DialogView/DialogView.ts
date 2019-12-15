@@ -63,7 +63,7 @@ export default class DialogView extends BaseView {
                 dialog1.render({});
 
                 const allChatsList = document.getElementById('incomingMessagesList');
-                chatRoomsView(allChatsList, messageView, responseBodyProfile.body.user.id);
+                chatRoomsView(allChatsList, messageView, responseBodyProfile.body.user.id, responseBodyProfile.body.user.username);
 
                 /* Далее для обработки сообщений */
                 const messageError = document.getElementById('createMessageError');
@@ -173,7 +173,7 @@ function createOldMessages(messageViewList, anotherUserId, profileUserId) {
  * @param allChatsList
  * @param messageView
  */
-function chatRoomsView(allChatsList, messageView, profileId) {
+function chatRoomsView(allChatsList, messageView, profileId, profilename) {
     fetchModule.Get({
         url: BACKEND_ADDRESS + '/chat/recipients',
         body: null,
@@ -182,11 +182,17 @@ function chatRoomsView(allChatsList, messageView, profileId) {
             return response.json();
         })
         .then((responseBody) => {
-            const chats = responseBody;
+            const chats = responseBody.body;
             for (let i = 0; i < chats.length; i++) {
                 if (allChatsList != null) {
                     const newChat = new ChatRoomComponent(allChatsList);
-                    newChat.render({chatroomAuthor: chats[i].id_sender + '(будет username)', chatroomContent: chats[i].text});
+                    let sender = '';
+                    if (chats[i].senderUserName != profilename) {
+                        sender = chats[i].senderUserName;
+                    } else {
+                        sender = chats[i].recipientUserName;
+                    }
+                    newChat.render({chatroomAuthor: sender, chatroomContent: chats[i].text});
                 }
             }
 
@@ -197,7 +203,7 @@ function chatRoomsView(allChatsList, messageView, profileId) {
                     event.preventDefault();
 
                     fetchModule.Get({
-                        url: BACKEND_ADDRESS + '/users/' + 'ADshishova', // Исправить
+                        url: BACKEND_ADDRESS + '/users/' + chatsList[i].textContent, // Исправить
                         body: null,
                     })
                         .then((response) => {
@@ -207,7 +213,7 @@ function chatRoomsView(allChatsList, messageView, profileId) {
                             if (responseBody.body.user) {
                                 messageView.innerHTML = '';
                                 const dialog3 = new Dialog3ViewComponent(messageView);
-                                dialog3.render({username: 'ADshishova'}); // Исправить
+                                dialog3.render({username: responseBody.body.user.username}); // Исправить
             
                                 const messageViewList = document.getElementById('MessagesList');
 
