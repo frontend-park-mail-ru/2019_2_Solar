@@ -161,7 +161,7 @@ function createOldMessages(messageViewList, anotherUserId, profileUserId) {
                     if (messages[i].senderId == profileUserId) {
                         newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: messages[i].text});
                     } else {
-                        newMessage.render({messageAuthor: messages[i].senderId + '(будет username)' + ':', classForBg: '', messageContent: messages[i].text});
+                        newMessage.render({messageAuthor: messages[i].senderUsername + ':', classForBg: '', messageContent: messages[i].text});
                     }
                 }
             }
