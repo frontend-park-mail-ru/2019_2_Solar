@@ -7,7 +7,6 @@ import '../CreatePinView/CreatePinView.scss';
 import HeaderComponent from '../../components/Header/Header';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
-// import bus from '../../utils/bus';
 
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
@@ -55,6 +54,9 @@ export default class PinEditingView extends BaseView {
             body: null,
         })
             .then((response) => {
+                if(!response.ok) {
+                    bus.emit('/profile', {});
+                }
                 return response.json();
             })
             .then((responseBody) => {
@@ -132,7 +134,24 @@ export default class PinEditingView extends BaseView {
                                 });
                         });
 
+                        const delPinForm = document.getElementById('PinDel' + String(forId));
+                        delPinForm.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            console.log('del');
+                            fetchModule.Delete({
+                                url: BACKEND_ADDRESS + '/pin/' + this.args,
+                                body: null,
+                            })
+                                .then((response) => {
+                                    editingPinForm.removeEventListener('submit', ()=>{});
+                                    bus.emit('/profile', {});
+                                });
+                        })
+
                     });
+            })
+            .catch((err) => {
+                bus.emit('/profile', {});
             });
         }
 }
