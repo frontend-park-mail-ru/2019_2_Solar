@@ -39,7 +39,7 @@ router
     .register('/profile', ProfileView)
     .register('/create_pin', CreatePinView)
     .register('/pin/:id', PinView)
-    .register('/pin_change', PinEditingView)
+    .register('/pin_change/:id', PinEditingView)
     .register('/create_board', CreateBoardView)
     .register('/board_change', BoardChangeView)
     .register('/dialog', DialogView)

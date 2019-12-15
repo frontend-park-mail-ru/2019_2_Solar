@@ -58,6 +58,24 @@ class FetchModule {
     }
 
     /**
+     * Fetch delete methos.
+     * @param {*} - list with url, body, credentials.
+     * @return {promise}
+     */
+    Put({
+        url = '/',
+        body = null,
+        credentials = 'include' as RequestCredentials,
+        headers = {
+            'Content-Type': 'application/json',
+            'csrf-token': (<any>window).CSRFtoken,
+        },
+    } = {}
+    ) {
+        return this._fetch({method: 'PUT', url, body, credentials, headers});
+    }
+
+    /**
      * Method create fetch.
      * @param {*} - list with method, url, body, credentials.
      * @return {promise} - response.
