@@ -71,6 +71,7 @@ export default class BoardView extends BaseView {
                 const context = {
                     username: (<any>window).GlobalUser.body.user.username,
                     boardName: responseBody.body.board.title,
+                    boardDis: responseBody.body.board.description,
                     pinCount: responseBody.body.pins.length,
                     avatarImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
                     forID: (<any>window).location.pathname,

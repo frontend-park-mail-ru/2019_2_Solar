@@ -21,6 +21,11 @@
     flex-grow: 1;
 }
 
+.board-page__left-column__dis {
+    margin-top: 15px;
+    overflow: hidden;
+}
+
 .board-page__right-column {
     display: flex;
     flex-direction: column;
