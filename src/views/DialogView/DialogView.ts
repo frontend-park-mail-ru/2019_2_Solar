@@ -92,6 +92,22 @@ export default class DialogView extends BaseView {
                                 createOldMessages(messageViewList, responseBody.body.user.id, responseBodyProfile.body.user.id);
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
+
+                                const smileButton = document.getElementById('openSmile');
+                                const smileList = document.getElementById('smileImages');
+                                smileEvent(smileList, 'smile__style', createMessageForm);
+
+                                let smileFlag = false;
+                                smileButton.addEventListener('click', (e) => {
+                                    if (smileFlag == false) {
+                                        createSmile(smileList, 'message-form__smile-view');
+                                        smileFlag = true;
+                                    } else {
+                                        createSmile(smileList, 'message-form__smile-view_none');
+                                        smileFlag = false;
+                                    }
+                                })
+
                                 createMessageForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
             
@@ -216,4 +232,30 @@ function chatRoomsView(allChatsList, messageView, profileId) {
                 })
             }
         });
+}
+
+/**
+ * create smile
+ * @param smileList
+ * @param classname
+ */
+function createSmile(smileList, classname) {
+    smileList.className = classname;
+}
+
+/**
+ * smile event
+ * @param smileList
+ * @param classname
+ * @param createMessageForm
+ */
+function smileEvent(smileList, classname, createMessageForm) {
+    const smile = smileList.getElementsByClassName(classname);
+
+    for ( let i = 0; i < smile.length; i++) {
+        smile[i].addEventListener('click', (event) => {
+            event.preventDefault();
+            createMessageForm.elements['message'].value += smile[i].textContent;
+        });
+    }
 }

@@ -1,5 +1,6 @@
 import Dialog3ViewTemplate from '../Dialog3ViewComponent/Dialog3ViewComponent.hbs';
 import '../Dialog3ViewComponent/Dialog3ViewComponent.scss';
+import Smile from '../../../images/smile-face.svg';
 
 /** Class representing a Dialog3View component. */
 export default class Dialog3ViewComponent {
@@ -29,6 +30,7 @@ export default class Dialog3ViewComponent {
      * @param {object} context - Context to render with.
      */
     render(context) {
+        context['PHsmile'] = Smile;
         this._parent.innerHTML += Dialog3ViewTemplate(context);
     }
 }

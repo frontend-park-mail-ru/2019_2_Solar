@@ -41,6 +41,10 @@ export default class Router {
     open(path) {
         // const route = this.routes[path];
 
+        if (path == undefined) {
+            return;
+        }
+
         let route;
         let argname;
         let argvalue;

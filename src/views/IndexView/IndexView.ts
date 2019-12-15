@@ -169,9 +169,9 @@ function createSubscribe(args) {
             return response.json();
         })
         .then((responseBody) => {
-            if (responseBody.body.users) {
-                if (responseBody.body.users.length != 0) {
-                    const usersSearch = responseBody.body.users;
+            if (responseBody.body) {
+                if (responseBody.body.length != 0) {
+                    const usersSearch = responseBody.body;
 
                     for (let i = 0; i < usersSearch.length; i++) {
                         const UserForSearchView = new UserForSearch(indexPage);
