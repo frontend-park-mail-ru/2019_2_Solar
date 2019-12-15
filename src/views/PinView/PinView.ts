@@ -7,9 +7,9 @@ import PinCommentComponent from '../../components/PinComment/PinComment';
 import HeaderComponent from '../../components/Header/Header';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
-import bus from '../../utils/bus';
 
 import bg from '../../images/bg.png';
+import share from '../../images/share-symbol.svg';
 import fetchModule from '../../utils/fetchModule';
 
 /** Class representing a Pin view. */
@@ -91,9 +91,40 @@ export default class PinView extends BaseView {
                             pinAuthor: responseBody.body.pins.author_username,
                             pinContent: responseBody.body.pins.description,
                             boardsNames: boardsNames,
+                            share: share,
+                            urladdress: window.location.href,
                         };
 
                         this.el.innerHTML += PinViewTemplate(context);
+
+                        const shareField = document.getElementById('shareField' + forId);
+                        const shareData = <HTMLFormElement>document.getElementById('boardURLData' + forId);
+                        let shareFlag = false;
+                        shareField.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            if (shareFlag == false) {
+                                shareData.className = "board-url";
+                                shareFlag = true;
+                            } else {
+                                shareData.className = "share_none";
+                                shareFlag = false;
+                            }
+
+                        });
+
+                        shareData.addEventListener('submit', (e) =>  {
+                            (e).preventDefault();
+                            const copyText = document.getElementById("url" + forId);
+                            var range = document.createRange();
+                            range.selectNode(copyText); 
+                            window.getSelection().addRange(range);
+                            try {  
+                                document.execCommand('copy');  
+                              } catch(err) {  
+                                console.log('Oops, unable to copy');  
+                              }  
+                              window.getSelection().removeAllRanges();  
+                        });
 
                         /* заполнение поля комментариев */
                         const pinViewCommentsList = document.getElementById('pinViewComments' + String(forId));
@@ -114,7 +145,7 @@ export default class PinView extends BaseView {
                         viewPinDataForm.addEventListener('submit', (e) => {
                             e.preventDefault();
                             const boardFromHbs = viewPinDataForm.elements['board-select'].value;
-                            savePin(boardFromHbs, responseBody.body.pins.owner_username, responseBody.body.pins.description, responseBody.body.pins.pin_dir, responseBody.body.pins.title);
+                            savePin(Number(boardFromHbs), responseBody.body.pins.owner_username, responseBody.body.pins.description, responseBody.body.pins.pin_dir, responseBody.body.pins.title);
                         });
 
                         const viewPinCommentForm = <HTMLFormElement> document.getElementById('viewPinCommentData' + String(forId));

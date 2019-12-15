@@ -5,6 +5,7 @@
         </div>
         <div class="viewpin-block__right-column">
             <form id="viewPinData{{forID}}" class="view-pin-data-form">
+                    <img id="shareField{{forID}}" src={{share}} class="share">
                     <select name="board-select" class="viewpin-form__board-select_design viewpin-form__board-select_design_pos">
                         <option disabled>Выберете доску</option>
                         {{#each boardsNames}}
@@ -12,6 +13,10 @@
                         {{/each}}
                     </select>
                     <input type="submit" class="viewpin-block__right-column__buttom-save viewpin-block__right-column__buttom-save_pos" value="Сохранить">
+            </form>
+            <form id="boardURLData{{forID}}" class="share_none">
+                <input type="submit" value="Копировать" class="board-url__copy">
+                <input type="text" id="url{{forID}}" name="url" {{#if urladdress}}value={{urladdress}}{{/if}} class="board-url__link" disabled>
             </form>
             <div class="viewpin-block__right-column__title viewpin-block__right-column__title_pos">{{pinName}}</div>
             <div class="viewpin-block__right-column__author-block">
