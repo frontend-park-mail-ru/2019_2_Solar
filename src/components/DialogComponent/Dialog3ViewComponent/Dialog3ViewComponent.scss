@@ -45,6 +45,7 @@ a {
 
 .messages-list__container {
     display: flex;
+    flex-grow: 3;
     flex-direction: column;
     margin-top: 20px;
     border-top: 1px solid #d6d6d6;
@@ -62,7 +63,6 @@ a {
     margin-top: 20px;
     margin-left: 20px;
     margin-right:20px;
-    height: 150px;
     display: flex;
     flex-direction: column;;
 }
@@ -99,4 +99,5 @@ a {
     background: #FF8F0C;
     border-radius: 5px;
     border: 0;
+    margin-bottom: 5px;
 }

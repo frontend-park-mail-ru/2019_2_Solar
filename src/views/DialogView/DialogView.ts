@@ -63,9 +63,7 @@ export default class DialogView extends BaseView {
                 dialog1.render({});
 
                 const allChatsList = document.getElementById('incomingMessagesList');
-                chatRoomsView(allChatsList);
-
-                // const chatsList = allChatsList.getElementsByClassName('chatroom');
+                chatRoomsView(allChatsList, messageView, responseBodyProfile.body.user.id);
 
                 /* Далее для обработки сообщений */
                 const messageError = document.getElementById('createMessageError');
@@ -92,19 +90,23 @@ export default class DialogView extends BaseView {
                                 const messageViewList = document.getElementById('MessagesList');
 
                                 createOldMessages(messageViewList, responseBody.body.user.id, responseBodyProfile.body.user.id);
+                                jQuery(document).ready(function($) {
+                                    (<any> $("#textArea")).emojioneArea();
+                                });
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
                                 createMessageForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
             
-                                    const message = createMessageForm.elements['message'].value;
+                                    const message = (<any> $("#textArea")).val();
                                     if (message != '') {
                                         const newMessage = new MessageComponent(messageViewList);
                                         newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
     
                                         (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
                 
-                                        createMessageForm.elements['message'].value = '';
+                                        (<any> $("#textArea")).val('');
+                                        document.getElementsByClassName('emojionearea-editor')[0].textContent = '';
                                     }
                                 });
                             } else {
@@ -157,8 +159,9 @@ function createOldMessages(messageViewList, anotherUserId, profileUserId) {
 /**
  * chat rooms view
  * @param allChatsList
+ * @param messageView
  */
-function chatRoomsView(allChatsList) {
+function chatRoomsView(allChatsList, messageView, profileId) {
     fetchModule.Get({
         url: BACKEND_ADDRESS + '/chat/recipients',
         body: null,
@@ -173,6 +176,48 @@ function chatRoomsView(allChatsList) {
                     const newChat = new ChatRoomComponent(allChatsList);
                     newChat.render({chatroomAuthor: chats[i].id_sender + '(будет username)', chatroomContent: chats[i].text});
                 }
+            }
+
+            const chatsList = allChatsList.getElementsByClassName('chatroom__creator');
+
+            for ( let i = 0; i < chatsList.length; i++) {
+                chatsList[i].addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    fetchModule.Get({
+                        url: BACKEND_ADDRESS + '/users/' + 'ADshishova', // Исправить
+                        body: null,
+                    })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((responseBody) => {
+                            if (responseBody.body.user) {
+                                messageView.innerHTML = '';
+                                const dialog3 = new Dialog3ViewComponent(messageView);
+                                dialog3.render({username: 'ADshishova'}); // Исправить
+            
+                                const messageViewList = document.getElementById('MessagesList');
+
+                                createOldMessages(messageViewList, responseBody.body.user.id, profileId);
+
+                                const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
+                                createMessageForm.addEventListener('submit', (e) => {
+                                    e.preventDefault();
+            
+                                    const message = createMessageForm.elements['message'].value;
+                                    if (message != '') {
+                                        const newMessage = new MessageComponent(messageViewList);
+                                        newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
+    
+                                        (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
+                
+                                        createMessageForm.elements['message'].value = '';
+                                    }
+                                });
+                            }
+                        });
+                })
             }
         });
 }
