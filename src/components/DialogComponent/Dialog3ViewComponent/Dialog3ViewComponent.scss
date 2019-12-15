@@ -75,6 +75,7 @@ a {
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
+    flex-grow: 2;
 
     border-radius: 5px;
     border: 2px solid #d6d6d6;
@@ -100,4 +101,33 @@ a {
     border-radius: 5px;
     border: 0;
     margin-bottom: 5px;
+}
+
+.smile {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.message-form__smile-container {
+    display: flex;
+    align-items: center;
+}
+
+.message-form__smile-view {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 0px 10px 0px;
+    font-size: 20px;
+    overflow: auto;
+}
+
+.message-form__smile-view_none {
+    display: none;
+}
+
+.smile__style {
+    margin: 0px 5px 5px 0px;
+    cursor: pointer;
 }
