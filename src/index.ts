@@ -123,7 +123,6 @@ if (event.wasClean) {
     }
 
     (<any>window).chatMessages.addData(data.user_name_sender, data.text);
-    console.log((<any>window).chatMessages.getNotice());
 };
 
 (<any>window).socket1.onerror = function(event) {

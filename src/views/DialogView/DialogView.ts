@@ -90,19 +90,23 @@ export default class DialogView extends BaseView {
                                 const messageViewList = document.getElementById('MessagesList');
 
                                 createOldMessages(messageViewList, responseBody.body.user.id, responseBodyProfile.body.user.id);
+                                jQuery(document).ready(function($) {
+                                    (<any> $("#textArea")).emojioneArea();
+                                });
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
                                 createMessageForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
             
-                                    const message = createMessageForm.elements['message'].value;
+                                    const message = (<any> $("#textArea")).val();
                                     if (message != '') {
                                         const newMessage = new MessageComponent(messageViewList);
                                         newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
     
                                         (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
                 
-                                        createMessageForm.elements['message'].value = '';
+                                        (<any> $("#textArea")).val('');
+                                        document.getElementsByClassName('emojionearea-editor')[0].textContent = '';
                                     }
                                 });
                             } else {
@@ -179,7 +183,6 @@ function chatRoomsView(allChatsList, messageView, profileId) {
             for ( let i = 0; i < chatsList.length; i++) {
                 chatsList[i].addEventListener('click', (event) => {
                     event.preventDefault();
-                    console.log(event.target.textContent);
 
                     fetchModule.Get({
                         url: BACKEND_ADDRESS + '/users/' + 'ADshishova', // Исправить
