@@ -175,9 +175,14 @@ function savePin(boardId, authorUsername, pinDescription, pinDir, pinTitle) {
                 'title': pinTitle,
             };
 
-            fetchModule.Post({
+            fetchModule.PostToSave({
                 url: BACKEND_ADDRESS + '/add/pin',
                 body: JSON.stringify(data),
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'csrf-token': (<any>window).CSRFtoken,
+                },
             })
                 .then((response) => {
                     if (response.ok) {

@@ -58,7 +58,7 @@ class FetchModule {
     }
 
     /**
-     * Fetch delete methos.
+     * Fetch put methos.
      * @param {*} - list with url, body, credentials.
      * @return {promise}
      */
@@ -73,6 +73,24 @@ class FetchModule {
     } = {}
     ) {
         return this._fetch({method: 'PUT', url, body, credentials, headers});
+    }
+
+    /**
+     * Fetch post to save methos.
+     * @param {*} - list with url, body, credentials.
+     * @return {promise}
+     */
+    PostToSave({
+        url = '/',
+        body = null,
+        credentials = 'include' as RequestCredentials,
+        headers = {
+            'Content-Type': 'application/json',
+            'csrf-token': (<any>window).CSRFtoken,
+        },
+    } = {}
+    ) {
+        return this._fetch({method: 'POST', url, body, credentials, headers});
     }
 
     /**
