@@ -88,7 +88,7 @@ export default class PinView extends BaseView {
                             pinImg: BACKEND_ADDRESS + '/' + responseBody.body.pins.pin_dir,
                             forID: forId,
                             pinName: responseBody.body.pins.title,
-                            pinAuthor: responseBody.body.pins.owner_username,
+                            pinAuthor: responseBody.body.pins.author_username,
                             pinContent: responseBody.body.pins.description,
                             boardsNames: boardsNames,
                         };
@@ -157,7 +157,6 @@ function savePin(boardId, authorUsername, pinDescription, pinDir, pinTitle) {
     if (boardId == 0) {
         return;
     }
-    console.log(boardId, authorUsername, pinDescription, pinDir, pinTitle);
     fetchModule.Get({
         url: BACKEND_ADDRESS + '/users/' + authorUsername,
         body: null,
