@@ -2,6 +2,8 @@ import BaseView from '../BaseView/BaseView';
 import HeaderComponent from '../../components/Header/Header';
 
 import PinForIndex from '../../components/PinForIndex/PinForIndex';
+import UserForSearch from '../../components/UserForSearch/UserForSearch';
+import bg from '../../images/bg.png';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
 
@@ -81,6 +83,10 @@ export default class IndexView extends BaseView {
                         if (String(this.args) == 'new') {
                             createScroll(this.args, lastId);
                         }
+
+                        if (String(this.args) == 'subscribe') {
+                            createSubscribe(this.args);
+                        }
                     });
                 });
     }
@@ -144,6 +150,35 @@ function addPins(args, limit, id) {
                         content: pinsIndex[i].title});
                     (<any>window).lastEl = pinsIndex[i].id;
                     // console.log('ww: ', (<any>window).lastEl);
+                }
+            }
+        });
+}
+
+/**
+ * create subscribe
+ * @param args
+ */
+function createSubscribe(args) {
+    const indexPage = document.getElementById('subscribe-page:' + args);
+    fetchModule.Get({
+        url: BACKEND_ADDRESS + '/followee',
+        body: null,
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseBody) => {
+            if (responseBody.body.users) {
+                if (responseBody.body.users.length != 0) {
+                    const usersSearch = responseBody.body.users;
+
+                    for (let i = 0; i < usersSearch.length; i++) {
+                        const UserForSearchView = new UserForSearch(indexPage);
+                        UserForSearchView.render({
+                            username: usersSearch[i].username,
+                            userImg: (usersSearch[i].avatar_dir) ? (BACKEND_ADDRESS + '/' + usersSearch[i].avatar_dir) : bg});
+                    }
                 }
             }
         });
