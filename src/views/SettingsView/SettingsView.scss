@@ -45,10 +45,10 @@ a {
 }
 
 .settings-right-column {
-    width: 756px;
+    // width: 756px;
     display: flex;
     flex-direction: column;
-    padding-left: 35px;
+    // padding-left: 35px;
 }
 
 .settings-right-column__title {
@@ -141,11 +141,16 @@ a {
 
 .settings-form__input-block {
     height: 45px;
-    width: 307px;
+    // width: 307px;
+    width: 345px;
     background: #FFFFFF;
     border: 1px solid #A19F9C;
     box-sizing: border-box;
     border-radius: 5px;
+}
+
+.settings-form__name-surname_margin {
+    margin-left: 40px;
 }
 
 .settings-form__input-block_pos {
@@ -185,7 +190,8 @@ input {
 }
 
 .settings-form__input-block_status_pos {
-    width: 679px;
+    // width: 679px;
+    width: 100%;
 }
 
 .button-exit {

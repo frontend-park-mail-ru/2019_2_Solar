@@ -189,10 +189,9 @@ export default class ProfileView extends BaseView {
 
                 // button for chat
                 let chatFlag = false;
-                const askButton = document.getElementById('ask-button');
                 const chatField = document.getElementById('supportChat');
                 const buttonForAsk = document.getElementById('buttonForAsk');
-                askButton.addEventListener('click', (e) => {
+                buttonForAsk.addEventListener('click', (e) => {
                     if (chatFlag == false) {
                         chatField.className = 'chat-onopen';
                         chatFlag = true;
@@ -201,6 +200,23 @@ export default class ProfileView extends BaseView {
                         chatField.className = 'dont-see';
                         chatFlag = false;
                         buttonForAsk.setAttribute( 'src', Question);
+                    }
+                });
+
+                const feedbackForm = <HTMLFormElement> document.getElementById('FeedbackButton');
+                feedbackForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const message = feedbackForm.elements['message'].value;
+                    if (message != '') {
+                        const data = {'message': message};
+
+                        fetchModule.PostToSave({
+                            url: BACKEND_ADDRESS + '/feedback',
+                            body: JSON.stringify(data),
+                        })
+                            .then((response) => {
+                                feedbackForm.elements['message'].value = '';
+                            });
                     }
                 });
             })

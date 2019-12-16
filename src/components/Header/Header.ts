@@ -52,8 +52,6 @@ export default class HeaderComponent {
         this._data = (<any>window).GlobalUser;
 
         const context = {
-            username: this._data.body.user.username,
-            avatarPhoto: (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg,
             notice: 0,
 
             PHlogo: Logo,
@@ -65,61 +63,69 @@ export default class HeaderComponent {
             PHsetting: Setting,
             PHbell: Bell,
         };
-        const html = HeaderTemplate(context);
 
-        this._parent.innerHTML = html;
+        if (this._data.body) {
+            context['username'] = this._data.body.user.username;
+            context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg;
+            
+            const html = HeaderTemplate(context);
+            this._parent.innerHTML = html;
 
-        // document.getElementById('spanNum').textContent = String(0);
-        // setInterval(() => {
-        //     fetchModule.Get({
-        //         url: BACKEND_ADDRESS + '/notice',
-        //         body: null,
-        //     })
-        //         .then((response) => {
-        //             return response.json();
-        //         })
-        //         .then((responseBody) => {
-        //             CSRFtoken = responseBody.csrt_token;
-
-        //             const noticelen = responseBody.body.notices;
-        //             document.getElementById('spanNum').textContent = String(noticelen.length);
-
-        //             const list = document.getElementById('list');
-        //             for (let i = 0; i < noticelen.length; i++) {
-        //                 list.innerHTML += '<li><a href="#">'+ noticelen[i].message + '</li>';
-        //             }
-        //         });
-        // }, 30000);
-
-        const viewSearchForm = <HTMLFormElement> document.getElementById('headerSearch');
-
-        viewSearchForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const searchText = viewSearchForm.elements['searchtext'].value;
-            fetchModule.Post({
-                url: BACKEND_ADDRESS + '/find/pins/by/tag/' + searchText,
+            if ((<any>window).chatMessages) {
+                const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+                const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+                if (notice != null) {
+                    const notices = (<any>window).chatMessages.getNotice();
+                    for (let i =0; i < notices.length; i++) {
+                        notice.textContent = String(Number(notice.textContent) + 1);
+                        const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+                        list.innerHTML += '<li><a href="#">Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
+                    }
+                }
+            }
+        } else {
+            fetchModule.Get({
+                url: BACKEND_ADDRESS + '/profile/data',
                 body: null,
             })
                 .then((response) => {
-                    return response.json();
+                    if (response.ok) {
+                        return response.json();
+                    }
                 })
                 .then((responseBody) => {
-                    console.log(responseBody);
-                });
-        });
+                    (<any>window).GlobalUser = responseBody;
+                    this.data(responseBody);
 
-        if ((<any>window).chatMessages) {
-            const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
-            const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
-            if (notice != null) {
-                const notices = (<any>window).chatMessages.getNotice();
-                for (let i =0; i < notices.length; i++) {
-                    notice.textContent = String(Number(notice.textContent) + 1);
-                    const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
-                    list.innerHTML += '<li><a href="#">Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
-                }
-            }
+                    context['username'] = this._data.body.user.username;
+                    context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg;
+                    
+                    const html = HeaderTemplate(context);
+                    this._parent.innerHTML = html;
+
+                    if ((<any>window).chatMessages) {
+                        const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+                        const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+                        if (notice != null) {
+                            const notices = (<any>window).chatMessages.getNotice();
+                            for (let i =0; i < notices.length; i++) {
+                                notice.textContent = String(Number(notice.textContent) + 1);
+                                const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+                                list.innerHTML += '<li><a href="#">Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
+                            }
+                        }
+                    }
+                });
         }
+
+        // const section = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+        // const searchForm = <HTMLFormElement>section.querySelectorAll('[id=\'headerSearch\']')[0];
+        // searchForm.addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     console.log('ok');
+        // });
+
+
+        // console.log(section);
     }
 }

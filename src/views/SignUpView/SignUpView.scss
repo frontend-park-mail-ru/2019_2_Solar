@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Tangerine');
 
+.noscroll-for-signup {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+}
+
 @function multiple-box-shadow ($n) {
   $value: '#{random(2000)}px #{random(2000)}px #FF8F0C';
   @for $i from 2 through $n {
@@ -71,7 +77,6 @@ $shadows-big:    multiple-box-shadow(100);
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
   }
 
   .signup-form-block__error-text {
@@ -121,8 +126,6 @@ $shadows-big:    multiple-box-shadow(100);
   .signup-block__under-title {
       width: 80%;
       text-align: center;
-      height: 80px;
-      /*font-style: italic;*/
       font-weight: normal;
       font-size: 45px;
       padding: 0 10% 5% 10%;
@@ -239,6 +242,7 @@ $shadows-big:    multiple-box-shadow(100);
     right: 0;
     width: 60rem;
     height: 100%;
+    overflow: hidden;
   }
 
   .signup-floating-images_column {
@@ -353,7 +357,6 @@ $shadows-big:    multiple-box-shadow(100);
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
   }
 
   .signup-form-block__error-text {
@@ -370,7 +373,6 @@ $shadows-big:    multiple-box-shadow(100);
       background-color: #ffffff;
       display: flex;
       width: 450px;
-      margin-top: 200px;
       font-family: Roboto, sans-serif;
       border: 8px solid #FF8F0C;
       box-shadow: 1px 2px 2px rgba(255, 0, 0, .5);
@@ -451,8 +453,6 @@ $shadows-big:    multiple-box-shadow(100);
   .signup-block__under-title {
       width: 100%;
       text-align: center;
-      height: 80px;
-      /*font-style: italic;*/
       font-weight: normal;
       font-size: 22px;
       line-height: 28px;
@@ -556,6 +556,7 @@ $shadows-big:    multiple-box-shadow(100);
     right: 0;
     width: 60rem;
     height: 100%;
+    overflow: hidden;
   }
 
   .signup-floating-images_column {

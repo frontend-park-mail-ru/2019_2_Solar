@@ -71,8 +71,10 @@ export default class BoardView extends BaseView {
                 const context = {
                     username: (<any>window).GlobalUser.body.user.username,
                     boardName: responseBody.body.board.title,
+                    boardDis: responseBody.body.board.description,
                     pinCount: responseBody.body.pins.length,
                     avatarImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
+                    forID: (<any>window).location.pathname,
 
                     PHGrayPen: grayPenImg,
                     PHPlus: plusImg,
@@ -80,7 +82,7 @@ export default class BoardView extends BaseView {
 
                 this.el.innerHTML += BoardViewTemplate(context);
 
-                const boardViewPinsList = document.getElementById('boardViewPins');
+                const boardViewPinsList = document.getElementById('boardViewPins' + (<any>window).location.pathname);
                 const pinsBoard = responseBody.body.pins;
                 for (let i = 0; i < pinsBoard.length; i++) {
                     const pinForUserView = new PinForUserViewComponent(boardViewPinsList);

@@ -2,12 +2,13 @@
     <div class="board-page__flex-columns-container">
         <div class="board-page-columns">
             <div class="board-page__left-column">
-                <div class="board-page__left-column__images">
+                <!-- <div class="board-page__left-column__images">
                     <a><img data-section="settings" src={{PHGrayPen}} class="board-page__left-column__images__pen"></a>
                     <a><img data-section="createPin" src={{PHPlus}} class="board-page__left-column__images__plus board-page__left-column__images__plus_pos"></a>
-                </div>
+                </div> -->
                 <div class="board-page__left-column__title">{{boardName}}</div>
                 <div class="board-page__left-column__undertitle">{{pinCount}} пинов</div>
+                <div class="board-page__left-column__dis">{{boardDis}}</div>
                 <div class="board-page__left-column__buttons">
                     <div class="board-page__left-column__buttons__yourpins">
                         Ваши пины
@@ -24,6 +25,6 @@
             </div>
         </div>
     </div>
-    <div id="boardViewPins" class="board-page-yourpins">
+    <div id="boardViewPins{{forID}}" class="board-page-yourpins">
     </div>
 </div>

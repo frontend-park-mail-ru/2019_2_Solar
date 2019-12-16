@@ -1,5 +1,5 @@
 <div id="settings-page" class="settings-page__container">
-    <div class="settings-left-column">
+    <!--<div class="settings-left-column">
         <div class="left-column_margin-first">
             <img src={{PHfimg}} class="icon_left-column-margin">
             <a href="" class="settings-left-column__text">Изменить профиль</a>
@@ -12,7 +12,7 @@
             <img src={{PHtimg}} class="icon_left-column-margin">
             <a href="" class="settings-left-column__text">Настроить тему</a>
         </div>
-    </div>
+    </div>-->
 
     <div class="settings-right-column">
         <form id="UserSettings" name="UserSettings" enctype="multipart/form-data" method="post">
@@ -34,7 +34,7 @@
                     <div class="settings-form-text">Имя</div>
                     <input type="text" id="name" placeholder="Введите своё имя" {{#if name}}value={{name}}{{/if}} class="settings-form__input-block settings-form__input-block_pos">
                 </div>
-                <div class="settings-right-column__name-sername_column">
+                <div class="settings-right-column__name-sername_column settings-form__name-surname_margin">
                     <div class="settings-form-text">Фамилия</div>
                     <input type="text" id="surname" placeholder="Введите свою фамилию" {{#if surname}}value={{surname}}{{/if}} class="settings-form__input-block settings-form__input-block_pos">            
                 </div>

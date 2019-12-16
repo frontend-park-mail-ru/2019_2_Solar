@@ -7,10 +7,10 @@ import '../CreatePinView/CreatePinView.scss';
 import HeaderComponent from '../../components/Header/Header';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
-import bus from '../../utils/bus';
 
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
+import bus from '../../utils/bus';
 
 /** Class representing a PinEditing view. */
 export default class PinEditingView extends BaseView {
@@ -50,38 +50,108 @@ export default class PinEditingView extends BaseView {
      */
     render() {
         fetchModule.Get({
-            url: BACKEND_ADDRESS + '/profile/data',
+            url: BACKEND_ADDRESS + '/pin/' + this.args,
             body: null,
         })
             .then((response) => {
+                if(!response.ok) {
+                    bus.emit('/profile', {});
+                }
                 return response.json();
             })
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
 
-                document.body.className ='backgroundIndex';
-                this.el.innerHTML = '';
+                const boardsNames = [];
+                fetchModule.Get({
+                    url: BACKEND_ADDRESS + '/board/list/my',
+                    body: null,
+                })
+                    .then((responseBoards) => {
+                        return responseBoards.json();
+                    })
+                    .then((responseBoardsBody) => {
+                        (<any>window).CSRFtoken = responseBoardsBody.csrf_token;
 
-                const header = new HeaderComponent(this.el);
-                header.data = responseBody;
-                header.render();
+                        if (responseBoardsBody.body.boards) {
+                            const boardsViewPin = responseBoardsBody.body.boards;
+                            for (let i = 0; i < boardsViewPin.length; i++) {
+                                boardsNames.push({board: boardsViewPin[i].title, board_id: boardsViewPin[i].id});
+                            }
+                        }
 
-                this.data = responseBody;
+                        document.body.className ='backgroundIndex';
+                        this.el.innerHTML = '';
 
-                // Вставить нормальные значения
-                const context = {
-                    pinName: 'Название пина',
-                    content: 'Интересный контент',
-                    pinImg: bg,
-                };
+                        const header = new HeaderComponent(this.el);
+                        header.render();
 
-                this.el.innerHTML += PinEditingViewTemplate(context);
+                        const forId = (<any>window).location.pathname;
+                        const context = {
+                            pinImg: BACKEND_ADDRESS + '/' + responseBody.body.pins.pin_dir,
+                            forID: forId,
+                            pinName: responseBody.body.pins.title,
+                            pinAuthor: responseBody.body.pins.owner_username,
+                            pinContent: responseBody.body.pins.description,
+                            boardsNames: boardsNames,
+                        };
 
-                const pinEditingForm = document.getElementById('PinEditingData');
-                pinEditingForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    bus.emit('/profile', {});
-                });
+                        this.el.innerHTML += PinEditingViewTemplate(context);
+
+                        const editingPinForm = <HTMLFormElement> document.getElementById('PinEditingData' + String(forId));
+                        editingPinForm.addEventListener('submit', (e) => {
+                            e.preventDefault();
+                            const boardFromHbs = editingPinForm.elements['board-select'].value;
+
+                            if (boardFromHbs == 0) {
+                                return;
+                            }
+                            const pin = {
+                                'board_id': Number(boardFromHbs),
+                                'title': editingPinForm.elements['pinname'].value,
+                                'description': editingPinForm.elements['pincontent'].value,
+                            };
+
+                            fetchModule.Put({
+                                url: BACKEND_ADDRESS + '/pin/' + this.args,
+                                body: JSON.stringify(pin),
+                                credentials: 'include',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'csrf-token': (<any>window).CSRFtoken,
+                                },
+                            })
+                                .then((response) => {
+                                    if (response.ok) {
+                                        return null;
+                                    }
+                                    return response.json();
+                                })
+                                .then((responsePutBody) => {
+                                    if(responsePutBody == null) {
+                                        bus.emit('/profile', {});
+                                    }
+                                });
+                        });
+
+                        const delPinForm = document.getElementById('PinDel' + String(forId));
+                        delPinForm.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            console.log('del');
+                            fetchModule.Delete({
+                                url: BACKEND_ADDRESS + '/pin/' + this.args,
+                                body: null,
+                            })
+                                .then((response) => {
+                                    editingPinForm.removeEventListener('submit', ()=>{});
+                                    bus.emit('/profile', {});
+                                });
+                        })
+
+                    });
+            })
+            .catch((err) => {
+                bus.emit('/profile', {});
             });
-    }
+        }
 }

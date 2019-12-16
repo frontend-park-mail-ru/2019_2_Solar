@@ -7,9 +7,9 @@ import PinCommentComponent from '../../components/PinComment/PinComment';
 import HeaderComponent from '../../components/Header/Header';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
-import bus from '../../utils/bus';
 
 import bg from '../../images/bg.png';
+import share from '../../images/share-symbol.svg';
 import fetchModule from '../../utils/fetchModule';
 
 /** Class representing a Pin view. */
@@ -83,18 +83,51 @@ export default class PinView extends BaseView {
                         const header = new HeaderComponent(this.el);
                         header.render();
 
+                        const forId = (<any>window).location.pathname;
                         const context = {
                             pinImg: BACKEND_ADDRESS + '/' + responseBody.body.pins.pin_dir,
+                            forID: forId,
                             pinName: responseBody.body.pins.title,
-                            pinAuthor: responseBody.body.pins.owner_username,
+                            pinAuthor: responseBody.body.pins.author_username,
                             pinContent: responseBody.body.pins.description,
                             boardsNames: boardsNames,
+                            share: share,
+                            urladdress: window.location.href,
                         };
 
                         this.el.innerHTML += PinViewTemplate(context);
 
+                        const shareField = document.getElementById('shareField' + forId);
+                        const shareData = <HTMLFormElement>document.getElementById('boardURLData' + forId);
+                        let shareFlag = false;
+                        shareField.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            if (shareFlag == false) {
+                                shareData.className = "board-url";
+                                shareFlag = true;
+                            } else {
+                                shareData.className = "share_none";
+                                shareFlag = false;
+                            }
+
+                        });
+
+                        shareData.addEventListener('submit', (e) =>  {
+                            (e).preventDefault();
+                            const copyText = document.getElementById("url" + forId);
+                            var range = document.createRange();
+                            range.selectNode(copyText); 
+                            window.getSelection().addRange(range);
+                            try {  
+                                document.execCommand('copy');  
+                              } catch(err) {  
+                                console.log('Oops, unable to copy');  
+                              }  
+                              window.getSelection().removeAllRanges();  
+                        });
+
                         /* заполнение поля комментариев */
-                        const pinViewCommentsList = document.getElementById('pinViewComments');
+                        const pinViewCommentsList = document.getElementById('pinViewComments' + String(forId));
                         const pinComments = responseBody.body.comments;
 
                         if (pinComments) {
@@ -108,35 +141,84 @@ export default class PinView extends BaseView {
                         }
 
                         /* Обработка форм на странице */
-                        const viewPinDataForm = document.getElementById('viewPinData');
+                        const viewPinDataForm = <HTMLFormElement> document.getElementById('viewPinData' + String(forId));
                         viewPinDataForm.addEventListener('submit', (e) => {
                             e.preventDefault();
-                            bus.emit('/profile', {});
+                            const boardFromHbs = viewPinDataForm.elements['board-select'].value;
+                            savePin(Number(boardFromHbs), responseBody.body.pins.owner_username, responseBody.body.pins.description, responseBody.body.pins.pin_dir, responseBody.body.pins.title);
                         });
 
-                        const viewPinCommentForm = <HTMLFormElement> document.getElementById('viewPinCommentData');
+                        const viewPinCommentForm = <HTMLFormElement> document.getElementById('viewPinCommentData' + String(forId));
                         viewPinCommentForm.addEventListener('submit', (e) => {
                             e.preventDefault();
 
                             const commentForList = viewPinCommentForm.elements['comment'].value;
 
-                            fetchModule.Post({
-                                url: BACKEND_ADDRESS + '/pin/' + responseBody.body.pins.id + '/comment',
-                                body: JSON.stringify({text: commentForList}),
-                            })
-                                .then((response) => {
-                                    if (response.ok) {
-                                        const commentForAdd = new PinCommentComponent(pinViewCommentsList);
-                                        commentForAdd.render({
-                                            commentAuthorImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
-                                            commentAuthor: (<any>window).GlobalUser.body.user.username,
-                                            commentContent: commentForList});
-
-                                        viewPinCommentForm.elements['comment'].value = '';
-                                    }
-                                });
+                            if (commentForList != '') {
+                                fetchModule.Post({
+                                    url: BACKEND_ADDRESS + '/pin/' + responseBody.body.pins.id + '/comment',
+                                    body: JSON.stringify({text: commentForList}),
+                                })
+                                    .then((response) => {
+                                        if (response.ok) {
+                                            const commentForAdd = new PinCommentComponent(pinViewCommentsList);
+                                            commentForAdd.render({
+                                                commentAuthorImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
+                                                commentAuthor: (<any>window).GlobalUser.body.user.username,
+                                                commentContent: commentForList});
+    
+                                            viewPinCommentForm.elements['comment'].value = '';
+                                        }
+                                    });
+                            }
                         });
                     });
             });
     }
+}
+
+/**
+ * save Pin
+ * @param authorUsername 
+ * @param pinDescription 
+ * @param pinDir 
+ * @param pinTitle 
+ */
+function savePin(boardId, authorUsername, pinDescription, pinDir, pinTitle) {
+    if (boardId == 0) {
+        return;
+    }
+    fetchModule.Get({
+        url: BACKEND_ADDRESS + '/users/' + authorUsername,
+        body: null,
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((responseUserBody) => {
+            (<any>window).CSRFtoken = responseUserBody.csrf_token;
+            const data = {
+                'author_id': responseUserBody.body.user.id,
+                'board_id': boardId,
+                'description': pinDescription,
+                'pin_dir': pinDir,
+                'title': pinTitle,
+            };
+
+            fetchModule.PostToSave({
+                url: BACKEND_ADDRESS + '/add/pin',
+                body: JSON.stringify(data),
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'csrf-token': (<any>window).CSRFtoken,
+                },
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return null;
+                    }
+                    return response.json();
+                });
+        });
 }

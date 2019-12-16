@@ -8,7 +8,7 @@
             </div>
             <div class="profile-underheader__icons">
                 <a href="/settings">
-                    <img src={{PHsetimg}} data-section="settings" class="profile-icon-size profile-icon-size_margin-top">
+                    <img src={{PHsetimg}} data-section="/settings" class="profile-icon-size profile-icon-size_margin-top">
                 </a>
                 <nav class="create-menu-profile">
                     <ul>
@@ -36,7 +36,15 @@
     <!-- button for chat-->
     <div id="ask-button">
         <div id="supportChat" class="dont-see">
-            <iframe src="http://167.172.183.157:3000?sessionId={{sessionID}}" class="iframe-des"></iframe>
+            <!--<iframe src="http://167.172.183.157:3000?sessionId={{sessionID}}" class="iframe-des"></iframe>-->
+            <div class="feedback">
+                <div class="feedback__header ">Обратная связь</div>
+                <p class="feedback__discription">Оставьте нам сообщение и мы свяжемся с вами позднее!</p>
+                <form id="FeedbackButton" class="feedback__form">
+                    <input type="text" id="surname" name="message" placeholder="Напишите сообщение ..." class="feedback__form__text">
+                    <input type="submit" class="feedback__form__button" value="Отправить">
+                </form>
+            </div>
         </div>
         <a><img id="buttonForAsk" src={{PHquestion}} class="ask-img ask-button_pos"></a>
     </div>

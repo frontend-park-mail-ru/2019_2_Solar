@@ -71,23 +71,25 @@ export default class UserView extends BaseView {
                 const header = new HeaderComponent(this.el);
                 header.render();
 
+                const forId = (<any>window).location.pathname;
                 const context = {
                     avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
                     username: responseBody.body.user.username,
                     status: responseBody.body.user.status,
+                    forID: forId,
                 };
                 this.el.innerHTML += UserViewTemplate(context);
 
-                const userPinsView = document.getElementById('userPinsView');
+                const userPinsView = document.getElementById('userPinsView' + String(forId));
                 pinsView(responseBody,userPinsView);
 
                 let isFolloweeflag = false;
                 if (responseBody.body.user.is_followee) {
                     isFolloweeflag = true;
-                    checkFollowee('buttonSub', 'button-already-subscribe', 'Отписаться');
+                    checkFollowee('buttonSub' + String(forId), 'button-already-subscribe', 'Отписаться');
                 }
 
-                const subscribeForm = document.getElementById('userData');
+                const subscribeForm = document.getElementById('userData' + String(forId));
                 subscribeForm.addEventListener('submit', (e) => {
                     e.preventDefault();
 
@@ -99,7 +101,7 @@ export default class UserView extends BaseView {
                             .then((response) => {
                                 if (response.ok) {
                                     isFolloweeflag = true;
-                                    checkFollowee('buttonSub', 'button-already-subscribe', 'Отписаться');
+                                    checkFollowee('buttonSub' + String(forId), 'button-already-subscribe', 'Отписаться');
                                 }
                             });
                     } else {
@@ -110,7 +112,7 @@ export default class UserView extends BaseView {
                             .then((response) => {
                                 if (response.ok) {
                                     isFolloweeflag = false;
-                                    checkFollowee('buttonSub', 'button-subscribe', 'Подписаться');
+                                    checkFollowee('buttonSub' + String(forId), 'button-subscribe', 'Подписаться');
                                 }
                             });
                     }                   

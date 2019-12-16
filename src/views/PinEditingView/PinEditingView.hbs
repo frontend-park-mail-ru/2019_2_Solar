@@ -1,25 +1,28 @@
 <div id="pinediting-page" class="createpin-container">
-    <form id="PinEditingData" class="createpin-form">
+    <form id="PinEditingData{{forID}}" class="createpin-form">
         <div class="createpin__left-column">
-            <img src={{pinImg}} id="createPinImg" class="pinediting__left-column__img">
+            <img src={{pinImg}} id="createPinImg{{forID}}" class="pinediting__left-column__img">
         </div>
         <div class="createpin__right-column">
             <div class="createpin__right-column__title">Изменение пина</div>
-            <input type="text" id="pinname" placeholder="Добавьте название" value={{pinName}} class="createpin-form__title createpin-form__title_pos">
-            <input type="text" id="pincontent" placeholder="Добавьте описание" value={{content}} class="createpin-form__content createpin-form__content_pos">
+            <input type="text" id="pinname" placeholder="Добавьте название" {{#if pinName}}value={{pinName}}{{/if}} class="createpin-form__title createpin-form__title_pos">
+            <input type="text" id="pincontent" placeholder="Добавьте описание" {{#if pinContent}}value={{pinContent}}{{/if}} class="createpin-form__content createpin-form__content_pos">
 
             <div class="createpin__right-column__choose-board">
                 <div class="createpin__right-column__choose-board__title">Выберете доску</div>
                 <select name="board-select" class="board-select_design board-select_design_pos">
                     <option disabled>Выберете доску</option>
+                    {{#each boardsNames}}
+                        <option value={{this.board_id}}>{{this.board}}</option>
+                    {{/each}}
                 </select>
                         
             </div>
 
             <div class="createpin__buttons pinediting__buttons_pos" >
-                <input type="submit" name="button_del" class="createpin__buttons__button-del createpin__buttons__button-del_pos" value="Удалить">
+                <div id="PinDel{{forID}}" class="createpin__buttons__button-del createpin__buttons__button-del_pos">Удалить</div>
                 <a href="/profile" type="submit" class="createpin__buttons__button-out">Отмена</a>
-                <input type="submit" class="createpin__buttons__button-save createpin__buttons__button-save_pos" value="Готово">
+                <input type="submit" name="save" class="createpin__buttons__button-save createpin__buttons__button-save_pos" value="Готово">
             </div>
         </div>
     </form>

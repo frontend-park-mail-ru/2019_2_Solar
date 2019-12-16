@@ -39,7 +39,7 @@ router
     .register('/profile', ProfileView)
     .register('/create_pin', CreatePinView)
     .register('/pin/:id', PinView)
-    .register('/pin_change', PinEditingView)
+    .register('/pin_change/:id', PinEditingView)
     .register('/create_board', CreateBoardView)
     .register('/board_change', BoardChangeView)
     .register('/dialog', DialogView)
@@ -49,6 +49,17 @@ router
     .register('/index/:type', IndexView);
 
 (<any>window).CSRFtoken = '';
+
+// ServiceWorker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.ts')
+        .then((registration) => {
+            console.log('ServiceWorker registration', registration);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+}
 
 // Startup logic
 fetchModule.Get({
@@ -93,15 +104,15 @@ if (event.wasClean) {
 
         if (recipientName == data.user_name_sender) {
             const newMessage = new MessageComponent(messageList);
-            newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
+            newMessage.render({messageAuthor: data.user_name_sender + ':', classForBg: '', messageContent: data.text});
         }
     }
 
-    const allMessageList = document.getElementById('incomingMessagesList'); 
-    if (allMessageList != null) {
-        const newMessage = new MessageComponent(allMessageList);
-        newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
-    }
+    // const allMessageList = document.getElementById('incomingMessagesList'); 
+    // if (allMessageList != null) {
+    //     const newMessage = new MessageComponent(allMessageList);
+    //     newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
+    // }
 
     const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
     const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
@@ -112,7 +123,6 @@ if (event.wasClean) {
     }
 
     (<any>window).chatMessages.addData(data.user_name_sender, data.text);
-    console.log((<any>window).chatMessages.getNotice());
 };
 
 (<any>window).socket1.onerror = function(event) {
