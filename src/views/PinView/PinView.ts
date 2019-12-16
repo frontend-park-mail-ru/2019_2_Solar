@@ -7,6 +7,7 @@ import PinCommentComponent from '../../components/PinComment/PinComment';
 import HeaderComponent from '../../components/Header/Header';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 
 import bg from '../../images/bg.png';
 import share from '../../images/share-symbol.svg';
@@ -85,7 +86,7 @@ export default class PinView extends BaseView {
 
                         const forId = (<any>window).location.pathname;
                         const context = {
-                            pinImg: BACKEND_ADDRESS + '/' + responseBody.body.pins.pin_dir,
+                            pinImg: PIN_ADRESS + '/' + responseBody.body.pins.pin_dir,
                             forID: forId,
                             pinName: responseBody.body.pins.title,
                             pinAuthor: responseBody.body.pins.author_username,
@@ -134,7 +135,7 @@ export default class PinView extends BaseView {
                             for (let i = 0; i < pinComments.length; i++) {
                                 const comment = new PinCommentComponent(pinViewCommentsList);
                                 comment.render({
-                                    commentAuthorImg: (pinComments[i].author_dir) ? (BACKEND_ADDRESS + '/' + pinComments[i].author_dir) : bg,
+                                    commentAuthorImg: (pinComments[i].author_dir) ? (PIN_ADRESS + '/' + pinComments[i].author_dir) : bg,
                                     commentAuthor: pinComments[i].author_username,
                                     commentContent: pinComments[i].text});
                             }
@@ -163,7 +164,7 @@ export default class PinView extends BaseView {
                                         if (response.ok) {
                                             const commentForAdd = new PinCommentComponent(pinViewCommentsList);
                                             commentForAdd.render({
-                                                commentAuthorImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
+                                                commentAuthorImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (PIN_ADRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
                                                 commentAuthor: (<any>window).GlobalUser.body.user.username,
                                                 commentContent: commentForList});
     

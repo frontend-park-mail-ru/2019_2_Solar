@@ -6,6 +6,7 @@ import UserForSearch from '../../components/UserForSearch/UserForSearch';
 import bg from '../../images/bg.png';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 
 import './IndexView.scss';
 import IndexViewTemplate from '../IndexView/IndexView.hbs';
@@ -72,7 +73,7 @@ export default class IndexView extends BaseView {
                                 const pinForIndexView = new PinForIndex(indexPage);
                                 pinForIndexView.render({
                                     id: pinsIndex[i].id,
-                                    pinImg: BACKEND_ADDRESS + '/' + pinsIndex[i].pin_dir,
+                                    pinImg: PIN_ADRESS + '/' + pinsIndex[i].pin_dir,
                                     content: pinsIndex[i].title});
                                 lastId = pinsIndex[i].id;
                             }
@@ -146,7 +147,7 @@ function addPins(args, limit, id) {
                     const pinForIndexView = new PinForIndex(indexPage);
                     pinForIndexView.render({
                         id: pinsIndex[i].id,
-                        pinImg: BACKEND_ADDRESS + '/' + pinsIndex[i].pin_dir,
+                        pinImg: PIN_ADRESS + '/' + pinsIndex[i].pin_dir,
                         content: pinsIndex[i].title});
                     (<any>window).lastEl = pinsIndex[i].id;
                     // console.log('ww: ', (<any>window).lastEl);
@@ -177,7 +178,7 @@ function createSubscribe(args) {
                         const UserForSearchView = new UserForSearch(indexPage);
                         UserForSearchView.render({
                             username: usersSearch[i].username,
-                            userImg: (usersSearch[i].avatar_dir) ? (BACKEND_ADDRESS + '/' + usersSearch[i].avatar_dir) : bg});
+                            userImg: (usersSearch[i].avatar_dir) ? (PIN_ADRESS + '/' + usersSearch[i].avatar_dir) : bg});
                     }
                 }
             }

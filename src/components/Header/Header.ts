@@ -13,6 +13,7 @@ import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 
 /** Class representing a Header component. */
 export default class HeaderComponent {
@@ -66,7 +67,7 @@ export default class HeaderComponent {
 
         if (this._data.body) {
             context['username'] = this._data.body.user.username;
-            context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg;
+            context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (PIN_ADRESS + '/' + this._data.body.user.avatar_dir) : bg;
             
             const html = HeaderTemplate(context);
             this._parent.innerHTML = html;
@@ -98,7 +99,7 @@ export default class HeaderComponent {
                     this.data(responseBody);
 
                     context['username'] = this._data.body.user.username;
-                    context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + this._data.body.user.avatar_dir) : bg;
+                    context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (PIN_ADRESS + '/' + this._data.body.user.avatar_dir) : bg;
                     
                     const html = HeaderTemplate(context);
                     this._parent.innerHTML = html;

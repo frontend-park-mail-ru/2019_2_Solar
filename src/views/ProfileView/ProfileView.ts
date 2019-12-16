@@ -11,6 +11,7 @@ import Close from '../../images/closeicon.svg';
 
 import bus from '../../utils/bus';
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 
 import SetImg from '../../images/graypen.svg';
 import PlusImgFAdd from '../../images/grayplus.svg';
@@ -89,7 +90,7 @@ export default class ProfileView extends BaseView {
                 }
                 const context = {
                     username: responseBody.body.user.username,
-                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (PIN_ADRESS + '/' + responseBody.body.user.avatar_dir) : bg,
                     status: responseBody.body.user.status,
                     PHsetimg: SetImg,
                     PHplus: PlusImgFAdd,
@@ -147,7 +148,7 @@ export default class ProfileView extends BaseView {
                             const pinsProfile = responseBody.body.pins;
                             for (let i = 0; i < pinsProfile.length; i++) {
                                 const pinForUserView = new PinForUserViewComponent(viewPinBoards);
-                                pinForUserView.render({id: pinsProfile[i].id, pinImg: BACKEND_ADDRESS + '/' + pinsProfile[i].pin_dir,
+                                pinForUserView.render({id: pinsProfile[i].id, pinImg: PIN_ADRESS + '/' + pinsProfile[i].pin_dir,
                                     content: pinsProfile[i].title});
                             }
                         })

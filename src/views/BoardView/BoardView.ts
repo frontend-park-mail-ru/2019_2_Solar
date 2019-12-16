@@ -11,6 +11,7 @@ import grayPenImg from '../../images/graypen.svg';
 import bg from '../../images/bg.png';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 import fetchModule from '../../utils/fetchModule';
 
 /** Class representing a BoardView view. */
@@ -73,7 +74,7 @@ export default class BoardView extends BaseView {
                     boardName: responseBody.body.board.title,
                     boardDis: responseBody.body.board.description,
                     pinCount: responseBody.body.pins.length,
-                    avatarImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
+                    avatarImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (PIN_ADRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
                     forID: (<any>window).location.pathname,
 
                     PHGrayPen: grayPenImg,
@@ -86,7 +87,7 @@ export default class BoardView extends BaseView {
                 const pinsBoard = responseBody.body.pins;
                 for (let i = 0; i < pinsBoard.length; i++) {
                     const pinForUserView = new PinForUserViewComponent(boardViewPinsList);
-                    pinForUserView.render({id: pinsBoard[i].id, pinImg: BACKEND_ADDRESS + '/' + pinsBoard[i].pin_dir,
+                    pinForUserView.render({id: pinsBoard[i].id, pinImg: PIN_ADRESS + '/' + pinsBoard[i].pin_dir,
                         content: pinsBoard[i].title});
                 }
             });

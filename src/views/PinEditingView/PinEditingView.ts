@@ -7,6 +7,7 @@ import '../CreatePinView/CreatePinView.scss';
 import HeaderComponent from '../../components/Header/Header';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
@@ -88,7 +89,7 @@ export default class PinEditingView extends BaseView {
 
                         const forId = (<any>window).location.pathname;
                         const context = {
-                            pinImg: BACKEND_ADDRESS + '/' + responseBody.body.pins.pin_dir,
+                            pinImg: PIN_ADRESS + '/' + responseBody.body.pins.pin_dir,
                             forID: forId,
                             pinName: responseBody.body.pins.title,
                             pinAuthor: responseBody.body.pins.owner_username,

@@ -6,6 +6,7 @@ import './SettingsView.scss';
 import HeaderComponent from '../../components/Header/Header';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 import showFile from '../../utils/readFile';
 
 import FImg from '../../images/edit.svg';
@@ -76,7 +77,7 @@ export default class SettingsView extends BaseView {
 
                 const context = {
                     username: responseBody.body.user.username,
-                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (PIN_ADRESS + '/' + responseBody.body.user.avatar_dir) : bg,
                     status: responseBody.body.user.status,
                     name: responseBody.body.user.name,
                     surname: responseBody.body.user.surname,

@@ -8,6 +8,7 @@ import HeaderComponent from '../../components/Header/Header';
 import PinForIndex from '../../components/PinForIndex/PinForIndex';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
@@ -73,7 +74,7 @@ export default class UserView extends BaseView {
 
                 const forId = (<any>window).location.pathname;
                 const context = {
-                    avatarphoto: (responseBody.body.user.avatar_dir) ? (BACKEND_ADDRESS + '/' + responseBody.body.user.avatar_dir) : bg,
+                    avatarphoto: (responseBody.body.user.avatar_dir) ? (PIN_ADRESS + '/' + responseBody.body.user.avatar_dir) : bg,
                     username: responseBody.body.user.username,
                     status: responseBody.body.user.status,
                     forID: forId,
@@ -142,7 +143,7 @@ function pinsView(responseBody, userPinsView) {
     const pinsUser = responseBody.body.pins;
     for (let i = 0; i < pinsUser.length; i++) {
         const pinForUserView = new PinForIndex(userPinsView);
-        pinForUserView.render({id: pinsUser[i].id, pinImg: BACKEND_ADDRESS + '/' + pinsUser[i].pin_dir,
+        pinForUserView.render({id: pinsUser[i].id, pinImg: PIN_ADRESS + '/' + pinsUser[i].pin_dir,
             content: pinsUser[i].title});
     }
 }

@@ -8,6 +8,7 @@ import PinForIndex from '../../components/PinForIndex/PinForIndex';
 import UserForSearch from '../../components/UserForSearch/UserForSearch';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
+import {PIN_ADRESS} from '../../config/Config';
 
 import './SearchView.scss';
 import SearchViewTemplate from '../SearchView/SearchView.hbs';
@@ -85,7 +86,7 @@ export default class SearchView extends BaseView {
                                             const pinForIndexView = new PinForIndex(searchPage);
                                             pinForIndexView.render({
                                                 id: pinsSearch[i].id,
-                                                pinImg: BACKEND_ADDRESS + '/' + pinsSearch[i].pin_dir,
+                                                pinImg: PIN_ADRESS + '/' + pinsSearch[i].pin_dir,
                                                 content: pinsSearch[i].title});
                                         }
                                     } else {
@@ -112,7 +113,7 @@ export default class SearchView extends BaseView {
                                             const UserForSearchView = new UserForSearch(searchPage);
                                             UserForSearchView.render({
                                                 username: usersSearch[i].username,
-                                                userImg: (usersSearch[i].avatar_dir) ? (BACKEND_ADDRESS + '/' + usersSearch[i].avatar_dir) : bg});
+                                                userImg: (usersSearch[i].avatar_dir) ? (PIN_ADRESS + '/' + usersSearch[i].avatar_dir) : bg});
                                         }
                                     } else {
                                         searchPage.textContent = 'Поиск не дал результатов :с';
