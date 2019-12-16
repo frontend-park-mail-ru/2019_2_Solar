@@ -75,6 +75,16 @@ export default class ProfileView extends BaseView {
                 (<any>window).GlobalUser = responseBody;
                 (<any>window).CSRFtoken = responseBody.csrf_token;
 
+                fetchModule.Post({
+                    url: BACKEND_ADDRESS + '/admin/fill',
+                    body: null,
+                    credentials: 'include',
+                    headers: {
+                        'csrf-token': (<any>window).CSRFtoken,
+                    },
+                })
+                    .then(() => {});
+
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
 
