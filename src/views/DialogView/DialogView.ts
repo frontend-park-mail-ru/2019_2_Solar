@@ -63,7 +63,7 @@ export default class DialogView extends BaseView {
                 dialog1.render({});
 
                 const allChatsList = document.getElementById('incomingMessagesList');
-                chatRoomsView(allChatsList, messageView, responseBodyProfile.body.user.id);
+                chatRoomsView(allChatsList, messageView, responseBodyProfile.body.user.id, responseBodyProfile.body.user.username);
 
                 /* Далее для обработки сообщений */
                 const messageError = document.getElementById('createMessageError');
@@ -161,7 +161,7 @@ function createOldMessages(messageViewList, anotherUserId, profileUserId) {
                     if (messages[i].senderId == profileUserId) {
                         newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: messages[i].text});
                     } else {
-                        newMessage.render({messageAuthor: messages[i].senderId + '(будет username)' + ':', classForBg: '', messageContent: messages[i].text});
+                        newMessage.render({messageAuthor: messages[i].senderUsername + ':', classForBg: '', messageContent: messages[i].text});
                     }
                 }
             }
@@ -173,7 +173,7 @@ function createOldMessages(messageViewList, anotherUserId, profileUserId) {
  * @param allChatsList
  * @param messageView
  */
-function chatRoomsView(allChatsList, messageView, profileId) {
+function chatRoomsView(allChatsList, messageView, profileId, profilename) {
     fetchModule.Get({
         url: BACKEND_ADDRESS + '/chat/recipients',
         body: null,
@@ -182,12 +182,26 @@ function chatRoomsView(allChatsList, messageView, profileId) {
             return response.json();
         })
         .then((responseBody) => {
-            const chats = responseBody;
+            const chats = responseBody.body;
+            let mapChat = new Map();
+
             for (let i = 0; i < chats.length; i++) {
                 if (allChatsList != null) {
-                    const newChat = new ChatRoomComponent(allChatsList);
-                    newChat.render({chatroomAuthor: chats[i].id_sender + '(будет username)', chatroomContent: chats[i].text});
+                    let sender = '';
+                    if (chats[i].senderUserName != profilename) {
+                        sender = chats[i].senderUserName;
+                    } else {
+                        sender = chats[i].recipientUserName;
+                    }
+                    mapChat.set(sender, chats[i].text);
                 }
+            }
+
+            if (mapChat.size != 0) {
+                mapChat.forEach((value, key) => {
+                    const newChat = new ChatRoomComponent(allChatsList);
+                    newChat.render({chatroomAuthor: key, chatroomContent: value});
+                });
             }
 
             const chatsList = allChatsList.getElementsByClassName('chatroom__creator');
@@ -197,7 +211,7 @@ function chatRoomsView(allChatsList, messageView, profileId) {
                     event.preventDefault();
 
                     fetchModule.Get({
-                        url: BACKEND_ADDRESS + '/users/' + 'ADshishova', // Исправить
+                        url: BACKEND_ADDRESS + '/users/' + chatsList[i].textContent, // Исправить
                         body: null,
                     })
                         .then((response) => {
@@ -207,16 +221,32 @@ function chatRoomsView(allChatsList, messageView, profileId) {
                             if (responseBody.body.user) {
                                 messageView.innerHTML = '';
                                 const dialog3 = new Dialog3ViewComponent(messageView);
-                                dialog3.render({username: 'ADshishova'}); // Исправить
+                                dialog3.render({username: responseBody.body.user.username}); // Исправить
             
                                 const messageViewList = document.getElementById('MessagesList');
 
                                 createOldMessages(messageViewList, responseBody.body.user.id, profileId);
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
+
+                                const smileList = document.getElementById('smileImages');
+                                smileEvent(smileList, 'smile__style', createMessageForm);
+                                const smileButton = document.getElementById('openSmile');
+                                
+                                let smileFlag = false;
+                                smileButton.addEventListener('click', (e) => {
+                                    if (smileFlag == false) {
+                                        createSmile(smileList, 'message-form__smile-view');
+                                        smileFlag = true;
+                                    } else {
+                                        createSmile(smileList, 'message-form__smile-view_none');
+                                        smileFlag = false;
+                                    }
+                                });
+
                                 createMessageForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
-            
+
                                     const message = createMessageForm.elements['message'].value;
                                     if (message != '') {
                                         const newMessage = new MessageComponent(messageViewList);

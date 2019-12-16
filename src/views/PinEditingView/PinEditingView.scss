@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     width: 121px;
     height: 38px;
@@ -25,6 +26,7 @@
 }
 
 .pinediting__left-column__img {
+    object-fit: cover;
     width: 277px;
     height: 427px;
     border-radius: 5px;
