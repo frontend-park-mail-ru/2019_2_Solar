@@ -18,7 +18,6 @@ import './scss/base.scss';
 import Router from './utils/router';
 import {BACKEND_ADDRESS} from './config/Config';
 import {WS_BACKEND_ADDRESS} from './config/Config';
-import {WSS_BACKEND_ADDRESS} from './config/Config';
 import CreateBoardView from './views/CreateBoardView/CreateBoardView';
 import fetchModule from './utils/fetchModule';
 import chatModule from './utils/chatModule';
@@ -81,7 +80,7 @@ fetchModule.Get({
 router.start();
 
 // CHAT
-(<any>window).socket1 = new WebSocket(WSS_BACKEND_ADDRESS + '/chat');
+(<any>window).socket1 = new WebSocket(WS_BACKEND_ADDRESS + '/chat');
 (<any>window).chatMessages = new chatModule();
 
 (<any>window).socket1.onopen = function(result) {
