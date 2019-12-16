@@ -183,17 +183,25 @@ function chatRoomsView(allChatsList, messageView, profileId, profilename) {
         })
         .then((responseBody) => {
             const chats = responseBody.body;
+            let mapChat = new Map();
+
             for (let i = 0; i < chats.length; i++) {
                 if (allChatsList != null) {
-                    const newChat = new ChatRoomComponent(allChatsList);
                     let sender = '';
                     if (chats[i].senderUserName != profilename) {
                         sender = chats[i].senderUserName;
                     } else {
                         sender = chats[i].recipientUserName;
                     }
-                    newChat.render({chatroomAuthor: sender, chatroomContent: chats[i].text});
+                    mapChat.set(sender, chats[i].text);
                 }
+            }
+
+            if (mapChat.size != 0) {
+                mapChat.forEach((value, key) => {
+                    const newChat = new ChatRoomComponent(allChatsList);
+                    newChat.render({chatroomAuthor: key, chatroomContent: value});
+                });
             }
 
             const chatsList = allChatsList.getElementsByClassName('chatroom__creator');
@@ -220,9 +228,25 @@ function chatRoomsView(allChatsList, messageView, profileId, profilename) {
                                 createOldMessages(messageViewList, responseBody.body.user.id, profileId);
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
+
+                                const smileList = document.getElementById('smileImages');
+                                smileEvent(smileList, 'smile__style', createMessageForm);
+                                const smileButton = document.getElementById('openSmile');
+                                
+                                let smileFlag = false;
+                                smileButton.addEventListener('click', (e) => {
+                                    if (smileFlag == false) {
+                                        createSmile(smileList, 'message-form__smile-view');
+                                        smileFlag = true;
+                                    } else {
+                                        createSmile(smileList, 'message-form__smile-view_none');
+                                        smileFlag = false;
+                                    }
+                                });
+
                                 createMessageForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
-            
+
                                     const message = createMessageForm.elements['message'].value;
                                     if (message != '') {
                                         const newMessage = new MessageComponent(messageViewList);
