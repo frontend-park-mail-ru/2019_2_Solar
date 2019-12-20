@@ -23,6 +23,7 @@ import fetchModule from './utils/fetchModule';
 import chatModule from './utils/chatModule';
 import {createHeader} from './utils/headerFunc';
 import {deleteHeader} from './utils/headerFunc';
+import preloaderImg from './images/preload.svg';
 
 const application = document.getElementById('application');
 const applicationHeader = document.getElementById('applicationHeader');
@@ -52,9 +53,15 @@ router
 
 (<any>window).CSRFtoken = '';
 
+document.getElementById("preloaderImg").setAttribute('src',preloaderImg);
+(<any>window).addEventListener('load', () => {
+    const loader = document.getElementById('preloader');
+    loader.className += ' hidden';
+});
+
 // ServiceWorker
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.ts')
+    navigator.serviceWorker.register('/sw.js')
         .then((registration) => {
             console.log('ServiceWorker registration', registration);
         })
