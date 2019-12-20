@@ -45,7 +45,6 @@
 
 .viewpin-block__right-column__title {
     width: 463px;
-    height: 44px;
 
     font-style: normal;
     font-weight: bold;
@@ -111,7 +110,7 @@
 }
 
 .viewpin-block__right-column__context {
-    height: 32px;
+    width: 463px;
 
     font-style: normal;
     font-size: 16px;
@@ -226,9 +225,12 @@ a {
     border: 0;
     border-radius: 5px;
     cursor: pointer;
+    background: #dfdfdf;
+    width: 120px;
 }
 
 .board-url__link {
     background: white;
     border: none;
+    width: 100%;
 }
