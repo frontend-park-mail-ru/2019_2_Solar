@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 html *
 {
-   font-family: Roboto;
+   font-family: Arial;
 }
 
 .background {
@@ -50,4 +50,8 @@ html *
         opacity: 0;
         visibility: hidden;
     }
+}
+
+input {
+    outline: none;
 }

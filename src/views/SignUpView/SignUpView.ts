@@ -91,6 +91,7 @@ export default class SignUpView extends BaseView {
 
                         const validation = validateSignup(signUpForm);
                         if (!validation.result) {
+                            errText.className = 'signup-form-block__error-text';
                             errText.textContent = validation.message;
 
                             errorDraw(inputForm, 0, 'form-block__error-input');
@@ -114,6 +115,7 @@ export default class SignUpView extends BaseView {
                                 return response.json();
                             })
                             .then((responseBody) => {
+                                errText.className = 'signup-form-block__error-text';
                                 if (responseBody.body.info) {
                                     errText.textContent = 'Ошибочка: ' + responseBody.body.info;
                                 } else {
