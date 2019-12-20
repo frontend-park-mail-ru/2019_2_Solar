@@ -69,6 +69,8 @@ export default class UserView extends BaseView {
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
                 createHeader();
+                document.body.className ='backgroundIndex';
+                this.el.innerHTML = '';
 
                 const forId = (<any>window).location.pathname;
                 const context = {
@@ -77,7 +79,7 @@ export default class UserView extends BaseView {
                     status: responseBody.body.user.status,
                     forID: forId,
                 };
-                this.el.innerHTML += UserViewTemplate(context);
+                this.el.innerHTML = UserViewTemplate(context);
 
                 const userPinsView = document.getElementById('userPinsView' + String(forId));
                 pinsView(responseBody,userPinsView);
