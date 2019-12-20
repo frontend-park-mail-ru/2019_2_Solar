@@ -3,7 +3,6 @@ import BaseView from '../BaseView/BaseView';
 import ProfileViewTemplate from './ProfileView.hbs';
 import './ProfileView.scss';
 
-import HeaderComponent from '../../components/Header/Header';
 import PinForUserViewComponent from '../../components/PinForUserView/PinForUserView';
 import BoardForUserViewComponent from '../../components/BoardForUserView/BoardForUserView';
 import Question from '../../images/question2.svg';
@@ -19,6 +18,8 @@ import PlusImgFAdd from '../../images/grayplus.svg';
 import bg from '../../images/bg.png';
 
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
+
 /** Class representing a Profile view. */
 export default class ProfileView extends BaseView {
     args: object;
@@ -75,12 +76,10 @@ export default class ProfileView extends BaseView {
             .then((responseBody) => {
                 (<any>window).GlobalUser = responseBody;
                 (<any>window).CSRFtoken = responseBody.csrf_token;
+                createHeader();
 
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
-
-                const header = new HeaderComponent(this.el);
-                header.render();
 
                 let value = "; " + document.cookie;
                 let parts = value.split("; session_key=");

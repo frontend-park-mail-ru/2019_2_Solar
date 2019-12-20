@@ -3,12 +3,11 @@ import BaseView from '../BaseView/BaseView';
 import CreatePinViewTemplate from './CreatePinView.hbs';
 import './CreatePinView.scss';
 
-import HeaderComponent from '../../components/Header/Header';
-
 import {BACKEND_ADDRESS} from '../../config/Config';
 import bus from '../../utils/bus';
 import showFile from '../../utils/readFile';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing a CreatePin view. */
 export default class CreatePinView extends BaseView {
@@ -56,6 +55,7 @@ export default class CreatePinView extends BaseView {
             })
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
+                createHeader();
 
                 const boardsNames = [];
                 if (responseBody.body.boards) {
@@ -67,9 +67,6 @@ export default class CreatePinView extends BaseView {
 
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
-
-                const header = new HeaderComponent(this.el);
-                header.render();
 
                 const context = {
                     title: 'Создание пина',

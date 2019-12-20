@@ -4,14 +4,13 @@ import PinEditingViewTemplate from './PinEditingView.hbs';
 import './PinEditingView.scss';
 import '../CreatePinView/CreatePinView.scss';
 
-import HeaderComponent from '../../components/Header/Header';
-
 import {BACKEND_ADDRESS} from '../../config/Config';
 import {PIN_ADRESS} from '../../config/Config';
 
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
 import bus from '../../utils/bus';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing a PinEditing view. */
 export default class PinEditingView extends BaseView {
@@ -62,6 +61,7 @@ export default class PinEditingView extends BaseView {
             })
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
+                createHeader();
 
                 const boardsNames = [];
                 fetchModule.Get({
@@ -83,9 +83,6 @@ export default class PinEditingView extends BaseView {
 
                         document.body.className ='backgroundIndex';
                         this.el.innerHTML = '';
-
-                        const header = new HeaderComponent(this.el);
-                        header.render();
 
                         const forId = (<any>window).location.pathname;
                         const context = {

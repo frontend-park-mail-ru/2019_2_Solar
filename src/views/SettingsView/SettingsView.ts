@@ -3,8 +3,6 @@ import BaseView from '../BaseView/BaseView';
 import SettingsViewTemplate from './SettingsView.hbs';
 import './SettingsView.scss';
 
-import HeaderComponent from '../../components/Header/Header';
-
 import {BACKEND_ADDRESS} from '../../config/Config';
 import {PIN_ADRESS} from '../../config/Config';
 import showFile from '../../utils/readFile';
@@ -16,6 +14,7 @@ import bg from '../../images/bg.png';
 
 import bus from '../../utils/bus';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing a Settings view. */
 export default class SettingsView extends BaseView {
@@ -65,15 +64,12 @@ export default class SettingsView extends BaseView {
             })
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
+                createHeader();
 
                 document.body.className = 'backgroundIndex';
                 this.el.innerHTML = '';
 
                 const oldusername = responseBody.body.user.username;
-
-                const header = new HeaderComponent(this.el);
-                header.data = responseBody;
-                header.render();
 
                 const context = {
                     username: responseBody.body.user.username,
@@ -135,10 +131,41 @@ export default class SettingsView extends BaseView {
                     })
                         .then((response) => {
                             if (response.ok) {
-                                bus.emit('/profile', {});
+                                fetchModule.Get({
+                                    url: BACKEND_ADDRESS + '/profile/data',
+                                    body: null,
+                                })
+                                    .then((response) => {
+                                        return response.json();
+                                    })
+                                    .then((responseBody) => {
+                                        (<any>window).GlobalUser = responseBody;
+                                        (<any>window).CSRFtoken = responseBody.csrf_token;
+                                        const changeHeaderPhoto = document.getElementById('avatarPhotoHeader');
+                                        changeHeaderPhoto.setAttribute('src', (responseBody.body.user.avatar_dir) ? (PIN_ADRESS + '/' + responseBody.body.user.avatar_dir) : bg);
+                                        console.log('hey');
+                                        const changeHeaderNickname = document.getElementById('nicknameHeader');
+                                        changeHeaderNickname.textContent = responseBody.body.user.username;
+
+                                        bus.emit('/profile', {});
+                                    });
                             } else {
                                 if (dataresponse) {
-                                    bus.emit('/profile', {});
+                                    fetchModule.Get({
+                                        url: BACKEND_ADDRESS + '/profile/data',
+                                        body: null,
+                                    })
+                                        .then((response) => {
+                                            return response.json();
+                                        })
+                                        .then((responseBody) => {
+                                            (<any>window).GlobalUser = responseBody;
+                                            (<any>window).CSRFtoken = responseBody.csrf_token;
+                                            const changeHeaderNickname = document.getElementById('nicknameHeader');
+                                            changeHeaderNickname.textContent = responseBody.body.user.username;
+    
+                                            bus.emit('/profile', {});
+                                        });
                                 }
                             }
                         });

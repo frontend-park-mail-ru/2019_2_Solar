@@ -4,7 +4,6 @@ import BoardChangeViewTemplate from './BoardChangeView.hbs';
 import './BoardChangeView.scss';
 
 import PinForBoardEditingComponent from '../../components/PinForBoardEditing/PinForBoardEditing';
-import HeaderComponent from '../../components/Header/Header';
 
 import bg from '../../images/bg.png';
 
@@ -61,10 +60,6 @@ export default class BoardChangeView extends BaseView {
 
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
-
-                const header = new HeaderComponent(this.el);
-                header.data = responseBody;
-                header.render();
 
                 this.data = responseBody;
 

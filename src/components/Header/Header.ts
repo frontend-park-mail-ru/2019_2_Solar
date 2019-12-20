@@ -65,7 +65,7 @@ export default class HeaderComponent {
             PHbell: Bell,
         };
 
-        if (this._data.body) {
+        try {
             context['username'] = this._data.body.user.username;
             context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (PIN_ADRESS + '/' + this._data.body.user.avatar_dir) : bg;
             
@@ -84,7 +84,7 @@ export default class HeaderComponent {
                     }
                 }
             }
-        } else {
+        } catch {
             fetchModule.Get({
                 url: BACKEND_ADDRESS + '/profile/data',
                 body: null,

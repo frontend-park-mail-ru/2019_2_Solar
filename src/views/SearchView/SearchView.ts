@@ -1,5 +1,4 @@
 import BaseView from '../BaseView/BaseView';
-import HeaderComponent from '../../components/Header/Header';
 
 import Lupa from '../../images/search.svg';
 import bg from '../../images/bg.png';
@@ -13,6 +12,7 @@ import {PIN_ADRESS} from '../../config/Config';
 import './SearchView.scss';
 import SearchViewTemplate from '../SearchView/SearchView.hbs';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing an Search view. */
 export default class SearchView extends BaseView {
@@ -46,11 +46,10 @@ export default class SearchView extends BaseView {
                 (<any>window).GlobalUser = responseBody;
                 (<any>window).CSRFtoken = responseBody.csrf_token;
 
+                createHeader();
+
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
-
-                const header = new HeaderComponent(this.el);
-                header.render();
 
                 const context = {
                     PHLupa: Lupa,

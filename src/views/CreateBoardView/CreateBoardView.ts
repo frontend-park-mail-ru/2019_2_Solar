@@ -3,11 +3,10 @@ import BaseView from '../BaseView/BaseView';
 import CreateBoardViewTemplate from './CreateBoardView.hbs';
 import './CreateBoardView.scss';
 
-import HeaderComponent from '../../components/Header/Header';
-
 import {BACKEND_ADDRESS} from '../../config/Config';
 import bus from '../../utils/bus';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing a CreateBoard view. */
 export default class CreateBoardView extends BaseView {
@@ -55,13 +54,10 @@ export default class CreateBoardView extends BaseView {
             })
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
+                createHeader();
 
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
-
-                const header = new HeaderComponent(this.el);
-                header.data = responseBody;
-                header.render();
 
                 const context = {};
                 this.el.innerHTML += CreateBoardViewTemplate(context);

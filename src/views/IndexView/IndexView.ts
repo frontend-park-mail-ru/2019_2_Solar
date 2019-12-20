@@ -1,5 +1,4 @@
 import BaseView from '../BaseView/BaseView';
-import HeaderComponent from '../../components/Header/Header';
 
 import PinForIndex from '../../components/PinForIndex/PinForIndex';
 import UserForSearch from '../../components/UserForSearch/UserForSearch';
@@ -11,6 +10,7 @@ import {PIN_ADRESS} from '../../config/Config';
 import './IndexView.scss';
 import IndexViewTemplate from '../IndexView/IndexView.hbs';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing an Index view. */
 export default class IndexView extends BaseView {
@@ -43,6 +43,7 @@ export default class IndexView extends BaseView {
             .then((responseBody) => {
                 (<any>window).GlobalUser = responseBody;
                 (<any>window).CSRFtoken = responseBody.csrf_token;
+                createHeader();
 
                 fetchModule.Get({
                     url: BACKEND_ADDRESS + '/pin/list/' + this.args + '?limit=20&id=0',
@@ -56,9 +57,6 @@ export default class IndexView extends BaseView {
 
                         document.body.className ='backgroundIndex';
                         this.el.innerHTML = '';
-
-                        const header = new HeaderComponent(this.el);
-                        header.render();
 
                         const index = IndexViewTemplate({arg: this.args});
 

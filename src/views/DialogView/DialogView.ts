@@ -1,6 +1,4 @@
 import BaseView from '../BaseView/BaseView';
-import HeaderComponent from '../../components/Header/Header';
-
 import {BACKEND_ADDRESS} from '../../config/Config';
 
 import './DialogView.scss';
@@ -11,6 +9,7 @@ import Dialog3ViewComponent from '../../components/DialogComponent/Dialog3ViewCo
 import MessageComponent from '../../components/Message/Message';
 import ChatRoomComponent from '../../components/ChatRoom/ChatRoom';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 
 /** Class representing an Dialog view. */
@@ -43,13 +42,10 @@ export default class DialogView extends BaseView {
             })
             .then((responseBodyProfile) => {
                 (<any>window).CSRFtoken = responseBodyProfile.csrf_token;
+                createHeader();
 
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
-
-                const header = new HeaderComponent(this.el);
-                header.data = responseBodyProfile;
-                header.render();
 
                 const dialog = DialogViewTemplate();
 

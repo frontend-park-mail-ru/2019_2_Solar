@@ -4,7 +4,6 @@ import UserViewTemplate from './UserView.hbs';
 import './UserView.scss';
 import '../ProfileView/ProfileView.scss';
 
-import HeaderComponent from '../../components/Header/Header';
 import PinForIndex from '../../components/PinForIndex/PinForIndex';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
@@ -12,6 +11,7 @@ import {PIN_ADRESS} from '../../config/Config';
 
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing a User view. */
 export default class UserView extends BaseView {
@@ -68,9 +68,7 @@ export default class UserView extends BaseView {
             })
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
-
-                const header = new HeaderComponent(this.el);
-                header.render();
+                createHeader();
 
                 const forId = (<any>window).location.pathname;
                 const context = {

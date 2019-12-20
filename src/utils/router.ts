@@ -4,15 +4,17 @@ import bus from './bus';
 export default class Router {
     routes: object;
     root: HTMLElement;
+    header: HTMLElement;
     /**
      * Router constructor.
      * @constructor
      * @param {object} root
      */
-    constructor(root) {
+    constructor(root, header) {
         this.routes = {};
 
         this.root = root;
+        this.header = header;
     }
 
     /**
@@ -114,6 +116,20 @@ export default class Router {
      */
     start() {
         this.root.addEventListener('click', function(event) {
+            if (!(event.target instanceof HTMLAnchorElement || event.target instanceof HTMLImageElement)) {
+                return;
+            } else if (event.target instanceof HTMLAnchorElement) {
+                event.preventDefault();
+                const link = event.target;
+    
+                this.open(link.pathname);
+            } else if (event.target instanceof HTMLImageElement) {
+                event.preventDefault();
+                this.open(event.target.dataset.section);
+            }
+        }.bind(this));
+
+        this.header.addEventListener('click', function(event) {
             if (!(event.target instanceof HTMLAnchorElement || event.target instanceof HTMLImageElement)) {
                 return;
             } else if (event.target instanceof HTMLAnchorElement) {

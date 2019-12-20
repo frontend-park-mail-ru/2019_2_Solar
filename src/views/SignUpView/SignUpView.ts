@@ -17,6 +17,7 @@ import sunriseTown from '../../images/sunrise_town.jpg';
 import bus from '../../utils/bus';
 import i18n from '../../utils/i18n';
 import fetchModule from '../../utils/fetchModule';
+import {deleteHeader} from '../../utils/headerFunc';
 
 /** Class representing a Signup view. */
 export default class SignUpView extends BaseView {
@@ -52,6 +53,7 @@ export default class SignUpView extends BaseView {
                 if (response.ok) {
                     bus.emit('/profile', {});
                 } else {
+                    deleteHeader();
                     document.body.className = 'background';
 
                     const button = new ButtonComponent();

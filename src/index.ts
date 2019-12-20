@@ -21,9 +21,11 @@ import {WS_BACKEND_ADDRESS} from './config/Config';
 import CreateBoardView from './views/CreateBoardView/CreateBoardView';
 import fetchModule from './utils/fetchModule';
 import chatModule from './utils/chatModule';
+import {createHeader} from './utils/headerFunc';
+import {deleteHeader} from './utils/headerFunc';
 
 const application = document.getElementById('application');
-
+const applicationHeader = document.getElementById('applicationHeader');
 
 bus.on('create-logout', () => {
     deleteCookie();
@@ -31,7 +33,7 @@ bus.on('create-logout', () => {
 });
 
 // Create a router, register paths and start it.
-const router = new Router(application);
+const router = new Router(application, applicationHeader);
 router
     .register('/', SignUpView)
     .register('/login', LoginView)
@@ -70,11 +72,13 @@ fetchModule.Get({
         if (response.ok) {
             return response.json();
         } else {
+            deleteHeader();
             router.open('/');
         }
     })
     .then((responseBody) => {
         (<any>window).GlobalUser = responseBody;
+        createHeader();
     });
 
 router.start();
@@ -114,11 +118,13 @@ if (event.wasClean) {
     //     newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
     // }
 
-    const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
-    const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+    // const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
+    // const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+    const notice = document.getElementById('spanNum');
     if (notice != null) {
         notice.textContent = String(Number(notice.textContent) + 1);
-        const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+        // const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
+        const list = document.getElementById('list');
         list.innerHTML += '<li><a href="#">Вам написал '+ data.user_name_sender + ': "' + data.text + '"</li>';
     }
 

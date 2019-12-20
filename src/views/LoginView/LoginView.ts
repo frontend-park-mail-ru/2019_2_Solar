@@ -9,6 +9,7 @@ import {BACKEND_ADDRESS} from '../../config/Config';
 
 import Logo from '../../images/logo.png';
 import fetchModule from '../../utils/fetchModule';
+import {deleteHeader} from '../../utils/headerFunc';
 
 /** Class representing a Login view. */
 export default class LoginView extends BaseView {
@@ -37,6 +38,7 @@ export default class LoginView extends BaseView {
      */
     render() {
         deleteCookie();
+        deleteHeader();
 
         document.body.className = 'backgroundLogin';
         const context = {

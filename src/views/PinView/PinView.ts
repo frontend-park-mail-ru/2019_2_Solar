@@ -4,7 +4,6 @@ import './PinView.scss';
 import PinViewTemplate from './PinView.hbs';
 
 import PinCommentComponent from '../../components/PinComment/PinComment';
-import HeaderComponent from '../../components/Header/Header';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
 import {PIN_ADRESS} from '../../config/Config';
@@ -12,6 +11,7 @@ import {PIN_ADRESS} from '../../config/Config';
 import bg from '../../images/bg.png';
 import share from '../../images/share-symbol.svg';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing a Pin view. */
 export default class PinView extends BaseView {
@@ -59,6 +59,7 @@ export default class PinView extends BaseView {
             })
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
+                createHeader();
 
                 const boardsNames = [];
                 fetchModule.Get({
@@ -80,9 +81,6 @@ export default class PinView extends BaseView {
 
                         document.body.className ='backgroundIndex';
                         this.el.innerHTML = '';
-
-                        const header = new HeaderComponent(this.el);
-                        header.render();
 
                         const forId = (<any>window).location.pathname;
                         const context = {

@@ -4,7 +4,6 @@ import BoardViewTemplate from './BoardView.hbs';
 import './BoardView.scss';
 
 import PinForUserViewComponent from '../../components/PinForUserView/PinForUserView';
-import HeaderComponent from '../../components/Header/Header';
 
 import plusImg from '../../images/grayplus.svg';
 import grayPenImg from '../../images/graypen.svg';
@@ -13,6 +12,7 @@ import bg from '../../images/bg.png';
 import {BACKEND_ADDRESS} from '../../config/Config';
 import {PIN_ADRESS} from '../../config/Config';
 import fetchModule from '../../utils/fetchModule';
+import {createHeader} from '../../utils/headerFunc';
 
 /** Class representing a BoardView view. */
 export default class BoardView extends BaseView {
@@ -60,12 +60,10 @@ export default class BoardView extends BaseView {
             })
             .then((responseBody) => {
                 (<any>window).CSRFtoken = responseBody.csrf_token;
+                createHeader();
 
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
-
-                const header = new HeaderComponent(this.el);
-                header.render();
 
                 this.data = responseBody;
 
