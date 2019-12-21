@@ -69,9 +69,6 @@ a {
     display: flex;
     align-items: center;
     flex-grow: 1;
-    border: 1px solid #D9D9D9;
-    border-radius: 3px;
-    padding: 5px 10px;
 }
 
 .search__icon {
@@ -95,6 +92,30 @@ a {
     border: 0;
     font-size: 14px;
     outline: none;
+}
+
+.searchheader-select_design {
+    background-color: #FFFFFF;
+    border: 1px solid #A29F9C;
+    box-sizing: border-box;
+    border-radius: 0px 5px 5px 0px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.searchheader-line {
+    display: flex;
+    align-items: center;
+    border: 1px solid #A29F9C;
+    border-radius: 5px 0px 0px 5px;
+    padding: 5px 10px;
+    width: 100%;
+    height: calc(100% - 12px);
+}
+
+.searchheader-select_design_pos {
+    height: 100%;
 }
 
 .controls {

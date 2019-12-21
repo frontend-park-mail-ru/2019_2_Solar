@@ -4,14 +4,21 @@
             <img data-section="/index/new" class="logo__picture" src={{PHlogo}}>
         </a>
         <form id="headerSearch" class="search">
-            <div class="search__icon">
+            <div class="searchheader-line">
+                <div class="search__icon">
                     <img src={{PHLupa}}>
+                </div>
+                <div class="search__input">
+                    <input type="text" id="searchtext" name="searchtext" placeholder="Поисковая строка">
+                </div>
+                <input type="submit" style="display:none;" value="Найти">
             </div>
-            <div class="search__input">
-                <input type="text" id="searchtext" name="searchtext" placeholder="Поисковая строка">
-            </div>
-            <input type="submit" style="display:none;" value="Найти">
+               <select name="style" id="style-select" class="searchheader-select_design searchheader-select_design_pos">
+                <option value="Tag">Теги</option>
+                <option value="Username">Пользователи</option>
+            </select>
         </form>
+
         <div class="left-controls">
             <a href="/index/new" class="left-controls__text-to-ind">Главная</a>
             <a href="/subscribe/new" class="left-controls__text-to-ind">Подписки</a>
