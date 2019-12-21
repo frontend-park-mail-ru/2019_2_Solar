@@ -88,10 +88,11 @@ export default class DialogView extends BaseView {
                                 createOldMessages(messageViewList, responseBody.body.user.id, responseBodyProfile.body.user.id);
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
+                                const createMessageTextArea = (<HTMLInputElement>document.getElementById('dialogTextArea'));
 
                                 const smileButton = document.getElementById('openSmile');
                                 const smileList = document.getElementById('smileImages');
-                                smileEvent(smileList, 'smile__style', createMessageForm);
+                                smileEvent(smileList, 'smile__style', createMessageTextArea);
 
                                 let smileFlag = false;
                                 smileButton.addEventListener('click', (e) => {
@@ -107,14 +108,14 @@ export default class DialogView extends BaseView {
                                 createMessageForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
             
-                                    const message = createMessageForm.elements['message'].value;
+                                    const message = createMessageTextArea.value;
                                     if (message != '') {
                                         const newMessage = new MessageComponent(messageViewList);
                                         newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
     
                                         (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
                 
-                                        createMessageForm.elements['message'].value = '';
+                                        createMessageTextArea.value = '';
                                     }
                                 });
                             } else {
@@ -224,9 +225,10 @@ function chatRoomsView(allChatsList, messageView, profileId, profilename) {
                                 createOldMessages(messageViewList, responseBody.body.user.id, profileId);
 
                                 const createMessageForm = <HTMLFormElement> document.getElementById('createMessageData');
+                                const createMessageTextArea = (<HTMLInputElement>document.getElementById('dialogTextArea'));
 
                                 const smileList = document.getElementById('smileImages');
-                                smileEvent(smileList, 'smile__style', createMessageForm);
+                                smileEvent(smileList, 'smile__style', createMessageTextArea);
                                 const smileButton = document.getElementById('openSmile');
                                 
                                 let smileFlag = false;
@@ -243,14 +245,14 @@ function chatRoomsView(allChatsList, messageView, profileId, profilename) {
                                 createMessageForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
 
-                                    const message = createMessageForm.elements['message'].value;
+                                    const message = createMessageTextArea.value;
                                     if (message != '') {
                                         const newMessage = new MessageComponent(messageViewList);
                                         newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
     
                                         (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
                 
-                                        createMessageForm.elements['message'].value = '';
+                                        createMessageTextArea.value = '';
                                     }
                                 });
                             }
@@ -281,7 +283,7 @@ function smileEvent(smileList, classname, createMessageForm) {
     for ( let i = 0; i < smile.length; i++) {
         smile[i].addEventListener('click', (event) => {
             event.preventDefault();
-            createMessageForm.elements['message'].value += smile[i].textContent;
+            createMessageForm.value += smile[i].textContent;
         });
     }
 }
