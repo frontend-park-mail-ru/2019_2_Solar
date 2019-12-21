@@ -151,7 +151,7 @@ export default class PinView extends BaseView {
                         viewPinCommentForm.addEventListener('submit', (e) => {
                             e.preventDefault();
 
-                            const commentForList = viewPinCommentForm.elements['comment'].value;
+                            const commentForList = (<HTMLInputElement>document.getElementById('commentTextArea' + forId)).value;
 
                             if (commentForList != '') {
                                 fetchModule.Post({
@@ -166,7 +166,7 @@ export default class PinView extends BaseView {
                                                 commentAuthor: (<any>window).GlobalUser.body.user.username,
                                                 commentContent: commentForList});
     
-                                            viewPinCommentForm.elements['comment'].value = '';
+                                                (<HTMLInputElement>document.getElementById('commentTextArea' + forId)).value = '';
                                         }
                                     });
                             }
