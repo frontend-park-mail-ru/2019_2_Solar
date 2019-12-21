@@ -206,7 +206,8 @@ export default class ProfileView extends BaseView {
                 const feedbackForm = <HTMLFormElement> document.getElementById('FeedbackButton');
                 feedbackForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    const message = feedbackForm.elements['message'].value;
+                    const profileMessage = (<HTMLInputElement>document.getElementById('profileMessageTextArea'));
+                    const message = profileMessage.value;
                     if (message != '') {
                         const data = {'message': message};
 
@@ -215,7 +216,7 @@ export default class ProfileView extends BaseView {
                             body: JSON.stringify(data),
                         })
                             .then((response) => {
-                                feedbackForm.elements['message'].value = '';
+                                profileMessage.value = '';
                             });
                     }
                 });
