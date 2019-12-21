@@ -45,6 +45,8 @@ export default class LoginView extends BaseView {
             PHlogo: Logo,
         };
         this.el.innerHTML = LoginViewTemplate(context);
+        const errText = document.getElementById('loginTextErr');
+        errText.className = 'login-error-text_none';
 
         const loginForm = <HTMLFontElement> document.getElementById('inputdata_login');
         loginForm.addEventListener('submit', (e) => {
@@ -70,7 +72,7 @@ export default class LoginView extends BaseView {
                     return response.json();
                 })
                 .then((responseBody) => {
-                    const errText = document.getElementById('loginTextErr');
+                    errText.className = 'login-text-error';
                     errText.textContent = 'Ошибочка: ' + responseBody.body.info;
                 });
         });

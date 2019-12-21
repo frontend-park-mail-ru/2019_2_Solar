@@ -4,9 +4,18 @@ body {
 }
 
 .login-text-error {
+    width: calc(100% - 40px);
+    margin: 5px 10px;
+    padding: 10px 5px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #FADADD;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     color: red;
-    margin-top: 4px;
 }
+
 .login-block_background {
     bottom: 0px;
     left: 0px;
@@ -117,3 +126,7 @@ input {
 .a-bold-decoration_margin {
     margin-top: 5px;
 }
+
+.login-error-text_none {
+    display: none;
+  }
