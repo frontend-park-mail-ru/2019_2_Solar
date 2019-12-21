@@ -4,6 +4,7 @@ import ProfileView from './views/ProfileView/ProfileView';
 import LoginView from './views/LoginView/LoginView';
 import SignUpView from './views/SignUpView/SignUpView';
 import IndexView from './views/IndexView/IndexView';
+import SubscribeView from './views/SubscribeView/SubscribeView';
 import SettingsView from './views/SettingsView/SettingsView';
 import CreatePinView from './views/CreatePinView/CreatePinView';
 import BoardView from './views/BoardView/BoardView';
@@ -49,7 +50,8 @@ router
     .register('/board/:id', BoardView)
     .register('/users/:username', UserView)
     .register('/search', SearchView)
-    .register('/index/:type', IndexView);
+    .register('/index/:type', IndexView)
+    .register('/subscribe:type', SubscribeView);
 
 (<any>window).CSRFtoken = '';
 
