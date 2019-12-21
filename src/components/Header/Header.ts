@@ -96,7 +96,7 @@ export default class HeaderComponent {
                 })
                 .then((responseBody) => {
                     (<any>window).GlobalUser = responseBody;
-                    this.data(responseBody);
+                    this._data = responseBody;
 
                     context['username'] = this._data.body.user.username;
                     context['avatarPhoto'] = (this._data.body.user.avatar_dir) ? (PIN_ADRESS + '/' + this._data.body.user.avatar_dir) : bg;
