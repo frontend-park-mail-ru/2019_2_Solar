@@ -1,23 +1,10 @@
 <div id="search-page" class="search-page_style">
-    <div class="search-page-title">
-        Поиск
-    </div>
-    <form id="pageSearchData" class="search-page-form">
-        <select name="style" id="style-select" class="searchboard-select_design searchboard-select_design_pos">
-            <option value="Tag">Теги</option>
-            <option value="Username">Пользователи</option>
-        </select>
-        <div class="search-line">
-            <div class="search-line__icon">
-                <img src={{PHLupa}}>
-            </div>
-            <div class="search-line__input">
-                <input type="text" id="searchtext" name="searchtext" placeholder="Поисковая строка">
-            </div>
-            <input type="submit" style="display:none;" value="Найти">
+    <div id="settings-error-view{{forID}}" class="search-page__error-message_none">
+        <div class="search-page__error-message__circle">
+            <img src={{PHSearch}} class="search-page__error-message__icon">
         </div>
-    </form>
-
-    <div id="search-list" class="search-page__flex-container search-page__column">
+        <div class="search-page__error-message__text">К сожалению, поиск не дал<br>результатов</div>
+    </div>
+    <div id="search-list{{forID}}" class="search-page__flex-container search-page__column">
     </div>
 </div>

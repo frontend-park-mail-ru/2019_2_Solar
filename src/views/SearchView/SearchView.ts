@@ -1,6 +1,6 @@
 import BaseView from '../BaseView/BaseView';
 
-import Lupa from '../../images/search.svg';
+import PHSearch from '../../images/searchErr.svg';
 import bg from '../../images/bg.png';
 
 import PinForIndex from '../../components/PinForIndex/PinForIndex';
@@ -50,80 +50,81 @@ export default class SearchView extends BaseView {
 
                 document.body.className ='backgroundIndex';
                 this.el.innerHTML = '';
+                const forID = window.location.pathname;
 
                 const context = {
-                    PHLupa: Lupa,
+                    forID: forID,
+                    PHSearch: PHSearch,
                 }
 
                 const search = SearchViewTemplate(context);
                 this.el.innerHTML += search;
 
-                const viewSearchPageForm = <HTMLFormElement> document.getElementById('pageSearchData');
-                const searchPage = document.getElementById('search-list');
+                const searchPage = document.getElementById('search-list' + forID);
+                const style = String(this.args).split('&')[0];
+                const searchText = String(this.args).split('&')[1];
 
-                viewSearchPageForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    searchPage.innerHTML = '';
+                const searchErrorBlock = document.getElementById('settings-error-view' + forID);
+                searchErrorBlock.className = 'search-page__error-message_none';
 
-                    const searchText = viewSearchPageForm.elements['searchtext'].value;
-                    const style = viewSearchPageForm.elements['style'].value;
+                searchPage.innerHTML = '';
 
-                    if (style == 'Tag') {
-                        fetchModule.Get({
-                            url: BACKEND_ADDRESS + '/find/pins/by/tag/' + searchText,
-                            body: null,
+
+                if (style == 'Tag') {
+                    fetchModule.Get({
+                        url: BACKEND_ADDRESS + '/find/pins/by/tag/' + searchText,
+                        body: null,
+                    })
+                        .then((response) => {
+                            return response.json();
                         })
-                            .then((response) => {
-                                return response.json();
-                            })
-                            .then((responseBody) => {
-                                if (responseBody.body.pins) {
-                                    if (responseBody.body.pins.length != 0) {
-                                        const pinsSearch = responseBody.body.pins;
-            
-                                        for (let i = 0; i < pinsSearch.length; i++) {
-                                            const pinForIndexView = new PinForIndex(searchPage);
-                                            pinForIndexView.render({
-                                                id: pinsSearch[i].id,
-                                                pinImg: PIN_ADRESS + '/' + pinsSearch[i].pin_dir,
-                                                content: pinsSearch[i].title});
-                                        }
-                                    } else {
-                                        searchPage.textContent = 'Поиск не дал результатов :с';
+                        .then((responseBody) => {
+                            if (responseBody.body.pins) {
+                                if (responseBody.body.pins.length != 0) {
+                                    const pinsSearch = responseBody.body.pins;
+        
+                                    for (let i = 0; i < pinsSearch.length; i++) {
+                                        const pinForIndexView = new PinForIndex(searchPage);
+                                        pinForIndexView.render({
+                                            id: pinsSearch[i].id,
+                                            pinImg: PIN_ADRESS + '/' + pinsSearch[i].pin_dir,
+                                            content: pinsSearch[i].title});
                                     }
                                 } else {
-                                    searchPage.textContent = 'Поиск не дал результатов :с';
+                                    searchErrorBlock.className = 'search-page__error-message';
                                 }
-                            });
-                    } else if (style == 'Username') {
-                        fetchModule.Get({
-                            url: BACKEND_ADDRESS + '/find/users/by/username/' + searchText,
-                            body: null,
+                            } else {
+                                searchErrorBlock.className = 'search-page__error-message';
+                            }
+                        });
+                } else if (style == 'Username') {
+                    fetchModule.Get({
+                        url: BACKEND_ADDRESS + '/find/users/by/username/' + searchText,
+                        body: null,
+                    })
+                        .then((response) => {
+                            return response.json();
                         })
-                            .then((response) => {
-                                return response.json();
-                            })
-                            .then((responseBody) => {
-                                if (responseBody.body.users) {
-                                    if (responseBody.body.users.length != 0) {
-                                        const usersSearch = responseBody.body.users;
-            
-                                        for (let i = 0; i < usersSearch.length; i++) {
-                                            const UserForSearchView = new UserForSearch(searchPage);
-                                            UserForSearchView.render({
-                                                username: usersSearch[i].username,
-                                                userImg: (usersSearch[i].avatar_dir) ? (PIN_ADRESS + '/' + usersSearch[i].avatar_dir) : bg});
-                                        }
-                                    } else {
-                                        searchPage.textContent = 'Поиск не дал результатов :с';
+                        .then((responseBody) => {
+                            if (responseBody.body.users) {
+                                if (responseBody.body.users.length != 0) {
+                                    const usersSearch = responseBody.body.users;
+        
+                                    for (let i = 0; i < usersSearch.length; i++) {
+                                        const UserForSearchView = new UserForSearch(searchPage);
+                                        UserForSearchView.render({
+                                            username: usersSearch[i].username,
+                                            userImg: (usersSearch[i].avatar_dir) ? (PIN_ADRESS + '/' + usersSearch[i].avatar_dir) : bg});
                                     }
                                 } else {
-                                    searchPage.textContent = 'Поиск не дал результатов :с';
+                                    searchErrorBlock.className = 'search-page__error-message';
                                 }
-                            });
-                    }
+                            } else {
+                                searchErrorBlock.className = 'search-page__error-message';
+                            }
+                        });
+                }
                     
-                });
             });
     }
 }

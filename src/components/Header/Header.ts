@@ -7,7 +7,7 @@ import PadIm from '../../images/arrow.png';
 import Plus from '../../images/plus.svg';
 import Question from '../../images/question2.svg';
 import Dialog from '../../images/message.svg';
-import Setting from '../../images/more.png';
+import Setting from '../../images/more.svg';
 import Bell from '../../images/notifications.svg';
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
@@ -127,7 +127,9 @@ export default class HeaderComponent {
             e.preventDefault();
             const searchText = headerSearch.elements['searchtext'].value;
             const style = headerSearch.elements['style'].value;
-            bus.emit('/search/:type',{'type': style, 'text': searchText});
+            if (searchText != '') {
+                bus.emit('/search/:type',{'type': style, 'text': searchText});
+            }
             headerSearch.elements['searchtext'].value = '';
         });
     }
