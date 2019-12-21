@@ -11,6 +11,7 @@ import Setting from '../../images/more.png';
 import Bell from '../../images/notifications.svg';
 import bg from '../../images/bg.png';
 import fetchModule from '../../utils/fetchModule';
+import bus from '../../utils/bus';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
 import {PIN_ADRESS} from '../../config/Config';
@@ -119,14 +120,15 @@ export default class HeaderComponent {
                 });
         }
 
-        // const section = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
-        // const searchForm = <HTMLFormElement>section.querySelectorAll('[id=\'headerSearch\']')[0];
-        // searchForm.addEventListener('submit', (e) => {
-        //     e.preventDefault();
-        //     console.log('ok');
-        // });
+        // if /pin or search/ -> error
 
-
-        // console.log(section);
+        const headerSearch = <HTMLFormElement>document.getElementById('headerSearch');
+        headerSearch.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const searchText = headerSearch.elements['searchtext'].value;
+            const style = headerSearch.elements['style'].value;
+            bus.emit('/search/:type',{'type': style, 'text': searchText});
+            headerSearch.elements['searchtext'].value = '';
+        });
     }
 }

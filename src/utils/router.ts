@@ -29,8 +29,9 @@ export default class Router {
             view: null,
             el: null,
         };
-        bus.on(path, () => {
-            this.open(path);
+        bus.on(path, (something) => {
+            
+            this.open({'path':path, 'content': something});
         });
 
         return this;
@@ -40,8 +41,13 @@ export default class Router {
      * Open View linked to the given path.
      * @param {string} path
      */
-    open(path) {
+    open(pathname) {
         // const route = this.routes[path];
+        // /pin /pin/ /search /search/
+        let path = pathname['path'];
+        if (path == '/search/:type') {
+            path = '/search/' + pathname['content']['type'] + '&' + pathname['content']['text'];
+        }
 
         if (path == undefined) {
             return;
@@ -75,7 +81,7 @@ export default class Router {
         // console.log(route, argname, argvalue);
 
         if (!route) {
-            this.open('/');
+            this.open({'path':'/'});
             return;
         }
 
@@ -122,10 +128,10 @@ export default class Router {
                 event.preventDefault();
                 const link = event.target;
     
-                this.open(link.pathname);
+                this.open({'path':link.pathname});
             } else if (event.target instanceof HTMLImageElement) {
                 event.preventDefault();
-                this.open(event.target.dataset.section);
+                this.open({'path':event.target.dataset.section});
             }
         }.bind(this));
 
@@ -136,21 +142,20 @@ export default class Router {
                 event.preventDefault();
                 const link = event.target;
     
-                this.open(link.pathname);
+                this.open({'path':link.pathname});
             } else if (event.target instanceof HTMLImageElement) {
                 event.preventDefault();
-                this.open(event.target.dataset.section);
+                this.open({'path':event.target.dataset.section});
             }
         }.bind(this));
 
         window.addEventListener('popstate', function() {
             const currentPath = window.location.pathname;
 
-            this.open(currentPath);
+            this.open({'path':currentPath});
         }.bind(this));
 
         const currentPath = window.location.pathname;
-
-        this.open(currentPath);
+        this.open({'path':currentPath});
     }
 }

@@ -49,7 +49,7 @@ router
     .register('/dialog', DialogView)
     .register('/board/:id', BoardView)
     .register('/users/:username', UserView)
-    .register('/search', SearchView)
+    .register('/search/:type', SearchView)
     .register('/index/:type', IndexView)
     .register('/subscribe:type', SubscribeView);
 
