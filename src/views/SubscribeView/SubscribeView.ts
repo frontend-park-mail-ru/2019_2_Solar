@@ -92,6 +92,9 @@ function createSubscribe(args, subBody) {
                             username: usersSearch[i].username,
                             userImg: (usersSearch[i].avatar_dir) ? (PIN_ADRESS + '/' + usersSearch[i].avatar_dir) : bg});
                     }
+                } else {
+                    indexPage.innerHTML = '<div class="for-subscribe_none">У вас сейчас нет активных подписок.' + 
+                    '<br>Чтобы подписаться на другого пользователя нужно перейти на его личную страницу и нажать на кнопку "Подписаться".</div>';
                 }
             }
             createPinsSubscribe(subBody, args);
