@@ -192,7 +192,7 @@ function createBoardFunc(forID, el, placeSelect, errID) {
 
                     cleanElement(createBoardErr);
                 } else {
-                    createPinElError(createBoardErr, responseBody.body.info ? responseBody.body.info : responseBody.body, 'createboard-error');
+                    createPinElError(createBoardErr, responseBody.body.info ? responseBody.body.info : responseBody.body, 'createboard-anotherview__form__error-mes');
                 }
             });
     });

@@ -70,6 +70,17 @@
     color: #8C8C8C;
 }
 
+.createboard-anotherview__form__error-mes {
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #FADADD;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
 .createboard-anotherview__form__title_pos {
     margin-top: 30px;
 }
