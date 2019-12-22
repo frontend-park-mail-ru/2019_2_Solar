@@ -1,4 +1,5 @@
 import BaseView from '../BaseView/BaseView';
+import CreateBoardPopupComponent from '../../components/CreateBoardPopup/CreateBoardPopup';
 
 import CreatePinViewTemplate from './CreatePinView.hbs';
 import './CreatePinView.scss';
@@ -8,6 +9,8 @@ import bus from '../../utils/bus';
 import showFile from '../../utils/readFile';
 import fetchModule from '../../utils/fetchModule';
 import {createHeader} from '../../utils/headerFunc';
+
+import PHdelete from '../../images/delete.svg';
 
 /** Class representing a CreatePin view. */
 export default class CreatePinView extends BaseView {
@@ -84,12 +87,13 @@ export default class CreatePinView extends BaseView {
 
                 createPinForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    cleanElement('createPinError');
+                    const createPinError = document.getElementById('createPinError');
+                    cleanElement(createPinError);
 
                     const boardFromHbs = createPinForm.elements['board'].value;
 
                     if (boardFromHbs == 0) {
-                        createPinError('createPinError', 'Не выбрана доска для пина!', 'createpin-error');
+                        createPinElError(createPinError, 'Не выбрана доска для пина!', 'createpin-error');
                         return;
                     }
 
@@ -121,12 +125,77 @@ export default class CreatePinView extends BaseView {
                             if (responseBody == null) {
                                 bus.emit('/profile', {});
                             } else {
-                                createPinError('createPinError', responseBody.body.info ? responseBody.body.info : responseBody.body, 'createpin-error');
+                                createPinElError(createPinError, responseBody.body.info ? responseBody.body.info : responseBody.body, 'createpin-error');
                             }
                         });
                 });
+
+                const createBoard = document.getElementById('createPinCreateBoard');
+                const createBoarrView = document.getElementById('createPinBoardPopup');
+                const boardSelect = document.getElementById('createPinBoardSelect');
+
+                createBoardFunc(window.location.pathname, createBoarrView, boardSelect, 'componentCreateBoardError');
+                createBoard.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    createBoarrView.className = '';
+                });
             });
     }
+}
+
+/**
+ * create board func
+ * @param forID 
+ * @param el
+ * @param placeSelect
+ * @param errID
+ */
+function createBoardFunc(forID, el, placeSelect, errID) {
+    const boardTemp = new CreateBoardPopupComponent(el);
+    boardTemp.render({forID: forID, PHdelete: PHdelete});
+
+    const createBoardErr = document.getElementById(errID + forID);
+
+    const exit = document.getElementById('componentCloseBoard' + forID);
+    exit.addEventListener('click', (e) => {
+        e.preventDefault();
+        el.className = 'createpin__right-column__create-board_none';
+        cleanElement(createBoardErr);
+    });
+
+    const createBoardForm = <HTMLFormElement>document.getElementById('createBoardDataFAnother' + forID);
+    createBoardForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = {
+            'title': createBoardForm.elements['boardname'].value,
+            'description': createBoardForm.elements['boardcontent'].value,
+            'category': 'cars',
+        };
+
+        fetchModule.Post({
+            url: BACKEND_ADDRESS + '/board',
+            body: JSON.stringify(data),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((responseBody) => {
+                if (responseBody.csrf_token) {
+                    const idBoard = responseBody.body.board.id;
+                    const nameBoard = responseBody.body.board.title;
+
+                    el.className = 'createpin__right-column__create-board_none';
+                    placeSelect.innerHTML += '<option value=' + String(idBoard) + '>' + String(nameBoard) + '</option>';
+
+                    createBoardForm.elements['boardname'].value = '';
+                    createBoardForm.elements['boardcontent'].value = '';
+
+                    cleanElement(createBoardErr);
+                } else {
+                    createPinElError(createBoardErr, responseBody.body.info ? responseBody.body.info : responseBody.body, 'createboard-error');
+                }
+            });
+    });
 }
 
 /**
@@ -135,10 +204,9 @@ export default class CreatePinView extends BaseView {
  * @param {string} errorMessage
  * @param {string} classname
  */
-function createPinError(elementId, errorMessage, classname) {
-    const errorEl = document.getElementById(elementId);
-    errorEl.textContent = errorMessage;
-    errorEl.className = classname;
+function createPinElError(elementId, errorMessage, classname) {
+    elementId.textContent = errorMessage;
+    elementId.className = classname;
 }
 
 /**
@@ -146,7 +214,6 @@ function createPinError(elementId, errorMessage, classname) {
  * @param {string} elementId
  */
 function cleanElement(elementId) {
-    const errorEl = document.getElementById(elementId);
-    errorEl.textContent = '';
-    errorEl.className = '';
+    elementId.textContent = '';
+    elementId.className = '';
 }

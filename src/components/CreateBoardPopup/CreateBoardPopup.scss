@@ -1,0 +1,101 @@
+.createboard-anotherview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 95;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.createboard-anotherview__animation_none {
+    display: none;
+}
+
+.createboard-anotherview__animation {
+    animation: 1s;
+    animation-fill-mode: forwards;
+}
+
+.createboard-anotherview_card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.createboard-anotherview_card-delete {
+    display: flex;
+    height: 25px;
+    margin-left: auto;
+}
+
+.createboard-anotherview__title {
+    height: 44px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    justify-content: center;
+}
+
+.createboard-anotherview__form__title {
+    width: 850px;
+    height: 44px;
+    border: 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #C4C4C4;
+    color: #8C8C8C;
+}
+
+.createboard-anotherview__form__title_pos {
+    margin-top: 30px;
+}
+
+.createboard-anotherview__form__content {
+    width: 850px;
+    height: 44px;
+    border: 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #C4C4C4;
+    color: #8C8C8C;
+}
+
+.createboard-anotherview__form__content_pos {
+    margin-top: 17px;
+}
+
+.createboard-anotherview__form__button {
+    display: flex;
+    margin-top: 40px;
+}
+
+.createboard-anotherview__form__button-view {
+    margin-left: auto;
+    width: 121px;
+    height: 38px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}

@@ -202,3 +202,17 @@ a {
     line-height: 19px;
     color: #8C8C8C;
 }
+
+.createpin__right-column__create-board {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: #8C8C8C;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.createpin__right-column__create-board_none {
+    display: none;
+}
