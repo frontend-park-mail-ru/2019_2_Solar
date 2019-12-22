@@ -179,23 +179,14 @@ a {
 }
 
 .alerts-menu li ul {
-    display: none;
     margin-right: 5px;
     margin-left: -20px;
     position: absolute;
     padding: 0;
 }
 
-.alerts-menu li:hover > ul {
-    display: block;
-}
-
-.alerts-menu li ul a:hover {
-    background-color:#D2D2D2;
-    color: #000000;
-}
-
 .alerts-menu__pad_menu {
+    display: block;
     z-index: 10;
     background-color: #FFFFFF;
     border: 1px solid #8C8C8C;
@@ -227,4 +218,8 @@ a {
 .header-position {
     position: sticky;
     top: 0;
+}
+
+.notice-view_none {
+    display: none;
 }

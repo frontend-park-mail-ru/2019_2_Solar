@@ -37,6 +37,12 @@ export default class chatModule {
     }
 
     /**
+     * delNotice
+     */
+    delNotice() {
+        this._notice = [];
+    }
+    /**
      * getUserMessages
      * @param user
      */

@@ -3,7 +3,6 @@ import HeaderTemplate from '../Header/Header.hbs';
 
 import Logo from '../../images/logo.png';
 import Lupa from '../../images/search.svg';
-import PadIm from '../../images/arrow.png';
 import Plus from '../../images/plus.svg';
 import Question from '../../images/question2.svg';
 import Dialog from '../../images/message.svg';
@@ -58,7 +57,6 @@ export default class HeaderComponent {
 
             PHlogo: Logo,
             PHLupa: Lupa,
-            PHpadim: PadIm,
             PHplus: Plus,
             PHquestion: Question,
             PHdialog: Dialog,
@@ -85,6 +83,37 @@ export default class HeaderComponent {
                     }
                 }
             }
+            // if /pin or search/ -> error
+            const listNotice = document.getElementById('list');
+            const imgNotice = document.getElementById('noticeView');
+            const notNum = document.getElementById('spanNum');
+
+            let flag = false;
+
+            imgNotice.addEventListener('click', (e) => {
+                if (!flag) {
+                    listNotice.className = 'alerts-menu__pad_menu';
+                    flag = true;
+                } else {
+                    listNotice.className = 'notice-view_none';
+                    flag = false;
+                    (<any>window).chatMessages.delNotice();
+                    listNotice.innerHTML = '';
+                    notNum.textContent = '0';
+
+                }
+            })
+
+            const headerSearch = <HTMLFormElement>document.getElementById('headerSearch');
+            headerSearch.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const searchText = headerSearch.elements['searchtext'].value;
+                const style = headerSearch.elements['style'].value;
+                if (searchText != '') {
+                    bus.emit('/search/:type',{'type': style, 'text': searchText});
+                }
+                headerSearch.elements['searchtext'].value = '';
+            });
         } catch {
             fetchModule.Get({
                 url: BACKEND_ADDRESS + '/profile/data',
@@ -117,20 +146,39 @@ export default class HeaderComponent {
                             }
                         }
                     }
+
+                    // if /pin or search/ -> error
+                    const listNotice = document.getElementById('list');
+                    const imgNotice = document.getElementById('noticeView');
+                    const notNum = document.getElementById('spanNum');
+                    
+                    let flag = false;
+
+                    imgNotice.addEventListener('click', (e) => {
+                        if (!flag) {
+                            listNotice.className = 'alerts-menu__pad_menu';
+                            flag = true;
+                        } else {
+                            listNotice.className = 'notice-view_none';
+                            flag = false;
+                            (<any>window).chatMessages.delNotice();
+                            listNotice.innerHTML = '';
+                            notNum.textContent = '0';
+
+                        }
+                    })
+
+                    const headerSearch = <HTMLFormElement>document.getElementById('headerSearch');
+                    headerSearch.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const searchText = headerSearch.elements['searchtext'].value;
+                        const style = headerSearch.elements['style'].value;
+                        if (searchText != '') {
+                            bus.emit('/search/:type',{'type': style, 'text': searchText});
+                        }
+                        headerSearch.elements['searchtext'].value = '';
+                    });
                 });
         }
-
-        // if /pin or search/ -> error
-
-        const headerSearch = <HTMLFormElement>document.getElementById('headerSearch');
-        headerSearch.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const searchText = headerSearch.elements['searchtext'].value;
-            const style = headerSearch.elements['style'].value;
-            if (searchText != '') {
-                bus.emit('/search/:type',{'type': style, 'text': searchText});
-            }
-            headerSearch.elements['searchtext'].value = '';
-        });
     }
 }
