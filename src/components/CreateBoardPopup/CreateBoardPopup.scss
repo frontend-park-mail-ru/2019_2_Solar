@@ -17,8 +17,19 @@
 }
 
 .createboard-anotherview__animation {
-    animation: 1s;
+    animation: Open 0.3s;
     animation-fill-mode: forwards;
+}
+
+@keyframes Open {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 .createboard-anotherview_card {

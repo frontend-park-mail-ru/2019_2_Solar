@@ -13,6 +13,9 @@ import share from '../../images/share-symbol.svg';
 import fetchModule from '../../utils/fetchModule';
 import {createHeader} from '../../utils/headerFunc';
 
+import PopUpComponent from '../../components/PopUp/PopUp';
+import PHdelete from '../../images/delete.svg';
+
 /** Class representing a Pin view. */
 export default class PinView extends BaseView {
     args: object;
@@ -95,6 +98,16 @@ export default class PinView extends BaseView {
                         };
 
                         this.el.innerHTML += PinViewTemplate(context);
+                        const popUp = document.getElementById('pinViewPopUp' + forId);
+                        const popUpView = new PopUpComponent(popUp);
+                        popUpView.render({forID: forId, text: 'Вы сохранили пин. Можете посмотреть на него у себя в личном кабинете.', PHdelete: PHdelete,});
+                        const popUpChange = document.getElementById('componentPopUp' + forId);
+
+                        const exit = document.getElementById('componentPopUpClose' + forId);
+                        exit.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            popUpChange.className = 'createpin__right-column__create-board_none';
+                        });
 
                         const shareField = document.getElementById('shareField' + forId);
                         const shareData = <HTMLFormElement>document.getElementById('boardURLData' + forId);
@@ -144,7 +157,7 @@ export default class PinView extends BaseView {
                         viewPinDataForm.addEventListener('submit', (e) => {
                             e.preventDefault();
                             const boardFromHbs = viewPinDataForm.elements['board-select'].value;
-                            savePin(Number(boardFromHbs), responseBody.body.pins.owner_username, responseBody.body.pins.description, responseBody.body.pins.pin_dir, responseBody.body.pins.title);
+                            savePin(forId, Number(boardFromHbs), responseBody.body.pins.owner_username, responseBody.body.pins.description, responseBody.body.pins.pin_dir, responseBody.body.pins.title, popUpChange, popUpView);
                         });
 
                         const viewPinCommentForm = <HTMLFormElement> document.getElementById('viewPinCommentData' + String(forId));
@@ -183,8 +196,10 @@ export default class PinView extends BaseView {
  * @param pinDir 
  * @param pinTitle 
  */
-function savePin(boardId, authorUsername, pinDescription, pinDir, pinTitle) {
+function savePin(forID, boardId, authorUsername, pinDescription, pinDir, pinTitle, popUpView, popUp) {
     if (boardId == 0) {
+        popUp.change('У Вас нет доски для сохранения пина! Перейдите в личный кабинет и создайте доску.', forID);
+        popUpView.className = 'createboard-anotherview createboard-anotherview__animation';
         return;
     }
     fetchModule.Get({
@@ -215,6 +230,8 @@ function savePin(boardId, authorUsername, pinDescription, pinDir, pinTitle) {
             })
                 .then((response) => {
                     if (response.ok) {
+                        popUp.change('Пин успешно сохранён! Вы можете просмотреть его в личном кабинете.', forID);
+                        popUpView.className = 'createboard-anotherview createboard-anotherview__animation';
                         return null;
                     }
                     return response.json();
