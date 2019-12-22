@@ -1,5 +1,4 @@
 .search-page-title {
-    width: 463px;
     height: 44px;
     font-style: normal;
     font-weight: bold;
@@ -8,7 +7,11 @@
     display: flex;
     align-items: center;
     color: #3D3D3D;
-    margin-left: 40px;
+    margin-left: 65px;
+}
+
+.search-page-title_none {
+    display: none;
 }
 
 .search-page_style {
@@ -44,6 +47,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 60vh;
+    justify-content: center;
 }
 
 .search-page__error-message__circle {
