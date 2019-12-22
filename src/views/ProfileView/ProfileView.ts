@@ -101,6 +101,9 @@ export default class ProfileView extends BaseView {
                 /* Открыты доски, когда ты только заходишь на профиль */
                 const viewPinBoards = document.getElementById('profilePinsBoardsView');
                 const boardViewList = document.getElementById('profileBoards');
+                const noBoards = document.getElementById('whenNoBoards');
+                const noPins = document.getElementById('whenNoPins');
+
                 boardViewList.className = 'profile-button profile-button_board-pos profile-button_push';
 
                 fetchModule.Get({
@@ -120,8 +123,12 @@ export default class ProfileView extends BaseView {
                             boardForUserView.render({id: boardsProfile[i].id, boardImg: bg,
                                 content: boardsProfile[i].title});
                         }
+                        if (boardsProfile.length == 0) {
+                            noBoards.className = 'field-with_message';
+                        }
                     })
                     .catch(() => {
+                        noBoards.className = 'field-with_message';
                         return null;
                     });
 
@@ -150,8 +157,14 @@ export default class ProfileView extends BaseView {
                                 pinForUserView.render({id: pinsProfile[i].id, pinImg: PIN_ADRESS + '/' + pinsProfile[i].pin_dir,
                                     content: pinsProfile[i].title});
                             }
+                            noBoards.className = 'field-with_message_none';
+                            if (pinsProfile.length == 0) {
+                                noPins.className = 'field-with_message';
+                            }
                         })
                         .catch(() => {
+                            noBoards.className = 'field-with_message_none';
+                            noPins.className = 'field-with_message';
                             return null;
                         });
                 });
@@ -181,8 +194,15 @@ export default class ProfileView extends BaseView {
                                 boardForUserView.render({id: boardsProfile[i].id, boardImg: bg,
                                     content: boardsProfile[i].title});
                             }
+
+                            noPins.className = 'field-with_message_none';
+                            if (boardsProfile.length == 0) {
+                                noBoards.className = 'field-with_message';
+                            }
                         })
                         .catch(() => {
+                            noPins.className = 'field-with_message_none';
+                            noBoards.className = 'field-with_message';
                             return null;
                         });
                 });
