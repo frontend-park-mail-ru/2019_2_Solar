@@ -80,6 +80,7 @@
 }
 
 .profile-icon-size {
+    cursor: pointer;
     width:35px;
 }
 
@@ -97,6 +98,7 @@
 }
 
 .profile-button {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,6 +198,7 @@ a {
 
 // for chat
 .ask-img {
+    cursor: pointer;
     width: 40px;
     height: 40px;
 }
@@ -260,6 +263,7 @@ a {
 }
 
 .feedback__form__button {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

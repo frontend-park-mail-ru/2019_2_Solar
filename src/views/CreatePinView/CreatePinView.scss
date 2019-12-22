@@ -38,6 +38,7 @@
 }
 
 .createpin-form__pinphoto {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,6 +155,7 @@ a {
 }
 
 .createpin__buttons__button-save {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
