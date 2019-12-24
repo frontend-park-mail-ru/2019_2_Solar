@@ -19,6 +19,8 @@ import bg from '../../images/bg.png';
 
 import fetchModule from '../../utils/fetchModule';
 import {createHeader} from '../../utils/headerFunc';
+import FakeBoardPin from '../../components/FakeBoardPin/FakeBoardPin';
+import FakeBoardPinComponent from '../../components/FakeBoardPin/FakeBoardPin';
 
 /** Class representing a Profile view. */
 export default class ProfileView extends BaseView {
@@ -125,6 +127,9 @@ export default class ProfileView extends BaseView {
                         }
                         if (boardsProfile.length == 0) {
                             noBoards.className = 'field-with_message';
+                        } else {
+                            const fakeboard = new FakeBoardPinComponent(viewPinBoards);
+                            fakeboard.renderBoard({PHPlus: PlusImgFAdd});
                         }
                     })
                     .catch(() => {
@@ -160,6 +165,9 @@ export default class ProfileView extends BaseView {
                             noBoards.className = 'field-with_message_none';
                             if (pinsProfile.length == 0) {
                                 noPins.className = 'field-with_message';
+                            } else {
+                                const fakepin = new FakeBoardPinComponent(viewPinBoards);
+                                fakepin.renderPin({PHPlus: PlusImgFAdd});
                             }
                         })
                         .catch(() => {
@@ -198,6 +206,9 @@ export default class ProfileView extends BaseView {
                             noPins.className = 'field-with_message_none';
                             if (boardsProfile.length == 0) {
                                 noBoards.className = 'field-with_message';
+                            } else {
+                                const fakeboard = new FakeBoardPinComponent(viewPinBoards);
+                                fakeboard.renderBoard({PHPlus: PlusImgFAdd});
                             }
                         })
                         .catch(() => {
