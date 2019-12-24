@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
@@ -69,6 +70,9 @@ module.exports = {
             filename: 'index.html',
             template: './src/html/index.html',
             favicon: './src/images/logo.ico'
+        }),
+        new ServiceWorkerWebpackPlugin({
+            entry: path.join(__dirname, 'src/sw.js'),
         })
     ]
 }
