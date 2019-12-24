@@ -2,7 +2,7 @@
 const CACHE_NAME = 'SolarSunrise';
 // ссылки на кэшируемые файлы
 const cacheUrls = [
-	'/',
+    '/',
     'd.ts',
     'config/Config.ts',
     'locales/ru.json',
@@ -134,33 +134,33 @@ const cacheUrls = [
     'index.ts',
 ];
 
-this.addEventListener('install', function(event) {
-	// задержим обработку события
-	// если произойдёт ошибка, serviceWorker не установится
-	event.waitUntil(
-		// находим в глобальном хранилище Cache-объект с нашим именем
-		// если такого не существует, то он будет создан
-		caches.open(CACHE_NAME)
-		.then(function(cache) {
-			// загружаем в наш cache необходимые файлы
-			return cache.addAll(cacheUrls);
-		})
-	);
+self.addEventListener('install', function(event) {
+    // задержим обработку события
+    // если произойдёт ошибка, serviceWorker не установится
+    event.waitUntil(
+        // находим в глобальном хранилище Cache-объект с нашим именем
+        // если такого не существует, то он будет создан
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                // загружаем в наш cache необходимые файлы
+                return cache.addAll(cacheUrls);
+            })
+    );
 });
 
 // this.addEventListener('fetch', function(event) {
 
-// 	(<any>event).respondWith(
-// 		// ищем запрашиваемый ресурс в хранилище кэша
-// 		caches.match((<any>event).request).then(function(cachedResponse) {
+// (<any>event).respondWith(
+// // ищем запрашиваемый ресурс в хранилище кэша
+// caches.match((<any>event).request).then(function(cachedResponse) {
 
-// 			// выдаём кэш, если он есть
-// 			if (cachedResponse && !navigator.onLine) {
-// 				return cachedResponse;
-// 			}
+// // выдаём кэш, если он есть
+// if (cachedResponse && !navigator.onLine) {
+// return cachedResponse;
+// }
 
-// 			// иначе запрашиваем из сети как обычно
-// 			return fetch((<any>event).request);
-// 		})
-// 	);
+// // иначе запрашиваем из сети как обычно
+// return fetch((<any>event).request);
+// })
+// );
 // });
