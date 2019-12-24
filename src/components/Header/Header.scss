@@ -225,3 +225,17 @@ a {
 .notice-view_none {
     display: none;
 }
+
+.dialog__items_disabled {
+    opacity: 0.50;
+}
+
+.alerts-count_disabled {
+    border-radius: 100px;
+    background: #dfdfdf;
+    font-size: 13px;
+    padding: 3px 6px 3px 6px;
+    color: #FFFFFF;
+    z-index: 8;
+    margin-left: -10px;
+}

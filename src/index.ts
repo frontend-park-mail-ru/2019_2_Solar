@@ -121,18 +121,14 @@ if (event.wasClean) {
         }
     }
 
-    // const allMessageList = document.getElementById('incomingMessagesList'); 
-    // if (allMessageList != null) {
-    //     const newMessage = new MessageComponent(allMessageList);
-    //     newMessage.render({messageAuthor: data.user_name_sender, classForBg: '', messageContent: data.text});
-    // }
-
-    // const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
-    // const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
+    const imgNotice = document.getElementById('noticeView');
     const notice = document.getElementById('spanNum');
+
+    imgNotice.className = 'bell-img dialog__items';
+    notice.className = 'alerts-count';
+
     if (notice != null) {
         notice.textContent = String(Number(notice.textContent) + 1);
-        // const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
         const list = document.getElementById('list');
         list.innerHTML += '<li><a href="#">Вам написал '+ data.user_name_sender + ': "' + data.text + '"</li>';
     }

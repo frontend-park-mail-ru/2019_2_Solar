@@ -71,11 +71,20 @@ export default class HeaderComponent {
             const html = HeaderTemplate(context);
             this._parent.innerHTML = html;
 
+            const listNotice = document.getElementById('list');
+            const imgNotice = document.getElementById('noticeView');
+            const notNum = document.getElementById('spanNum');
+
             if ((<any>window).chatMessages) {
                 const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
                 const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
                 if (notice != null) {
                     const notices = (<any>window).chatMessages.getNotice();
+                    if (notices.length > 0) {
+                        imgNotice.className = 'bell-img dialog__items';
+                        notNum.className = 'alerts-count';
+                    }
+
                     for (let i =0; i < notices.length; i++) {
                         notice.textContent = String(Number(notice.textContent) + 1);
                         const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
@@ -84,9 +93,6 @@ export default class HeaderComponent {
                 }
             }
             // if /pin or search/ -> error
-            const listNotice = document.getElementById('list');
-            const imgNotice = document.getElementById('noticeView');
-            const notNum = document.getElementById('spanNum');
 
             let flag = false;
 
@@ -100,6 +106,9 @@ export default class HeaderComponent {
                     (<any>window).chatMessages.delNotice();
                     listNotice.innerHTML = '';
                     notNum.textContent = '0';
+
+                    imgNotice.className = 'bell-img dialog__items dialog__items_disabled';
+                    notNum.className = 'alerts-count_disabled';
 
                 }
             })
@@ -134,11 +143,20 @@ export default class HeaderComponent {
                     const html = HeaderTemplate(context);
                     this._parent.innerHTML = html;
 
+                    const listNotice = document.getElementById('list');
+                    const imgNotice = document.getElementById('noticeView');
+                    const notNum = document.getElementById('spanNum');
+
                     if ((<any>window).chatMessages) {
                         const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
                         const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
                         if (notice != null) {
                             const notices = (<any>window).chatMessages.getNotice();
+                            if (notices.length > 0) {
+                                imgNotice.className = 'bell-img dialog__items';
+                                notNum.className = 'alerts-count';
+                            }
+
                             for (let i =0; i < notices.length; i++) {
                                 notice.textContent = String(Number(notice.textContent) + 1);
                                 const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
@@ -148,10 +166,6 @@ export default class HeaderComponent {
                     }
 
                     // if /pin or search/ -> error
-                    const listNotice = document.getElementById('list');
-                    const imgNotice = document.getElementById('noticeView');
-                    const notNum = document.getElementById('spanNum');
-                    
                     let flag = false;
 
                     imgNotice.addEventListener('click', (e) => {
@@ -164,6 +178,9 @@ export default class HeaderComponent {
                             (<any>window).chatMessages.delNotice();
                             listNotice.innerHTML = '';
                             notNum.textContent = '0';
+
+                            imgNotice.className = 'bell-img dialog__items dialog__items_disabled';
+                            notNum.className = 'alerts-count_disabled';
 
                         }
                     })
