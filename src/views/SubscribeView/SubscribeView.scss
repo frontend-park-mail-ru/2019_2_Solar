@@ -29,7 +29,7 @@
     flex-wrap: wrap;
 }
 
-.for-subscribe_none {
+.for-subscribe-view_text {
     margin: 40px 50px 0 50px;
     background: #9393962b;
     height: 250px;
@@ -40,4 +40,17 @@
     width: 100%;
     text-align: center;
     line-height: 24px;
+    flex-direction: column;
+}
+
+.for-subscribe_none {
+    display: none;
+}
+
+.for-subscribe__img {
+    width: 70px;
+}
+
+.for-subscribe__img_pos {
+    margin-bottom: 10px;
 }

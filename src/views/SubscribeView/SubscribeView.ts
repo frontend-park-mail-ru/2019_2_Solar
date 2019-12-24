@@ -3,6 +3,7 @@ import BaseView from '../BaseView/BaseView';
 import PinForIndex from '../../components/PinForIndex/PinForIndex';
 import UserForSearch from '../../components/UserForSearch/UserForSearch';
 import bg from '../../images/bg.png';
+import follower from '../../images/follower.svg';
 
 import {BACKEND_ADDRESS} from '../../config/Config';
 import {PIN_ADRESS} from '../../config/Config';
@@ -58,7 +59,7 @@ export default class subscribeView extends BaseView {
                         document.body.className ='backgroundIndex';
                         this.el.innerHTML = '';
 
-                        const sub = SubscribeViewTemplate({arg: this.args});
+                        const sub = SubscribeViewTemplate({arg: this.args, PHFollower: follower});
                         this.el.innerHTML += sub;
 
                         const subBody = responseBody;
@@ -93,8 +94,7 @@ function createSubscribe(args, subBody) {
                             userImg: (usersSearch[i].avatar_dir) ? (PIN_ADRESS + '/' + usersSearch[i].avatar_dir) : bg});
                     }
                 } else {
-                    indexPage.innerHTML = '<div class="for-subscribe_none">У вас сейчас нет активных подписок.' + 
-                    '<br>Чтобы подписаться на другого пользователя нужно перейти на его личную страницу и нажать на кнопку "Подписаться".</div>';
+                    document.getElementById('subscribepageNoFollowee').className = 'for-subscribe-view_text';
                 }
             }
             createPinsSubscribe(subBody, args);
