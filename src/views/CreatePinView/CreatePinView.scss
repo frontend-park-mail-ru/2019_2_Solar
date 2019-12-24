@@ -34,7 +34,8 @@
     width: 246px;
     height: 329px;
     border-radius: 5px;
-    background-image: url(../../images/bg.png);
+    background-image: url(../../images/bg_fp.png);
+    background-size: contain;
 }
 
 .createpin-form__pinphoto {
@@ -195,6 +196,7 @@ a {
     display: flex;
     flex-direction: row;
     margin-top: 45px;
+    align-items: center;
 }
 
 .createpin__right-column__choose-board__title {
