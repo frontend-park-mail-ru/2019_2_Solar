@@ -182,15 +182,17 @@ function chatRoomsView(allChatsList, messageView, profileId, profilename) {
             const chats = responseBody.body;
             let mapChat = new Map();
 
-            for (let i = 0; i < chats.length; i++) {
-                if (allChatsList != null) {
-                    let sender = '';
-                    if (chats[i].senderUserName != profilename) {
-                        sender = chats[i].senderUserName;
-                    } else {
-                        sender = chats[i].recipientUserName;
+            if (chats) {
+                for (let i = 0; i < chats.length; i++) {
+                    if (allChatsList != null) {
+                        let sender = '';
+                        if (chats[i].senderUserName != profilename) {
+                            sender = chats[i].senderUserName;
+                        } else {
+                            sender = chats[i].recipientUserName;
+                        }
+                        mapChat.set(sender, chats[i].text);
                     }
-                    mapChat.set(sender, chats[i].text);
                 }
             }
 
