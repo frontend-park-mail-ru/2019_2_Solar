@@ -98,17 +98,18 @@ a {
     background-color: #FFFFFF;
     border: 1px solid #A29F9C;
     box-sizing: border-box;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 5px;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
+    margin-left: 10px;
 }
 
 .searchheader-line {
     display: flex;
     align-items: center;
     border: 1px solid #A29F9C;
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 5px;
     padding: 5px 10px;
     width: 100%;
     height: calc(100% - 12px);
