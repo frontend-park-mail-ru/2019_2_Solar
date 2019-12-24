@@ -148,19 +148,17 @@ self.addEventListener('install', function(event) {
     );
 });
 
-// this.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        // ищем запрашиваемый ресурс в хранилище кэша
+        caches.match(event.request).then(function(cachedResponse) {
+            // выдаём кэш, если он есть
+            if (cachedResponse && !navigator.onLine) {
+                return cachedResponse;
+            }
 
-// (<any>event).respondWith(
-// // ищем запрашиваемый ресурс в хранилище кэша
-// caches.match((<any>event).request).then(function(cachedResponse) {
-
-// // выдаём кэш, если он есть
-// if (cachedResponse && !navigator.onLine) {
-// return cachedResponse;
-// }
-
-// // иначе запрашиваем из сети как обычно
-// return fetch((<any>event).request);
-// })
-// );
-// });
+            // иначе запрашиваем из сети как обычно
+            return fetch(event.request);
+        })
+    );
+});
