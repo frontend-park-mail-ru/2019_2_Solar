@@ -249,10 +249,16 @@ function chatRoomsView(allChatsList, messageView, profileId, profilename) {
 
                                     const message = createMessageTextArea.value;
                                     if (message != '') {
-                                        const newMessage = new MessageComponent(messageViewList);
-                                        newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
-    
-                                        (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
+                                        const swError = document.getElementById('messageWSError');
+                                        if ((<any>window).socket1.readyState === WebSocket.CLOSED) {
+                                            swError.className = 'dialog-sw-error';
+                                            swError.textContent = 'Возникла ошибка соединения. Приносим свои извинения!';
+                                        } else {
+                                            swError.className = 'message-form__smile-view_none';
+                                            const newMessage = new MessageComponent(messageViewList);
+                                            newMessage.render({messageAuthor: 'Вы:', classForBg: 'your-message_background', messageContent: message});
+                                            (<any>window).socket1.send(JSON.stringify({id_sender: (<any>window).GlobalUser.body.user.id, username_recipient: responseBody.body.user.username, text: message}));
+                                        }
                 
                                         createMessageTextArea.value = '';
                                     }

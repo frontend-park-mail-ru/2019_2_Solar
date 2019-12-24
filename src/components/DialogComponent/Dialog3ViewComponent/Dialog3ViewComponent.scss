@@ -135,3 +135,17 @@ a {
     margin: 0px 5px 5px 0px;
     cursor: pointer;
 }
+
+.dialog-sw-error {
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #FADADD;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: red;
+    margin-left: 13px;
+    margin-right: 13px;
+    margin-top: 13px;
+}
