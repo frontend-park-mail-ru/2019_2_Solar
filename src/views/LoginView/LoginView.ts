@@ -73,7 +73,7 @@ export default class LoginView extends BaseView {
                 })
                 .then((responseBody) => {
                     errText.className = 'login-text-error';
-                    errText.textContent = 'Ошибочка: ' + responseBody.body.info;
+                    errText.textContent = responseBody.body.info;
                 });
         });
     }

@@ -121,7 +121,7 @@ export default class SignUpView extends BaseView {
                                 if (responseBody.body.info) {
                                     errText.textContent = responseBody.body.info;
                                 } else {
-                                    errText.textContent = 'Ошибочка: ' + responseBody.body;
+                                    errText.textContent = responseBody.body;
                                 }
                             });
                     });
