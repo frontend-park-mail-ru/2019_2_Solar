@@ -18,14 +18,8 @@ export function validateEmail(value) {
  * @return {boolean} Valid or not.
  */
 export function validatePassword(value) {
-    if (value.length < 8 || value.length > 30) {
-        return {result: false, message: 'Длина пароля - от 8 до 30 символов'};
-    }
-    if (!(new RegExp('[A-Z]+')).test(value)) {
-        return {result: false, message: 'Пароль должен содержать хотя бы одну заглавную буквy'};
-    }
-    if (!(new RegExp('[a-z]+')).test(value)) {
-        return {result: false, message: 'Пароль должен содержать хотя бы одну незаглавную букву'};
+    if (value.length < 6 || value.length > 30) {
+        return {result: false, message: 'Длина пароля должна быть от 6 до 30 символов!'};
     }
     return {result: true};
 }
@@ -36,7 +30,13 @@ export function validatePassword(value) {
  * @return {boolean} Valid or not.
  */
 export function validateUsername(value) {
-    return (new RegExp(usernameRegex)).test(value);
+    if (value.length < 3 || value.length > 30) {
+        return {result: false, message: 'Длина никнейма должна быть от 3 до 30 символов!'};
+    }
+    if (!(new RegExp(usernameRegex)).test(value)) {
+        return {result: false, message: 'Проверьте никнейм! Допустимые символы: заглавные и cтрочные буквы латинского алфавита, цифры, знаки нижнего подчёркивания.'};
+    }
+    return {result: true};
 }
 
 /**
@@ -64,15 +64,15 @@ export function validateStatus(value) {
  */
 export function validateSignup(signUpForm) {
     if (!validateEmail(signUpForm.elements['email'].value)) {
-        return {result: false, message: 'email'};
+        return {result: false, message: 'Email введён в неправильной форме!'};
     }
 
     if (!validatePassword(signUpForm.elements['password'].value).result) {
         return {result: false, message: validatePassword(signUpForm.elements['password'].value).message};
     }
 
-    if (!validateUsername(signUpForm.elements['username'].value)) {
-        return {result: false, message: 'nickname'};
+    if (!validateUsername(signUpForm.elements['username'].value).result) {
+        return {result: false, message: validateUsername(signUpForm.elements['username'].value).message};
     }
 
     return {result: true};

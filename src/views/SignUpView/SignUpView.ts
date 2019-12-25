@@ -5,6 +5,7 @@ import './SignUpView.scss';
 import ButtonComponent from '../../components/Button/Button';
 
 import {validateSignup, errorDraw, deleteErrorDraw} from '../../utils/validation';
+import {deleteCookie} from '../../utils/deleteCookies';
 import {BACKEND_ADDRESS} from '../../config/Config';
 
 import sunriseKuinji from '../../images/sunrise_kuinji.jpg';
@@ -53,6 +54,7 @@ export default class SignUpView extends BaseView {
                 if (response.ok) {
                     bus.emit('/profile', {});
                 } else {
+                    deleteCookie();
                     deleteHeader();
                     document.body.className = 'background';
 
@@ -117,7 +119,7 @@ export default class SignUpView extends BaseView {
                             .then((responseBody) => {
                                 errText.className = 'signup-form-block__error-text';
                                 if (responseBody.body.info) {
-                                    errText.textContent = 'Ошибочка: ' + responseBody.body.info;
+                                    errText.textContent = responseBody.body.info;
                                 } else {
                                     errText.textContent = 'Ошибочка: ' + responseBody.body;
                                 }
