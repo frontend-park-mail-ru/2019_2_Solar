@@ -238,3 +238,21 @@ a {
     border: none;
     width: 100%;
 }
+
+.viewpin-block__popup_button {
+    cursor: pointer;
+    height: 38px;
+    background-color: #FF8F0C;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+}

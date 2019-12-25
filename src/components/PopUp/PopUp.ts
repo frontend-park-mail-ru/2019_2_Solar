@@ -38,6 +38,6 @@ export default class PopupComponent {
      * @param forId
      */
     change(text, forId) {
-        document.getElementById('componentPopUpText' + forId).textContent = text;
+        document.getElementById('componentPopUpText' + forId).innerHTML = text;
     }
 }

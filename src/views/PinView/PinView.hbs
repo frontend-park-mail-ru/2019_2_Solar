@@ -6,7 +6,7 @@
         <div class="viewpin-block__right-column">
             <form id="viewPinData{{forID}}" class="view-pin-data-form">
                     <img id="shareField{{forID}}" src={{share}} class="share">
-                    <select name="board-select" class="viewpin-form__board-select_design viewpin-form__board-select_design_pos">
+                    <select name="board-select" id="pinviewBoardselect{{forID}}" class="viewpin-form__board-select_design viewpin-form__board-select_design_pos">
                         <option disabled>Выберете доску</option>
                         {{#each boardsNames}}
                             <option value={{this.board_id}}>{{this.board}}</option>
@@ -35,4 +35,5 @@
         </div>
     </div>
     <div id="pinViewPopUp{{forID}}"></div>
+    <div id="pinviewCreateBoardPopUp{{forID}}" class="createpin__right-column__create-board_none"></div>
 </div>

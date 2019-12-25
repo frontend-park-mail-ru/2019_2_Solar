@@ -1,4 +1,5 @@
 import BaseView from '../BaseView/BaseView';
+import CreateBoardPopupComponent from '../../components/CreateBoardPopup/CreateBoardPopup';
 
 import './PinView.scss';
 import PinViewTemplate from './PinView.hbs';
@@ -98,6 +99,7 @@ export default class PinView extends BaseView {
                         };
 
                         this.el.innerHTML += PinViewTemplate(context);
+
                         const popUp = document.getElementById('pinViewPopUp' + forId);
                         const popUpView = new PopUpComponent(popUp);
                         popUpView.render({forID: forId, text: 'Вы сохранили пин. Можете посмотреть на него у себя в личном кабинете.', PHdelete: PHdelete,});
@@ -108,6 +110,10 @@ export default class PinView extends BaseView {
                             e.preventDefault();
                             popUpChange.className = 'createpin__right-column__create-board_none';
                         });
+
+                        const createBoarrView = document.getElementById('pinviewCreateBoardPopUp' + forId);
+                        const boardSelect = document.getElementById('pinviewBoardselect' + forId);
+                        createBoardFun(window.location.pathname, createBoarrView, boardSelect, 'componentCreateBoardError', popUpChange);
 
                         const shareField = document.getElementById('shareField' + forId);
                         const shareData = <HTMLFormElement>document.getElementById('boardURLData' + forId);
@@ -157,7 +163,7 @@ export default class PinView extends BaseView {
                         viewPinDataForm.addEventListener('submit', (e) => {
                             e.preventDefault();
                             const boardFromHbs = viewPinDataForm.elements['board-select'].value;
-                            savePin(forId, Number(boardFromHbs), responseBody.body.pins.owner_username, responseBody.body.pins.description, responseBody.body.pins.pin_dir, responseBody.body.pins.title, popUpChange, popUpView);
+                            savePin(forId, Number(boardFromHbs), responseBody.body.pins.owner_username, responseBody.body.pins.description, responseBody.body.pins.pin_dir, responseBody.body.pins.title, popUpChange, popUpView, createBoarrView);
                         });
 
                         const viewPinCommentForm = <HTMLFormElement> document.getElementById('viewPinCommentData' + String(forId));
@@ -196,9 +202,13 @@ export default class PinView extends BaseView {
  * @param pinDir 
  * @param pinTitle 
  */
-function savePin(forID, boardId, authorUsername, pinDescription, pinDir, pinTitle, popUpView, popUp) {
+function savePin(forID, boardId, authorUsername, pinDescription, pinDir, pinTitle, popUpView, popUp, createBoarrView) {
     if (boardId == 0) {
-        popUp.change('У Вас нет доски для сохранения пина! Перейдите в личный кабинет и создайте доску.', forID);
+        popUp.change('Для сохранения пина Вам необходима доска!<div id="pinviewCreateboard' + forID + '" class="viewpin-block__popup_button">Создать доску</div>', forID);
+        document.getElementById('pinviewCreateboard' + forID).addEventListener('click', (e) => {
+            e.preventDefault();
+            createBoarrView.className = '';
+        })
         popUpView.className = 'createboard-anotherview createboard-anotherview__animation';
         return;
     }
@@ -237,4 +247,83 @@ function savePin(forID, boardId, authorUsername, pinDescription, pinDir, pinTitl
                     return response.json();
                 });
         });
+}
+
+/**
+ * create board func
+ * @param forID 
+ * @param el
+ * @param placeSelect
+ * @param errID
+ */
+function createBoardFun(forID, el, placeSelect, errID, popUpChange) {
+    popUpChange.className = 'createpin__right-column__create-board_none';
+
+    const boardTemp = new CreateBoardPopupComponent(el);
+    boardTemp.render({forID: forID, PHdelete: PHdelete});
+
+    const createBoardErr = document.getElementById(errID + forID);
+
+    const exit = document.getElementById('componentCloseBoard' + forID);
+    exit.addEventListener('click', (e) => {
+        e.preventDefault();
+        el.className = 'createpin__right-column__create-board_none';
+        cleanElement(createBoardErr);
+    });
+
+    const createBoardForm = <HTMLFormElement>document.getElementById('createBoardDataFAnother' + forID);
+    createBoardForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = {
+            'title': createBoardForm.elements['boardname'].value,
+            'description': createBoardForm.elements['boardcontent'].value,
+            'category': 'cars',
+        };
+
+        fetchModule.Post({
+            url: BACKEND_ADDRESS + '/board',
+            body: JSON.stringify(data),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((responseBody) => {
+                if (responseBody.csrf_token) {
+                    const idBoard = responseBody.body.board.id;
+                    const nameBoard = responseBody.body.board.title;
+
+                    el.className = 'createpin__right-column__create-board_none';
+                    popUpChange.className = 'createpin__right-column__create-board_none';
+
+                    placeSelect.innerHTML += '<option value=' + String(idBoard) + '>' + String(nameBoard) + '</option>';
+
+                    createBoardForm.elements['boardname'].value = '';
+                    createBoardForm.elements['boardcontent'].value = '';
+
+                    cleanElement(createBoardErr);
+                } else {
+                    createPinElError(createBoardErr, responseBody.body.info ? responseBody.body.info : responseBody.body, 'createboard-anotherview__form__error-mes');
+                }
+            });
+    });
+}
+
+/**
+ * createPinError
+ * @param {string} elementId
+ * @param {string} errorMessage
+ * @param {string} classname
+ */
+function createPinElError(elementId, errorMessage, classname) {
+    elementId.textContent = errorMessage;
+    elementId.className = classname;
+}
+
+/**
+ * clean element
+ * @param {string} elementId
+ */
+function cleanElement(elementId) {
+    elementId.textContent = '';
+    elementId.className = '';
 }
