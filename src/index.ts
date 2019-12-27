@@ -130,7 +130,7 @@ if (event.wasClean) {
     if (notice != null) {
         notice.textContent = String(Number(notice.textContent) + 1);
         const list = document.getElementById('list');
-        list.innerHTML += '<li><a href="#">Вам написал '+ data.user_name_sender + ': "' + data.text + '"</li>';
+        list.innerHTML += '<li>Вам написал '+ data.user_name_sender + ': "' + data.text + '"</li>';
     }
 
     (<any>window).chatMessages.addData(data.user_name_sender, data.text);
