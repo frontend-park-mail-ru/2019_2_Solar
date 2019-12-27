@@ -55,3 +55,29 @@ html *
 input {
     outline: none;
 }
+
+.changeLangToEng {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    bottom: 20px;
+    left: 20px;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.changeLangToRu {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    bottom: 20px;
+    left: 70px;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: underline;
+    cursor: pointer;
+}

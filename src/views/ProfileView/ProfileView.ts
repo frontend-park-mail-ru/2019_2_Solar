@@ -9,6 +9,7 @@ import Question from '../../images/question2.svg';
 import Close from '../../images/closeicon.svg';
 
 import bus from '../../utils/bus';
+import i18n from '../../utils/i18n';
 import {BACKEND_ADDRESS} from '../../config/Config';
 import {PIN_ADRESS} from '../../config/Config';
 
@@ -18,9 +19,11 @@ import PlusImgFAdd from '../../images/grayplus.svg';
 import bg from '../../images/bg.png';
 
 import fetchModule from '../../utils/fetchModule';
-import {createHeader} from '../../utils/headerFunc';
+import {createHeader, deleteHeader} from '../../utils/headerFunc';
 import FakeBoardPin from '../../components/FakeBoardPin/FakeBoardPin';
 import FakeBoardPinComponent from '../../components/FakeBoardPin/FakeBoardPin';
+
+const PAGE_ADDRESS = '/profile';
 
 /** Class representing a Profile view. */
 export default class ProfileView extends BaseView {
@@ -99,6 +102,18 @@ export default class ProfileView extends BaseView {
                     sessionID: cookie,
                 };
                 this.el.innerHTML += ProfileViewTemplate(context);
+                document.getElementById('changeLangToEng').addEventListener('click', () => {
+                    i18n.setLanguage('en');
+                    deleteHeader();
+                    createHeader();
+                    bus.emit(PAGE_ADDRESS, {});
+                });
+                document.getElementById('changeLangToRu').addEventListener('click', () => {
+                    i18n.setLanguage('ru');
+                    deleteHeader();
+                    createHeader();
+                    bus.emit(PAGE_ADDRESS, {});
+                });
 
                 /* Открыты доски, когда ты только заходишь на профиль */
                 const viewPinBoards = document.getElementById('profilePinsBoardsView');

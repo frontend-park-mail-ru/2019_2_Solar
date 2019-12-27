@@ -15,36 +15,36 @@
                         <li>
                             <img src={{PHplus}} class="profile-icon-size profile-icon-size_pos">
                             <ul class="create-menu-profile__pad_menu">
-                                <li><a href="/create_pin">Пин</a></li>
-                                <li><a href="/create_board">Доска</a></li>
+                                <li><a href="/create_pin">{{i18n 'profile.pin'}}</a></li>
+                                <li><a href="/create_board">{{i18n 'profile.board'}}</a></li>
                             </ul>
                         </li>
                     </ul>
                 </nav>
-                <a data-section="logout" href='/login' class="profile-logout profile-icon-size_pos">Выйти</a>
+                <a data-section="logout" href='/login' class="profile-logout profile-icon-size_pos">{{i18n 'profile.logout'}}</a>
             </div>
         </div>
 
         <div class="profile-buttons">
-            <div id="profileBoards" class="profile-button">Доски</div>
-            <div id="profilePins" class="profile-button profile-button_pin-pos">Пины</div>
+            <div id="profileBoards" class="profile-button">{{i18n 'profile.boards'}}</div>
+            <div id="profilePins" class="profile-button profile-button_pin-pos">{{i18n 'profile.pins'}}</div>
         </div>
     </div>
 
     <div id="profilePinsBoardsView" class="profile-pins-boards columns"></div>
-    <div id="whenNoBoards" class="field-with_message_none">Здесь будут Ваши ДОСКИ.<br>Для их создания можно воспользоваться "+" в личном кабинете.</div>
-    <div id="whenNoPins" class="field-with_message_none">Здесь будут Ваши ПИНЫ. <br>Для их создания можно воспользоваться "+" в личном кабинете.</div>
+    <div id="whenNoBoards" class="field-with_message_none">{{i18n 'profile.hereBoards'}}<br>{{i18n 'profile.toCreate'}}</div>
+    <div id="whenNoPins" class="field-with_message_none">{{i18n 'profile.herePins'}} <br>{{i18n 'profile.toCreate'}}</div>
 
     <!-- button for chat-->
     <div id="ask-button">
         <div id="supportChat" class="dont-see">
             <!--<iframe src="http://167.172.183.157:3000?sessionId={{sessionID}}" class="iframe-des"></iframe>-->
             <div class="feedback">
-                <div class="feedback__header ">Обратная связь</div>
-                <p class="feedback__discription">Оставьте нам сообщение и мы свяжемся с вами позднее!</p>
+                <div class="feedback__header ">{{i18n 'profile.feedback'}}</div>
+                <p class="feedback__discription">{{i18n 'profile.feedbackText'}}</p>
                 <form id="FeedbackButton" class="feedback__form">
-                    <textarea id="profileMessageTextArea" placeholder="Напишите сообщение ..." class="feedback__form__text"></textarea>
-                    <input type="submit" class="feedback__form__button" value="Отправить">
+                    <textarea id="profileMessageTextArea" placeholder="{{i18n 'profile.writeMessage'}}" class="feedback__form__text"></textarea>
+                    <input type="submit" class="feedback__form__button" value="{{i18n 'profile.send'}}">
                 </form>
             </div>
         </div>

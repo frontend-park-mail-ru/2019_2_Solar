@@ -20,6 +20,8 @@ import i18n from '../../utils/i18n';
 import fetchModule from '../../utils/fetchModule';
 import {deleteHeader} from '../../utils/headerFunc';
 
+const PAGE_ADDRESS = '/';
+
 /** Class representing a Signup view. */
 export default class SignUpView extends BaseView {
     args: object;
@@ -67,11 +69,11 @@ export default class SignUpView extends BaseView {
                     this.el.innerHTML = SignupViewTemplate(context);
                     document.getElementById('changeLangToEng').addEventListener('click', () => {
                         i18n.setLanguage('en');
-                        bus.emit('/', {});
+                        bus.emit(PAGE_ADDRESS, {});
                     });
                     document.getElementById('changeLangToRu').addEventListener('click', () => {
                         i18n.setLanguage('ru');
-                        bus.emit('/', {});
+                        bus.emit(PAGE_ADDRESS, {});
                     });
 
                     const signUpForm = <HTMLFormElement> document.getElementById('inputdata_signup');

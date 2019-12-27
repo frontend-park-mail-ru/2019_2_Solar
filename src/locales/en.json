@@ -6,6 +6,24 @@
         "signup.password": "Password",
         "signup.registered": "Already a user?",
         "signup.enter": "Log in",
-        "signup.register": "Sign Up"
+        "signup.register": "Sign Up",
+        "profile.pin": "Pin",
+        "profile.board": "Board",
+        "profile.pins": "Pins",
+        "profile.boards": "Boards",
+        "profile.feedback": "Feedback",
+        "profile.feedbackText": "Give us feedback and we'll contact you later!",
+        "profile.writeMessage": "Write us a message...",
+        "profile.send": "Send",
+        "profile.herePins": "Here will be your pins.",
+        "profile.hereBoards": "Here will be your boards.",
+        "profile.toCreate": "To create them, press '+' in your profile.",
+        "profile.logout": "Log Out",
+        "header.searchString": "Search request...",
+        "header.find": "Find",
+        "header.tags": "Tags",
+        "header.users": "Users",
+        "header.main": "Main Page",
+        "header.subs": "Subs"
     }
 }
