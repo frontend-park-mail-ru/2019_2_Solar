@@ -40,7 +40,17 @@
                 </ul>
             </nav>
             <span id="spanNum" class="alerts-count_disabled">{{notice}}</span>
-            <a href="/settings"><img data-section="/settings" src={{PHsetting}} class="mun-img dialog__items"></a>
+            <nav class="alerts-menu">
+                <ul>
+                    <li class="alerts-menu_margin-list">
+                        <img id="headerView" src={{PHsetting}} class="mun-img dialog__items">
+                        <ul class="notice-view_none" id="headerSettingsView">
+                            <li><a href="/login">Выход</a></li>
+                            <li><a href="/settings">Настройки</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

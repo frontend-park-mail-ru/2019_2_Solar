@@ -75,6 +75,10 @@ export default class HeaderComponent {
             const imgNotice = document.getElementById('noticeView');
             const notNum = document.getElementById('spanNum');
 
+            let flagEx = false;
+            const exit = document.getElementById('headerSettingsView');
+            const pointers = document.getElementById('headerView');
+
             if ((<any>window).chatMessages) {
                 const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
                 const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
@@ -98,6 +102,8 @@ export default class HeaderComponent {
 
             imgNotice.addEventListener('click', (e) => {
                 if (!flag) {
+                    exit.className = 'notice-view_none';
+                    flagEx = false;
                     listNotice.className = 'alerts-menu__pad_menu';
                     flag = true;
                 } else {
@@ -123,6 +129,19 @@ export default class HeaderComponent {
                 }
                 headerSearch.elements['searchtext'].value = '';
             });
+
+            pointers.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!flagEx) {
+                    listNotice.className = 'notice-view_none';
+                    flag = false;
+                    exit.className = 'alerts-menu__pad_menu';
+                    flagEx = true;
+                } else {
+                    exit.className = 'notice-view_none';
+                    flagEx = false;
+                }
+            })
         } catch {
             fetchModule.Get({
                 url: BACKEND_ADDRESS + '/profile/data',
@@ -147,6 +166,10 @@ export default class HeaderComponent {
                     const imgNotice = document.getElementById('noticeView');
                     const notNum = document.getElementById('spanNum');
 
+                    let flagEx = false;
+                    const exit = document.getElementById('headerSettingsView');
+                    const pointers = document.getElementById('headerView');
+
                     if ((<any>window).chatMessages) {
                         const sectionFind = document.querySelectorAll('[data-page=\''+ (<any>window).location.pathname + '\']')[0];
                         const notice = sectionFind.querySelectorAll('[id=\'spanNum\']')[0];
@@ -160,7 +183,7 @@ export default class HeaderComponent {
                             for (let i =0; i < notices.length; i++) {
                                 notice.textContent = String(Number(notice.textContent) + 1);
                                 const list = sectionFind.querySelectorAll('[id=\'list\']')[0];
-                                list.innerHTML += '<li><a href="#">Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
+                                list.innerHTML += '<li>Вам написал '+ notices[i].username + ': "' + notices[i].text + '"</li>';
                             }
                         }
                     }
@@ -170,6 +193,8 @@ export default class HeaderComponent {
 
                     imgNotice.addEventListener('click', (e) => {
                         if (!flag) {
+                            exit.className = 'notice-view_none';
+                            flagEx = false;
                             listNotice.className = 'alerts-menu__pad_menu';
                             flag = true;
                         } else {
@@ -195,6 +220,19 @@ export default class HeaderComponent {
                         }
                         headerSearch.elements['searchtext'].value = '';
                     });
+
+                    pointers.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (!flagEx) {
+                            listNotice.className = 'notice-view_none';
+                            flag = false;
+                            exit.className = 'alerts-menu__pad_menu';
+                            flagEx = true;
+                        } else {
+                            exit.className = 'notice-view_none';
+                            flagEx = false;
+                        }
+                    })
                 });
         }
     }
