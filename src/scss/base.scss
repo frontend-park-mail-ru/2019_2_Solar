@@ -1,8 +1,7 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-html *
-{
-   font-family: Arial;
+html *{
+    font-family: Arial;
 }
 
 .background {
@@ -80,4 +79,39 @@ input {
     padding: 0!important;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.changeThemeToLight {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    bottom: 40px;
+    left: 20px;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.changeThemeToDark {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    bottom: 40px;
+    left: 70px;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+[data-theme="dark"] {
+    .changeThemeToLight, 
+    .changeThemeToDark,
+    .changeLangToEng,
+    .changeLangToRu {
+        color: #ffffff;
+    }
 }

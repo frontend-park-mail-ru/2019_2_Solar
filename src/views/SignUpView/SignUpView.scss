@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Tangerine');
 
 .noscroll-for-signup {
+  z-index: -1000;
   display: flex;
   height: 100vh;
   align-items: center;
@@ -606,4 +607,25 @@ $shadows-big:    multiple-box-shadow(100);
 
 .signup-error-text {
   display: none;
+}
+
+[data-theme="dark"] {
+  .signup-block,
+  .noscroll-for-signup,
+  .signup-block_margin,
+  input {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  .a-bold-decoration,
+  .signup-block__title-solar,
+  .signup-block__under-title {
+      color: #ffffff;
+      &:after {
+        background: #ffffff;
+    }
+    &:hover:after {
+        background: #ffffff;
+    }
+  }
 }
