@@ -66,6 +66,7 @@ export default class BoardView extends BaseView {
                 this.el.innerHTML = '';
 
                 this.data = responseBody;
+                const numS = getNumS(responseBody.body.pins.length);
 
                 const context = {
                     username: (<any>window).GlobalUser.body.user.username,
@@ -74,6 +75,7 @@ export default class BoardView extends BaseView {
                     pinCount: responseBody.body.pins.length,
                     avatarImg: ((<any>window).GlobalUser.body.user.avatar_dir) ? (PIN_ADRESS + '/' + (<any>window).GlobalUser.body.user.avatar_dir) : bg,
                     forID: (<any>window).location.pathname,
+                    pinnum: numS,
 
                     PHGrayPen: grayPenImg,
                     PHPlus: plusImg,
@@ -89,5 +91,20 @@ export default class BoardView extends BaseView {
                         content: pinsBoard[i].title});
                 }
             });
+    }
+}
+
+/**
+ * get num
+ * @param count 
+ */
+function getNumS(count) {
+    const newCount = count%10;
+    if (newCount == 0 || (newCount >=5 && newCount <= 9)) {
+        return 'пинов';
+    } else if (newCount == 1) {
+        return 'пин';
+    } else {
+        return 'пина';
     }
 }
