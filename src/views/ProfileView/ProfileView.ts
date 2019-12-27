@@ -122,7 +122,7 @@ export default class ProfileView extends BaseView {
 
                         for (let i = 0; i < boardsProfile.length; i++) {
                             const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
-                            boardForUserView.render({id: boardsProfile[i].id, boardImg: bg,
+                            boardForUserView.render({id: boardsProfile[i].id, boardImg: boardsProfile[i].view_pin,
                                 content: boardsProfile[i].title});
                         }
                         if (boardsProfile.length == 0) {
@@ -199,7 +199,7 @@ export default class ProfileView extends BaseView {
 
                             for (let i = 0; i < boardsProfile.length; i++) {
                                 const boardForUserView = new BoardForUserViewComponent(viewPinBoards);
-                                boardForUserView.render({id: boardsProfile[i].id, boardImg: bg,
+                                boardForUserView.render({id: boardsProfile[i].id, boardImg: boardsProfile[i].view_pin,
                                     content: boardsProfile[i].title});
                             }
 
