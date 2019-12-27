@@ -6,10 +6,13 @@ import './LoginView.scss';
 import bus from '../../utils/bus';
 import {deleteCookie} from '../../utils/deleteCookies';
 import {BACKEND_ADDRESS} from '../../config/Config';
+import i18n from '../../utils/i18n';
 
 import Logo from '../../images/logo.png';
 import fetchModule from '../../utils/fetchModule';
 import {deleteHeader} from '../../utils/headerFunc';
+
+const PAGE_ADDRESS = '/login';
 
 /** Class representing a Login view. */
 export default class LoginView extends BaseView {
@@ -45,6 +48,14 @@ export default class LoginView extends BaseView {
             PHlogo: Logo,
         };
         this.el.innerHTML = LoginViewTemplate(context);
+        document.getElementById('changeLangToEng').addEventListener('click', () => {
+            i18n.setLanguage('en');
+            bus.emit(PAGE_ADDRESS, {});
+        });
+        document.getElementById('changeLangToRu').addEventListener('click', () => {
+            i18n.setLanguage('ru');
+            bus.emit(PAGE_ADDRESS, {});
+        });
         const errText = document.getElementById('loginTextErr');
         errText.className = 'login-error-text_none';
 

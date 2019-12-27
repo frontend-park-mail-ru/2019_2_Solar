@@ -24,6 +24,22 @@
         "header.tags": "Tags",
         "header.users": "Users",
         "header.main": "Main Page",
-        "header.subs": "Subs"
+        "header.subs": "Subs",
+        "settings.changeProfile": "Change profile",
+        "settings.undo": "Cancel",
+        "settings.done": "Done",
+        "settings.change": "Edit",
+        "settings.name": "Name",
+        "settings.enterName": "Enter your name",
+        "settings.surname": "Last Name",
+        "settings.enterSurname": "Enter your last name",
+        "settings.username": "Username",
+        "settings.status": "Status",
+        "settings.tellAboutYourself": "Tell us something...",
+        "login.welcome": "Welcome to Sunrise!",
+        "login.password": "Password",
+        "login.login": "Log In",
+        "login.notRegisteredYet": "Not registered yet?",
+        "login.registration": "Register"
     }
 }

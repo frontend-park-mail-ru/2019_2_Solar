@@ -24,6 +24,22 @@
         "header.tags": "Теги",
         "header.users": "Пользователи",
         "header.main": "Главная",
-        "header.subs": "Подписки"
+        "header.subs": "Подписки",
+        "settings.changeProfile": "Изменить профиль",
+        "settings.undo": "Отмена",
+        "settings.done": "Готово",
+        "settings.change": "Изменить",
+        "settings.name": "Имя",
+        "settings.enterName": "Введите своё имя",
+        "settings.surname": "Фамилия",
+        "settings.enterSurname": "Введите свою фамилию",
+        "settings.username": "Имя пользователя",
+        "settings.status": "Статус",
+        "settings.tellAboutYourself": "Расскажите о себе",
+        "login.welcome": "Добро пожаловать в Sunrise!",
+        "login.password": "Пароль",
+        "login.login": "Войти",
+        "login.notRegisteredYet": "Ещё не зарегистрировались?",
+        "login.registration": "Регистрация"
     }
 }

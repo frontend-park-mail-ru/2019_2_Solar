@@ -17,38 +17,38 @@
     <div class="settings-right-column">
         <form id="UserSettings" name="UserSettings" enctype="multipart/form-data" method="post">
             <div class="settings-right-column__title">
-                <div class="right-column__title">Изменить профиль</div>
+                <div class="right-column__title">{{i18n 'header.changeProfile'}}</div>
                 <div class="settings-button_pos">
-                        <a href="/profile" class="button-exit">Отмена</a>
-                        <input type="submit" class="button-save button-save_pos" value="Готово">
+                        <a href="/profile" class="button-exit">{{i18n 'settings.undo'}}</a>
+                        <input type="submit" class="button-save button-save_pos" value="{{i18n 'settings.done'}}">
                 </div>
             </div>
             <div class="settings-right-column__avatar">
                 <img src="{{avatarphoto}}" id="avatarPhotoSettings" class="settings-avatar-photo">
                 <div class="settings-avatar-photo__title">{{username}}</div>
-                <input type="button" id="avatarphotop" value="Изменить" onclick="document.getElementById('avatarphoto').click();" class="settings-avatar-photo__button settings-avatar-photo__button_margin">
+                <input type="button" id="avatarphotop" value="{{i18n 'settings.change'}}" onclick="document.getElementById('avatarphoto').click();" class="settings-avatar-photo__button settings-avatar-photo__button_margin">
                 <input type="file" name="avatarphoto" id="avatarphoto" accept="image/*" class="button-without-styles">
             </div>
             <div class="settings-right-column__name-surname settings-right-column_pos">
                 <div class="settings-right-column__name-sername_column">
-                    <div class="settings-form-text">Имя</div>
-                    <input type="text" id="name" placeholder="Введите своё имя" {{#if name}}value={{name}}{{/if}} class="settings-form__input-block settings-form__input-block_pos">
+                    <div class="settings-form-text">{{i18n 'settings.name'}}</div>
+                    <input type="text" id="name" placeholder="{{i18n 'settings.enterName'}}" {{#if name}}value={{name}}{{/if}} class="settings-form__input-block settings-form__input-block_pos">
                 </div>
                 <div class="settings-right-column__name-sername_column settings-form__name-surname_margin">
-                    <div class="settings-form-text">Фамилия</div>
-                    <input type="text" id="surname" placeholder="Введите свою фамилию" {{#if surname}}value={{surname}}{{/if}} class="settings-form__input-block settings-form__input-block_pos">            
+                    <div class="settings-form-text">{{i18n 'settings.surname'}}</div>
+                    <input type="text" id="surname" placeholder="{{i18n 'settings.enterSurname'}}" {{#if surname}}value={{surname}}{{/if}} class="settings-form__input-block settings-form__input-block_pos">            
                 </div>
             </div>
             <div class="settings-right-column__username settings-right-column_pos">
-                <div class="settings-form-text">Имя пользователя</div>
+                <div class="settings-form-text">{{i18n 'settings.username'}}</div>
                 <div class="settings-right-column__username__row settings-right-column__username__row_pos">
                     <div class="settings-form-text">wwww.sunrise.com/</div>
                     <input type="text" id="username" placeholder="username" {{#if username}}value={{username}}{{/if}} class="settings-form__input-block settings-form__input-block_href_pos">
                 </div>
             </div>
             <div class="settings-right-column__status settings-right-column_pos">
-                <div class="settings-form-text">Статус</div>
-                <input type="text" id="status" placeholder="Расскажите о себе" {{#if status}}value="{{status}}"{{/if}} class="settings-form__input-block settings-form__input-block_status_pos settings-right-column__username__row_pos">
+                <div class="settings-form-text">{{i18n 'settings.status'}}</div>
+                <input type="text" id="status" placeholder="{{i18n 'settings.tellAboutYourself'}}" {{#if status}}value="{{status}}"{{/if}} class="settings-form__input-block settings-form__input-block_status_pos settings-right-column__username__row_pos">
             </div>
         </form>
     </div>

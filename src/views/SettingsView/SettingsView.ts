@@ -13,8 +13,11 @@ import TImg from '../../images/themes.svg';
 import bg from '../../images/bg.png';
 
 import bus from '../../utils/bus';
+import i18n from '../../utils/i18n';
 import fetchModule from '../../utils/fetchModule';
-import {createHeader} from '../../utils/headerFunc';
+import {createHeader, deleteHeader} from '../../utils/headerFunc';
+
+const PAGE_ADDRESS = '/settings';
 
 /** Class representing a Settings view. */
 export default class SettingsView extends BaseView {
@@ -68,6 +71,18 @@ export default class SettingsView extends BaseView {
 
                 document.body.className = 'backgroundIndex';
                 this.el.innerHTML = '';
+                document.getElementById('changeLangToEng').addEventListener('click', () => {
+                    i18n.setLanguage('en');
+                    deleteHeader();
+                    createHeader();
+                    bus.emit(PAGE_ADDRESS, {});
+                });
+                document.getElementById('changeLangToRu').addEventListener('click', () => {
+                    i18n.setLanguage('ru');
+                    deleteHeader();
+                    createHeader();
+                    bus.emit(PAGE_ADDRESS, {});
+                });
 
                 const oldusername = responseBody.body.user.username;
 
