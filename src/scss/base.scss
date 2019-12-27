@@ -115,9 +115,14 @@ input {
         color: #ffffff;
     }
 
+    body,
     input[type="email"],
     input[type="password"],
-    input[type="text"] {
+    input[type="text"],
+    select,
+    option,
+    .preloader,
+    textarea {
         background-color: #000000;
         color: #ffffff;
     }

@@ -61,7 +61,12 @@ export default class subscribeView extends BaseView {
 
                         const sub = SubscribeViewTemplate({arg: this.args, PHFollower: follower});
                         this.el.innerHTML += sub;
-
+                        document.getElementById('changeThemeToLight').addEventListener('click', () => {
+                            document.body.removeAttribute('data-theme');
+                        });
+                        document.getElementById('changeThemeToDark').addEventListener('click', () => {
+                            document.body.setAttribute('data-theme', 'dark');
+                        });
                         const subBody = responseBody;
                         createSubscribe(this.args, subBody);
                     });

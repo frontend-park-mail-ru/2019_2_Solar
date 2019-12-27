@@ -77,7 +77,12 @@ export default class CreatePinView extends BaseView {
                 };
 
                 this.el.innerHTML += CreatePinViewTemplate(context);
-
+                document.getElementById('changeThemeToLight').addEventListener('click', () => {
+                    document.body.removeAttribute('data-theme');
+                });
+                document.getElementById('changeThemeToDark').addEventListener('click', () => {
+                    document.body.setAttribute('data-theme', 'dark');
+                });
                 const pinImgField = document.getElementById('pinphoto');
                 pinImgField.addEventListener('change', (e) => {
                     showFile(e, 'createPinImg');

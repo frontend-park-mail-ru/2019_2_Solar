@@ -59,7 +59,12 @@ export default class SearchView extends BaseView {
 
                 const search = SearchViewTemplate(context);
                 this.el.innerHTML += search;
-
+                document.getElementById('changeThemeToLight').addEventListener('click', () => {
+                    document.body.removeAttribute('data-theme');
+                });
+                document.getElementById('changeThemeToDark').addEventListener('click', () => {
+                    document.body.setAttribute('data-theme', 'dark');
+                });
                 const searchPage = document.getElementById('search-list' + forID);
                 const style = String(this.args).split('&')[0];
                 const searchText = String(this.args).split('&')[1];

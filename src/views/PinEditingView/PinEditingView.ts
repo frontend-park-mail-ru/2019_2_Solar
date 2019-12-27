@@ -95,7 +95,12 @@ export default class PinEditingView extends BaseView {
                         };
 
                         this.el.innerHTML += PinEditingViewTemplate(context);
-
+                        document.getElementById('changeThemeToLight').addEventListener('click', () => {
+                            document.body.removeAttribute('data-theme');
+                        });
+                        document.getElementById('changeThemeToDark').addEventListener('click', () => {
+                            document.body.setAttribute('data-theme', 'dark');
+                        });
                         const editingPinForm = <HTMLFormElement> document.getElementById('PinEditingData' + String(forId));
                         editingPinForm.addEventListener('submit', (e) => {
                             e.preventDefault();

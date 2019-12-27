@@ -83,6 +83,12 @@ export default class SettingsView extends BaseView {
                     createHeader();
                     bus.emit(PAGE_ADDRESS, {});
                 });
+                document.getElementById('changeThemeToLight').addEventListener('click', () => {
+                    document.body.removeAttribute('data-theme');
+                });
+                document.getElementById('changeThemeToDark').addEventListener('click', () => {
+                    document.body.setAttribute('data-theme', 'dark');
+                });
 
                 const oldusername = responseBody.body.user.username;
 

@@ -1,13 +1,14 @@
 .subscribe-page__flex-container {
     padding: 0;
     margin: 0;
-    margin-top: 40px;
-    margin-left: 50px;
-    margin-right: 50px;
+    padding-top: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
     list-style: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    min-height: 100vh;
 }
 
 .index-page__title {
@@ -30,10 +31,9 @@
 }
 
 .for-subscribe-view_text {
-    margin: 40px 50px 0 50px;
+    padding: 40px 50px 0 50px;
     background: #9393962b;
     height: 250px;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,4 +53,12 @@
 
 .for-subscribe__img_pos {
     margin-bottom: 10px;
+}
+
+[data-theme="dark"] {
+    .subscribe-page__flex-container,
+    .for-subscribe-view_text {
+        background-color: #000000;
+        color: #ffffff;
+    }
 }

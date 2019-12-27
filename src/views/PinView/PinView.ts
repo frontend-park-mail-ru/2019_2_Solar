@@ -99,7 +99,12 @@ export default class PinView extends BaseView {
                         };
 
                         this.el.innerHTML += PinViewTemplate(context);
-
+                        document.getElementById('changeThemeToLight').addEventListener('click', () => {
+                            document.body.removeAttribute('data-theme');
+                        });
+                        document.getElementById('changeThemeToDark').addEventListener('click', () => {
+                            document.body.setAttribute('data-theme', 'dark');
+                        });
                         const popUp = document.getElementById('pinViewPopUp' + forId);
                         const popUpView = new PopUpComponent(popUp);
                         popUpView.render({forID: forId, text: 'Вы сохранили пин. Можете посмотреть на него у себя в личном кабинете.', PHdelete: PHdelete,});

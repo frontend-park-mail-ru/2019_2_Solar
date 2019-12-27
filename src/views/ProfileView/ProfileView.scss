@@ -6,7 +6,8 @@
 .profile-container {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    padding-top: 40px;
+    min-height: 100vh;
 }
 
 .profile-container_pos {
@@ -309,4 +310,13 @@ a {
 
 .field-with_message_none {
     display: none;
+}
+
+[data-theme="dark"] {
+    .profile-container,
+    .profile-username,
+    .profile-status {
+        background-color: #000000;
+        color: #ffffff;
+    }
 }

@@ -1,12 +1,13 @@
 .viewpin-page__flex-container {
     padding: 0;
     margin: 0;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
 }
 
 .viewpin-block {
@@ -255,4 +256,14 @@ a {
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 10px;
+}
+
+[data-theme="dark"] {
+    .viewpin-page__flex-container,
+    .viewpin-block__right-column__title,
+    .viewpin-block__right-column__username,
+    .viewpin-block__right-column__context {
+        background-color: #000000;
+        color: #ffffff;
+    }
 }

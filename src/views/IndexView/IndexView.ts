@@ -57,8 +57,13 @@ export default class IndexView extends BaseView {
                         this.el.innerHTML = '';
 
                         const index = IndexViewTemplate({arg: this.args});
-
                         this.el.innerHTML += index;
+                        document.getElementById('changeThemeToLight').addEventListener('click', () => {
+                            document.body.removeAttribute('data-theme');
+                        });
+                        document.getElementById('changeThemeToDark').addEventListener('click', () => {
+                            document.body.setAttribute('data-theme', 'dark');
+                        });
 
                         let lastId = 0;
                         const indexPage = document.getElementById('index-page:' + this.args);

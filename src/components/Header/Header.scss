@@ -240,3 +240,15 @@ a {
     z-index: 8;
     margin-left: -10px;
 }
+
+[data-theme="dark"] {
+    .searchheader-line,
+    .backgroundIndex,
+    .header-position,
+    .header,
+    .left-controls__text-to-ind,
+    .left-controls__text-to-ind {
+        background-color: #000000;
+        color: #ffffff;
+    }
+}

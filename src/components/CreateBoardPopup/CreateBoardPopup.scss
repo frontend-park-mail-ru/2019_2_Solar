@@ -5,7 +5,7 @@
     justify-content: center;
     position: absolute;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     z-index: 95;
     top: 0;
     left: 0;
@@ -122,4 +122,15 @@
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
+}
+
+[data-theme="dark"] {
+    .createboard-anotherview_card,
+    .createboard-anotherview__title {
+        background-color: #000000;
+        color: #ffffff;
+    }
+    .createboard-anotherview_card-delete {
+        background-color: #ffffff;
+    }
 }
