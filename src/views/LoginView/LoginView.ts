@@ -56,6 +56,12 @@ export default class LoginView extends BaseView {
             i18n.setLanguage('ru');
             bus.emit(PAGE_ADDRESS, {});
         });
+        document.getElementById('changeThemeToLight').addEventListener('click', () => {
+            document.body.removeAttribute('data-theme');
+        });
+        document.getElementById('changeThemeToDark').addEventListener('click', () => {
+            document.body.setAttribute('data-theme', 'dark');
+        });
         const errText = document.getElementById('loginTextErr');
         errText.className = 'login-error-text_none';
 

@@ -129,4 +129,12 @@ input {
 
 .login-error-text_none {
     display: none;
-  }
+}
+
+[data-theme="dark"] {
+    .login-block,
+    .login-block__title {
+        background-color: #000000;
+        color: #ffffff;
+    }
+}

@@ -612,8 +612,7 @@ $shadows-big:    multiple-box-shadow(100);
 [data-theme="dark"] {
   .signup-block,
   .noscroll-for-signup,
-  .signup-block_margin,
-  input {
+  .signup-block_margin {
     background-color: #000000;
     color: #ffffff;
   }

@@ -77,11 +77,9 @@ export default class SignUpView extends BaseView {
                     });
                     document.getElementById('changeThemeToLight').addEventListener('click', () => {
                         document.body.removeAttribute('data-theme');
-                        // bus.emit(PAGE_ADDRESS, {});
                     });
                     document.getElementById('changeThemeToDark').addEventListener('click', () => {
                         document.body.setAttribute('data-theme', 'dark');
-                        // bus.emit(PAGE_ADDRESS, {});
                     });
 
                     const signUpForm = <HTMLFormElement> document.getElementById('inputdata_signup');

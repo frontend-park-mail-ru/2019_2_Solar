@@ -114,4 +114,11 @@ input {
     .changeLangToRu {
         color: #ffffff;
     }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+        background-color: #000000;
+        color: #ffffff;
+    }
 }
