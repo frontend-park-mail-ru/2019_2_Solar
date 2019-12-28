@@ -1,142 +1,286 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-$solarsunrise-brighter-color: rgb(255, 153, 85);
+@media only screen and (min-width: 1000px) {
+    $solarsunrise-brighter-color: rgb(255, 153, 85);
 
-html *{
-    font-family: Arial;
-}
-
-.background {
-    background-color: #ffffff;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.backgroundLogin {
-    background: url(../images/loginbg1.jpg);
-    background-repeat: no-repeat;
-    background-size :cover;
-    background-attachment: fixed;
-}
-
-.backgroundIndex {
-    background-color: rgb(255, 255, 255);
-}
-
-.preloader {
-    position: fixed;
-    z-index: 99;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.preloader > img {
-    width: 100px;
-}
-
-.preloader.hidden {
-    animation: fadeOut 1s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes fadeOut {
-    100% {
-        opacity: 0;
-        visibility: hidden;
+    html *{
+        font-family: Arial;
     }
-}
 
-input {
-    outline: none;
-}
-
-.changeLangToEng {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    bottom: 20px;
-    left: 20px;
-    background: none!important;
-    border: none;
-    padding: 0!important;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.changeLangToRu {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    bottom: 20px;
-    left: 70px;
-    background: none!important;
-    border: none;
-    padding: 0!important;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.changeThemeToLight {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    bottom: 40px;
-    left: 20px;
-    background: none!important;
-    border: none;
-    padding: 0!important;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.changeThemeToDark {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    bottom: 40px;
-    left: 70px;
-    background: none!important;
-    border: none;
-    padding: 0!important;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-footer {
-    &::after {
-        content: ' ';
-        width: 100%;
-        position: absolute;
-        left: 0;
-        margin-top: 0px;
-        height: 40px;
-        background: $solarsunrise-brighter-color;
-        z-index: -2;
+    .background {
+        background-color: #ffffff;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
-    &::before {
-        content: ' ';
-        width: 100%;
-        position: absolute;
-        margin-top: -25px;
+
+    .backgroundLogin {
+        background: url(../images/loginbg1.jpg);
+        background-repeat: no-repeat;
+        background-size :cover;
+        background-attachment: fixed;
+    }
+
+    .backgroundIndex {
+        background-color: rgb(255, 255, 255);
+    }
+
+    .preloader {
+        position: fixed;
+        z-index: 99;
+        top: 0;
         left: 0;
-        border-radius: 40px;
-        height: 50px;
+        width: 100%;
+        height: 100%;
         background: #ffffff;
-        z-index: -1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .preloader > img {
+        width: 100px;
+    }
+
+    .preloader.hidden {
+        animation: fadeOut 1s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeOut {
+        100% {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    input {
+        outline: none;
+    }
+
+    .changeLangToEng {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        bottom: 20px;
+        left: 20px;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .changeLangToRu {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        bottom: 20px;
+        left: 70px;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .changeThemeToLight {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        bottom: 40px;
+        left: 20px;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .changeThemeToDark {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        bottom: 40px;
+        left: 70px;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    footer {
+        &::after {
+            content: ' ';
+            width: 100%;
+            position: absolute;
+            left: 0;
+            margin-top: 0px;
+            height: 40px;
+            background: $solarsunrise-brighter-color;
+            z-index: -2;
+        }
+        &::before {
+            content: ' ';
+            width: 100%;
+            position: absolute;
+            margin-top: -25px;
+            left: 0;
+            border-radius: 40px;
+            height: 50px;
+            background: #ffffff;
+            z-index: -1;
+        }
+    }
+
+    input {
+        font-size: 14px;
+        &::placeholder {
+            font-size: 14px;
+        }
     }
 }
 
-input {
-    font-size: 14px;
-    &::placeholder {
+@media only screen and (max-width: 1000px) {
+    $solarsunrise-brighter-color: rgb(255, 153, 85);
+
+    html *{
+        font-family: Arial;
+    }
+
+    .background {
+        background-color: #ffffff;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .backgroundLogin {
+        background: url(../images/loginbg1.jpg);
+        background-repeat: no-repeat;
+        background-size :cover;
+        background-attachment: fixed;
+    }
+
+    .backgroundIndex {
+        background-color: rgb(255, 255, 255);
+    }
+
+    .preloader {
+        position: fixed;
+        z-index: 99;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .preloader > img {
+        width: 100px;
+    }
+
+    .preloader.hidden {
+        animation: fadeOut 1s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeOut {
+        100% {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    input {
+        outline: none;
+    }
+
+    .changeLangToEng {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        bottom: 20px;
+        left: 20px;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .changeLangToRu {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        bottom: 20px;
+        left: 70px;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .changeThemeToLight {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        bottom: 40px;
+        left: 20px;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .changeThemeToDark {
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        bottom: 40px;
+        left: 70px;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    footer {
+        &::after {
+            content: ' ';
+            width: 100%;
+            position: absolute;
+            left: 0;
+            margin-top: 0px;
+            height: 80px;
+            background: $solarsunrise-brighter-color;
+            z-index: -2;
+        }
+        &::before {
+            content: ' ';
+            width: 100%;
+            position: absolute;
+            margin-top: -50px;
+            left: 0;
+            border-radius: 80px;
+            height: 100px;
+            background: #ffffff;
+            z-index: -1;
+        }
+    }
+
+    input {
         font-size: 14px;
+        &::placeholder {
+            font-size: 14px;
+        }
     }
 }
 
