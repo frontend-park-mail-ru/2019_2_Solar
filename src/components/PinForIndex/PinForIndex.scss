@@ -10,6 +10,11 @@
     margin-block-end: 10px;
     margin-inline-start: 15px;
     margin-inline-end: 15px;
+    box-shadow: 1px 2px 80px rgba(255, 0, 0, .5);
+    &:hover {
+        transition: box-shadow 0.5s ease;
+        box-shadow: 1px 2px 250px rgba(255, 0, 0, 1);
+    }
 }
 
 .pin-for-index__content {
@@ -46,4 +51,15 @@
     margin-left: 90%;
     margin-right: 10px;
     margin-bottom: 10px;
+}
+
+[data-theme="dark"] {
+    .pin-for-index-view {
+        box-shadow: 1px 2px 80px rgba(255, 0, 0, .5);
+        transition: box-shadow 0.5s ease;
+        &:hover {
+            transition: box-shadow 0.5s ease;
+            box-shadow: 1px 2px 250px rgba(255, 0, 0, 1);
+        }
+    }
 }

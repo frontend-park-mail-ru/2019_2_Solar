@@ -1,8 +1,6 @@
 <div id="header" class="header-position">
     <div class="header">
-        <a href='/index/new' class="logo">
-            <img data-section="/index/new" class="logo__picture" src={{PHlogo}}>
-        </a>
+        <a href='/index/new' class="logo">Solar</a>
         <form id="headerSearch" class="search">
             <div class="searchheader-line">
                 <div class="search__icon">
@@ -20,25 +18,15 @@
         </form>
 
         <div class="left-controls">
-            <a href="/index/new" class="left-controls__text-to-ind">{{i18n 'header.main'}}</a>
             <a href="/subscribe/new" class="left-controls__text-to-ind">{{i18n 'header.subs'}}</a>
-            <a href="/create_pin"><img data-section="/create_pin" src={{PHplus}} class="plus-img plus-img_margin-left"></a>
         </div>
         <div class="controls">
             <img src="{{avatarPhoto}}" id="avatarPhotoHeader" class="avatar">
             <a href="/profile" id="nicknameHeader" class="controls__link usernameclass">{{username}}</a>
+            <a href="/create_pin"><img data-section="/create_pin" src={{PHplus}} class="plus-img"></a>
         </div>
         <div class ="dialog-block">
             <a href="/dialog"><img id="messageImg" data-section="/dialog" src={{PHdialog}} class="dialog-img dialog__items"></a>
-            <nav class="alerts-menu">
-                <ul>
-                    <li class="alerts-menu_margin-list">
-                        <img src={{PHbell}} id ="noticeView" class="bell-img dialog__items dialog__items_disabled">
-                        <ul id="list" class="notice-view_none">
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
             <span id="spanNum" class="alerts-count_disabled">{{notice}}</span>
             <nav class="alerts-menu">
                 <ul>

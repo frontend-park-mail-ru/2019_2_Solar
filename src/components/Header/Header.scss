@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Tangerine');
+
+$solarsunrise-color: rgb(255, 109, 12);
+$solarsunrise-brighter-color: rgb(255, 153, 85);
+$bright: #ffffff;
+$background: #ffffff;
+
 body {
     margin: 0;
     padding: 0;
@@ -6,7 +13,6 @@ body {
 .left-controls__text-to-ind {
     margin-left: 10px;
 
-    font-style: normal;
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;
@@ -14,12 +20,13 @@ body {
     align-items: center;
     text-decoration: none;
 
-    color: #A19F9C;
+    color: #ffffff;
 }
 
 .plus-img {
-    width: 29px;
-    height: 29px;
+    width: 25px;
+    height: 25px;
+    padding: 15px;
 }
 
 .ask-img {
@@ -52,14 +59,39 @@ a {
 .header {
     display: flex;
     height: 35px;
-    background: white;
+    background: $solarsunrise-color;
     padding: 15px 15px;
-    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 20px;
+    &::after {
+        content: ' ';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        margin-top: 50px;
+        height: 30px;
+        background: $solarsunrise-brighter-color;
+    }
+    &::before {
+        content: ' ';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        margin-top: 60px;
+        border-radius: 40px;
+        height: 50px;
+        background: $background;
+        z-index: 99;
+    }
 }
 
 .logo {
     height: 100%;
     margin-right: 15px;
+    color: #ffffff;
+    font-family: Tangerine, serif;
+    font-size: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .logo__picture {
@@ -78,7 +110,7 @@ a {
 }
 
 .search__icon i {
-    color: gray;
+    color: $bright;
     font-size: 20px;
     margin-right: 5px;
 }
@@ -86,33 +118,39 @@ a {
 .search__input {
     width: 100%;
     padding-right: 10px;
+    background-color: $solarsunrise-brighter-color;
 }
 
 .search__input input {
+    background-color: $solarsunrise-brighter-color;
     width: 100%;
     border: 0;
     font-size: 14px;
     outline: none;
+    &::placeholder {
+        color: $bright;
+    }
 }
 
 .searchheader-select_design {
-    background-color: #FFFFFF;
-    border: 1px solid #A29F9C;
     box-sizing: border-box;
     border-radius: 5px;
     font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     margin-left: 10px;
+    border: none;
+    background-color: $solarsunrise-brighter-color;
+    color: $bright;
 }
 
 .searchheader-line {
     display: flex;
     align-items: center;
-    border: 1px solid #A29F9C;
+    background-color: $solarsunrise-brighter-color;
     border-radius: 5px;
     padding: 5px 10px;
     width: 100%;
+    max-width: 50vh;
     height: calc(100% - 12px);
 }
 
@@ -129,7 +167,7 @@ a {
 }
 
 .controls__link {
-    color: gray;
+    color: $bright;
     text-decoration: none;
     transition: .2s;
     margin-left: 10px;
@@ -149,10 +187,6 @@ a {
     display: flex;
     align-items: center;
     margin-left: 15px;
-}
-
-.plus-img_margin-left {
-    margin-left: 100px;
 }
 
 .ask-img_margin-left{
@@ -242,13 +276,15 @@ a {
 }
 
 [data-theme="dark"] {
-    .searchheader-line,
-    .backgroundIndex,
-    .header-position,
-    .header,
-    .left-controls__text-to-ind,
-    .left-controls__text-to-ind {
-        background-color: #000000;
-        color: #ffffff;
+    .header {
+        &::before {
+            background: #000000;
+        }
+    }
+    .search__input input {
+        background-color: $solarsunrise-brighter-color;
+        &::placeholder {
+            color: $bright;
+        }
     }
 }
