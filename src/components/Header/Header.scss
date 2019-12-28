@@ -302,6 +302,7 @@ $background: #ffffff;
         width: 25px;
         height: 25px;
         padding: 15px;
+        display: none;
     }
 
     .ask-img {
@@ -313,7 +314,8 @@ $background: #ffffff;
         border-radius: 100px;
         width: 30px;
         height: 30px;
-        margin-left: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
         background-image: url(../../images/bg.png);
     }
 
@@ -383,6 +385,13 @@ $background: #ffffff;
     .search__icon {
         display: flex;
         user-select: none;
+        width: 48px;
+        height: 48px;
+    }
+
+    .search__icon img {
+        width: 48px;
+        height: 48px;
     }
 
     .search__icon i {
@@ -406,6 +415,13 @@ $background: #ffffff;
         color: $bright;
         &::placeholder {
             color: $bright;
+        }
+    }
+
+    #searchtext {
+        font-size: 30px;
+        &::placeholder {
+            font-size: 30px;
         }
     }
 
@@ -437,6 +453,8 @@ $background: #ffffff;
 
     .searchheader-select_design_pos {
         height: 100%;
+        width: 120px;
+        font-size: 30px;
     }
 
     .controls {
