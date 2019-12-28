@@ -70,6 +70,7 @@ a {
         margin-top: 50px;
         height: 30px;
         background: $solarsunrise-brighter-color;
+        z-index: -502;
     }
     &::before {
         content: ' ';
@@ -80,7 +81,7 @@ a {
         border-radius: 40px;
         height: 50px;
         background: $background;
-        z-index: 99;
+        z-index: -501;
     }
 }
 
@@ -127,6 +128,7 @@ a {
     border: 0;
     font-size: 14px;
     outline: none;
+    color: $bright;
     &::placeholder {
         color: $bright;
     }
