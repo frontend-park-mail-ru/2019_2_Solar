@@ -605,6 +605,15 @@ $shadows-big:    multiple-box-shadow(100);
   }
 }
 
+#signUpEmail,
+  #signUpUsername,
+  #signUpPassword {
+    font-size: 16px;
+    &::placeholder {
+      font-size: 16px;
+    }
+  }
+
 .signup-error-text {
   display: none;
 }
