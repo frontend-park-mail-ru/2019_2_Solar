@@ -1,5 +1,7 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+$solarsunrise-brighter-color: rgb(255, 153, 85);
+
 html *{
     font-family: Arial;
 }
@@ -107,6 +109,30 @@ input {
     cursor: pointer;
 }
 
+footer {
+    &::after {
+        content: ' ';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        margin-top: 0px;
+        height: 40px;
+        background: $solarsunrise-brighter-color;
+        z-index: -2;
+    }
+    &::before {
+        content: ' ';
+        width: 100%;
+        position: absolute;
+        margin-top: -25px;
+        left: 0;
+        border-radius: 40px;
+        height: 50px;
+        background: #ffffff;
+        z-index: -1;
+    }
+}
+
 [data-theme="dark"] {
     .changeThemeToLight, 
     .changeThemeToDark,
@@ -120,5 +146,11 @@ input {
     textarea {
         background-color: #000000;
         color: #ffffff;
+    }
+
+    footer {
+        &::before {
+            background: #000000;
+        }
     }
 }
