@@ -30,7 +30,6 @@ export default class Router {
             el: null,
         };
         bus.on(path, (something) => {
-            
             this.open({'path':path, 'content': something});
         });
 

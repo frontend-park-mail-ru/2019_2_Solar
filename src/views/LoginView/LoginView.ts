@@ -48,6 +48,12 @@ export default class LoginView extends BaseView {
             PHlogo: Logo,
         };
         this.el.innerHTML = LoginViewTemplate(context);
+        let old_element = document.getElementById('changeLangToEng');
+        let new_element = old_element.cloneNode(true);
+        old_element.parentNode.replaceChild(new_element, old_element);
+        old_element = document.getElementById('changeLangToRu');
+        new_element = old_element.cloneNode(true);
+        old_element.parentNode.replaceChild(new_element, old_element);
         document.getElementById('changeLangToEng').addEventListener('click', () => {
             i18n.setLanguage('en');
             bus.emit(PAGE_ADDRESS, {});

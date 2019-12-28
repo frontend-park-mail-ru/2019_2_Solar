@@ -102,6 +102,12 @@ export default class ProfileView extends BaseView {
                     sessionID: cookie,
                 };
                 this.el.innerHTML += ProfileViewTemplate(context);
+                let old_element = document.getElementById('changeLangToEng');
+                let new_element = old_element.cloneNode(true);
+                old_element.parentNode.replaceChild(new_element, old_element);
+                old_element = document.getElementById('changeLangToRu');
+                new_element = old_element.cloneNode(true);
+                old_element.parentNode.replaceChild(new_element, old_element);
                 document.getElementById('changeLangToEng').addEventListener('click', () => {
                     i18n.setLanguage('en');
                     deleteHeader();

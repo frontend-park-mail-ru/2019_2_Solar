@@ -6,9 +6,13 @@ import {BACKEND_ADDRESS} from '../../config/Config';
 import {PIN_ADRESS} from '../../config/Config';
 
 import './IndexView.scss';
+import bus from '../../utils/bus';
+import i18n from '../../utils/i18n';
 import IndexViewTemplate from '../IndexView/IndexView.hbs';
 import fetchModule from '../../utils/fetchModule';
-import {createHeader} from '../../utils/headerFunc';
+import {createHeader, deleteHeader} from '../../utils/headerFunc';
+
+const PAGE_ADDRESS = (<any>window).location.pathname;
 
 /** Class representing an Index view. */
 export default class IndexView extends BaseView {
@@ -58,6 +62,24 @@ export default class IndexView extends BaseView {
 
                         const index = IndexViewTemplate({arg: this.args});
                         this.el.innerHTML += index;
+                        let old_element = document.getElementById('changeLangToEng');
+                        let new_element = old_element.cloneNode(true);
+                        old_element.parentNode.replaceChild(new_element, old_element);
+                        old_element = document.getElementById('changeLangToRu');
+                        new_element = old_element.cloneNode(true);
+                        old_element.parentNode.replaceChild(new_element, old_element);
+                        document.getElementById('changeLangToEng').addEventListener('click', () => {
+                            i18n.setLanguage('en');
+                            deleteHeader();
+                            createHeader();
+                            bus.emit(PAGE_ADDRESS, {});
+                        });
+                        document.getElementById('changeLangToRu').addEventListener('click', () => {
+                            i18n.setLanguage('ru');
+                            deleteHeader();
+                            createHeader();
+                            bus.emit(PAGE_ADDRESS, {});
+                        });
                         document.getElementById('changeThemeToLight').addEventListener('click', () => {
                             document.body.removeAttribute('data-theme');
                         });
