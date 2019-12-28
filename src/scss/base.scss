@@ -59,36 +59,40 @@
     }
 
     .changeLangToEng {
+        background-image: url('../images/en-flag.png');
         position: fixed;
-        width: 40px;
-        height: 20px;
+        width: 32px;
+        height: 32px;
+        max-width:100%;
+        max-height:100%;
         bottom: 20px;
         left: 20px;
-        background: none!important;
         border: none;
         padding: 0!important;
-        text-decoration: underline;
         cursor: pointer;
+        background-size:cover;
     }
 
     .changeLangToRu {
+        background-image: url('../images/ru-flag.png');
         position: fixed;
-        width: 40px;
-        height: 20px;
+        width: 32px;
+        height: 32px;
+        max-width:100%;
+        max-height:100%;
         bottom: 20px;
         left: 70px;
-        background: none!important;
         border: none;
         padding: 0!important;
-        text-decoration: underline;
         cursor: pointer;
+        background-size:cover;
     }
 
     .changeThemeToLight {
         position: fixed;
         width: 40px;
         height: 20px;
-        bottom: 40px;
+        bottom: 60px;
         left: 20px;
         background: none!important;
         border: none;
@@ -101,7 +105,7 @@
         position: fixed;
         width: 40px;
         height: 20px;
-        bottom: 40px;
+        bottom: 60px;
         left: 70px;
         background: none!important;
         border: none;
@@ -201,6 +205,7 @@
     }
 
     .changeLangToEng {
+        background-image: url('../images/en-flag.png');
         position: fixed;
         width: 40px;
         height: 20px;
@@ -214,6 +219,7 @@
     }
 
     .changeLangToRu {
+        background-image: url('../images/ru-flag.png');
         position: fixed;
         width: 40px;
         height: 20px;
@@ -228,28 +234,30 @@
 
     .changeThemeToLight {
         position: fixed;
-        width: 40px;
-        height: 20px;
+        width: 32px;
+        height: 32px;
+        max-width:100%;
+        max-height:100%;
         bottom: 40px;
         left: 20px;
-        background: none!important;
         border: none;
         padding: 0!important;
-        text-decoration: underline;
         cursor: pointer;
+        background-size:cover;
     }
 
     .changeThemeToDark {
         position: fixed;
-        width: 40px;
-        height: 20px;
+        width: 32px;
+        height: 32px;
+        max-width:100%;
+        max-height:100%;
         bottom: 40px;
         left: 70px;
-        background: none!important;
         border: none;
         padding: 0!important;
-        text-decoration: underline;
         cursor: pointer;
+        background-size:cover;
     }
 
     footer {
