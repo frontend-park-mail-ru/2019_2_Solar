@@ -342,6 +342,7 @@ $shadows-big:    multiple-box-shadow(100);
   .signup-form-block__error-text {
     width: calc(100% - 40px);
     margin: 5px 10px;
+    font-size: 40px;
     padding: 10px 5px;
     border: 1px solid red;
     border-radius: 5px;
