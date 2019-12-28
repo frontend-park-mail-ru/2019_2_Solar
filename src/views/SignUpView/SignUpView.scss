@@ -612,7 +612,10 @@ $shadows-big:    multiple-box-shadow(100);
 [data-theme="dark"] {
   .signup-block,
   .noscroll-for-signup,
-  .signup-block_margin {
+  .signup-block_margin,
+  #signUpEmail,
+  #signUpUsername,
+  #signUpPassword {
     background-color: #000000;
     color: #ffffff;
   }

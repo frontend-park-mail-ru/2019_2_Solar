@@ -133,6 +133,13 @@ footer {
     }
 }
 
+input {
+    font-size: 14px;
+    &::placeholder {
+        font-size: 14px;
+    }
+}
+
 [data-theme="dark"] {
     .changeThemeToLight, 
     .changeThemeToDark,
