@@ -19,295 +19,6 @@ $shadows-small:  multiple-box-shadow(700);
 $shadows-medium: multiple-box-shadow(200);
 $shadows-big:    multiple-box-shadow(100);
 
-@media only screen and (max-width: 1000px) {
-  .stars1 {
-    z-index: -999;
-    width: 3px;
-    height: 3px;
-    background: transparent;
-    box-shadow: $shadows-small;
-    animation: animStar 50s linear infinite;
-      
-    &:after {
-      content: " ";
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: transparent;
-      box-shadow: $shadows-small;
-    }
-  }
-      
-  .stars2 {
-    z-index: -999;
-    width: 4px;
-    height: 4px;
-    background: transparent;
-    box-shadow: $shadows-medium;
-    animation: animStar 100s linear infinite;
-      
-    &:after {
-      content: " ";
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: transparent;
-      box-shadow: $shadows-medium;
-    }
-  }
-      
-  .stars3 {
-    z-index: -999;
-    width: 5px;
-    height: 5px;
-    background: transparent;
-    box-shadow: $shadows-big;
-    animation         : animStar 150s linear infinite;
-      
-    &:after {
-      content: " ";
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: transparent;
-      box-shadow: $shadows-big;
-    }
-  }
-
-  body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-  }
-
-  .signup-form-block__error-text {
-    width: calc(100% - 40px);
-    margin: 5px 10px;
-    padding: 10px 5px;
-    border: 1px solid red;
-    border-radius: 5px;
-    background: #FADADD;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    color: red;
-  }
-
-  .form-block__error-input {
-    box-shadow: 0 0 2px 1px red;
-  }
-
-  // .signup-block_margin {
-  //   margin: 20% 30% 20% 30%;
-  // }
-
-  .signup-block {
-      float: left;
-      z-index: 999;
-      background-color: #ffffff;
-      display: flex;
-      width: 80%;
-      margin: 40% 10% 0 10%;
-      font-family: Roboto, sans-serif;
-      border: 8px solid #FF8F0C;
-      box-shadow: 1px 2px 2px rgba(255, 0, 0, .5);
-      border-radius: 25px;
-      flex-direction: column;
-      transition: box-shadow 2s ease;
-      &:hover {
-          transition: box-shadow 0.5s ease;
-          box-shadow: 1px 2px 80px rgba(255, 0, 0, .5);
-      }
-      position: relative;
-  }
-
-  .signup-block__title-solar {
-      width: auto;
-      text-align: center;
-      font-family: Tangerine, serif;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 250px;
-      line-height: 66px;
-      padding: 15% 10% 10% 10%;
-      color: #000000;
-  }
-
-  .signup-block__under-title {
-      width: 80%;
-      text-align: center;
-      font-weight: normal;
-      font-size: 45px;
-      padding: 0 10% 5% 10%;
-      color: #000000;
-  }
-
-  .signup-form-block {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      padding-bottom: 5%;
-  }
-
-  input {
-      display: block;
-      padding-left: 10px;
-  }
-
-  .signup-form-block__input {
-      display: flex;
-      width: 336px;
-      height: 70px;
-      border-radius: 5px;
-      border: 1px solid #A19F9C;
-      box-sizing: border-box;
-      &::-webkit-input-placeholder {
-        font-size: 20px;
-      }
-      &::-moz-placeholder {
-        font-size: 20px;
-      }
-      &:-ms-input-placeholder {
-        font-size: 20px;
-      }
-      &::placeholder {
-        font-size: 20px;
-      }
-  }
-
-  .signup-form-block__input_email-margin {
-      margin-top: 10px;
-  }
-
-  .signup-form-block__input_margin-top {
-      margin-top: 5px;
-  }
-
-  .signup-form-block__button_margin {
-      margin-top: 15px;
-  }
-
-  .signup-form-block__underbutton-text {
-      width: 600px;
-      height: 45px;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 30px;
-      // line-height: 15px;
-      text-align: center;
-  }
-
-  .a-bold-decoration {
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 30px;
-      color: #000000;
-      position: relative;
-      display: inline-block;
-      &:after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 2px;
-          display: block;
-          margin-top: -1px;
-          right: 0;
-          background: #000000;
-          transition: width .2s ease;
-          -webkit-transition: width .2s ease;
-      }
-      &:hover:after {
-          width: 100%;
-          left: 0;
-          background: #000000;
-      }
-  }
-
-  .a-bold-decoration_margin {
-      margin-top: 5px;
-  }
-
-  @keyframes animStar {
-    from { 
-      transform: translateY(-1000px);
-    }
-    to {
-      transform: translateY(-3000px);
-    }
-  }
-
-  .background {
-    background-color: #ffffff;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  .signup-floating-images_container {
-    position: absolute;
-    display: inline-grid;
-    z-index: 1;
-    grid-template-columns: 1fr 1fr;
-    float: right;
-    right: 0;
-    width: 60rem;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .signup-floating-images_column {
-    width: 100%;
-    & .signup-floating-images_column-scroll-1 {
-      width: 50%;
-      position:absolute;
-      top:0;
-      animation: scroll 30s linear 1s infinite;
-    }
-    & .signup-floating-images_column-scroll-2 {
-      right: 0;
-      width: 50%;
-      position:absolute;
-      top:0;
-      animation: scroll 20s linear 1s infinite;
-    }
-    & img {
-      border-radius: 20px;
-      margin: 10px;
-      width: calc(100% - 20px);
-    }
-  }
-
-  @keyframes scroll {
-    100% { top: -100%; }  /* top is the number of spans (in this case 8) multiplied by span height (45px as described above)*/
-  }
-
-  .changeLangToEng {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    bottom: 20px;
-    left: 20px;
-    background: none!important;
-    border: none;
-    padding: 0!important;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-
-  .changeLangToRu {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    bottom: 20px;
-    left: 70px;
-    background: none!important;
-    border: none;
-    padding: 0!important;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-}
-
 @media only screen and (min-width: 1000px) {
   .stars1 {
     z-index: -999;
@@ -603,9 +314,8 @@ $shadows-big:    multiple-box-shadow(100);
   @keyframes scroll {
     100% { top: -100%; }  /* top is the number of spans (in this case 8) multiplied by span height (45px as described above)*/
   }
-}
 
-#signUpEmail,
+  #signUpEmail,
   #signUpUsername,
   #signUpPassword {
     font-size: 16px;
@@ -614,8 +324,205 @@ $shadows-big:    multiple-box-shadow(100);
     }
   }
 
-.signup-error-text {
-  display: none;
+  .signup-error-text {
+    display: none;
+  }
+}
+
+// =================================================== phone ===================================================
+
+@media only screen and (max-width: 1000px) {
+
+  body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+  }
+
+  .signup-form-block__error-text {
+    width: calc(100% - 40px);
+    margin: 5px 10px;
+    padding: 10px 5px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #FADADD;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: red;
+  }
+
+  .form-block__error-input {
+    box-shadow: 0 0 2px 1px red;
+  }
+
+  .signup-block {
+      float: left;
+      z-index: 90;
+      background-color: #ffffff;
+      display: flex;
+      margin-left: 6%;
+      margin-right: 6%;
+      width: 88%;
+      height: 60%;
+      margin-top: 20%;
+      margin-bottom: 20%;
+      font-family: Roboto, sans-serif;
+      border: 8px solid #FF8F0C;
+      box-shadow: 1px 2px 2px rgba(255, 0, 0, .5);
+      border-radius: 25px;
+      flex-direction: column;
+      transition: box-shadow 2s ease;
+      &:hover {
+          transition: box-shadow 0.5s ease;
+          box-shadow: 1px 2px 80px rgba(255, 0, 0, .5);
+      }
+      position: relative;
+  }
+
+  .signup-block__title-solar {
+      width: auto;
+      text-align: center;
+      font-family: Tangerine, serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 250px;
+      line-height: 150px;
+      padding: 10%;
+      padding-bottom: 5%;
+      color: #000000;
+  }
+
+  .signup-block__under-title {
+      width: 100%;
+      text-align: center;
+      font-weight: normal;
+      font-size: 44px;
+      line-height: 60px;
+      color: #000000;
+  }
+
+  .signup-form-block {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  }
+
+  input {
+      display: block;
+      padding-left: 10px;
+  }
+
+  .signup-form-block__input {
+      display: flex;
+      width: 100%;
+      border-radius: 5px;
+      height: 100px;
+      border: 1px solid #A19F9C;
+      box-sizing: border-box;
+      font-size: 48px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      &::placeholder {
+        font-size: 40px;
+      }
+  }
+
+  #inputdata_signup {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .signup-form-block__input_email-margin {
+      margin-top: 50px;
+  }
+
+  .signup-form-block__input_margin-top {
+      margin-top: 5px;
+  }
+
+  .signup-form-block__button_margin {
+      margin-top: 15px;
+      height: 100px;
+      & .buttonComponent {
+        width: 100%;
+        height: 100%;
+        font-size: 40px;
+        font-weight: bold;
+      }
+  }
+
+  .signup-form-block__underbutton-text {
+      width: 100%;
+      margin-left: 10%;
+      margin-right: 10%;
+      margin-top: 50px;
+      height: 100px;
+
+      font-style: normal;
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 40px;
+      text-align: center;
+  }
+
+  .a-bold-decoration {
+      text-decoration: none;
+      font-weight: bold;
+      color: #000000;
+      position: relative;
+      display: inline-block;
+  }
+
+  .background {
+    background-color: #ffffff;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .signup-floating-images_container {
+    position: absolute;
+    display: inline-grid;
+    z-index: 1;
+    grid-template-columns: 1fr 1fr;
+    float: right;
+    right: 0;
+    width: 60rem;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .signup-floating-images_column {
+    width: 100%;
+    & .signup-floating-images_column-scroll-1 {
+      width: 50%;
+      position:absolute;
+      top:0;
+      animation: scroll 30s linear 1s infinite;
+    }
+    & .signup-floating-images_column-scroll-2 {
+      right: 0;
+      width: 50%;
+      position:absolute;
+      top:0;
+      animation: scroll 20s linear 1s infinite;
+    }
+    & img {
+      border-radius: 20px;
+      margin: 10px;
+      width: calc(100% - 20px);
+    }
+  }
+
+  @keyframes scroll {
+    100% { top: -100%; }  /* top is the number of spans (in this case 8) multiplied by span height (45px as described above)*/
+  }
+
+  .signup-error-text {
+    display: none;
+  }
 }
 
 [data-theme="dark"] {
