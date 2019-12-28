@@ -21,7 +21,9 @@
             <a href="/subscribe/new" class="left-controls__text-to-ind">{{i18n 'header.subs'}}</a>
         </div>
         <div class="controls">
-            <img src="{{avatarPhoto}}" id="avatarPhotoHeader" class="avatar">
+            <a href="/profile">
+                <img src="{{avatarPhoto}}" data-section="/profile" id="avatarPhotoHeader" class="avatar">
+            </a>
             <a href="/profile" id="nicknameHeader" class="controls__link usernameclass">{{username}}</a>
             <a href="/create_pin"><img data-section="/create_pin" src={{PHplus}} class="plus-img"></a>
         </div>
