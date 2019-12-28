@@ -31,6 +31,7 @@
 }
 
 .for-subscribe-view_text {
+    margin-top: 40px;
     padding: 40px 50px 0 50px;
     background: #9393962b;
     height: 250px;
@@ -41,6 +42,8 @@
     text-align: center;
     line-height: 24px;
     flex-direction: column;
+    z-index: 1;
+    border-radius: 20px;
 }
 
 .for-subscribe_none {

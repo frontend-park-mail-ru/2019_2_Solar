@@ -9,9 +9,12 @@
     border-left: 1px solid #d6d6d6;
     border-right: 1px solid #d6d6d6;
     overflow: auto;
+    z-index: 1;
 }
 
 .dialog-container {
     display: flex;
     justify-content: center;
+    z-index: 1;
+    padding-top: 30px;
 }

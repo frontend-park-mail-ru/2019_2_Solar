@@ -62,7 +62,9 @@ $background: #ffffff;
         height: 35px;
         background: $solarsunrise-color;
         padding: 15px 15px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
+        position: relative;
+        -webkit-transform: rotate(0deg);
         &::after {
             content: ' ';
             width: 100%;
