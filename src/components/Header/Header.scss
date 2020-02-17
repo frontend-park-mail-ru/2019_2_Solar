@@ -62,30 +62,30 @@ $background: #ffffff;
         height: 35px;
         background: $solarsunrise-color;
         padding: 15px 15px;
-        margin-bottom: 40px;
-        position: relative;
-        -webkit-transform: rotate(0deg);
-        &::after {
-            content: ' ';
-            width: 100%;
-            position: absolute;
-            left: 0;
-            margin-top: 50px;
-            height: 30px;
-            background: $solarsunrise-brighter-color;
-            z-index: -502;
-        }
-        &::before {
-            content: ' ';
-            width: 100%;
-            position: absolute;
-            left: 0;
-            margin-top: 60px;
-            border-radius: 40px;
-            height: 50px;
-            background: $background;
-            z-index: -501;
-        }
+        // margin-bottom: 40px;
+        // position: relative;
+        // -webkit-transform: rotate(0deg);
+        // &::after {
+        //     content: ' ';
+        //     width: 100%;
+        //     position: absolute;
+        //     left: 0;
+        //     margin-top: 50px;
+        //     height: 30px;
+        //     background: $solarsunrise-brighter-color;
+        //     z-index: -502;
+        // }
+        // &::before {
+        //     content: ' ';
+        //     width: 100%;
+        //     position: absolute;
+        //     left: 0;
+        //     margin-top: 60px;
+        //     border-radius: 40px;
+        //     height: 50px;
+        //     background: $background;
+        //     z-index: -501;
+        // }
     }
 
     .logo {
@@ -340,28 +340,28 @@ $background: #ffffff;
         height: 70px;
         background: $solarsunrise-color;
         padding: 15px 15px;
-        margin-bottom: 20px;
-        &::after {
-            content: ' ';
-            width: 100%;
-            position: absolute;
-            left: 0;
-            margin-top: 80px;
-            height: 100px;
-            background: $solarsunrise-brighter-color;
-            z-index: -502;
-        }
-        &::before {
-            content: ' ';
-            width: 100%;
-            position: absolute;
-            left: 0;
-            margin-top: 120px;
-            border-radius: 80px;
-            height: 100px;
-            background: $background;
-            z-index: -501;
-        }
+        // margin-bottom: 20px;
+        // &::after {
+        //     content: ' ';
+        //     width: 100%;
+        //     position: absolute;
+        //     left: 0;
+        //     margin-top: 80px;
+        //     height: 100px;
+        //     background: $solarsunrise-brighter-color;
+        //     z-index: -502;
+        // }
+        // &::before {
+        //     content: ' ';
+        //     width: 100%;
+        //     position: absolute;
+        //     left: 0;
+        //     margin-top: 120px;
+        //     border-radius: 80px;
+        //     height: 100px;
+        //     background: $background;
+        //     z-index: -501;
+        // }
     }
 
     .logo {
