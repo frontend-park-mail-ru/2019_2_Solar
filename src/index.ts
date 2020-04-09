@@ -55,7 +55,7 @@ router
 
 (<any>window).CSRFtoken = '';
 
-document.getElementById("preloaderImg").setAttribute('src',preloaderImg);
+// document.getElementById("preloaderImg").setAttribute('src',preloaderImg);
 (<any>window).addEventListener('load', () => {
     const loader = document.getElementById('preloader');
     loader.className += ' hidden';
