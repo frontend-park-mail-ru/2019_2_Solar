@@ -5,6 +5,7 @@
         </div>
         <div class="createpin__right-column">
             <div class="createpin__right-column__title">Изменение пина</div>
+            <div id="createPinError{{forID}}" style="text-decoration:none;"></div>
             <input type="text" id="pinname" placeholder="Добавьте название" {{#if pinName}}value={{pinName}}{{/if}} class="createpin-form__title createpin-form__title_pos">
             <input type="text" id="pincontent" placeholder="Добавьте описание" {{#if pinContent}}value={{pinContent}}{{/if}} class="createpin-form__content createpin-form__content_pos">
 

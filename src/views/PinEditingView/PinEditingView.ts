@@ -106,6 +106,9 @@ export default class PinEditingView extends BaseView {
                             e.preventDefault();
                             const boardFromHbs = editingPinForm.elements['board-select'].value;
 
+                            const createPinError = document.getElementById('createPinError' + String(forId));
+                            cleanElement(createPinError);
+
                             if (boardFromHbs == 0) {
                                 return;
                             }
@@ -114,6 +117,11 @@ export default class PinEditingView extends BaseView {
                                 'title': editingPinForm.elements['pinname'].value,
                                 'description': editingPinForm.elements['pincontent'].value,
                             };
+
+                            if (pin.title == '') {
+                                createPinElError(createPinError, 'Название должно быть заполнено', 'createpin-error');
+                                return;
+                            }
 
                             fetchModule.Put({
                                 url: BACKEND_ADDRESS + '/pin/' + this.args,
@@ -157,4 +165,24 @@ export default class PinEditingView extends BaseView {
                 bus.emit('/profile', {});
             });
         }
+}
+
+/**
+ * createPinError
+ * @param {string} elementId
+ * @param {string} errorMessage
+ * @param {string} classname
+ */
+function createPinElError(elementId, errorMessage, classname) {
+    elementId.textContent = errorMessage;
+    elementId.className = classname;
+}
+
+/**
+ * clean element
+ * @param {string} elementId
+ */
+function cleanElement(elementId) {
+    elementId.textContent = '';
+    elementId.className = '';
 }
