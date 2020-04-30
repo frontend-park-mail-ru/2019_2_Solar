@@ -68,8 +68,15 @@ export default class BoardView extends BaseView {
                 this.data = responseBody;
                 const numS = getNumS(responseBody.body.pins.length);
 
+                // Очень неприятный костыль
+                const headerNick = document.getElementById('nicknameHeader');
+                if (headerNick == null) {
+                    document.location.reload();
+                }
+
                 const context = {
-                    username: (<any>window).GlobalUser.body.user.username,
+                    // username: (<any>window).GlobalUser.body.user.username,
+                    username: headerNick.innerText,
                     boardName: responseBody.body.board.title,
                     boardDis: responseBody.body.board.description,
                     pinCount: responseBody.body.pins.length,
